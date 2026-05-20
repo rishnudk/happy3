@@ -1,0 +1,139 @@
+/* =========================================
+   GLOBAL BACKGROUND ENGINE
+========================================= */
+
+.background-wrapper {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* =========================================
+   MAIN PAGE GRADIENT
+========================================= */
+
+.background-wrapper::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(255, 255, 255, 0.9),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(111, 66, 193, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(245, 185, 61, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f8f6fc 0%,
+      #f2edf8 50%,
+      #f7f4fb 100%
+    );
+
+  z-index: -10;
+}
+
+/* =========================================
+   LARGE PURPLE GLOW
+========================================= */
+
+.bg-purple-glow {
+  position: absolute;
+
+  width: 600px;
+  height: 600px;
+
+  background: rgba(111, 66, 193, 0.15);
+
+  filter: blur(120px);
+
+  border-radius: 999px;
+
+  top: -200px;
+  right: -120px;
+
+  z-index: -1;
+}
+
+/* =========================================
+   YELLOW GLOW
+========================================= */
+
+.bg-yellow-glow {
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  background: rgba(245, 185, 61, 0.14);
+
+  filter: blur(120px);
+
+  border-radius: 999px;
+
+  bottom: 0;
+  left: -120px;
+
+  z-index: -1;
+}
+
+/* =========================================
+   GRID OVERLAY
+========================================= */
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.2) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.2) 1px,
+      transparent 1px
+    );
+
+  background-size: 60px 60px;
+
+  opacity: 0.2;
+
+  z-index: -2;
+}
+
+/* =========================================
+   FLOATING BLUR BALL
+========================================= */
+
+.blur-ball {
+  position: absolute;
+
+  border-radius: 999px;
+
+  filter: blur(80px);
+
+  opacity: 0.4;
+
+  z-index: -1;
+}
+
+.blur-ball-purple {
+  background: rgba(111, 66, 193, 0.22);
+}
+
+.blur-ball-yellow {
+  background: rgba(245, 185, 61, 0.22);
+}
