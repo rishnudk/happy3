@@ -79,7 +79,7 @@ export function ChallengeSection() {
             <h2 className="font-display mt-6 text-balance text-4xl font-bold leading-[1.15] text-[var(--nature-black)] md:text-5xl lg:text-[60px]">
               Why are people{" "}
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-[var(--purple-brand)] to-[#C040A0] bg-clip-text text-transparent">
+                <span className="text-[#800080]">
                   struggling
                 </span>
               </span>{" "}

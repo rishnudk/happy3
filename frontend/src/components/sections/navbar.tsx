@@ -15,7 +15,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full pt-6 transition-all duration-500">
+    <header className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 ${scrolled ? "pt-2.5" : "pt-6"}`}>
       <div className="container-wrapper">
         <nav
           className={`
@@ -25,13 +25,12 @@ export default function Navbar() {
             rounded-full
             border
             px-8
-            py-3
             transition-all
             duration-500
             ${
               scrolled
-                ? "bg-white/80 backdrop-blur-2xl shadow-xl shadow-purple-900/5 border-white/60 py-3"
-                : "bg-white/40 backdrop-blur-xl border-white/40 py-4"
+                ? "bg-white/80 backdrop-blur-xl border-white/60 shadow-[4px_4px_15px_rgba(165,140,217,0.06),_-4px_-4px_15px_rgba(255,255,255,0.9)] py-2.5"
+                : "bg-transparent border-transparent py-4 shadow-none"
             }
           `}
         >
@@ -42,6 +41,14 @@ export default function Navbar() {
               alt="Happiness Coaching Academy Logo"
               className="h-10 w-auto object-contain"
             />
+            <div className="flex flex-col text-left leading-none font-satoshi font-bold">
+              <span className="text-[#800080] text-[13px] sm:text-[14px] uppercase tracking-wider">
+                Happiness
+              </span>
+              <span className="text-[#FFCE1B] text-[10px] sm:text-[11px] uppercase tracking-widest mt-0.5">
+                Coaching Academy
+              </span>
+            </div>
           </a>
 
           {/* CENTER - NAVIGATION LINKS */}
@@ -90,7 +97,7 @@ export default function Navbar() {
             <button
               className="
                 rounded-full
-                bg-secondary
+                bg-mustard
                 px-6
                 py-2.5
                 text-[14px]
