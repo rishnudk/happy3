@@ -1,17 +1,39 @@
-import Hero from "@/components/sections/hero";
 import Navbar from "@/components/sections/navbar";
-import Problems from "@/components/sections/problems";
-import Solutions from "@/components/sections/solutions";
-import Stats from "@/components/sections/stats";
+import Hero from "@/components/sections/hero";
+import { ChallengeSection } from "@/components/sections/ChallengeSection";
+import { PillarsSection } from "@/components/sections/PillarsSection";
+import { WhatHcaDoesSection } from "@/components/sections/WhatHcaDoesSection";
+import { CoreValuesSection } from "@/components/sections/CoreValuesSection";
+import { ProgramsSection } from "@/components/sections/ProgramsSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { CommunitySection } from "@/components/sections/CommunitySection";
+import { CtaSection } from "@/components/sections/CtaSection";
+import Footer from "@/components/sections/footer";
+import { GlobalBackground } from "@/components/sections/GlobalBackground";
+
+import ScrollProgress from "@/components/layout/scroll-progress";
 
 export default function HomePage() {
   return (
-    <main className="relative">
+    <main className="relative min-h-screen overflow-x-hidden">
+      {/* Premium Cinematic Ambient Background Layers */}
+      <GlobalBackground />
+      
+      {/* Scroll indicator bar */}
+      <ScrollProgress />
+
+      {/* Page Sections */}
       <Navbar />
       <Hero />
-      <Stats />
-      <Problems />
-      <Solutions />
+      <ChallengeSection />
+      <PillarsSection />
+      <WhatHcaDoesSection />
+      <CoreValuesSection />
+      <ProgramsSection />
+      <TestimonialsSection />
+      <CommunitySection />
+      <CtaSection />
+      <Footer />
     </main>
   );
 }

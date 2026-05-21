@@ -1,29 +1,38 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@theme {
+  --font-satoshi: "Satoshi", sans-serif;
+  --font-display: "Satoshi", sans-serif;
+  --font-jakarta: var(--font-jakarta), sans-serif;
+  --color-primary: #6D28D9;
+  --color-secondary: #FFB326;
+  --color-slate-deep: #2A254B;
+}
 
 :root {
   /* =========================================
-     COLORS
+     COLORS (REFINED BRAND PALETTE)
   ========================================= */
 
-  --background: #f5f2fa;
-  --foreground: #1e1b2e;
+  --background: #FAF9FC;
+  --foreground: #2A254B;
 
-  --card: rgba(255, 255, 255, 0.72);
-  --card-foreground: #1e1b2e;
+  --card: rgba(255, 255, 255, 0.75);
+  --card-foreground: #2A254B;
 
-  --primary: #6f42c1;
+  --primary: #6D28D9;
   --primary-foreground: #ffffff;
 
-  --secondary: #f5b93d;
-  --secondary-foreground: #1e1b2e;
+  --secondary: #FFB326;
+  --secondary-foreground: #2A254B;
 
-  --muted: #ece7f4;
-  --muted-foreground: #6b6880;
+  --muted: #F3EEFA;
+  --muted-foreground: #6B6880;
 
-  --border: rgba(255, 255, 255, 0.6);
+  --border: rgba(255, 255, 255, 0.5);
 
   /* =========================================
      RADIUS
@@ -40,14 +49,18 @@
   ========================================= */
 
   --shadow-soft:
-    0 4px 10px rgba(126, 87, 194, 0.06),
-    0 10px 30px rgba(0, 0, 0, 0.03);
+    0 4px 12px rgba(109, 40, 217, 0.04),
+    0 12px 36px rgba(42, 37, 75, 0.03);
 
   --shadow-card:
-    0 10px 40px rgba(111, 66, 193, 0.08);
+    0 15px 45px rgba(109, 40, 217, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.01);
 
   --shadow-glow:
-    0 0 30px rgba(111, 66, 193, 0.18);
+    0 0 40px rgba(109, 40, 217, 0.15);
+
+  --shadow-gold-glow:
+    0 10px 25px rgba(255, 179, 38, 0.35);
 
   /* =========================================
      CONTAINER
@@ -58,7 +71,7 @@
 
 /* =========================================
    BASE
-========================================= */
+ ========================================= */
 
 * {
   box-sizing: border-box;
@@ -73,19 +86,14 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
+  font-family: var(--font-jakarta), sans-serif;
   overflow-x: hidden;
   min-height: 100vh;
 }
 
 /* =========================================
-   TYPOGRAPHY
-========================================= */
+   TYPOGRAPHY (SATOSHI + JAKARTA)
+ ========================================= */
 
 h1,
 h2,
@@ -93,8 +101,10 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  font-family: var(--font-satoshi), "Satoshi", sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 p {
@@ -103,7 +113,7 @@ p {
 
 /* =========================================
    REUSABLE UTILITIES
-========================================= */
+ ========================================= */
 
 .container-wrapper {
   width: 100%;
@@ -114,13 +124,10 @@ p {
 
 .glass-card {
   background: var(--card);
-
-  backdrop-filter: blur(18px);
-
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border);
-
   box-shadow: var(--shadow-card);
-
   border-radius: var(--radius-lg);
 }
 
@@ -132,19 +139,166 @@ p {
   box-shadow: var(--shadow-glow);
 }
 
+.glow-gold {
+  box-shadow: var(--shadow-gold-glow);
+}
+
+/* =========================================
+   3D BALLS & ORBITS
+ ========================================= */
+
+.sphere-3d {
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 35%, var(--sphere-color, #ffffff) 0%, var(--sphere-shadow, #9CA3AF) 80%);
+  box-shadow:
+    inset -6px -6px 18px rgba(0, 0, 0, 0.25),
+    inset 4px 4px 12px rgba(255, 255, 255, 0.85),
+    0 12px 28px rgba(42, 37, 75, 0.18);
+}
+
+.sphere-purple {
+  --sphere-color: #C084FC;
+  --sphere-shadow: #5B21B6;
+}
+
+.sphere-yellow {
+  --sphere-color: #FBBF24;
+  --sphere-shadow: #B45309;
+}
+
+.sphere-white {
+  --sphere-color: #FFFFFF;
+  --sphere-shadow: #8B87A5;
+}
+
+.orbit-path {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(109, 40, 217, 0.08);
+}
+
 /* =========================================
    SCROLLBAR
-========================================= */
+ ========================================= */
 
 ::-webkit-scrollbar {
   width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(111, 66, 193, 0.35);
+  background: rgba(109, 40, 217, 0.35);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* =========================================
+   HOVER GLOW
+ ========================================= */
+
+.hover-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255,255,255,0.4),
+      transparent 70%
+    );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hover-glow:hover::before {
+  opacity: 1;
+}
+
+/* =========================================
+   MICRO-ANIMATIONS
+ ========================================= */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* =========================================
+   NEUMORPHISM DECORATION UTILITIES
+ ========================================= */
+
+.neumorphic-raised {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    8px 8px 24px rgba(165, 140, 217, 0.05),
+    -8px -8px 24px rgba(255, 255, 255, 0.9),
+    inset 0px 0px 0px rgba(0, 0, 0, 0);
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease-in-out;
+}
+
+.neumorphic-raised:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 
+    12px 12px 32px rgba(165, 140, 217, 0.08),
+    -12px -12px 32px rgba(255, 255, 255, 0.95);
+}
+
+.neumorphic-inset {
+  background: rgba(243, 238, 250, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    inset 4px 4px 8px rgba(165, 140, 217, 0.06),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-md);
+}
+
+.neumorphic-icon-container {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    4px 4px 10px rgba(165, 140, 217, 0.04),
+    -4px -4px 10px rgba(255, 255, 255, 0.9),
+    inset -2px -2px 5px rgba(165, 140, 217, 0.02);
+  border-radius: var(--radius-md);
+}
+
+.neumorphic-icon-container-inset {
+  background: rgba(243, 238, 250, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    inset 3px 3px 6px rgba(165, 140, 217, 0.06),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
 }
