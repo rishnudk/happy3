@@ -7,20 +7,20 @@ const programs = [
   {
     num: "01",
     title: "Happiness Code",
-    desc: "Workshops for corporates, schools & communities.",
+    desc: "15 powerful sessions to unlock the secrets of true happiness..",
     tint: "from-[#FFCE1B]/20 via-transparent to-transparent",
     borderHover: "group-hover:border-[var(--mustard)]/40",
   },
   {
     num: "02",
-    title: "Awaken Mastery Listening Centre",
+    title: "Awaken Mastery Listening Centre ",
     desc: "Deep inner work and healing modalities for lasting change.",
     tint: "from-[#DCC7E8]/30 via-transparent to-transparent",
     borderHover: "group-hover:border-[var(--purple-brand)]/35",
   },
   {
     num: "03",
-    title: "Listening Centre",
+    title: "Listening Centre (ofline/ online)",
     desc: "One-to-one personal clarity sessions with trained experts.",
     tint: "from-[#F5E7B2]/30 via-transparent to-transparent",
     borderHover: "group-hover:border-[var(--mustard)]/35",
@@ -28,7 +28,7 @@ const programs = [
   {
     num: "04",
     title: "Happiness Coaching Certification",
-    desc: "Become a certified happiness coach and transform lives.",
+    desc: "India’s first university certification in happiness life Coaching.",
     tint: "from-[#FCFAFF]/40 via-transparent to-transparent",
     borderHover: "group-hover:border-[var(--purple-brand)]/20",
   },

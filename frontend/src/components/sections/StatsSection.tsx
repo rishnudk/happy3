@@ -6,7 +6,7 @@ import { Users, Star, Globe } from "lucide-react";
 export default function StatsSection() {
   const stats = [
     {
-      value: "20k+",
+      value: "25k+",
       label: "Lives transformed",
       icon: Users,
       iconColor: "text-primary",

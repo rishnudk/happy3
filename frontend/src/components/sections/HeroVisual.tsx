@@ -6,43 +6,75 @@ import FloatingTag from "./FloatingTag";
 
 export default function HeroVisual() {
   return (
-    <div className="lg:col-span-5 relative flex justify-center items-center min-h-[520px] sm:min-h-[600px] lg:min-h-[640px] w-full z-10 overflow-visible">
-      {/* 1. DECORATIVE ELEMENTS: RADIAL BLUR ORBS */}
-      <div 
-        className="absolute w-[350px] h-[350px] rounded-full opacity-30 filter blur-[80px] pointer-events-none z-0" 
+    <div className="lg:col-span-5 relative flex justify-center items-center min-h-[420px] sm:min-h-[560px] lg:min-h-[640px] w-full z-10 overflow-visible">
+
+      {/* 1. DECORATIVE: RADIAL BLUR ORBS matching global bg */}
+      <div
+        className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full opacity-30 filter blur-[80px] pointer-events-none z-0"
         style={{
-          background: "radial-gradient(circle, rgba(128,0,128,0.15) 0%, rgba(255,206,27,0.08) 50%, transparent 100%)"
+          background: "radial-gradient(circle, rgba(128,0,128,0.12) 0%, rgba(255,206,27,0.06) 50%, transparent 100%)"
         }}
       />
-      
-      {/* 2. THIN CONCENTRIC ORBIT RINGS (BACKGROUND) */}
-      <SmileArc variant="thin-orbit" className="w-[480px] h-[480px] opacity-25 z-0" delay={0.2} />
 
-      {/* 3. PORTRAIT CONTAINER (CIRCULAR CUTOUT) */}
+      {/* 2. THIN CONCENTRIC ORBIT RINGS */}
+      <SmileArc variant="thin-orbit" className="w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] lg:w-[480px] lg:h-[480px] opacity-25 z-0" delay={0.2} />
+
+      {/* 3. PORTRAIT CONTAINER — bg matches global background (#F6F3FA / #F2EDF8) */}
       <motion.div
         initial={{ opacity: 0, scale: 0.93 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
         className="
           relative
-          w-[310px] h-[310px]
-          sm:w-[390px] sm:h-[390px]
+
+          w-[230px] h-[230px]
+          sm:w-[320px] sm:h-[320px]
+          lg:w-[390px] lg:h-[390px]
+
           rounded-full
-          bg-gradient-to-tr from-purple-100/40 via-white/80 to-amber-100/40
           p-2
-          shadow-[15px_15px_35px_rgba(165,140,217,0.08),-15px_-15px_35px_rgba(255,255,255,0.95)]
           z-10
           overflow-visible
         "
+        style={{
+          background: "linear-gradient(145deg, #FAF8FD, #F2EDF8)",
+          boxShadow: `
+            12px 12px 30px rgba(128,0,128,0.1),
+            -12px -12px 30px rgba(255,255,255,0.95),
+            inset 2px 2px 4px rgba(255,255,255,0.9),
+            inset -2px -2px 4px rgba(128,0,128,0.04)
+          `,
+        }}
       >
-        {/* White inner border rim */}
+        {/* Neumorphic inner border rim */}
         <div className="absolute inset-0 rounded-full border border-white/60 pointer-events-none z-20" />
-        
-        {/* Overflow hidden container for portrait mask */}
-        <div className="w-full h-full rounded-full overflow-hidden relative border-[6px] border-white shadow-inner bg-gradient-to-tr from-purple-50 to-amber-50">
+        <div
+          className="
+            absolute top-[4px] left-1/2 -translate-x-1/2
+            w-[60%] h-[8px]
+            rounded-full bg-white/50 blur-[4px]
+            pointer-events-none z-20
+          "
+        />
+
+        {/* Portrait with background matching global bg tones */}
+        <div
+          className="
+            w-full h-full rounded-full overflow-hidden relative
+            border-[4px] sm:border-[6px]
+            border-white/80
+          "
+          style={{
+            background: "linear-gradient(135deg, #F6F3FA, #F2EDF8, #FAF8FD)",
+            boxShadow: `
+              inset 4px 4px 10px rgba(128,0,128,0.06),
+              inset -4px -4px 10px rgba(255,255,255,0.95)
+            `,
+          }}
+        >
           <img
             src="/images/hero.png"
-            alt="Professional Wellness Coach - Happiness Coaching Academy"
+            alt="Shabna Sulthan - Founder, Happiness Coaching Academy"
             className="
               w-full h-full
               object-cover
@@ -57,125 +89,143 @@ export default function HeroVisual() {
         </div>
       </motion.div>
 
-      {/* 4. PRIMARY THICK MUSTARD YELLOW SMILE ARC */}
-      {/* Positioned right below the chin, wrapping the portrait curve */}
+      {/* 4. BRAND SMILE ARC — Mustard Yellow, bottom of portrait */}
       <SmileArc
         variant="primary"
-        className="
-          w-[330px] sm:w-[380px] 
-          h-[150px] sm:h-[180px] 
-          bottom-[12%] sm:bottom-[10%] lg:bottom-[12%]
-          left-[5%] sm:left-[8%] lg:left-[5%]
-          z-20
-        "
+        className="bottom-[8%] sm:bottom-[6%] lg:bottom-[4%] w-[280px] sm:w-[340px] lg:w-[380px]"
         delay={0.4}
       />
 
-      {/* 5. SECONDARY PATRIARCH PURPLE SMILE ARC */}
-      {/* Offset behind/beside to create premium 3D layered geometry */}
-      <SmileArc
-        variant="secondary"
-        className="
-          w-[240px] sm:w-[280px]
-          h-[110px] sm:h-[130px]
-          top-[42%] lg:top-[44%]
-          right-[-10px] sm:right-[2%] lg:right-[0%]
-          z-0
-          opacity-30
-          rotate-[-15deg]
-        "
-        delay={0.6}
-      />
 
       {/* =========================================
-         6. FLOATING EMOTIONAL NEUMORPHIC BADGES
+         5. FLOATING "KEY" BADGES
+         Positioned along orbit ring with solid icon colors
       ========================================= */}
 
-      {/* Badge A: Mindset Shift (Top-Left) */}
+      {/* Badge A: Mindset Shift — Top-Left (~10 o'clock) */}
       <FloatingTag
         label="Mindset Shift"
         iconName="Brain"
-        iconColor="text-primary"
-        iconBg="bg-purple-50/60 border-purple-100/60"
-        className="top-[12%] left-[-15px] sm:left-[4%]"
+        iconColor="text-white"
+        iconBg="#800080"
+        className="
+          top-[5%] left-[-8px]
+          sm:top-[6%] sm:left-[2%]
+          lg:top-[8%] lg:left-[-4%]
+        "
         delay={0.15}
         yRange={[0, -9, 0]}
         duration={5.2}
       />
 
-      {/* Badge B: Awareness (Top-Right) */}
+      {/* Badge B: Awareness — Top-Right (~2 o'clock) */}
       <FloatingTag
         label="Awareness"
         iconName="Sun"
-        iconColor="text-secondary"
-        iconBg="bg-amber-50/60 border-amber-100/60"
-        className="top-[25%] right-[-20px] sm:right-[3%]"
+        iconColor="text-white"
+        iconBg="#FFCE1B"
+        className="
+          top-[20%] right-[-6px]
+          sm:top-[18%] sm:right-[-2%]
+          lg:top-[20%] lg:right-[-6%]
+        "
         delay={0.3}
         yRange={[0, 9, 0]}
         duration={4.8}
       />
 
-      {/* Badge C: Emotional Clarity (Mid-Left) */}
+      {/* Badge C: Emotional Clarity — Mid-Left (~8 o'clock) */}
       <FloatingTag
         label="Emotional Clarity"
         iconName="Heart"
-        iconColor="text-primary animate-pulse"
-        iconBg="bg-purple-50/60 border-purple-100/60"
-        className="bottom-[35%] left-[-25px] sm:left-[0%]"
+        iconColor="text-white"
+        iconBg="#800080"
+        className="
+          bottom-[30%] left-[-12px]
+          sm:bottom-[32%] sm:left-[-4%]
+          lg:bottom-[34%] lg:left-[-8%]
+        "
         delay={0.45}
         yRange={[0, -11, 0]}
         duration={5.6}
       />
 
-      {/* Badge D: Confidence (Bottom-Right) */}
+      {/* Badge D: Loneliness — Bottom-Right (~4 o'clock) */}
       <FloatingTag
-        label="Confidence"
-        iconName="Smile"
-        iconColor="text-secondary"
-        iconBg="bg-amber-50/60 border-amber-100/60"
-        className="bottom-[22%] right-[-15px] sm:right-[4%]"
+        label="Loneliness"
+        iconName="UserRound"
+        iconColor="text-white"
+        iconBg="#800080"
+        className="
+          bottom-[14%] right-[-6px]
+          sm:bottom-[16%] sm:right-[-2%]
+          lg:bottom-[18%] lg:right-[-4%]
+        "
         delay={0.6}
         yRange={[0, 8, 0]}
         duration={5}
       />
 
       {/* =========================================
-         7. DECORATIVE 3D SPHERES
+         6. DECORATIVE 3D SPHERES
       ========================================= */}
 
       {/* Sphere 1: Purple (Top Left Accent) */}
       <motion.div
         animate={{ y: [0, -10, 0], x: [0, 4, 0] }}
         transition={{ repeat: Infinity, duration: 5.8, ease: "easeInOut" }}
-        className="absolute top-[8%] left-[22%] w-5 h-5 sphere-3d sphere-purple z-20 pointer-events-none"
+        className="
+          absolute z-20 pointer-events-none
+          top-[8%] left-[22%]
+          w-3.5 h-3.5
+          sm:w-4 sm:h-4
+          lg:w-5 lg:h-5
+          sphere-3d sphere-purple
+        "
       />
 
       {/* Sphere 2: Yellow (Bottom Right Accent) */}
       <motion.div
         animate={{ y: [0, 12, 0], x: [0, -4, 0] }}
         transition={{ repeat: Infinity, duration: 6.4, ease: "easeInOut", delay: 0.3 }}
-        className="absolute bottom-[6%] right-[28%] w-5.5 h-5.5 sphere-3d sphere-yellow z-20 pointer-events-none"
+        className="
+          absolute z-20 pointer-events-none
+          bottom-[6%] right-[28%]
+          w-4 h-4
+          sm:w-4.5 sm:h-4.5
+          lg:w-5.5 lg:h-5.5
+          sphere-3d sphere-yellow
+        "
       />
 
       {/* Sphere 3: Purple (Mid Right Orbit) */}
       <motion.div
         animate={{ y: [0, -14, 0] }}
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 0.6 }}
-        className="absolute top-[48%] right-[-10px] w-7 h-7 sphere-3d sphere-purple z-20 pointer-events-none"
+        className="
+          absolute z-20 pointer-events-none
+          top-[48%] right-[-6px]
+          sm:right-[-8px]
+          lg:right-[-10px]
+          w-5 h-5
+          sm:w-6 sm:h-6
+          lg:w-7 lg:h-7
+          sphere-3d sphere-purple
+        "
       />
 
-      {/* Sphere 4: Yellow (Mid Right Outer) */}
-      <motion.div
-        animate={{ y: [0, -8, 0], x: [0, -6, 0] }}
-        transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 0.1 }}
-        className="absolute bottom-[36%] right-[-30px] w-4.5 h-4.5 sphere-3d sphere-yellow z-20 pointer-events-none"
-      />
-
-      {/* Sphere 5: White (Top Right) */}
+      {/* Sphere 4: Yellow (Top Right) */}
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
-        className="absolute top-[16%] right-[16%] w-4 h-4 sphere-3d sphere-white z-0 pointer-events-none"
+        className="
+          absolute z-0 pointer-events-none
+          top-[16%] right-[16%]
+          w-3 h-3
+          sm:w-3.5 sm:h-3.5
+          lg:w-4 lg:h-4
+          sphere-3d sphere-white
+        "
       />
     </div>
   );

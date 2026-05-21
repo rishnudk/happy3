@@ -6,7 +6,7 @@ export function GlobalBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #FFF9F2 0%, #FFF8E8 18%, #FCFAFF 50%, #FFF8E8 82%, #FFF9F2 100%)",
+            "linear-gradient(180deg, #F6F3FA 0%, #FAF8FD 18%, #FCFAFF 50%, #FAF8FD 82%, #F6F3FA 100%)",
         }}
       />
 
@@ -16,7 +16,7 @@ export function GlobalBackground() {
           className="absolute -top-40 -left-32 h-[60vw] w-[60vw] rounded-full opacity-50"
           style={{
             background:
-              "radial-gradient(closest-side, #FFCE1B 0%, #F5E7B2 40%, transparent 70%)",
+              "radial-gradient(closest-side, #e7dee7ff 0%, #F5D0FE 40%, transparent 70%)",
             filter: "blur(180px)",
           }}
         />
@@ -32,7 +32,7 @@ export function GlobalBackground() {
           className="absolute bottom-[-10%] left-[20%] h-[50vw] w-[50vw] rounded-full opacity-35"
           style={{
             background:
-              "radial-gradient(closest-side, #800080 0%, #DCC7E8 45%, transparent 75%)",
+              "radial-gradient(closest-side, #dac0daff 0%, #DCC7E8 45%, transparent 75%)",
             filter: "blur(220px)",
           }}
         />
@@ -44,7 +44,7 @@ export function GlobalBackground() {
           className="absolute top-[10%] right-[15%] h-[28vw] w-[28vw] rounded-full"
           style={{
             background:
-              "radial-gradient(closest-side, rgba(255,206,27,0.45), transparent 70%)",
+              "radial-gradient(closest-side, rgba(226, 191, 230, 0.3), transparent 70%)",
             filter: "blur(140px)",
           }}
         />

@@ -12,8 +12,8 @@ const values = [
     tint: "from-[#FFCE1B]/20 to-transparent",
   },
   {
-    title: "Emotional Healing",
-    desc: "Creating safe spaces for emotional healing, release, and transformation.",
+    title: "Accountability",
+    desc: "Building trust, responsibility, and conscious commitment in personal and professional growth.",
     icon: Flower,
     tint: "from-[#DCC7E8]/25 to-transparent",
   },

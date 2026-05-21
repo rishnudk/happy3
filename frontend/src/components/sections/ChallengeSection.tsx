@@ -20,7 +20,7 @@ const challenges = [
   },
   {
     id: 2,
-    title: "Loneliness",
+    title: "Relationship challenges",
     num: "02",
     icon: UserMinus,
     gradient: "from-blue-500/10 to-cyan-500/10 text-blue-600",

@@ -6,29 +6,23 @@ import { SmileArc } from "./decor";
 
 const hcaPillars = [
   {
-    title: "Talk",
-    desc: "Develop deeper communication and listening skills.",
+    title: "Listening",
+    desc: "A safe, confidential, and non-judgmental space to express yourself freely with heartful listening.",
     icon: MessageSquare,
     tint: "from-[#FFCE1B]/20 to-transparent",
   },
   {
-    title: "Heal",
-    desc: "Release emotional blocks and inner limitations.",
+    title: "Healing",
+    desc: "Release emotional burdens, heal inner wounds, overcome limiting patterns, and reconnect with your inner peace and strength.",
     icon: Heart,
     tint: "from-[#DCC7E8]/25 to-transparent",
   },
   {
-    title: "Learn",
-    desc: "Build awareness and emotional intelligence.",
+    title: "Empowering",
+    desc: "Goal achievement, emotional upliftment, and conscious growth that creates a chain reaction of spreading happiness.",
     icon: BookOpen,
     tint: "from-[#F5E7B2]/30 to-transparent",
-  },
-  {
-    title: "Grow",
-    desc: "Create lasting transformation in life and relationships.",
-    icon: TrendingUp,
-    tint: "from-[#FCFAFF]/40 to-transparent",
-  },
+  }
 ];
 
 export function WhatHcaDoesSection() {
