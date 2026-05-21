@@ -7,9 +7,11 @@
   --font-satoshi: "Satoshi", sans-serif;
   --font-display: "Satoshi", sans-serif;
   --font-jakarta: var(--font-jakarta), sans-serif;
-  --color-primary: #6D28D9;
-  --color-secondary: #FFB326;
+  --color-primary: #800080;
+  --color-secondary: #FFCE1B;
   --color-slate-deep: #2A254B;
+  --color-patriarch: #800080;
+  --color-mustard: #FFCE1B;
 }
 
 :root {
@@ -17,17 +19,17 @@
      COLORS (REFINED BRAND PALETTE)
   ========================================= */
 
-  --background: #FAF9FC;
+  --background: #F6F3FA;
   --foreground: #2A254B;
 
   --card: rgba(255, 255, 255, 0.75);
   --card-foreground: #2A254B;
 
-  --primary: #6D28D9;
+  --primary: #800080;
   --primary-foreground: #ffffff;
 
-  --secondary: #FFB326;
-  --secondary-foreground: #2A254B;
+  --secondary: #FFCE1B;
+  --secondary-foreground: #800080;
 
   --muted: #F3EEFA;
   --muted-foreground: #6B6880;
@@ -49,18 +51,18 @@
   ========================================= */
 
   --shadow-soft:
-    0 4px 12px rgba(109, 40, 217, 0.04),
+    0 4px 12px rgba(128, 0, 128, 0.04),
     0 12px 36px rgba(42, 37, 75, 0.03);
 
   --shadow-card:
-    0 15px 45px rgba(109, 40, 217, 0.06),
+    0 15px 45px rgba(128, 0, 128, 0.06),
     0 4px 12px rgba(0, 0, 0, 0.01);
 
   --shadow-glow:
-    0 0 40px rgba(109, 40, 217, 0.15);
+    0 0 40px rgba(128, 0, 128, 0.15);
 
   --shadow-gold-glow:
-    0 10px 25px rgba(255, 179, 38, 0.35);
+    0 10px 25px rgba(255, 206, 27, 0.35);
 
   /* =========================================
      CONTAINER
@@ -258,39 +260,46 @@ p {
  ========================================= */
 
 .neumorphic-raised {
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   box-shadow: 
-    8px 8px 24px rgba(165, 140, 217, 0.05),
-    -8px -8px 24px rgba(255, 255, 255, 0.9),
-    inset 0px 0px 0px rgba(0, 0, 0, 0);
+    10px 10px 30px rgba(165, 140, 217, 0.12),
+    -10px -10px 30px rgba(255, 255, 255, 0.95);
   border-radius: var(--radius-lg);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .neumorphic-raised:hover {
-  transform: translateY(-4px) scale(1.01);
+  transform: translateY(-4px);
   box-shadow: 
-    12px 12px 32px rgba(165, 140, 217, 0.08),
-    -12px -12px 32px rgba(255, 255, 255, 0.95);
+    16px 16px 36px rgba(165, 140, 217, 0.16),
+    -16px -16px 36px rgba(255, 255, 255, 1);
 }
 
 .neumorphic-inset {
-  background: rgba(243, 238, 250, 0.35);
+  background: rgba(246, 243, 250, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 
+    inset 4px 4px 10px rgba(165, 140, 217, 0.08),
+    inset -4px -4px 10px rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-md);
+}
+
+.neumorphic-inset-deep {
+  background: rgba(243, 238, 250, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 
-    inset 4px 4px 8px rgba(165, 140, 217, 0.06),
-    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
-  border-radius: var(--radius-md);
+    inset 6px 6px 14px rgba(165, 140, 217, 0.12),
+    inset -6px -6px 14px rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-lg);
 }
 
 .neumorphic-icon-container {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.9);
   box-shadow: 
-    4px 4px 10px rgba(165, 140, 217, 0.04),
-    -4px -4px 10px rgba(255, 255, 255, 0.9),
-    inset -2px -2px 5px rgba(165, 140, 217, 0.02);
+    4px 4px 12px rgba(165, 140, 217, 0.05),
+    -4px -4px 12px rgba(255, 255, 255, 0.95);
   border-radius: var(--radius-md);
 }
 
@@ -301,4 +310,12 @@ p {
     inset 3px 3px 6px rgba(165, 140, 217, 0.06),
     inset -3px -3px 6px rgba(255, 255, 255, 0.9);
   border-radius: 999px;
+}
+
+.glow-mustard {
+  box-shadow: 0 10px 30px rgba(255, 206, 27, 0.35);
+}
+
+.glow-patriarch {
+  box-shadow: 0 10px 30px rgba(128, 0, 128, 0.25);
 }
