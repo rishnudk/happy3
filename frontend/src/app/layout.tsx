@@ -11,7 +11,7 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "Happiness Coaching Academy",
-  description: "Transforming Mindsets, Elevating Lives.",
+  description: "Discover the art of happiness.",
 };
 
 export default function RootLayout({

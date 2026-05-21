@@ -330,8 +330,7 @@ Style:
 - split color emphasis
 
 Example:
-Transforming Minds,
-Elevating Lives.
+Discover the art of  happiness
 
 Use:
 - purple for primary words

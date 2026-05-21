@@ -7,7 +7,6 @@ interface FloatingTagProps {
   label: string;
   iconName: keyof typeof LucideIcons;
   iconColor?: string;
-  iconBg?: string;
   className?: string;
   delay?: number;
   yRange?: number[];
@@ -18,66 +17,101 @@ interface FloatingTagProps {
 export default function FloatingTag({
   label,
   iconName,
-  iconColor = "text-primary",
-  iconBg = "bg-purple-50 border-purple-100",
+  iconColor = "text-[#2E1065]",
   className = "",
   delay = 0,
   yRange = [0, -10, 0],
   xRange = [0, 4, 0],
   duration = 5,
 }: FloatingTagProps) {
-  // Grab the icon component dynamically from Lucide library
-  const IconComponent = LucideIcons[iconName] as React.ComponentType<{ className?: string }>;
+  const IconComponent =
+    LucideIcons[iconName] as React.ComponentType<{
+      className?: string;
+    }>;
 
   return (
     <motion.div
-      animate={{ 
+      animate={{
         y: yRange,
         x: xRange,
       }}
-      transition={{ 
-        repeat: Infinity, 
-        duration, 
-        ease: "easeInOut", 
-        delay 
+      transition={{
+        repeat: Infinity,
+        duration,
+        ease: "easeInOut",
+        delay,
       }}
-      whileHover={{ 
-        scale: 1.05, 
-        y: -15,
-        transition: { type: "spring", stiffness: 300, damping: 15 } 
+      whileHover={{
+        scale: 1.03,
+        y: -12,
+        transition: {
+          type: "spring",
+          stiffness: 260,
+          damping: 18,
+        },
       }}
       className={`
         absolute
         z-30
         flex
         items-center
-        gap-3.5
+        min-w-[220px]
+        h-[72px]
         rounded-full
-        pl-3 pr-6 py-2.5
-        bg-white/90
-        backdrop-blur-md
-        border border-white
-        shadow-[8px_8px_24px_rgba(165,140,217,0.1),-8px_-8px_24px_rgba(255,255,255,0.95)]
-        hover:shadow-[12px_12px_32px_rgba(165,140,217,0.15),-12px_-12px_32px_rgba(255,255,255,1)]
-        transition-shadow
-        duration-300
-        cursor-default
-        text-[14px]
-        font-bold
-        text-slate-deep
+        bg-white/80
+        backdrop-blur-xl
+        border border-white/70
+        shadow-[0_10px_40px_rgba(120,90,180,0.08)]
+        pr-8
+        pl-20
+        text-[15px]
+        font-semibold
+        text-[#1E1B2E]
+        tracking-[-0.02em]
         ${className}
       `}
     >
-      {/* Dynamic Neumorphic Inset Circle Container for the Icon */}
-      <span className={`w-8.5 h-8.5 rounded-full flex items-center justify-center shadow-inner ${iconBg} border`}>
-        {IconComponent ? (
-          <IconComponent className={`w-4 h-4 ${iconColor}`} />
-        ) : (
-          <span className="w-2 h-2 rounded-full bg-primary" />
-        )}
-      </span>
-      
-      <span className="tracking-wide">{label}</span>
+      {/* Large Floating Circle */}
+      <div
+        className="
+          absolute
+          left-[-8px]
+          top-1/2
+          -translate-y-1/2
+          w-[88px]
+          h-[88px]
+          rounded-full
+          bg-[#F8F7FB]
+          shadow-[inset_0_2px_6px_rgba(255,255,255,0.9),0_8px_24px_rgba(140,120,180,0.12)]
+          flex
+          items-center
+          justify-center
+        "
+      >
+        {/* Inner Icon Circle */}
+        <div
+          className="
+            w-[52px]
+            h-[52px]
+            rounded-full
+            bg-white
+            border border-[#F1EDF7]
+            shadow-[0_4px_14px_rgba(120,90,180,0.08)]
+            flex
+            items-center
+            justify-center
+          "
+        >
+          {IconComponent ? (
+            <IconComponent className={`w-5 h-5 ${iconColor}`} />
+          ) : (
+            <span className="w-2 h-2 rounded-full bg-purple-700" />
+          )}
+        </div>
+      </div>
+
+      {/* Label */}
+      <span>{label}</span>
     </motion.div>
   );
 }
