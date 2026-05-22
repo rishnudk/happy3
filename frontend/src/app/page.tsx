@@ -1,4 +1,4 @@
-import Navbar from "@/components/sections/navbar";
+import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/hero";
 import { ChallengeSection } from "@/components/sections/ChallengeSection";
 import { PillarsSection } from "@/components/sections/PillarsSection";
@@ -8,7 +8,7 @@ import { ProgramsSection } from "@/components/sections/ProgramsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { CtaSection } from "@/components/sections/CtaSection";
-import { Footer } from "@/components/sections/Footer";
+import { Footer } from "@/components/layout/Footer";
 import { GlobalBackground } from "@/components/sections/GlobalBackground";
 
 import ScrollProgress from "@/components/layout/scroll-progress";
