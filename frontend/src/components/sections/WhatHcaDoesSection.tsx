@@ -1,121 +1,206 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, Heart, BookOpen, TrendingUp } from "lucide-react";
-import { SmileArc } from "./decor";
+import { MessageSquare, Heart, BookOpen } from "lucide-react";
+import NeuCard from "@/components/ui/NeuCard";
+import PageWrapper from "@/components/layout/page-wrapper";
 
-const hcaPillars = [
+/* ─── HCA Practices Data ────────────────────────────────────────────────── */
+const PRACTICES = [
   {
     title: "Listening",
     desc: "A safe, confidential, and non-judgmental space to express yourself freely with heartful listening.",
     icon: MessageSquare,
-    tint: "from-[#FFCE1B]/20 to-transparent",
+    iconColor: "#FF9F1C", // mustard gold for warmth/listening
   },
   {
     title: "Healing",
     desc: "Release emotional burdens, heal inner wounds, overcome limiting patterns, and reconnect with your inner peace and strength.",
     icon: Heart,
-    tint: "from-[#DCC7E8]/25 to-transparent",
+    iconColor: "#EC4899", // soft rose for deep emotional healing
   },
   {
     title: "Empowering",
     desc: "Goal achievement, emotional upliftment, and conscious growth that creates a chain reaction of spreading happiness.",
     icon: BookOpen,
-    tint: "from-[#F5E7B2]/30 to-transparent",
-  }
-];
+    iconColor: "#800080", // royal brand purple for empowerment
+  },
+] as const;
 
 export function WhatHcaDoesSection() {
   return (
-    <section id="what-hca-does" className="relative px-4 py-20 md:py-28 overflow-hidden bg-[#FAF9FC]">
-      <div className="mx-auto max-w-7xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-3xl text-center mb-16 md:mb-20"
-        >
-          {/* Badge */}
-          <div className="inline-flex mb-4">
+    <PageWrapper className="relative py-28 overflow-visible">
+
+      {/* ── Ambient glow orbs for visual interest ── */}
+      <div
+        className="pointer-events-none absolute -top-20 right-[-10%] w-[450px] h-[450px] rounded-full blur-[130px] opacity-[0.14]"
+        style={{ background: "rgba(128,0,128,0.15)" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-[-12%] left-[-8%] w-[400px] h-[400px] rounded-full blur-[120px] opacity-[0.12]"
+        style={{ background: "rgba(255,206,27,0.14)" }}
+      />
+
+      {/* ── 2-Column layout: text left | cards right ── */}
+      <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">
+
+        {/* ── LEFT: Heading & Description Block (span 4) ── */}
+        <div className="lg:col-span-4 flex flex-col gap-7">
+
+          {/* Neumorphic Pill Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex"
+          >
             <span
-              className="
-                glass-card
-                inline-flex
-                items-center
-                rounded-full
-                px-5
-                py-2
-                text-xs
-                font-bold
-                text-primary/90
-                border-white/80
-                shadow-sm
-              "
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
+              style={{
+                color: "rgba(128,0,128,0.75)",
+                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                border: "1px solid rgba(255,255,255,0.85)",
+                boxShadow: `
+                  6px 6px 16px rgba(165,140,217,0.12),
+                  -6px -6px 16px rgba(255,255,255,0.95),
+                  inset 1px 1px 2px rgba(255,255,255,0.9)
+                `,
+              }}
             >
+              {/* Pulsing Dot */}
+              <span className="relative flex h-2 w-2 flex-shrink-0">
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                  style={{ background: "rgba(128,0,128,0.5)" }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2"
+                  style={{ background: "#800080" }}
+                />
+              </span>
               What HCA Does
             </span>
-          </div>
+          </motion.div>
 
-          <h2 className="font-display text-balance text-4xl font-extrabold leading-[1.1] text-slate-deep md:text-5xl lg:text-[56px]">
-            We help individuals{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-secondary font-black">reconnect</span>
-              <SmileArc className="absolute -bottom-2.5 left-0 h-4.5 w-full text-[var(--mustard)]" strokeWidth={2.5} />
-            </span>{" "}
-            with themselves
-          </h2>
-          <p className="mt-8 text-muted-foreground/90 md:text-lg max-w-2xl mx-auto leading-relaxed font-semibold">
-            We help individuals reconnect with themselves through emotional healing, mindset transformation, and practical growth tools.
-          </p>
-        </motion.div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {hcaPillars.map((item, index) => {
-            const IconComponent = item.icon;
-            return (
-              <motion.article
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.22, 1, 0.36, 1],
-                  delay: index * 0.08,
-                }}
-                whileHover={{ y: -8 }}
-                className="neumorphic-raised group relative overflow-hidden rounded-[28px] p-8 transition-all duration-300"
-              >
-                {/* Decorative background glow that intensifies on hover */}
-                <div
-                  className={`pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-gradient-to-br ${item.tint} opacity-60 blur-xl transition-all duration-500 group-hover:scale-125 group-hover:opacity-100`}
+          {/* Heading with Underline Marker */}
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
+            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
+          >
+            <span className="block">We help individuals</span>
+            <span className="block">
+              <span className="relative inline-block" style={{ color: "#800080" }}>
+                reconnect
+                {/* Mustard marker underline */}
+                <span
+                  className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
+                  style={{ background: "#FFCE1B", opacity: 0.38 }}
                 />
-                
-                <div className="relative z-10 flex flex-col h-full justify-between min-h-[200px]">
-                  <div>
-                    {/* Neumorphic Icon Container */}
-                    <div className="neumorphic-icon-container flex h-14 w-14 items-center justify-center text-primary transition-transform duration-300 group-hover:scale-110">
-                      <IconComponent className="h-6 w-6 stroke-[1.8]" />
-                    </div>
+              </span>{" "}
+              with themselves
+            </span>
+          </motion.h2>
 
-                    <h3 className="font-display mt-8 text-2xl font-bold tracking-tight text-slate-deep">
+          {/* Subtext Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
+            style={{ color: "rgba(42,37,75,0.60)" }}
+          >
+            We help individuals reconnect with themselves through emotional healing, mindset transformation, and practical growth tools.
+          </motion.p>
+
+          {/* Animated Neumorphic Accent Line */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative w-20 h-[5px] rounded-full overflow-hidden"
+            style={{
+              background: "rgba(243,238,250,0.6)",
+              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
+              border: "1px solid rgba(255,255,255,0.7)",
+              transformOrigin: "left center",
+            }}
+          >
+            <motion.div
+              className="absolute left-0 top-0 bottom-0 rounded-full"
+              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
+              animate={{ x: [0, 32, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+        </div>
+
+        {/* ── RIGHT: 3-column Grid of Neumorphic Cards (span 8) ── */}
+        <div className="lg:col-span-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative z-10">
+            {PRACTICES.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <NeuCard
+                  key={item.title}
+                  delay={index * 0.1}
+                  className="p-8 flex flex-col gap-5 group"
+                >
+                  {/* Neumorphic Icon Container */}
+                  <div
+                    className="flex items-center justify-center flex-shrink-0"
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 16,
+                      /* Inset neumorphic well — matches GlobalBackground (#F6F3FA) */
+                      background: "#F6F3FA",
+                      boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                    }}
+                  >
+                    {/* Coloured Tint Circle */}
+                    <div
+                      className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 12,
+                        background: `${item.iconColor}20`,
+                        boxShadow: `inset 2px 2px 5px ${item.iconColor}25, inset -1px -1px 3px rgba(255,255,255,0.6)`,
+                      }}
+                    >
+                      <Icon style={{ color: item.iconColor, width: 18, height: 18, strokeWidth: 2.2 }} />
+                    </div>
+                  </div>
+
+                  {/* Card Title & Content */}
+                  <div>
+                    <h3
+                      className="font-satoshi font-black text-[20px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
+                      style={{ color: "#2A254B" }}
+                    >
                       {item.title}
                     </h3>
-
-                    <p className="mt-3 text-[14.5px] leading-relaxed text-muted-foreground/80 font-medium">
+                    <p
+                      className="font-medium text-[14px] leading-[1.65] mt-3 transition-colors duration-300"
+                      style={{ color: "rgba(42,37,75,0.65)" }}
+                    >
                       {item.desc}
                     </p>
                   </div>
-
-                  {/* Micro-interaction line */}
-                  <div className="mt-6 h-[4px] w-8 bg-primary/10 rounded-full transition-all duration-300 group-hover:w-16 group-hover:bg-primary/30" />
-                </div>
-              </motion.article>
-            );
-          })}
+                </NeuCard>
+              );
+            })}
+          </div>
         </div>
+
       </div>
-    </section>
+    </PageWrapper>
   );
 }
