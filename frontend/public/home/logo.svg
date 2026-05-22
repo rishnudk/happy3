@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48" fill="none">
+  <defs>
+    <linearGradient id="logoGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#D4A574"/>
+      <stop offset="100%" stop-color="#C4956A"/>
+    </linearGradient>
+  </defs>
+  <!-- Smile arc icon -->
+  <circle cx="24" cy="24" r="22" stroke="url(#logoGrad)" stroke-width="2.5" fill="none"/>
+  <path d="M12 28 Q24 38 36 28" stroke="url(#logoGrad)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <circle cx="17" cy="20" r="2" fill="url(#logoGrad)"/>
+  <circle cx="31" cy="20" r="2" fill="url(#logoGrad)"/>
+  <!-- Text -->
+  <text x="56" y="22" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#E8DDD3" letter-spacing="0.5">Happiness</text>
+  <text x="56" y="39" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="400" fill="#B8A898" letter-spacing="2">COACHING ACADEMY</text>
+</svg>
