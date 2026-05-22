@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface MasonryItem {
@@ -123,12 +124,12 @@ export default function Masonry({
               }}
             >
               {/* Image */}
-              <img
+              <Image
                 src={item.img}
                 alt="Community life at HCA"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className={`
-                  w-full
-                  h-full
                   object-cover
                   transition-all
                   duration-750

@@ -8,7 +8,7 @@ import PageWrapper from "@/components/layout/page-wrapper";
 
 const TRUST_METRICS = [
   {
-    title: "Trusted by 20,000+ Individuals",
+    title: "Trusted by 25,000+ Individuals",
     desc: "Join a massive global network of individuals who have successfully elevated their life paths.",
     icon: Users,
     color: "#800080", // Patriarch Purple

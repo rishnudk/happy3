@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Play,
@@ -168,11 +169,12 @@ function ReelCard({ reel }: { reel: Reel }) {
       className="relative aspect-[9/16] w-[220px] sm:w-[245px] flex-shrink-0 overflow-hidden rounded-[32px] border border-white/20 bg-gray-950 shadow-[0_20px_50px_rgba(0,0,0,0.15)] cursor-pointer transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_25px_52px_rgba(0,0,0,0.25)] group"
     >
       {/* Fallback Static Poster Image */}
-      <img
+      <Image
         src={reel.poster}
         alt={reel.quote}
-        loading="lazy"
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+        fill
+        sizes="245px"
+        className={`object-cover transition-opacity duration-700 ${
           isPlaying ? "opacity-0" : "opacity-100"
         }`}
       />
@@ -198,7 +200,7 @@ function ReelCard({ reel }: { reel: Reel }) {
       <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-4">
         <div className="flex items-center gap-2.5">
           <div className="relative h-7 w-7 overflow-hidden rounded-full ring-2 ring-[#800080] bg-white p-0.5">
-            <img src={reel.avatar} alt={reel.userName} className="h-full w-full object-contain" />
+            <Image src={reel.avatar} alt={reel.userName} fill className="object-contain" />
           </div>
           <div className="flex flex-col">
             <span className="text-[10px] font-bold text-white leading-tight">

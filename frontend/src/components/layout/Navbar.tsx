@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,9 +37,11 @@ export default function Navbar() {
         >
           {/* LEFT - LOGO */}
           <a href="#" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
-            <img
+            <Image
               src="/images/logo.png"
               alt="Happiness Coaching Academy Logo"
+              width={40}
+              height={40}
               className="h-10 w-auto object-contain"
             />
             <div className="flex flex-col text-left leading-none font-satoshi font-bold">

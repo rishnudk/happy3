@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import SmileArc from "./SmileArc";
 import FloatingTag from "./FloatingTag";
 
@@ -72,11 +73,13 @@ export default function HeroVisual() {
             `,
           }}
         >
-          <img
+          <Image
             src="/images/hero.png"
             alt="Shabna Sulthan - Founder, Happiness Coaching Academy"
+            fill
+            sizes="(max-width: 640px) 230px, (max-width: 1024px) 320px, 390px"
+            priority
             className="
-              w-full h-full
               object-cover
               object-top
               scale-[1.06]

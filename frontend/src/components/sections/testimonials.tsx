@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PageWrapper from "../layout/page-wrapper";
 import SectionTitle from "../shared/section-title";
 import FadeUp from "../motion/fade-up";
@@ -101,9 +102,11 @@ export default function Testimonials() {
               <div className="space-y-8">
                 {/* PROFILE */}
                 <div className="flex items-center gap-4">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.name}
+                    width={64}
+                    height={64}
                     className="
                       h-16
                       w-16
