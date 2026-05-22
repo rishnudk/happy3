@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Sparkles, ArrowRight } from "lucide-react";
-import { SmileArc } from "./decor";
+import { Users, Sparkles, ArrowUpRight } from "lucide-react";
+import PageWrapper from "@/components/layout/page-wrapper";
 import Masonry from "../ui/Masonry";
 
 const communityImages = [
@@ -100,75 +100,155 @@ const communityImages = [
 
 export function CommunitySection() {
   return (
-    <section id="community" className="relative px-4 py-24 md:py-32 overflow-hidden bg-gradient-to-b from-transparent via-[var(--cream-deep)]/20 to-transparent">
-      {/* Blended Glowing Background Gradients */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Soft Mustard Yellow Glow Orb */}
-        <div
-          className="absolute -top-[10%] right-[10%] h-[500px] w-[500px] rounded-full opacity-[0.22] blur-[110px] animate-aurora"
-          style={{
-            background: "radial-gradient(circle, var(--mustard) 0%, transparent 70%)",
-          }}
-        />
-        {/* Soft Purple Glow Orb */}
-        <div
-          className="absolute -bottom-[10%] left-[5%] h-[550px] w-[550px] rounded-full opacity-[0.18] blur-[120px] animate-aurora-slow"
-          style={{
-            background: "radial-gradient(circle, var(--purple-brand) 0%, transparent 70%)",
-          }}
-        />
-      </div>
+    <PageWrapper className="relative py-28 overflow-visible">
 
-      <div className="mx-auto max-w-7xl relative z-10">
-        
-        {/* Header Elements */}
-        <div className="mx-auto max-w-3xl text-center mb-16 md:mb-20">
+      {/* ── Ambient glow orbs for visual interest ── */}
+      <div
+        className="pointer-events-none absolute -top-16 left-[-10%] w-[460px] h-[460px] rounded-full blur-[130px] opacity-[0.14]"
+        style={{ background: "rgba(128,0,128,0.13)" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-[-10%] right-[-10%] w-[420px] h-[420px] rounded-full blur-[120px] opacity-[0.12]"
+        style={{ background: "rgba(255,206,27,0.14)" }}
+      />
+
+      {/* ── 2-Column layout: text left | masonry right ── */}
+      <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10 overflow-visible">
+
+        {/* ── LEFT: Heading & Description Block (span 4) ── */}
+        <div className="lg:col-span-4 flex flex-col gap-7">
+
+          {/* Neumorphic Pill Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-1.5 rounded-full border border-white/60 bg-white/40 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] text-[var(--purple-brand)] uppercase shadow-[4px_4px_10px_rgba(165,140,217,0.03),_-4px_-4px_10px_rgba(255,255,255,0.9)]"
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex"
           >
-            <Users className="h-3 w-3 text-[var(--purple-brand)] fill-[var(--purple-brand)]/15" />
-            Community
-          </motion.div>
-          
-          <motion.h2
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-            className="font-display mt-6 text-balance text-4xl font-bold leading-[1.05] text-[var(--nature-black)] md:text-5xl lg:text-[62px]"
-          >
-            A Thriving Community<br />
-            <span className="relative inline-block mt-2">
-              <span className="relative z-10 bg-gradient-to-r from-[var(--purple-brand)] via-[#C040A0] to-[var(--mustard)] bg-clip-text text-transparent">
-                Growing Together
+            <span
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
+              style={{
+                color: "rgba(128,0,128,0.75)",
+                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                border: "1px solid rgba(255,255,255,0.85)",
+                boxShadow: `
+                  6px 6px 16px rgba(165,140,217,0.12),
+                  -6px -6px 16px rgba(255,255,255,0.95),
+                  inset 1px 1px 2px rgba(255,255,255,0.9)
+                `,
+              }}
+            >
+              {/* Pulsing Dot */}
+              <span className="relative flex h-2 w-2 flex-shrink-0">
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                  style={{ background: "rgba(128,0,128,0.5)" }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2"
+                  style={{ background: "#800080" }}
+                />
               </span>
-              <SmileArc className="absolute -bottom-2.5 left-0 h-4 w-full text-[var(--mustard)]" strokeWidth={2.6} />
+              Community
+            </span>
+          </motion.div>
+
+          {/* Heading with Underline Marker */}
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
+            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
+          >
+            <span className="block">A Thriving Community</span>
+            <span className="block">
+              <span className="relative inline-block" style={{ color: "#800080" }}>
+                Growing
+                {/* Mustard marker underline */}
+                <span
+                  className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
+                  style={{ background: "#FFCE1B", opacity: 0.38 }}
+                />
+              </span>{" "}
+              Together
             </span>
           </motion.h2>
-          
+
+          {/* Subtext Description */}
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-            className="mt-8 text-[var(--nature-black)]/65 md:text-lg max-w-2xl mx-auto leading-relaxed"
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
+            style={{ color: "rgba(42,37,75,0.60)" }}
           >
             Real people. Real connections. Real transformation. Become a part of a supportive community that inspires, heals, and uplifts every step of your journey.
           </motion.p>
+
+          {/* Join Community Neumorphic CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="flex pt-2"
+          >
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
+              style={{
+                color: "#800080",
+                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                border: "1px solid rgba(255,255,255,0.9)",
+                boxShadow: `
+                  6px 6px 15px rgba(166,140,255,0.10),
+                  -6px -6px 15px rgba(255,255,255,1),
+                  inset 1px 1px 2px rgba(255,255,255,1)
+                `,
+              }}
+            >
+              <Sparkles className="h-4 w-4 text-[var(--purple-brand)] animate-pulse" />
+              <span>Join Our Vibrant Community</span>
+              <span
+                className="flex items-center justify-center w-6 h-6 rounded-full text-white transition-transform duration-300 group-hover/btn:rotate-45"
+                style={{ background: "linear-gradient(145deg, #800080, #C084FC)" }}
+              >
+                <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2.5} />
+              </span>
+            </motion.a>
+          </motion.div>
+
+          {/* Animated Neumorphic Accent Line */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
+            style={{
+              background: "rgba(243,238,250,0.6)",
+              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
+              border: "1px solid rgba(255,255,255,0.7)",
+              transformOrigin: "left center",
+            }}
+          >
+            <motion.div
+              className="absolute left-0 top-0 bottom-0 rounded-full"
+              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
+              animate={{ x: [0, 32, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
         </div>
 
-        {/* Masonry Layout Area */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
-          className="relative min-h-[400px] w-full"
-        >
+        {/* ── RIGHT: Masonry Bento Grid (span 8) ── */}
+        <div className="lg:col-span-8 relative">
           <Masonry
             items={communityImages}
             ease="power3.out"
@@ -180,27 +260,9 @@ export function CommunitySection() {
             blurToFocus={true}
             colorShiftOnHover={true}
           />
-        </motion.div>
-
-        {/* Bottom Call To Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-16 text-center"
-        >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/40 px-7 py-3.5 text-[14px] font-bold text-[var(--purple-brand)] shadow-[6px_6px_18px_rgba(165,140,217,0.04),_-6px_-6px_18px_rgba(255,255,255,0.9)] hover:shadow-[10px_10px_24px_rgba(165,140,217,0.07),_-10px_-10px_24px_rgba(255,255,255,0.95)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/80"
-          >
-            <Sparkles className="h-4.5 w-4.5 text-[var(--purple-brand)] animate-pulse" />
-            Join Our Vibrant Community
-            <ArrowRight className="h-4 w-4 ml-1 stroke-[2.2]" />
-          </a>
-        </motion.div>
+        </div>
 
       </div>
-    </section>
+    </PageWrapper>
   );
 }
