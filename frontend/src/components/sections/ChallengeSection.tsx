@@ -1,140 +1,308 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { 
-  Brain, 
-  UserMinus, 
-  CloudRain, 
-  HelpCircle, 
-  Users, 
-  Briefcase 
+import { useRef, useEffect, useState, useCallback } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  Brain,
+  HeartCrack,
+  CloudLightning,
+  Compass,
+  Baby,
+  Briefcase,
 } from "lucide-react";
+import ChallengeCard from "@/components/ui/ChallengeCard";
+import PageWrapper from "@/components/layout/page-wrapper";
 
-const challenges = [
-  {
-    id: 1,
-    title: "Stress",
-    num: "01",
-    icon: Brain,
-    gradient: "from-purple-500/10 to-indigo-500/10 text-purple-600",
-  },
-  {
-    id: 2,
-    title: "Relationship challenges",
-    num: "02",
-    icon: UserMinus,
-    gradient: "from-blue-500/10 to-cyan-500/10 text-blue-600",
-  },
-  {
-    id: 3,
-    title: "Emotional breakdown",
-    num: "03",
-    icon: CloudRain,
-    gradient: "from-pink-500/10 to-rose-500/10 text-pink-600",
-  },
-  {
-    id: 4,
-    title: "Lack of clarity",
-    num: "04",
-    icon: HelpCircle,
-    gradient: "from-amber-500/10 to-orange-500/10 text-amber-600",
-  },
-  {
-    id: 5,
-    title: "Parenting pressure",
-    num: "05",
-    icon: Users,
-    gradient: "from-teal-500/10 to-emerald-500/10 text-teal-600",
-  },
-  {
-    id: 6,
-    title: "Career anxiety",
-    num: "06",
-    icon: Briefcase,
-    gradient: "from-orange-500/10 to-red-500/10 text-orange-600",
-  },
+/* ─── Challenge data (no num) ──────────────────────────────────────────── */
+const CHALLENGES = [
+  { title: "Stress",                 icon: Brain,         iconColor: "#800080" },
+  { title: "Relationship Challenges",icon: HeartCrack,    iconColor: "#C026D3" },
+  { title: "Emotional Breakdown",    icon: CloudLightning, iconColor: "#7C3AED" },
+  { title: "Lack of Clarity",        icon: Compass,       iconColor: "#9333EA" },
+  { title: "Parenting Pressure",     icon: Baby,          iconColor: "#A21CAF" },
+  { title: "Career Anxiety",         icon: Briefcase,     iconColor: "#6D28D9" },
+] as const;
+
+/* ─── Connector pairs: which cards to join ─────────────────────────────── */
+// Adjacent horizontals, adjacent verticals, + cross diagonals
+const LINE_PAIRS: [number, number][] = [
+  [0, 1], [1, 2],          // top row
+  [3, 4], [4, 5],          // bottom row
+  [0, 3], [1, 4], [2, 5], // verticals
+  [1, 3], [2, 4],          // diagonals
 ];
 
-export function ChallengeSection() {
-  return (
-    <section id="challenge" className="relative px-4 py-24 md:py-32 overflow-hidden">
-      {/* Background soft ambient glows */}
-      <div className="absolute -left-24 -top-24 h-96 w-96 rounded-full bg-[var(--purple-soft)]/20 opacity-60 blur-3xl pointer-events-none" />
-      <div className="absolute -right-24 bottom-24 h-96 w-96 rounded-full bg-[var(--mustard-soft)]/15 opacity-40 blur-3xl pointer-events-none" />
+/* ─── Types ─────────────────────────────────────────────────────────────── */
+interface Pt { x: number; y: number }
 
-      <div className="mx-auto max-w-7xl relative z-10">
-        <div className="grid gap-12 lg:grid-cols-[0.4fr_0.6fr] items-start lg:gap-16">
-          {/* Left Column: Heading and copy */}
+function getCenter(el: HTMLDivElement | null, cont: HTMLDivElement | null): Pt | null {
+  if (!el || !cont) return null;
+  const cr = el.getBoundingClientRect();
+  const pr = cont.getBoundingClientRect();
+  return { x: cr.left - pr.left + cr.width / 2, y: cr.top - pr.top + cr.height / 2 };
+}
+
+/* ─── AnimatedPath ──────────────────────────────────────────────────────── *
+ *  Uses strokeDasharray + animated strokeDashoffset (as requested)          *
+ *  The full path length is the dasharray; offset animates from 0 → −length  *
+ *  giving a clean marching-ant travelling effect.                            *
+ * ─────────────────────────────────────────────────────────────────────────── */
+function AnimatedPath({ d, delay = 0 }: { d: string; delay?: number }) {
+  const pathRef = useRef<SVGPathElement>(null);
+  const [pathLen, setPathLen] = useState(0);
+
+  useEffect(() => {
+    if (pathRef.current) setPathLen(pathRef.current.getTotalLength());
+  }, [d]);
+
+  // dash segment = 18 % of the full length, gap = the rest
+  const dashLen  = pathLen * 0.18;
+  const gapLen   = pathLen - dashLen;
+
+  return (
+    <g>
+      {/* ① Static base — always-visible faint thread */}
+      <path
+        d={d}
+        fill="none"
+        stroke="rgba(128,0,128,0.08)"
+        strokeWidth={1}
+        strokeLinecap="round"
+      />
+
+      {/* ② Travelling dash — strokeDashoffset animates 0 → −pathLen */}
+      {pathLen > 0 && (
+        <motion.path
+          ref={pathRef}
+          d={d}
+          fill="none"
+          stroke="rgba(128,0,128,0.5)"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          /* dasharray: [dash, gap] so only one segment is visible at a time */
+          strokeDasharray={`${dashLen} ${gapLen}`}
+          initial={{ strokeDashoffset: 0 }}
+          animate={{ strokeDashoffset: -pathLen }}
+          transition={{
+            duration: 2.5,
+            delay,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        />
+      )}
+
+      {/* ③ Glowing leading dot, rides along with the dash */}
+      {pathLen > 0 && (
+        <motion.circle
+          r={2.5}
+          fill="rgba(128,0,128,0.6)"
+          filter="url(#lineglow)"
+          /* CSS offset-path lets the dot follow the bezier exactly */
+          style={{ offsetPath: `path("${d}")` } as React.CSSProperties}
+          initial={{ offsetDistance: "0%" }}
+          animate={{ offsetDistance: ["0%", "100%"] }}
+          transition={{
+            duration: 2.5,
+            delay,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        />
+      )}
+    </g>
+  );
+}
+
+/* ─── Named export consumed by page.tsx ─────────────────────────────────── */
+export function ChallengeSection() {
+  const prefersReducedMotion = useReducedMotion();
+
+  const cardRefs    = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [lines, setLines]     = useState<string[]>([]);
+  const [svgSize, setSvgSize] = useState({ w: 0, h: 0 });
+
+  const compute = useCallback(() => {
+    const cont = containerRef.current;
+    if (!cont) return;
+    const { width, height } = cont.getBoundingClientRect();
+    setSvgSize({ w: width, h: height });
+
+    const centers = cardRefs.current.map((el) => getCenter(el, cont));
+
+    setLines(
+      LINE_PAIRS.map(([a, b]) => {
+        const ca = centers[a], cb = centers[b];
+        if (!ca || !cb) return "";
+        // Gentle cubic bezier — control points pulled slightly off the straight line
+        const dx = cb.x - ca.x, dy = cb.y - ca.y;
+        const cpx1 = ca.x + dx * 0.25 + (-dy) * 0.10;
+        const cpy1 = ca.y + dy * 0.25 +   dx  * 0.10;
+        const cpx2 = cb.x - dx * 0.25 + (-dy) * 0.10;
+        const cpy2 = cb.y - dy * 0.25 +   dx  * 0.10;
+        return `M ${ca.x} ${ca.y} C ${cpx1} ${cpy1}, ${cpx2} ${cpy2}, ${cb.x} ${cb.y}`;
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    // Delay so cards finish their entrance animation before we measure
+    const t  = setTimeout(compute, 350);
+    const ro = new ResizeObserver(compute);
+    if (containerRef.current) ro.observe(containerRef.current);
+    window.addEventListener("resize", compute);
+    return () => { clearTimeout(t); ro.disconnect(); window.removeEventListener("resize", compute); };
+  }, [compute]);
+
+  return (
+    <PageWrapper className="relative py-28 overflow-visible">
+
+      {/* ── Ambient glow orbs ── */}
+      <div className="pointer-events-none absolute -top-32 right-[-8%] w-[480px] h-[480px] rounded-full blur-[130px] opacity-20"
+           style={{ background: "rgba(128,0,128,0.18)" }} />
+      <div className="pointer-events-none absolute bottom-0 left-[-6%] w-[360px] h-[360px] rounded-full blur-[110px] opacity-[0.15]"
+           style={{ background: "rgba(255,206,27,0.16)" }} />
+
+      {/* ── 2-Column layout: text left | cards right ── */}
+      <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">
+
+        {/* ── LEFT: heading block (span 4) ── */}
+        <div className="lg:col-span-4 flex flex-col gap-7">
+
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-start"
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex"
           >
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-[var(--purple-brand)]/15 bg-[var(--purple-brand)]/5 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] text-[var(--purple-brand)] uppercase">
+            <span
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
+              style={{
+                color: "rgba(128,0,128,0.75)",
+                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                border: "1px solid rgba(255,255,255,0.85)",
+                boxShadow: `
+                  6px 6px 16px rgba(165,140,217,0.12),
+                  -6px -6px 16px rgba(255,255,255,0.95),
+                  inset 1px 1px 2px rgba(255,255,255,0.9)
+                `,
+              }}
+            >
+              {/* Pulsing dot */}
+              <span className="relative flex h-2 w-2 flex-shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                      style={{ background: "rgba(128,0,128,0.5)" }} />
+                <span className="relative inline-flex rounded-full h-2 w-2"
+                      style={{ background: "#800080" }} />
+              </span>
               The Real Challenge
-            </div>
-            
-            <h2 className="font-display mt-6 text-balance text-4xl font-bold leading-[1.15] text-[var(--nature-black)] md:text-5xl lg:text-[60px]">
-              Why are people{" "}
-              <span className="relative inline-block">
-                <span className="text-[#800080]">
-                  struggling
-                </span>
-              </span>{" "}
-              today?
-            </h2>
-            
-            <div className="relative mt-8 pl-6 border-l-2 border-[var(--mustard)]">
-              <p className="text-base leading-relaxed text-[var(--nature-black)]/70 md:text-lg">
-                Most people were never taught how to regulate emotions.
-              </p>
-            </div>
+            </span>
           </motion.div>
 
-          {/* Right Column: Grid of tactile square cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 md:gap-6">
-            {challenges.map((challenge, index) => {
-              const Icon = challenge.icon;
-              return (
-                <motion.div
-                  key={challenge.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-85px" }}
-                  transition={{
-                    duration: 0.75,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: index * 0.05,
-                  }}
-                  className="neumorphic-raised flex flex-col justify-between aspect-square p-5 sm:p-6 md:p-7 relative overflow-hidden group cursor-default"
-                >
-                  {/* Top row: Icon on left, Number on right */}
-                  <div className="flex items-start justify-between w-full">
-                    <div className="neumorphic-icon-container flex h-11 w-11 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-105">
-                      <div className={`flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br ${challenge.gradient}`}>
-                        <Icon className="h-4.5 w-4.5 stroke-[2.2]" />
-                      </div>
-                    </div>
-                    
-                    <span className="font-display text-sm font-bold tracking-wide text-[var(--nature-black)]/30 group-hover:text-[var(--purple-brand)]/40 transition-colors duration-300">
-                      {challenge.num}
-                    </span>
-                  </div>
+          {/* Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
+            style={{ fontSize: "clamp(30px, 3.8vw, 52px)", color: "#2A254B" }}
+          >
+            Why are people{" "}
+            <span className="relative inline-block" style={{ color: "#800080" }}>
+              struggling
+              {/* Mustard marker underline */}
+              <span
+                className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
+                style={{ background: "#FFCE1B", opacity: 0.38 }}
+              />
+            </span>{" "}
+            today?
+          </motion.h2>
 
-                  {/* Bottom row: Text label */}
-                  <div className="mt-6">
-                    <h3 className="font-display text-sm font-black leading-snug text-[var(--nature-black)] sm:text-base md:text-[17px] group-hover:text-[var(--purple-brand)] transition-colors duration-300">
-                      {challenge.title}
-                    </h3>
-                  </div>
-                </motion.div>
-              );
-            })}
+          {/* Subtext */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[320px]"
+            style={{ color: "rgba(42,37,75,0.60)" }}
+          >
+            Most people were never taught how to regulate emotions.
+          </motion.p>
+
+          {/* Animated neumorphic accent rule */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative w-20 h-[5px] rounded-full overflow-hidden"
+            style={{
+              background: "rgba(243,238,250,0.6)",
+              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
+              border: "1px solid rgba(255,255,255,0.7)",
+              transformOrigin: "left center",
+            }}
+          >
+            <motion.div
+              className="absolute left-0 top-0 bottom-0 rounded-full"
+              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
+              animate={{ x: [0, 32, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+        </div>
+
+        {/* ── RIGHT: Cards + SVG connector overlay (span 8) ── */}
+        <div className="lg:col-span-8">
+          <div ref={containerRef} className="relative">
+
+            {/* SVG connector lines — rendered behind the cards */}
+            {!prefersReducedMotion && svgSize.w > 0 && (
+              <svg
+                width={svgSize.w}
+                height={svgSize.h}
+                className="absolute inset-0 pointer-events-none z-0"
+                aria-hidden="true"
+              >
+                <defs>
+                  <filter id="lineglow" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                {lines.map((d, i) =>
+                  d ? <AnimatedPath key={i} d={d} delay={i * 0.4} /> : null
+                )}
+              </svg>
+            )}
+
+            {/* 3 × 2 card grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 relative z-10">
+              {CHALLENGES.map((item, index) => (
+                <ChallengeCard
+                  key={item.title}
+                  title={item.title}
+                  icon={item.icon}
+                  iconColor={item.iconColor}
+                  delay={index * 0.08}
+                  innerRef={(el) => { cardRefs.current[index] = el; }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </section>
+
+    </PageWrapper>
   );
 }

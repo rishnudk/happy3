@@ -277,11 +277,12 @@ p {
  ========================================= */
 
 .neumorphic-raised {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: #ffffff;
+  border: 1px solid rgba(128, 0, 128, 0.06);
   box-shadow: 
-    10px 10px 30px rgba(165, 140, 217, 0.12),
-    -10px -10px 30px rgba(255, 255, 255, 0.95);
+    6px 6px 18px rgba(165, 140, 217, 0.14),
+    -6px -6px 18px rgba(255, 255, 255, 0.95),
+    0 4px 12px rgba(42, 37, 75, 0.03);
   border-radius: var(--radius-lg);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -289,8 +290,9 @@ p {
 .neumorphic-raised:hover {
   transform: translateY(-4px);
   box-shadow: 
-    16px 16px 36px rgba(165, 140, 217, 0.16),
-    -16px -16px 36px rgba(255, 255, 255, 1);
+    12px 12px 28px rgba(165, 140, 217, 0.22),
+    -12px -12px 28px rgba(255, 255, 255, 1),
+    0 8px 24px rgba(42, 37, 75, 0.06);
 }
 
 .neumorphic-inset {
@@ -312,11 +314,11 @@ p {
 }
 
 .neumorphic-icon-container {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: #ffffff;
+  border: 1px solid rgba(128, 0, 128, 0.04);
   box-shadow: 
-    4px 4px 12px rgba(165, 140, 217, 0.05),
-    -4px -4px 12px rgba(255, 255, 255, 0.95);
+    3px 3px 8px rgba(165, 140, 217, 0.08),
+    -3px -3px 8px rgba(255, 255, 255, 0.95);
   border-radius: var(--radius-md);
 }
 
