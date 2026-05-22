@@ -8,7 +8,7 @@ import { ProgramsSection } from "@/components/sections/ProgramsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { CtaSection } from "@/components/sections/CtaSection";
-import Footer from "@/components/sections/footer";
+import { Footer } from "@/components/sections/Footer";
 import { GlobalBackground } from "@/components/sections/GlobalBackground";
 
 import ScrollProgress from "@/components/layout/scroll-progress";
