@@ -1,146 +1,259 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import NeuCard from "@/components/ui/NeuCard";
+import PageWrapper from "@/components/layout/page-wrapper";
 
-const programs = [
+/* ─── Programs Data ─────────────────────────────────────────────────────── */
+const PROGRAMS = [
   {
     num: "01",
     title: "Happiness Code",
-    desc: "15 powerful sessions to unlock the secrets of true happiness..",
-    tint: "from-[#FFCE1B]/20 via-transparent to-transparent",
-    borderHover: "group-hover:border-[var(--mustard)]/40",
+    desc: "15 powerful sessions to unlock the secrets of true happiness.",
+    color: "#800080", // brand purple
   },
   {
     num: "02",
-    title: "Awaken Mastery Listening Centre ",
+    title: "Awaken Mastery Listening Centre",
     desc: "Deep inner work and healing modalities for lasting change.",
-    tint: "from-[#DCC7E8]/30 via-transparent to-transparent",
-    borderHover: "group-hover:border-[var(--purple-brand)]/35",
+    color: "#EC4899", // fuchsia rose
   },
   {
     num: "03",
-    title: "Listening Centre (ofline/ online)",
+    title: "Listening Centre (online/ offline)",
     desc: "One-to-one personal clarity sessions with trained experts.",
-    tint: "from-[#F5E7B2]/30 via-transparent to-transparent",
-    borderHover: "group-hover:border-[var(--mustard)]/35",
+    color: "#7C3AED", // deep violet
   },
   {
     num: "04",
     title: "Happiness Coaching Certification",
     desc: "India’s first university certification in happiness life Coaching.",
-    tint: "from-[#FCFAFF]/40 via-transparent to-transparent",
-    borderHover: "group-hover:border-[var(--purple-brand)]/20",
+    color: "#FF9F1C", // mustard gold
   },
-];
+] as const;
 
 export function ProgramsSection() {
   return (
-    <section id="programs" className="relative px-4 py-20 md:py-28 bg-[#FAF9FC]">
-      {/* Dynamic background element */}
-      <div className="absolute inset-0 noise-overlay opacity-[0.015] pointer-events-none" />
-      
-      <div className="mx-auto max-w-7xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-3xl text-center mb-16 md:mb-20"
-        >
-          {/* Badge */}
-          <div className="inline-flex mb-4">
+    <PageWrapper className="relative py-28 overflow-visible">
+
+      {/* ── Ambient glow orbs for visual interest ── */}
+      <div
+        className="pointer-events-none absolute -top-16 right-[-8%] w-[450px] h-[450px] rounded-full blur-[130px] opacity-[0.14]"
+        style={{ background: "rgba(128,0,128,0.13)" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-[-10%] left-[-10%] w-[420px] h-[420px] rounded-full blur-[120px] opacity-[0.12]"
+        style={{ background: "rgba(255,206,27,0.15)" }}
+      />
+
+      {/* ── 2-Column layout: text left | cards right ── */}
+      <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">
+
+        {/* ── LEFT: Heading & Description Block (span 4) ── */}
+        <div className="lg:col-span-4 flex flex-col gap-7">
+
+          {/* Neumorphic Pill Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex"
+          >
             <span
-              className="
-                glass-card
-                inline-flex
-                items-center
-                rounded-full
-                px-5
-                py-2
-                text-xs
-                font-bold
-                text-primary/90
-                border-white/80
-                shadow-sm
-              "
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
+              style={{
+                color: "rgba(128,0,128,0.75)",
+                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                border: "1px solid rgba(255,255,255,0.85)",
+                boxShadow: `
+                  6px 6px 16px rgba(165,140,217,0.12),
+                  -6px -6px 16px rgba(255,255,255,0.95),
+                  inset 1px 1px 2px rgba(255,255,255,0.9)
+                `,
+              }}
             >
+              {/* Pulsing Dot */}
+              <span className="relative flex h-2 w-2 flex-shrink-0">
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                  style={{ background: "rgba(128,0,128,0.5)" }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2"
+                  style={{ background: "#800080" }}
+                />
+              </span>
               Our Programs
             </span>
-          </div>
+          </motion.div>
 
-          <h2 className="font-display text-balance text-4xl font-extrabold leading-[1.1] text-slate-deep md:text-5xl lg:text-[56px]">
-            Programs Designed to<br />
-            <span className="text-secondary font-black">Empower Every Journey</span>
-          </h2>
-          <p className="mt-6 text-muted-foreground/90 md:text-lg max-w-xl mx-auto leading-relaxed font-semibold">
+          {/* Heading with Underline Marker */}
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
+            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
+          >
+            <span className="block">Programs Designed to</span>
+            <span className="block">
+              <span className="relative inline-block" style={{ color: "#800080" }}>
+                Empower
+                {/* Mustard marker underline */}
+                <span
+                  className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
+                  style={{ background: "#FFCE1B", opacity: 0.38 }}
+                />
+              </span>{" "}
+              Every Journey
+            </span>
+          </motion.h2>
+
+          {/* Subtext Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
+            style={{ color: "rgba(42,37,75,0.60)" }}
+          >
             Science-backed programs to help you learn, heal, communicate and grow with confidence.
-          </p>
-        </motion.div>
+          </motion.p>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {programs.map((prog, index) => (
-            <motion.article
-              key={prog.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{
-                duration: 0.8,
-                ease: [0.22, 1, 0.36, 1],
-                delay: index * 0.08,
+          {/* Explore Programs Premium Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="flex pt-2"
+          >
+            <motion.button
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
+              style={{
+                color: "#800080",
+                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                border: "1px solid rgba(255,255,255,0.9)",
+                boxShadow: `
+                  6px 6px 15px rgba(166,140,255,0.10),
+                  -6px -6px 15px rgba(255,255,255,1),
+                  inset 1px 1px 2px rgba(255,255,255,1)
+                `,
               }}
-              whileHover={{ y: -8 }}
-              className="neumorphic-raised group relative flex flex-col justify-between overflow-hidden rounded-[32px] p-8 transition-all duration-300 min-h-[280px]"
             >
-              {/* Card gradient background on hover */}
-              <div
-                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${prog.tint} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
-              />
+              <span>Explore Programs</span>
+              <span
+                className="flex items-center justify-center w-6 h-6 rounded-full text-white transition-transform duration-300 group-hover/btn:rotate-45"
+                style={{ background: "linear-gradient(145deg, #800080, #C084FC)" }}
+              >
+                <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2.5} />
+              </span>
+            </motion.button>
+          </motion.div>
 
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  {/* Premium floating large index number */}
-                  <div className="font-display text-5xl font-black tracking-tight text-primary/15 transition-colors duration-300 group-hover:text-primary/30">
-                    {prog.num}
-                  </div>
-
-                  <h3 className="font-display mt-8 text-2xl font-bold leading-tight tracking-tight text-slate-deep group-hover:text-primary transition-colors duration-300">
-                    {prog.title}
-                  </h3>
-                </div>
-
-                <div className="mt-8">
-                  <p className="text-[14.5px] leading-relaxed text-muted-foreground/80 font-medium">
-                    {prog.desc}
-                  </p>
-
-                  <div className="mt-6 flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-wider text-primary opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                    Learn More <ArrowRight className="h-4 w-4 stroke-[2.5]" />
-                  </div>
-                </div>
-              </div>
-            </motion.article>
-          ))}
+          {/* Animated Neumorphic Accent Line */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
+            style={{
+              background: "rgba(243,238,250,0.6)",
+              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
+              border: "1px solid rgba(255,255,255,0.7)",
+              transformOrigin: "left center",
+            }}
+          >
+            <motion.div
+              className="absolute left-0 top-0 bottom-0 rounded-full"
+              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
+              animate={{ x: [0, 32, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
         </div>
 
-        {/* Explore Programs CTA Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-16 text-center"
-        >
-          <a
-            href="#programs"
-            className="group inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-[0_18px_40px_-14px_rgba(109,40,217,0.55)] transition-all hover:translate-y-[-1.5px] hover:shadow-[0_24px_48px_-12px_rgba(109,40,217,0.65)]"
-          >
-            Explore Programs
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
-        </motion.div>
+        {/* ── RIGHT: 2x2 Grid of Neumorphic Program Cards (span 8) ── */}
+        <div className="lg:col-span-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
+            {PROGRAMS.map((item, index) => {
+              return (
+                <NeuCard
+                  key={item.title}
+                  delay={index * 0.1}
+                  className="p-8 flex flex-col justify-between gap-6 group min-h-[240px]"
+                >
+                  {/* Top Row: Neumorphic Number Container */}
+                  <div className="flex items-center justify-between">
+                    <div
+                      className="flex items-center justify-center flex-shrink-0"
+                      style={{
+                        width: 50,
+                        height: 50,
+                        borderRadius: 16,
+                        /* Inset neumorphic well — matches GlobalBackground (#F6F3FA) */
+                        background: "#F6F3FA",
+                        boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                      }}
+                    >
+                      {/* Coloured Tint Circle with Number */}
+                      <div
+                        className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110 font-satoshi font-black text-[13.5px] tracking-wider"
+                        style={{
+                          width: 36,
+                          height: 36,
+                          borderRadius: 12,
+                          background: `${item.color}18`,
+                          color: item.color,
+                          boxShadow: `inset 2px 2px 5px ${item.color}20, inset -1px -1px 3px rgba(255,255,255,0.6)`,
+                        }}
+                      >
+                        {item.num}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Card Content & Action Link */}
+                  <div className="flex flex-col gap-3">
+                    <h3
+                      className="font-satoshi font-black text-[20px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
+                      style={{ color: "#2A254B" }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      className="font-medium text-[14.5px] leading-[1.65] transition-colors duration-300"
+                      style={{ color: "rgba(42,37,75,0.65)" }}
+                    >
+                      {item.desc}
+                    </p>
+
+                    {/* Learn More Action Link */}
+                    <div
+                      className="flex items-center gap-1.5 font-bold text-[12.5px] transition-colors duration-300 mt-2"
+                      style={{ color: "rgba(128,0,128,0.78)" }}
+                    >
+                      <span className="group-hover:text-[#800080]">Learn More</span>
+                      <ArrowRight
+                        className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"
+                        strokeWidth={2.5}
+                      />
+                    </div>
+                  </div>
+                </NeuCard>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
-    </section>
+    </PageWrapper>
   );
 }
