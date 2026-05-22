@@ -209,18 +209,22 @@ export function ChallengeSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
-            style={{ fontSize: "clamp(30px, 3.8vw, 52px)", color: "#2A254B" }}
+            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
           >
-            Why are people{" "}
-            <span className="relative inline-block" style={{ color: "#800080" }}>
-              struggling
-              {/* Mustard marker underline */}
-              <span
-                className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
-                style={{ background: "#FFCE1B", opacity: 0.38 }}
-              />
-            </span>{" "}
-            today?
+            {/* Line 1 */}
+            <span className="block">Why are people</span>
+            {/* Line 2 */}
+            <span className="block">
+              <span className="relative inline-block" style={{ color: "#800080" }}>
+                struggling
+                {/* Mustard marker underline */}
+                <span
+                  className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
+                  style={{ background: "#FFCE1B", opacity: 0.38 }}
+                />
+              </span>{" "}
+              today?
+            </span>
           </motion.h2>
 
           {/* Subtext */}
@@ -287,7 +291,7 @@ export function ChallengeSection() {
             )}
 
             {/* 3 × 2 card grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
               {CHALLENGES.map((item, index) => (
                 <ChallengeCard
                   key={item.title}

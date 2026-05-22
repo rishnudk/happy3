@@ -1,0 +1,5 @@
+Neumorphism (or "Soft UI") is a design style that blends skeuomorphism and flat design. It uses subtle, dual-tone shadows and highlights to make UI elements look as if they are protruding from—or inset into—the background. The elements and background share the exact same color, creating a tactile, extruded plastic effect.Key CharacteristicsMonochromatic Palette: Backgrounds and elements use the same color, relying on very slight shade variations to establish depth.Dual Shadows: Elements use both a light shadow (top-left) and a dark shadow (bottom-right) to generate a 3D extrusion.Soft Geometry: Uses rounded corners and simple shapes instead of sharp, blunt edges.How the Effect is Achieved (CSS)The defining tactile illusion requires two overlapping CSS box-shadow values: a bright, semi-transparent white/light color to mimic a light source, and a darker, semi-transparent color for the drop shadow.A standard raised button looks like this in CSS:css.neumorphic-button {
+  background-color: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  border-radius: 20px;
+}
