@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Users, Sparkles, ArrowUpRight } from "lucide-react";
+import { Sparkles, ArrowUpRight } from "lucide-react";
 import PageWrapper from "@/components/layout/page-wrapper";
 import Masonry from "../ui/Masonry";
 

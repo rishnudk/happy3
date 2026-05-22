@@ -5,8 +5,7 @@ import {
   Mail, 
   MessageCircle, 
   ArrowUp,
-  MapPin,
-  Sparkles
+  MapPin
 } from "lucide-react";
 import { 
   InstagramIcon, 

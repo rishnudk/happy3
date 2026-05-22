@@ -34,7 +34,6 @@ export default function Masonry({
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const handleResize = () => {
       if (window.innerWidth < 640) {
         setColumnsCount(1);
@@ -45,9 +44,16 @@ export default function Masonry({
       }
     };
 
-    handleResize();
+    const timer = setTimeout(() => {
+      setMounted(true);
+      handleResize();
+    }, 0);
+
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   if (!mounted) {
