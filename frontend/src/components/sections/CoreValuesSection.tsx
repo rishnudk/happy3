@@ -1,184 +1,245 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HeartHandshake, Flower, Brain, ShieldCheck } from "lucide-react";
-import { SmileArc } from "./decor";
+import { HeartHandshake, ShieldCheck, Sprout, Lock, ArrowUpRight } from "lucide-react";
+import NeuCard from "@/components/ui/NeuCard";
+import PageWrapper from "@/components/layout/page-wrapper";
 
-const values = [
+/* ─── Core Values Data ──────────────────────────────────────────────────── */
+const VALUES = [
   {
     title: "Heart full listening",
     desc: "Creating safe spaces for emotional healing, release, and transformation.",
     icon: HeartHandshake,
-    tint: "from-[#FFCE1B]/20 to-transparent",
+    iconColor: "#800080", // brand purple
   },
   {
     title: "Accountability",
     desc: "Building trust, responsibility, and conscious commitment in personal and professional growth.",
-    icon: Flower,
-    tint: "from-[#DCC7E8]/25 to-transparent",
+    icon: ShieldCheck,
+    iconColor: "#7C3AED", // violet
   },
   {
     title: "Growth Mindset",
     desc: "Empowering people to build resilience, confidence, and lifelong growth habits.",
-    icon: Brain,
-    tint: "from-[#F5E7B2]/30 to-transparent",
+    icon: Sprout,
+    iconColor: "#FF9F1C", // mustard gold
   },
   {
     title: "Confidentiality",
-    desc: "We strictly protect your privacy. Every conversation, insight, and progress remains completely confidential, creating a secure space for your journey.",
-    icon: ShieldCheck,
-    tint: "from-[#FCFAFF]/40 to-transparent",
+    desc: "We strictly protect your privacy. Every conversation, insight, and progress remains completely confidential, creating a secure space.",
+    icon: Lock,
+    iconColor: "#EC4899", // warm rose/pink
   },
-];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
-    },
-  },
-};
+] as const;
 
 export function CoreValuesSection() {
   return (
-    <section id="core-values" className="relative px-4 py-20 md:py-28 overflow-hidden bg-[#FAF9FC]">
-      {/* Premium Immersive Blended Background Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Soft Warm Yellow Glow */}
-        <div
-          className="absolute -top-[10%] left-[20%] h-[500px] w-[500px] rounded-full opacity-[0.2] blur-[120px]"
-          style={{
-            background: "radial-gradient(circle, var(--mustard) 0%, transparent 70%)",
-          }}
-        />
-        {/* Subtle Warm Purple Glow */}
-        <div
-          className="absolute -bottom-[15%] right-[15%] h-[550px] w-[550px] rounded-full opacity-[0.18] blur-[130px]"
-          style={{
-            background: "radial-gradient(circle, var(--primary) 0%, transparent 75%)",
-          }}
-        />
-      </div>
+    <PageWrapper className="relative py-28 overflow-visible">
 
-      <div className="mx-auto max-w-7xl relative z-10">
-        <div className="grid items-start gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
-          
-          {/* Left Column - Sticky Description */}
+      {/* ── Ambient glow orbs for visual interest ── */}
+      <div
+        className="pointer-events-none absolute -top-12 left-[-6%] w-[440px] h-[440px] rounded-full blur-[120px] opacity-[0.14]"
+        style={{ background: "rgba(128,0,128,0.12)" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-[-8%] right-[-10%] w-[480px] h-[480px] rounded-full blur-[140px] opacity-[0.16]"
+        style={{ background: "rgba(255,206,27,0.14)" }}
+      />
+
+      {/* ── 2-Column layout: text left | cards right ── */}
+      <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">
+
+        {/* ── LEFT: Heading & Description Block (span 4) ── */}
+        <div className="lg:col-span-4 flex flex-col gap-7">
+
+          {/* Neumorphic Pill Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:sticky lg:top-32"
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-flex"
           >
-            {/* Badge */}
-            <div className="inline-flex mb-4">
-              <span
-                className="
-                  glass-card
-                  inline-flex
-                  items-center
-                  rounded-full
-                  px-5
-                  py-2
-                  text-xs
-                  font-bold
-                  text-primary/90
-                  border-white/80
-                  shadow-sm
-                "
-              >
-                Our Core Values
-              </span>
-            </div>
-
-            <h2 className="font-display mt-2 text-balance text-4xl font-extrabold leading-[1.1] text-slate-deep md:text-5xl lg:text-[56px]">
-              The Foundation Behind<br />
-              <span className="relative inline-block mt-2">
-                <span className="relative z-10 text-secondary font-black">
-                  Every Transformation
-                </span>
-                <SmileArc className="absolute -bottom-2.5 left-0 h-4.5 w-full text-[var(--mustard)]" strokeWidth={2.6} />
-              </span>
-            </h2>
-
-            <p className="mt-8 max-w-xl text-[16px] leading-relaxed text-muted-foreground/90 font-semibold">
-              Happiness is not a matter of chance—it is a skill that can be consciously learned through deep emotional awareness, somatic healing, authentic communication, and intentional growth.
-            </p>
-
-            {/* Premium diagonal arrow button matches image design */}
-            <a
-              href="#about"
-              className="mt-8 group inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-[14px] font-bold text-white shadow-[0_15px_35px_-8px_rgba(109,40,217,0.45)] hover:shadow-[0_20px_40px_-6px_rgba(109,40,217,0.55)] transition-all duration-300 hover:translate-y-[-1.5px]"
+            <span
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
+              style={{
+                color: "rgba(128,0,128,0.75)",
+                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                border: "1px solid rgba(255,255,255,0.85)",
+                boxShadow: `
+                  6px 6px 16px rgba(165,140,217,0.12),
+                  -6px -6px 16px rgba(255,255,255,0.95),
+                  inset 1px 1px 2px rgba(255,255,255,0.9)
+                `,
+              }}
             >
-              Discover Our Philosophy
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-primary text-[10px] font-extrabold transition-transform group-hover:translate-x-0.5 group-hover:translate-y-[-0.5px]">
-                ↗
+              {/* Pulsing Dot */}
+              <span className="relative flex h-2 w-2 flex-shrink-0">
+                <span
+                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                  style={{ background: "rgba(128,0,128,0.5)" }}
+                />
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2"
+                  style={{ background: "#800080" }}
+                />
               </span>
-            </a>
+              Our Core Values
+            </span>
           </motion.div>
 
-          {/* Right Column - 2x2 Grid of Core Values Cards */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            className="grid gap-5 sm:grid-cols-2 lg:gap-6"
+          {/* Heading with Underline Marker */}
+          <motion.h2
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
+            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
           >
-            {values.map((val) => {
-              const IconComponent = val.icon;
+            <span className="block">The Foundation Behind Every</span>
+            <span className="block">
+               {" "}
+              <span className="relative inline-block" style={{ color: "#800080" }}>
+                Transformation
+                {/* Mustard marker underline */}
+                <span
+                  className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
+                  style={{ background: "#FFCE1B", opacity: 0.38 }}
+                />
+              </span>
+            </span>
+          </motion.h2>
+
+          {/* Subtext Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
+            style={{ color: "rgba(42,37,75,0.60)" }}
+          >
+            Happiness is not a matter of chance—it is a skill that can be consciously learned through deep emotional awareness, somatic healing, authentic communication, and intentional growth.
+          </motion.p>
+
+          {/* Discover Our Philosophy Premium Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="flex pt-2"
+          >
+            <motion.button
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
+              style={{
+                color: "#800080",
+                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                border: "1px solid rgba(255,255,255,0.9)",
+                boxShadow: `
+                  6px 6px 15px rgba(166,140,255,0.10),
+                  -6px -6px 15px rgba(255,255,255,1),
+                  inset 1px 1px 2px rgba(255,255,255,1)
+                `,
+              }}
+            >
+              <span>Discover Our Philosophy</span>
+              <span
+                className="flex items-center justify-center w-6 h-6 rounded-full text-white transition-transform duration-300 group-hover/btn:rotate-45"
+                style={{ background: "linear-gradient(145deg, #800080, #C084FC)" }}
+              >
+                <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2.5} />
+              </span>
+            </motion.button>
+          </motion.div>
+
+          {/* Animated Neumorphic Accent Line */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
+            style={{
+              background: "rgba(243,238,250,0.6)",
+              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
+              border: "1px solid rgba(255,255,255,0.7)",
+              transformOrigin: "left center",
+            }}
+          >
+            <motion.div
+              className="absolute left-0 top-0 bottom-0 rounded-full"
+              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
+              animate={{ x: [0, 32, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
+        </div>
+
+        {/* ── RIGHT: 2x2 Grid of Neumorphic Cards (span 8) ── */}
+        <div className="lg:col-span-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
+            {VALUES.map((item, index) => {
+              const Icon = item.icon;
               return (
-                <motion.article
-                  key={val.title}
-                  variants={itemVariants}
-                  whileHover={{ y: -6, scale: 1.01 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-                  className="neumorphic-raised group relative overflow-hidden rounded-[28px] p-8 flex flex-col justify-between min-h-[220px] transition-all duration-300"
+                <NeuCard
+                  key={item.title}
+                  delay={index * 0.1}
+                  className="p-8 flex flex-col gap-5 group"
                 >
-                  {/* Decorative glowing gradient circle that glows intenser on card hover */}
+                  {/* Neumorphic Icon Container */}
                   <div
-                    className={`pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-gradient-to-br ${val.tint} opacity-40 blur-xl transition-all duration-500 group-hover:scale-125 group-hover:opacity-90`}
-                  />
-
-                  <div className="relative z-10 flex flex-col h-full justify-between">
-                    <div>
-                      {/* Neumorphic Icon Container */}
-                      <div className="neumorphic-icon-container flex h-14 w-14 items-center justify-center text-primary transition-transform duration-300 group-hover:scale-110">
-                        <IconComponent className="h-6 w-6 stroke-[1.8]" />
-                      </div>
-
-                      <h3 className="font-display mt-8 text-2xl font-bold tracking-tight text-slate-deep">
-                        {val.title}
-                      </h3>
+                    className="flex items-center justify-center flex-shrink-0"
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 16,
+                      /* Inset neumorphic well — matches GlobalBackground (#F6F3FA) */
+                      background: "#F6F3FA",
+                      boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                    }}
+                  >
+                    {/* Coloured Tint Circle */}
+                    <div
+                      className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: 12,
+                        background: `${item.iconColor}20`,
+                        boxShadow: `inset 2px 2px 5px ${item.iconColor}25, inset -1px -1px 3px rgba(255,255,255,0.6)`,
+                      }}
+                    >
+                      <Icon style={{ color: item.iconColor, width: 18, height: 18, strokeWidth: 2.2 }} />
                     </div>
+                  </div>
 
-                    <p className="mt-4 text-[14.5px] leading-relaxed text-muted-foreground/80 font-medium">
-                      {val.desc}
+                  {/* Card Title & Content */}
+                  <div>
+                    <h3
+                      className="font-satoshi font-black text-[20px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
+                      style={{ color: "#2A254B" }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      className="font-medium text-[14.5px] leading-[1.65] mt-3 transition-colors duration-300"
+                      style={{ color: "rgba(42,37,75,0.65)" }}
+                    >
+                      {item.desc}
                     </p>
                   </div>
-                </motion.article>
+                </NeuCard>
               );
             })}
-          </motion.div>
-
+          </div>
         </div>
+
       </div>
-    </section>
+    </PageWrapper>
   );
 }
