@@ -9,7 +9,9 @@ export default function HeroVisual() {
   return (
     <div className="lg:col-span-5 relative flex justify-center items-center min-h-[420px] sm:min-h-[560px] lg:min-h-[640px] w-full z-10 overflow-visible">
 
-      {/* 1. DECORATIVE: RADIAL BLUR ORBS matching global bg */}
+      {/* ═══════════════════════════════════════════════
+          z-0 → RADIAL GLOW BACKGROUND
+          ═══════════════════════════════════════════════ */}
       <div
         className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full opacity-30 filter blur-[80px] pointer-events-none z-0"
         style={{
@@ -17,10 +19,134 @@ export default function HeroVisual() {
         }}
       />
 
-      {/* 2. THIN CONCENTRIC ORBIT RINGS */}
-      <SmileArc variant="thin-orbit" className="w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] lg:w-[480px] lg:h-[480px] opacity-25 z-0" delay={0.2} />
+      {/* Secondary atmospheric glow — wider and softer */}
+      <motion.div
+        animate={{ scale: [1, 1.06, 1], opacity: [0.18, 0.25, 0.18] }}
+        transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
+        className="absolute w-[400px] h-[400px] sm:w-[520px] sm:h-[520px] lg:w-[600px] lg:h-[600px] rounded-full pointer-events-none z-0"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(200,170,240,0.12) 0%, rgba(128,0,128,0.04) 40%, transparent 70%)",
+          filter: "blur(40px)",
+        }}
+      />
 
-      {/* 3. PORTRAIT CONTAINER — bg matches global background (#F6F3FA / #F2EDF8) */}
+
+      {/* ═══════════════════════════════════════════════
+          z-[1] → LARGE ARC LAYERS (Emotional Orbit System)
+          ═══════════════════════════════════════════════ */}
+
+      {/* ARC 1: Outermost Atmosphere Ring — ultra-subtle, large */}
+      <SmileArc
+        variant="atmosphere"
+        size="w-[380px] h-[380px] sm:w-[500px] sm:h-[500px] lg:w-[580px] lg:h-[580px]"
+        className="z-[1] opacity-40"
+        delay={0.2}
+        direction={1}
+        rotationDuration={65}
+        borderStyle={{
+          border: "1px solid rgba(200, 170, 240, 0.12)",
+          boxShadow: "0 0 60px rgba(128,0,128,0.03), inset 0 0 40px rgba(200,170,240,0.02)",
+        }}
+      />
+
+      {/* ARC 2: Outer Emotional Ring — thick partial border, slow reverse rotation */}
+      <SmileArc
+        variant="emotional-ring"
+        size="w-[340px] h-[340px] sm:w-[450px] sm:h-[450px] lg:w-[520px] lg:h-[520px]"
+        className="z-[1] opacity-50"
+        delay={0.3}
+        direction={-1}
+        rotationDuration={55}
+        borderStyle={{
+          border: "16px solid rgba(200, 170, 240, 0.12)",
+          borderTopColor: "transparent",
+          borderBottomColor: "rgba(128,0,128,0.06)",
+          borderRightColor: "rgba(255, 206, 27, 0.08)",
+          borderLeftColor: "rgba(200, 170, 240, 0.14)",
+        }}
+      />
+
+      {/* ARC 3: Middle Conic Glow Ring — conic gradient, forward rotation */}
+      <SmileArc
+        variant="conic-glow"
+        size="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[460px] lg:h-[460px]"
+        className="z-[2] opacity-60"
+        delay={0.4}
+        direction={1}
+        rotationDuration={45}
+        gradientStyle={{
+          background: `conic-gradient(
+            from 45deg,
+            rgba(200, 170, 240, 0.10) 0deg,
+            rgba(128, 0, 128, 0.14) 50deg,
+            transparent 110deg,
+            rgba(255, 206, 27, 0.10) 180deg,
+            transparent 240deg,
+            rgba(200, 170, 240, 0.08) 300deg,
+            transparent 360deg
+          )`,
+        }}
+      />
+
+      {/* ARC 4: Inner Blur Halo — soft radial glow, breathing */}
+      <SmileArc
+        variant="blur-halo"
+        size="w-[270px] h-[270px] sm:w-[360px] sm:h-[360px] lg:w-[420px] lg:h-[420px]"
+        className="z-[2] opacity-70"
+        delay={0.5}
+        gradientStyle={{
+          background: `radial-gradient(
+            ellipse at center,
+            transparent 50%,
+            rgba(200, 170, 240, 0.14) 62%,
+            rgba(128, 0, 128, 0.08) 75%,
+            rgba(255, 206, 27, 0.04) 85%,
+            transparent 95%
+          )`,
+          filter: "blur(10px)",
+        }}
+      />
+
+      {/* ARC 5: Smile-Inspired Lower Arc — bottom crescent, gentle sway */}
+      <SmileArc
+        variant="smile-lower"
+        size="w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] lg:w-[490px] lg:h-[490px]"
+        className="z-[1] opacity-45"
+        delay={0.6}
+        direction={1}
+        borderStyle={{
+          border: "12px solid transparent",
+          borderBottomColor: "rgba(255, 206, 27, 0.15)",
+          borderLeftColor: "rgba(200, 170, 240, 0.08)",
+          borderRightColor: "rgba(200, 170, 240, 0.08)",
+          borderTopColor: "transparent",
+        }}
+      />
+
+      {/* ARC 6: Inner Emotional Ring — tighter, reverse, thinner */}
+      <SmileArc
+        variant="emotional-ring"
+        size="w-[250px] h-[250px] sm:w-[340px] sm:h-[340px] lg:w-[400px] lg:h-[400px]"
+        className="z-[1] opacity-35"
+        delay={0.7}
+        direction={1}
+        rotationDuration={40}
+        borderStyle={{
+          border: "8px solid rgba(255, 255, 255, 0.12)",
+          borderTopColor: "rgba(200, 170, 240, 0.10)",
+          borderBottomColor: "transparent",
+          borderRightColor: "transparent",
+          borderLeftColor: "rgba(128, 0, 128, 0.06)",
+        }}
+      />
+
+      {/* Original thin orbit ring — kept but faded further back */}
+      <SmileArc variant="thin-orbit" className="w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] lg:w-[480px] lg:h-[480px] opacity-15 z-0" delay={0.2} />
+
+
+      {/* ═══════════════════════════════════════════════
+          z-10 → PORTRAIT CONTAINER
+          ═══════════════════════════════════════════════ */}
       <motion.div
         initial={{ opacity: 0, scale: 0.93 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -92,7 +218,9 @@ export default function HeroVisual() {
         </div>
       </motion.div>
 
-      {/* 4. BRAND SMILE ARC — Mustard Yellow, bottom of portrait */}
+      {/* ═══════════════════════════════════════════════
+          z-20 → BRAND SMILE ARC
+          ═══════════════════════════════════════════════ */}
       <SmileArc
         variant="primary"
         className="bottom-[8%] sm:bottom-[6%] lg:bottom-[4%] w-[280px] sm:w-[340px] lg:w-[380px]"
@@ -100,10 +228,9 @@ export default function HeroVisual() {
       />
 
 
-      {/* =========================================
-         5. FLOATING "KEY" BADGES
-         Positioned along orbit ring with solid icon colors
-      ========================================= */}
+      {/* ═══════════════════════════════════════════════
+          z-30 → FLOATING "KEY" BADGES
+          ═══════════════════════════════════════════════ */}
 
       {/* Badge A: Mindset Shift — Top-Left (~10 o'clock) */}
       <FloatingTag
@@ -169,9 +296,9 @@ export default function HeroVisual() {
         duration={5}
       />
 
-      {/* =========================================
-         6. DECORATIVE 3D SPHERES
-      ========================================= */}
+      {/* ═══════════════════════════════════════════════
+          z-20 → DECORATIVE 3D SPHERES
+          ═══════════════════════════════════════════════ */}
 
       {/* Sphere 1: Purple (Top Left Accent) */}
       <motion.div
