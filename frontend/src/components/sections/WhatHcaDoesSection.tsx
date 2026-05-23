@@ -29,7 +29,7 @@ const PRACTICES = [
 
 export function WhatHcaDoesSection() {
   return (
-    <PageWrapper className="relative py-28 overflow-visible">
+    <PageWrapper id="what-hca-does" className="relative py-28 overflow-visible">
 
       {/* ── Ambient glow orbs for visual interest ── */}
       <div

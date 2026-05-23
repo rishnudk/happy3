@@ -35,7 +35,7 @@ const VALUES = [
 
 export function CoreValuesSection() {
   return (
-    <PageWrapper className="relative py-28 overflow-visible">
+    <PageWrapper id="core-values" className="relative py-28 overflow-visible">
 
       {/* ── Ambient glow orbs for visual interest ── */}
       <div

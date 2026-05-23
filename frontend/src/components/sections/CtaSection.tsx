@@ -29,7 +29,7 @@ const TRUST_METRICS = [
 
 export function CtaSection() {
   return (
-    <PageWrapper className="relative py-28 overflow-visible">
+    <PageWrapper id="cta" className="relative py-28 overflow-visible">
       {/* ── Ambient background blur glows ── */}
       <div
         className="pointer-events-none absolute -top-12 left-[-5%] w-[450px] h-[450px] rounded-full blur-[130px] opacity-[0.15]"
