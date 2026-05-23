@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { NeuButton } from "@/components/ui/NeuButton";
 
 const navLinks = [
   { label: "Features", href: "#features" },
@@ -61,35 +62,43 @@ export default function Navbar() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  /* ─── Logo size (single source of truth) ─────────────────────────────── */
+  const logoSize = scrolled ? 42 : 64;
+
   return (
     <>
       <header
-        style={{ paddingTop: scrolled ? 12 : 24 }}
-        className="fixed left-0 right-0 top-0 z-50 transition-all duration-500 ease-in-out"
+        className="fixed left-0 right-0 top-0 z-50"
+        style={{ paddingTop: scrolled ? 8 : 20 }}
       >
         <motion.nav
           initial={false}
           animate={{
+            /* Request 4: transparent initially → glass on scroll */
             backgroundColor: scrolled
               ? "rgba(255, 255, 255, 0.72)"
-              : "rgba(255, 255, 255, 0.5)",
-            backdropFilter: "blur(24px)",
+              : "rgba(255, 255, 255, 0)",
+            backdropFilter: scrolled ? "blur(24px)" : "blur(0px)",
             borderColor: scrolled
               ? "rgba(255, 255, 255, 0.65)"
-              : "rgba(255, 255, 255, 0.4)",
+              : "rgba(255, 255, 255, 0)",
             boxShadow: scrolled
               ? "4px 4px 20px rgba(165,140,217,0.1), -4px -4px 20px rgba(255,255,255,0.95), 0 8px 32px rgba(128,0,128,0.06)"
-              : "4px 4px 15px rgba(165,140,217,0.06), -4px -4px 15px rgba(255,255,255,0.85)",
+              : "none",
+            /* Request 4: shrink on scroll via padding */
+            paddingTop: scrolled ? 10 : 18,
+            paddingBottom: scrolled ? 10 : 18,
+            paddingLeft: scrolled ? 28 : 40,
+            paddingRight: scrolled ? 28 : 40,
           }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           style={{
-            WebkitBackdropFilter: "blur(24px)",
-            padding: "16px 40px",
+            WebkitBackdropFilter: scrolled ? "blur(24px)" : "blur(0px)",
             maxWidth: 1320,
             width: "92%",
             margin: "0 auto",
             borderRadius: 9999,
-            border: "1px solid rgba(255,255,255,0.4)",
+            border: "1px solid transparent",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -99,18 +108,33 @@ export default function Navbar() {
           {/* LEFT – LOGO */}
           <Link
             href="/"
-            className="flex items-center gap-3 hover:opacity-90 transition-opacity shrink-0"
+            className="flex items-center hover:opacity-90 transition-opacity shrink-0"
+            style={{ gap: 12 }}
             aria-label="Happiness Coaching Academy - Home"
           >
-            <Image
-              src="/images/logo.png"
-              alt="Happiness Coaching Academy"
-              width={64}
-              height={64}
-              className="object-contain transition-all duration-300"
-              style={{ height: 64, width: 64 }}
-              priority
-            />
+            {/* Request 1: Logo respects the size prop with explicit
+                min-width/min-height to prevent flex shrinking,
+                and animated size on scroll */}
+            <motion.div
+              animate={{ width: logoSize, height: logoSize }}
+              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+              style={{ flexShrink: 0, position: "relative" }}
+            >
+              <Image
+                src="/images/logo.png"
+                alt="Happiness Coaching Academy"
+                width={64}
+                height={64}
+                className="object-contain"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  minWidth: logoSize,
+                  minHeight: logoSize,
+                }}
+                priority
+              />
+            </motion.div>
             <div className="flex flex-col text-left leading-none font-satoshi font-bold">
               <span className="text-primary uppercase tracking-wider" style={{ fontSize: 14 }}>
                 Happiness
@@ -124,7 +148,7 @@ export default function Navbar() {
           {/* CENTER – NAVIGATION LINKS */}
           <ul
             className="hidden xl:flex items-center"
-            style={{ gap: 6 }}
+            style={{ gap: 2 }}
             role="list"
           >
             {navLinks.map((link) => {
@@ -139,6 +163,8 @@ export default function Navbar() {
                       fontSize: 14,
                       color: isActive ? "#800080" : scrolled ? "#374151" : "#1f2937",
                       backgroundColor: isActive ? "rgba(128,0,128,0.08)" : "transparent",
+                      /* Request 3: font-weight change for active instead of underline */
+                      fontWeight: isActive ? 800 : 600,
                     }}
                     onMouseEnter={(e) => {
                       if (!isActive) {
@@ -154,91 +180,31 @@ export default function Navbar() {
                     }}
                   >
                     {link.label}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute left-0 right-0 bg-primary"
-                        style={{
-                          bottom: -2,
-                          height: 2,
-                          marginLeft: 16,
-                          marginRight: 16,
-                          borderRadius: 9999,
-                        }}
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
+                    {/* Request 3: REMOVED the active underline motion.div */}
                   </Link>
                 </li>
               );
             })}
           </ul>
 
-          {/* RIGHT – CTA BUTTONS */}
-          <div className="hidden xl:flex items-center" style={{ gap: 16 }}>
-            <Link
-              href="#programs"
-              className="rounded-full font-bold text-primary whitespace-nowrap transition-all duration-300"
-              style={{
-                padding: "14px 28px",
-                fontSize: 14,
-                border: "1px solid rgba(128,0,128,0.2)",
-                backgroundColor: "rgba(255,255,255,0.5)",
-                backdropFilter: "blur(12px)",
-                boxShadow: "0 4px 12px rgba(128,0,128,0.08)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(128,0,128,0.4)";
-                e.currentTarget.style.backgroundColor = "rgba(128,0,128,0.05)";
-                e.currentTarget.style.boxShadow = "0 8px 20px rgba(128,0,128,0.12)";
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(128,0,128,0.2)";
-                e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.5)";
-                e.currentTarget.style.boxShadow = "0 4px 12px rgba(128,0,128,0.08)";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-            >
+          {/* RIGHT – CTA BUTTONS (using NeuButton) */}
+          <div className="hidden xl:flex items-center" style={{ gap: 14 }}>
+            {/* Request 2: Neumorphic button – primary variant */}
+            <NeuButton variant="primary" href="#programs" size="md">
               Explore Programs
-            </Link>
-            <Link
-              href="#cta"
-              className="rounded-full font-bold text-slate-deep whitespace-nowrap transition-all duration-300"
-              style={{
-                padding: "14px 28px",
-                fontSize: 14,
-                backgroundColor: "#FFCE1B",
-                boxShadow: "0 10px 25px rgba(255, 206, 27, 0.4)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = "0 15px 35px rgba(255,206,27,0.5)";
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = "0 10px 25px rgba(255, 206, 27, 0.4)";
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-            >
+            </NeuButton>
+            {/* Request 2: Neumorphic button – mustard variant */}
+            <NeuButton variant="mustard" href="#cta" size="md">
               Start Your Transformation
-            </Link>
+            </NeuButton>
           </div>
 
           {/* MOBILE – CTA + HAMBURGER */}
           <div className="flex items-center xl:hidden" style={{ gap: 8 }}>
-            <Link
-              href="#cta"
-              className="rounded-full font-extrabold text-slate-deep transition-all duration-300 flex items-center justify-center shrink-0"
-              style={{
-                padding: "10px 18px",
-                fontSize: 12,
-                backgroundColor: "#FFCE1B",
-                boxShadow: "0 6px 15px rgba(255,206,27,0.45)",
-              }}
-            >
+            <NeuButton variant="mustard" href="#cta" size="sm" onClick={closeMenu}>
               <span className="hidden sm:inline">Start Your Transformation</span>
               <span className="inline sm:hidden">Start Now</span>
-            </Link>
+            </NeuButton>
 
             <button
               className="flex items-center justify-center rounded-full text-gray-700 transition-colors duration-200 shrink-0"
@@ -266,116 +232,106 @@ export default function Navbar() {
         </motion.nav>
 
         {/* MOBILE DROPDOWN MENU */}
-        <div
-          id="mobile-menu"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Navigation menu"
-          className={`
-            absolute left-1/2 top-full xl:hidden
-            origin-top overflow-hidden
-            transition-all duration-300 ease-out
-            ${
-              menuOpen
-                ? "translate-y-0 scale-y-100 opacity-100"
-                : "pointer-events-none -translate-y-2 scale-y-95 opacity-0"
-            }
-          `}
-          style={{
-            marginTop: 12,
-            width: "92%",
-            maxWidth: 420,
-            transform: `translateX(-50%) ${menuOpen ? "translateY(0) scaleY(1)" : "translateY(-8px) scaleY(0.95)"}`,
-            borderRadius: 24,
-            border: "1px solid rgba(255,255,255,0.6)",
-            backgroundColor: "rgba(255,255,255,0.85)",
-            backdropFilter: "blur(40px)",
-            WebkitBackdropFilter: "blur(40px)",
-            boxShadow: "0 16px 48px rgba(31,38,135,0.12)",
-          }}
-        >
-          <nav style={{ padding: 20, display: "flex", flexDirection: "column", gap: 4 }}>
-            {navLinks.map((link, index) => {
-              const isActive = activeSection === link.href.replace("#", "");
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="transition-all duration-200 font-semibold"
-                  style={{
-                    padding: "12px 16px",
-                    fontSize: 15,
-                    borderRadius: 16,
-                    color: isActive ? "#800080" : "#1f2937",
-                    backgroundColor: isActive ? "rgba(128,0,128,0.08)" : "transparent",
-                    boxShadow: isActive ? "0 1px 3px rgba(0,0,0,0.06)" : "none",
-                    transitionDelay: menuOpen ? `${index * 30}ms` : "0ms",
-                  }}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-
-            <div
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              id="mobile-menu"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+              initial={{ opacity: 0, y: -12, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+              className="absolute left-1/2 top-full xl:hidden"
               style={{
-                marginTop: 16,
-                paddingTop: 16,
-                borderTop: "1px solid #f3f4f6",
-                display: "flex",
-                flexDirection: "column",
-                gap: 12,
+                marginTop: 12,
+                width: "92%",
+                maxWidth: 420,
+                transform: "translateX(-50%)",
+                borderRadius: 24,
+                border: "1px solid rgba(255,255,255,0.6)",
+                backgroundColor: "rgba(255,255,255,0.85)",
+                backdropFilter: "blur(40px)",
+                WebkitBackdropFilter: "blur(40px)",
+                boxShadow: "0 16px 48px rgba(31,38,135,0.12)",
               }}
             >
-              <Link
-                href="#programs"
-                onClick={closeMenu}
-                className="font-semibold text-primary text-center transition-all duration-200"
-                style={{
-                  width: "100%",
-                  padding: "12px 24px",
-                  borderRadius: 9999,
-                  fontSize: 14,
-                  border: "1px solid rgba(128,0,128,0.25)",
-                  backgroundColor: "rgba(128,0,128,0.05)",
-                }}
-              >
-                Explore Programs
-              </Link>
-              <Link
-                href="#cta"
-                onClick={closeMenu}
-                className="font-semibold text-slate-deep text-center transition-all duration-200"
-                style={{
-                  width: "100%",
-                  padding: "12px 24px",
-                  borderRadius: 9999,
-                  fontSize: 14,
-                  backgroundColor: "#FFCE1B",
-                  boxShadow: "0 6px 16px rgba(255,206,27,0.25)",
-                }}
-              >
-                Start Your Transformation
-              </Link>
-            </div>
-          </nav>
-        </div>
+              <nav style={{ padding: 20, display: "flex", flexDirection: "column", gap: 4 }}>
+                {navLinks.map((link, index) => {
+                  const isActive = activeSection === link.href.replace("#", "");
+                  return (
+                    <motion.div
+                      key={link.label}
+                      initial={{ opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.04, duration: 0.25 }}
+                    >
+                      <Link
+                        href={link.href}
+                        onClick={closeMenu}
+                        className="block transition-all duration-200 font-semibold"
+                        style={{
+                          padding: "12px 16px",
+                          fontSize: 15,
+                          borderRadius: 16,
+                          color: isActive ? "#800080" : "#1f2937",
+                          backgroundColor: isActive ? "rgba(128,0,128,0.08)" : "transparent",
+                          fontWeight: isActive ? 800 : 600,
+                        }}
+                      >
+                        {link.label}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+
+                <div
+                  style={{
+                    marginTop: 16,
+                    paddingTop: 16,
+                    borderTop: "1px solid #f3f4f6",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 12,
+                  }}
+                >
+                  <NeuButton variant="primary" href="#programs" onClick={closeMenu} size="md"
+                    style={{ width: "100%", justifyContent: "center" }}
+                  >
+                    Explore Programs
+                  </NeuButton>
+                  <NeuButton variant="mustard" href="#cta" onClick={closeMenu} size="md"
+                    style={{ width: "100%", justifyContent: "center" }}
+                  >
+                    Start Your Transformation
+                  </NeuButton>
+                </div>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* MOBILE OVERLAY BACKDROP */}
-      {menuOpen && (
-        <div
-          className="fixed inset-0 z-40 xl:hidden"
-          style={{
-            backgroundColor: "rgba(0,0,0,0.1)",
-            backdropFilter: "blur(4px)",
-            WebkitBackdropFilter: "blur(4px)",
-          }}
-          onClick={closeMenu}
-          aria-hidden="true"
-        />
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="fixed inset-0 z-40 xl:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              backgroundColor: "rgba(0,0,0,0.1)",
+              backdropFilter: "blur(4px)",
+              WebkitBackdropFilter: "blur(4px)",
+            }}
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

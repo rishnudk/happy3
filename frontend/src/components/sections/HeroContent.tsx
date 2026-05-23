@@ -151,7 +151,7 @@ export default function HeroContent() {
           {/* Inline SmileArc brand element — with extra breathing room */}
           <SmileArc
             variant="inline"
-            className="w-[36px] sm:w-[42px] lg:w-[50px] h-auto relative z-10"
+            className="w-[120px] sm:w-[125px] lg:w-[130px] h-auto relative z-10"
           />
         </motion.span>
       </motion.h1>
