@@ -53,62 +53,18 @@ export default function FloatingTag({
         },
       }}
       className={`
-        pointer-events-none
+        pointer-events-auto
         absolute
-        z-30
         flex items-center
         ${className}
       `}
     >
       {/* =======================================
-          KEY SHAPE: Capsule (text) → Large Circle (icon)
-          Text flows left-to-right, circle protrudes on the right
+          KEY SHAPE: Large Circle (icon) → Capsule (text)
+          Circle on the left, text capsule flows to the right
       ======================================= */}
 
-      {/* CAPSULE (text portion — left side) */}
-      <div
-        className="
-          relative
-          flex items-center
-
-          h-[40px]
-          sm:h-[48px]
-          lg:h-[54px]
-
-          pl-5
-          sm:pl-6
-          pr-6
-          sm:pr-8
-
-          rounded-l-full
-          rounded-r-[8px]
-
-          border border-white/70
-          border-r-0
-
-          text-[11px]
-          sm:text-[13px]
-          lg:text-[15px]
-
-          font-semibold
-          tracking-[-0.01em]
-          text-[#2A254B]
-          whitespace-nowrap
-        "
-        style={{
-          background: "linear-gradient(145deg, #ffffff, #F4EEFF)",
-          boxShadow: `
-            6px 6px 18px rgba(128,0,128,0.08),
-            -6px -6px 14px rgba(255,255,255,0.9),
-            inset 1px 1px 2px rgba(255,255,255,0.8),
-            inset -1px -1px 2px rgba(128,0,128,0.03)
-          `,
-        }}
-      >
-        <span className="relative z-10">{label}</span>
-      </div>
-
-      {/* LARGE KEY CIRCLE (protruding right) */}
+      {/* LARGE KEY CIRCLE (left side) */}
       <div
         className="
           relative
@@ -123,9 +79,6 @@ export default function FloatingTag({
           flex items-center justify-center
 
           border border-white/80
-
-          -ml-3
-          sm:-ml-4
         "
         style={{
           background: "linear-gradient(145deg, #ffffff, #F0EAF6)",
@@ -167,6 +120,53 @@ export default function FloatingTag({
             <span className="w-2 h-2 rounded-full bg-white" />
           )}
         </div>
+      </div>
+
+      {/* CAPSULE (text portion — right side, sliding under circle) */}
+      <div
+        className="
+          relative
+          flex items-center
+
+          h-[40px]
+          sm:h-[48px]
+          lg:h-[54px]
+
+          pl-6
+          sm:pl-8
+          pr-5
+          sm:pr-6
+
+          -ml-3
+          sm:-ml-4
+          lg:-ml-5
+
+          rounded-r-full
+          rounded-l-[8px]
+
+          border border-white/70
+          border-l-0
+
+          text-[11px]
+          sm:text-[13px]
+          lg:text-[15px]
+
+          font-semibold
+          tracking-[-0.01em]
+          text-[#2A254B]
+          whitespace-nowrap
+        "
+        style={{
+          background: "linear-gradient(145deg, #ffffff, #F4EEFF)",
+          boxShadow: `
+            6px 6px 18px rgba(128,0,128,0.08),
+            -6px -6px 14px rgba(255,255,255,0.9),
+            inset 1px 1px 2px rgba(255,255,255,0.8),
+            inset -1px -1px 2px rgba(128,0,128,0.03)
+          `,
+        }}
+      >
+        <span className="relative z-10">{label}</span>
       </div>
     </motion.div>
   );

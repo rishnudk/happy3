@@ -165,11 +165,10 @@ export default function SmileArc({
           background: `radial-gradient(
             ellipse at center,
             transparent 55%,
-            rgba(200, 170, 240, 0.12) 65%,
-            rgba(128, 0, 128, 0.06) 78%,
+            rgba(200, 170, 240, 0.15) 65%,
+            rgba(128, 0, 128, 0.08) 78%,
             transparent 92%
           )`,
-          filter: "blur(8px)",
           boxShadow: `
             4px 4px 16px rgba(165, 140, 217, 0.08),
             -4px -4px 16px rgba(255, 255, 255, 0.5)
@@ -351,7 +350,7 @@ export default function SmileArc({
   }
 
   /* ═══════════════════════════════════════════════
-     VARIANT: primary / secondary (ORIGINAL)
+     VARIANT: primary / secondary (REDESIGNED PREMIUM NEUMORPHIC ARC)
      ═══════════════════════════════════════════════ */
   const isPrimary = variant === "primary";
 
@@ -360,32 +359,32 @@ export default function SmileArc({
       initial={{ opacity: 0, scale: 0.9, y: 30, rotate: 0 }}
       animate={{
         opacity: 1,
-        scale: 1,
-        y: [0, -6, 0],
-        rotate: [0, 1, 0]
+        scale: [1, 1.012, 1],
+        y: [0, -4, 0],
+        rotate: [0, 0.8, 0],
       }}
       transition={{
-        opacity: { duration: 1, ease: "easeOut", delay },
-        scale: { duration: 1, ease: "easeOut", delay },
+        opacity: { duration: 1.5, ease: "easeOut", delay },
+        scale: {
+          repeat: Infinity,
+          duration: 12,
+          ease: "easeInOut",
+          delay: delay + 0.5,
+        },
         y: {
           repeat: Infinity,
-          duration: 6,
+          duration: 9,
           ease: "easeInOut",
-          delay: delay + 0.5
+          delay: delay + 0.3,
         },
         rotate: {
           repeat: Infinity,
-          duration: 6,
+          duration: 10,
           ease: "easeInOut",
-          delay: delay + 0.5
-        }
+          delay: delay + 0.3,
+        },
       }}
-      className={`absolute z-20 pointer-events-none ${className}`}
-      style={{
-        filter: isPrimary
-          ? "drop-shadow(0 15px 30px rgba(255,206,27,0.25))"
-          : "drop-shadow(0 15px 30px rgba(128,0,128,0.15))"
-      }}
+      className={`absolute z-20 pointer-events-none aspect-[380/180] ${className}`}
     >
       <svg
         width="380"
@@ -393,59 +392,138 @@ export default function SmileArc({
         viewBox="0 0 380 180"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full"
-        style={{
-          filter: isPrimary
-            ? "drop-shadow(0 10px 20px rgba(255,206,27,0.30))"
-            : "drop-shadow(0 10px 20px rgba(128,0,128,0.25))"
-        }}
+        className="w-full h-auto overflow-visible"
       >
         <defs>
-          {/* Mustard Yellow 3D gradient */}
-          <linearGradient id="mustardSmileGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#FFE066" />
-            <stop offset="30%" stopColor="#FFCE1B" />
-            <stop offset="70%" stopColor="#F5B800" />
-            <stop offset="100%" stopColor="#D4990A" />
+          {/* Neumorphic Lighting Filters */}
+          {isPrimary ? (
+            <filter id="premiumNeumorphicArc" x="-30%" y="-30%" width="160%" height="160%">
+              {/* Ambient diffused purple background glow (creates a floating, emotionally calming effect) */}
+              <feGaussianBlur in="SourceAlpha" stdDeviation="24" result="blurGlow" />
+              <feOffset in="blurGlow" dx="0" dy="16" result="offsetGlow" />
+              <feFlood floodColor="#800080" floodOpacity="0.12" result="colorGlow" />
+              <feComposite in="colorGlow" in2="offsetGlow" operator="in" result="shadowGlow" />
+
+              {/* Dark Depth Shadow (bottom-right depth shadow, soft purple-gray) */}
+              <feGaussianBlur in="SourceAlpha" stdDeviation="12" result="blurDark" />
+              <feOffset in="blurDark" dx="8" dy="12" result="offsetDark" />
+              <feFlood floodColor="#4C3A60" floodOpacity="0.22" result="colorDark" />
+              <feComposite in="colorDark" in2="offsetDark" operator="in" result="shadowDark" />
+
+              {/* Light Highlight Shadow (top-left highlight, white/lavender) */}
+              <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blurLight" />
+              <feOffset in="blurLight" dx="-8" dy="-10" result="offsetLight" />
+              <feFlood floodColor="#FFFFFF" floodOpacity="0.85" result="colorLight" />
+              <feComposite in="colorLight" in2="offsetLight" operator="in" result="shadowLight" />
+
+              {/* Merge everything together, with SourceGraphic on top */}
+              <feMerge>
+                <feMergeNode in="shadowGlow" />
+                <feMergeNode in="shadowDark" />
+                <feMergeNode in="shadowLight" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          ) : (
+            <filter id="premiumNeumorphicArc" x="-30%" y="-30%" width="160%" height="160%">
+              {/* Ambient diffused gold background glow */}
+              <feGaussianBlur in="SourceAlpha" stdDeviation="24" result="blurGlow" />
+              <feOffset in="blurGlow" dx="0" dy="16" result="offsetGlow" />
+              <feFlood floodColor="#FFCE1B" floodOpacity="0.14" result="colorGlow" />
+              <feComposite in="colorGlow" in2="offsetGlow" operator="in" result="shadowGlow" />
+
+              {/* Dark Depth Shadow (bottom-right depth shadow, soft gold-brown) */}
+              <feGaussianBlur in="SourceAlpha" stdDeviation="12" result="blurDark" />
+              <feOffset in="blurDark" dx="8" dy="12" result="offsetDark" />
+              <feFlood floodColor="#855F00" floodOpacity="0.18" result="colorDark" />
+              <feComposite in="colorDark" in2="offsetDark" operator="in" result="shadowDark" />
+
+              {/* Light Highlight Shadow (top-left highlight, white) */}
+              <feGaussianBlur in="SourceAlpha" stdDeviation="10" result="blurLight" />
+              <feOffset in="blurLight" dx="-8" dy="-10" result="offsetLight" />
+              <feFlood floodColor="#FFFFFF" floodOpacity="0.85" result="colorLight" />
+              <feComposite in="colorLight" in2="offsetLight" operator="in" result="shadowLight" />
+
+              {/* Merge everything together, with SourceGraphic on top */}
+              <feMerge>
+                <feMergeNode in="shadowGlow" />
+                <feMergeNode in="shadowDark" />
+                <feMergeNode in="shadowLight" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          )}
+
+          {/* Core Neumorphic Clay Gradient (Primary: Patriarch Purple to Soft Lavender) */}
+          <linearGradient id="neumorphicArcGrad" x1="10%" y1="0%" x2="90%" y2="100%">
+            {isPrimary ? (
+              <>
+                <stop offset="0%" stopColor="#E6DCF2" /> {/* Lightest lavender highlight at the start */}
+                <stop offset="25%" stopColor="#C084FC" /> {/* Soft Lavender */}
+                <stop offset="65%" stopColor="#800080" /> {/* Patriarch Purple Core */}
+                <stop offset="100%" stopColor="#4A054A" /> {/* Deeper Purple Shadow */}
+              </>
+            ) : (
+              <>
+                <stop offset="0%" stopColor="#FFFBEB" /> {/* Lightest gold highlight at the start */}
+                <stop offset="25%" stopColor="#FCD34D" /> {/* Soft Gold */}
+                <stop offset="65%" stopColor="#FFCE1B" /> {/* Mustard Yellow Core */}
+                <stop offset="100%" stopColor="#92400E" /> {/* Deeper Golden-Brown Shadow */}
+              </>
+            )}
           </linearGradient>
 
-          {/* Patriarch Purple 3D gradient */}
-          <linearGradient id="patriarchSmileGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#D88BE0" />
-            <stop offset="40%" stopColor="#800080" />
-            <stop offset="100%" stopColor="#4A004A" />
+          {/* Premium Inner Rim Light Highlight Gradient */}
+          <linearGradient id="innerHighlightGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
+            <stop offset="45%" stopColor="#FFFFFF" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.0" />
           </linearGradient>
 
-          {/* 3D glow filter */}
-          <filter id="smileGlow" x="-10%" y="-10%" width="120%" height="120%">
-            <feDropShadow
-              dx="0"
-              dy="8"
-              stdDeviation="12"
-              floodColor={isPrimary ? "#FFCE1B" : "#800080"}
-              floodOpacity="0.3"
-            />
-          </filter>
+          {/* Premium Inner Depth Shadow Gradient */}
+          <linearGradient id="innerShadowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            {isPrimary ? (
+              <>
+                <stop offset="0%" stopColor="#800080" stopOpacity="0.0" />
+                <stop offset="60%" stopColor="#4A054A" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#300130" stopOpacity="0.75" />
+              </>
+            ) : (
+              <>
+                <stop offset="0%" stopColor="#FFCE1B" stopOpacity="0.0" />
+                <stop offset="60%" stopColor="#92400E" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#78350F" stopOpacity="0.75" />
+              </>
+            )}
+          </linearGradient>
         </defs>
 
-        {/* Thick curved smile line */}
+        {/* 1. Base molded clay body with neumorphic dual-shadowing filter applied */}
         <path
           d="M 40 40 Q 190 145 340 40"
           fill="none"
-          stroke={`url(${isPrimary ? "#mustardSmileGrad" : "#patriarchSmileGrad"})`}
+          stroke="url(#neumorphicArcGrad)"
           strokeWidth="38"
           strokeLinecap="round"
-          filter="url(#smileGlow)"
+          filter="url(#premiumNeumorphicArc)"
         />
 
-        {/* Inner highlight for 3D capsule effect */}
+        {/* 2. Inner deep shadow (bottom-right edge of capsule) for rounded depth */}
+        <path
+          d="M 44 44 Q 190 149 336 44"
+          fill="none"
+          stroke="url(#innerShadowGrad)"
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+
+        {/* 3. Inner edge highlight (top-left edge of capsule) for 3D extrusion */}
         <path
           d="M 46 36 Q 190 137 334 36"
           fill="none"
-          stroke="#ffffff"
+          stroke="url(#innerHighlightGrad)"
           strokeWidth="6"
           strokeLinecap="round"
-          className="opacity-50"
         />
       </svg>
     </motion.div>
