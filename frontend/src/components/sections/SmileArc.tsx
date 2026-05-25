@@ -12,7 +12,8 @@ interface SmileArcProps {
     | "conic-glow"
     | "blur-halo"
     | "smile-lower"
-    | "atmosphere";
+    | "atmosphere"
+    | "hero-smile";
   className?: string;
   delay?: number;
   /** Size of the arc ring (used for emotional/conic/blur/atmosphere variants) */
@@ -352,6 +353,62 @@ export default function SmileArc({
   /* ═══════════════════════════════════════════════
      VARIANT: primary / secondary (REDESIGNED PREMIUM NEUMORPHIC ARC)
      ═══════════════════════════════════════════════ */
+  if (variant === "hero-smile") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.8, delay, ease: "easeOut" }}
+        className={`absolute pointer-events-none aspect-[380/180] ${className}`}
+      >
+        <svg
+          width="380"
+          height="180"
+          viewBox="0 0 380 180"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-auto overflow-visible"
+        >
+          <path
+            d="M 40 48 Q 190 153 340 48"
+            fill="none"
+            stroke="#5E005E"
+            strokeWidth="38"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 40 54 Q 190 159 340 54"
+            fill="none"
+            stroke="rgba(90,0,90,0.22)"
+            strokeWidth="38"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 40 40 Q 190 145 340 40"
+            fill="none"
+            stroke="#800080"
+            strokeWidth="38"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 46 34 Q 190 132 334 34"
+            fill="none"
+            stroke="rgba(255,255,255,0.45)"
+            strokeWidth="6"
+            strokeLinecap="round"
+          />
+          <path
+            d="M 44 47 Q 190 151 336 47"
+            fill="none"
+            stroke="rgba(48,0,48,0.38)"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+        </svg>
+      </motion.div>
+    );
+  }
+
   const isPrimary = variant === "primary";
 
   return (

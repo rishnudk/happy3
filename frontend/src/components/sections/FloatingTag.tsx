@@ -71,9 +71,9 @@ export default function FloatingTag({
           shrink-0
           z-10
 
-          w-[56px] h-[56px]
-          sm:w-[68px] sm:h-[68px]
-          lg:w-[80px] lg:h-[80px]
+          w-[44px] h-[44px]
+          sm:w-[52px] sm:h-[52px]
+          lg:w-[60px] lg:h-[60px]
 
           rounded-full
           flex items-center justify-center
@@ -93,9 +93,9 @@ export default function FloatingTag({
         {/* Inner solid icon circle */}
         <div
           className="
-            w-[30px] h-[30px]
-            sm:w-[36px] sm:h-[36px]
-            lg:w-[42px] lg:h-[42px]
+            w-[24px] h-[24px]
+            sm:w-[28px] sm:h-[28px]
+            lg:w-[32px] lg:h-[32px]
             rounded-full
             flex items-center justify-center
           "
@@ -110,9 +110,9 @@ export default function FloatingTag({
           {IconComponent ? (
             <IconComponent
               className={`
-                w-3.5 h-3.5
-                sm:w-4 sm:h-4
-                lg:w-[18px] lg:h-[18px]
+                w-3 h-3
+                sm:w-3.5 sm:h-3.5
+                lg:w-4 lg:h-4
                 ${iconColor}
               `}
             />
@@ -128,18 +128,18 @@ export default function FloatingTag({
           relative
           flex items-center
 
-          h-[40px]
-          sm:h-[48px]
-          lg:h-[54px]
+          h-[32px]
+          sm:h-[38px]
+          lg:h-[42px]
 
-          pl-6
-          sm:pl-8
-          pr-5
-          sm:pr-6
+          pl-5
+          sm:pl-6
+          pr-4
+          sm:pr-5
 
           -ml-3
-          sm:-ml-4
-          lg:-ml-5
+          sm:-ml-3
+          lg:-ml-4
 
           rounded-r-full
           rounded-l-[8px]
@@ -147,9 +147,9 @@ export default function FloatingTag({
           border border-white/70
           border-l-0
 
-          text-[11px]
-          sm:text-[13px]
-          lg:text-[15px]
+          text-[9px]
+          sm:text-[11px]
+          lg:text-[12px]
 
           font-semibold
           tracking-[-0.01em]

@@ -12,6 +12,8 @@ export default function HeroVisual() {
         lg:col-span-5
         relative
         isolate
+        lg:-mt-16
+        lg:-translate-x-10
         flex
         justify-center
         items-center
@@ -26,23 +28,23 @@ export default function HeroVisual() {
           -z-20 → BACKGROUND GLOW LAYER
           ═══════════════════════════════════════════════ */}
       <div className="absolute inset-0 -z-20 flex justify-center items-center pointer-events-none overflow-visible">
-        <div
+        {/* <div
           className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full opacity-30 filter blur-[80px]"
           style={{
-            background: "radial-gradient(circle, rgba(128,0,128,0.12) 0%, rgba(255,206,27,0.06) 50%, transparent 100%)"
+            background: "radial-gradient(circle, rgba(0, 0, 0, 0.12) 0%, rgba(255,206,27,0.06) 50%, transparent 100%)"
           }}
-        />
+        /> */}
 
         {/* Secondary atmospheric glow — wider and softer */}
-        <motion.div
+        {/* <motion.div
           animate={{ scale: [1, 1.06, 1], opacity: [0.18, 0.25, 0.18] }}
           transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
           className="absolute w-[400px] h-[400px] sm:w-[520px] sm:h-[520px] lg:w-[600px] lg:h-[600px] rounded-full"
           style={{
-            background: "radial-gradient(ellipse at center, rgba(200,170,240,0.12) 0%, rgba(128,0,128,0.04) 40%, transparent 70%)",
+            background: "radial-gradient(ellipse at center, rgba(39, 8, 81, 0.12) 0%, rgba(94, 27, 94, 0.04) 40%, transparent 70%)",
             filter: "blur(40px)",
           }}
-        />
+        /> */}
       </div>
 
       {/* ═══════════════════════════════════════════════
@@ -52,7 +54,7 @@ export default function HeroVisual() {
         {/* ARC 1: Outermost Atmosphere Ring — ultra-subtle, large */}
         <SmileArc
           variant="atmosphere"
-          size="w-[300px] h-[300px] sm:w-[410px] sm:h-[410px] lg:w-[490px] lg:h-[490px]"
+          size="w-[270px] h-[270px] sm:w-[370px] sm:h-[370px] lg:w-[440px] lg:h-[440px]"
           className="opacity-40"
           delay={0.2}
           direction={1}
@@ -66,24 +68,24 @@ export default function HeroVisual() {
         {/* ARC 2: Outer Emotional Ring — thick partial border, slow reverse rotation */}
         <SmileArc
           variant="emotional-ring"
-          size="w-[270px] h-[270px] sm:w-[370px] sm:h-[370px] lg:w-[440px] lg:h-[440px]"
+          size="w-[245px] h-[245px] sm:w-[335px] sm:h-[335px] lg:w-[395px] lg:h-[395px]"
           className="opacity-50"
           delay={0.3}
           direction={-1}
           rotationDuration={55}
           borderStyle={{
-            border: "16px solid rgba(200, 170, 240, 0.12)",
+            border: "16px solid rgba(114, 43, 208, 0.12)",
             borderTopColor: "transparent",
-            borderBottomColor: "rgba(128,0,128,0.06)",
-            borderRightColor: "rgba(255, 206, 27, 0.08)",
-            borderLeftColor: "rgba(200, 170, 240, 0.14)",
+            borderBottomColor: "rgba(188, 48, 188, 0.06)",
+            borderRightColor: "rgba(219, 11, 11, 0.08)",
+            borderLeftColor: "rgba(172, 122, 238, 0.14)",
           }}
         />
 
         {/* ARC 3: Middle Conic Glow Ring — conic gradient, forward rotation */}
         <SmileArc
           variant="conic-glow"
-          size="w-[240px] h-[240px] sm:w-[330px] sm:h-[330px] lg:w-[390px] lg:h-[390px]"
+          size="w-[215px] h-[215px] sm:w-[300px] sm:h-[300px] lg:w-[350px] lg:h-[350px]"
           className="opacity-60"
           delay={0.4}
           direction={1}
@@ -91,13 +93,13 @@ export default function HeroVisual() {
           gradientStyle={{
             background: `conic-gradient(
               from 45deg,
-              rgba(200, 170, 240, 0.10) 0deg,
-              rgba(128, 0, 128, 0.14) 50deg,
+              rgba(163, 105, 220, 0.1) 0deg,
+              rgba(135, 116, 231, 0.14) 50deg,
               transparent 110deg,
-              rgba(255, 206, 27, 0.10) 180deg,
+              rgba(233, 133, 133, 0.1) 180deg,
               transparent 240deg,
-              rgba(200, 170, 240, 0.08) 300deg,
-              transparent 360deg
+              rgba(38, 195, 140, 0.08) 300deg,
+              transparent 180deg
             )`,
           }}
         />
@@ -105,16 +107,16 @@ export default function HeroVisual() {
         {/* ARC 4: Inner Blur Halo — soft radial glow, breathing */}
         <SmileArc
           variant="blur-halo"
-          size="w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] lg:w-[360px] lg:h-[360px]"
+          size="w-[200px] h-[200px] sm:w-[270px] sm:h-[270px] lg:w-[325px] lg:h-[325px]"
           className="opacity-70"
           delay={0.5}
           gradientStyle={{
             background: `radial-gradient(
               ellipse at center,
               transparent 50%,
-              rgba(200, 170, 240, 0.14) 62%,
-              rgba(128, 0, 128, 0.08) 75%,
-              rgba(255, 206, 27, 0.04) 85%,
+              rgba(108, 25, 216, 0.14) 62%,
+              rgba(213, 48, 213, 0.08) 75%,
+              rgba(212, 177, 50, 0.04) 85%,
               transparent 95%
             )`,
           }}
@@ -123,7 +125,7 @@ export default function HeroVisual() {
         {/* ARC 5: Smile-Inspired Lower Arc — bottom crescent, gentle sway */}
         <SmileArc
           variant="smile-lower"
-          size="w-[250px] h-[250px] sm:w-[350px] sm:h-[350px] lg:w-[410px] lg:h-[410px]"
+          size="w-[225px] h-[225px] sm:w-[315px] sm:h-[315px] lg:w-[370px] lg:h-[370px]"
           className="opacity-45"
           delay={0.6}
           direction={1}
@@ -131,7 +133,7 @@ export default function HeroVisual() {
             border: "12px solid transparent",
             borderBottomColor: "rgba(255, 206, 27, 0.15)",
             borderLeftColor: "rgba(200, 170, 240, 0.08)",
-            borderRightColor: "rgba(200, 170, 240, 0.08)",
+            borderRightColor: "rgba(125, 50, 222, 0.08)",
             borderTopColor: "transparent",
           }}
         />
@@ -139,7 +141,7 @@ export default function HeroVisual() {
         {/* ARC 6: Inner Emotional Ring — tighter, reverse, thinner */}
         <SmileArc
           variant="emotional-ring"
-          size="w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] lg:w-[330px] lg:h-[330px]"
+          size="w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px]"
           className="opacity-35"
           delay={0.7}
           direction={1}
@@ -154,7 +156,7 @@ export default function HeroVisual() {
         />
 
         {/* Original thin orbit ring — kept but faded further back */}
-        <SmileArc variant="thin-orbit" className="w-[270px] h-[270px] sm:w-[350px] sm:h-[350px] lg:w-[410px] lg:h-[410px] opacity-15" delay={0.2} />
+        <SmileArc variant="thin-orbit" className="w-[245px] h-[245px] sm:w-[315px] sm:h-[315px] lg:w-[370px] lg:h-[370px] opacity-15" delay={0.2} />
       </div>
 
       {/* ═══════════════════════════════════════════════
@@ -170,35 +172,61 @@ export default function HeroVisual() {
         }}
         className="
           relative
-          w-[220px] h-[220px]
-          sm:w-[280px] sm:h-[280px]
-          lg:w-[340px] lg:h-[340px]
+          w-[215px] h-[215px]
+          sm:w-[273px] sm:h-[273px]
+          lg:w-[332px] lg:h-[332px]
           rounded-full
           p-2
           z-[70]
           overflow-visible
         "
         style={{
-          background: "linear-gradient(145deg, #FAF8FD, #F2EDF8)",
-          boxShadow: `
-            12px 12px 30px rgba(128,0,128,0.1),
-            -12px -12px 30px rgba(255,255,255,0.95),
-            inset 2px 2px 4px rgba(255,255,255,0.9),
-            inset -2px -2px 4px rgba(128,0,128,0.04)
-          `,
+          background: "transparent",
         }}
       >
+        <div
+          aria-hidden
+          className="absolute inset-8 sm:inset-10 rounded-full bg-[#F6F3FA] pointer-events-none z-0"
+        />
+
+        <div
+          aria-hidden
+          className="absolute inset-4 sm:inset-5 rounded-full pointer-events-none z-[5]"
+          style={{
+            background: `conic-gradient(
+              from 215deg,
+              rgba(255,255,255,0.92) 0deg,
+              rgba(245,208,254,0.72) 48deg,
+              rgba(220,199,232,0.88) 108deg,
+              rgba(252,250,255,0.9) 170deg,
+              rgba(255,206,27,0.35) 224deg,
+              rgba(230,220,242,0.85) 292deg,
+              rgba(255,255,255,0.92) 360deg
+            )`,
+            boxShadow: `
+              10px 10px 24px rgba(128,0,128,0.08),
+              -10px -10px 22px rgba(255,255,255,0.9),
+              inset 2px 2px 5px rgba(255,255,255,0.85),
+              inset -3px -3px 8px rgba(128,0,128,0.08)
+            `,
+            WebkitMask:
+              "radial-gradient(farthest-side, transparent calc(100% - 20px), #000 calc(100% - 19px))",
+            mask:
+              "radial-gradient(farthest-side, transparent calc(100% - 20px), #000 calc(100% - 19px))",
+          }}
+        />
+
         {/* Neumorphic rim */}
-        <div className="absolute inset-0 rounded-full border border-white/60 pointer-events-none z-20" />
+        <div className="absolute inset-8 sm:inset-10 rounded-full border border-white/60 pointer-events-none z-20" />
 
         {/* Top soft highlight */}
         <div
           className="
             absolute
-            top-[4px]
+            top-[42px]
             left-1/2
             -translate-x-1/2
-            w-[60%]
+            w-[42%]
             h-[8px]
             rounded-full
             bg-white/50
@@ -208,54 +236,57 @@ export default function HeroVisual() {
           "
         />
 
-        {/* Image container */}
+        {/* Portrait background plate */}
         <div
           className="
-            relative
-            w-full
-            h-full
+            absolute
+            inset-8
+            sm:inset-10
             rounded-full
             overflow-hidden
             border-[4px]
             sm:border-[6px]
             border-white/80
-            z-30
+            z-10
           "
           style={{
             background:
-              "linear-gradient(135deg, #F6F3FA, #F2EDF8, #FAF8FD)",
+              "radial-gradient(circle at 35% 25%, #FCFAFF 0%, #FAF8FD 38%, #F6F3FA 72%, #E7DEE7 100%)",
             boxShadow: `
               inset 4px 4px 10px rgba(128,0,128,0.06),
               inset -4px -4px 10px rgba(255,255,255,0.95)
             `,
           }}
-        >
-          <Image
-            src="/images/hero.png"
-            alt="Shabna Sulthan - Founder, Happiness Coaching Academy"
-            fill
-            priority
-            sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 340px"
-            className="
-              object-cover
-              object-top
-              scale-[1.38]
-              translate-y-4
-              transition-transform
-              duration-700
-              hover:scale-[1.44]
-            "
-          />
-        </div>
+        />
+
+        {/* Transparent PNG cutout. This is intentionally not clipped by the circle. */}
+        <Image
+          src="/images/hero.png"
+          alt="Shabna Sulthan - Founder, Happiness Coaching Academy"
+          fill
+          priority
+          sizes="(max-width: 640px) 215px, (max-width: 1024px) 273px, 332px"
+          className="
+            z-30
+            object-contain
+            object-center
+            pointer-events-none
+            transition-transform
+            duration-700
+          "
+          style={{
+            transform: "translateY(0%) scale(1.22)",
+          }}
+        />
       </motion.div>
 
       {/* ═══════════════════════════════════════════════
           -z-10 → BRAND ARC LAYER (Primary Smile Arc)
           ═══════════════════════════════════════════════ */}
-      <div className="absolute inset-0 -z-10 flex justify-center items-center pointer-events-none overflow-visible">
+      <div className="absolute inset-0 z-[80] flex justify-center items-center pointer-events-none overflow-visible">
         <SmileArc
-          variant="primary"
-          className="absolute bottom-[10%] sm:bottom-[8%] lg:bottom-[6%] w-[220px] sm:w-[280px] lg:w-[320px]"
+          variant="hero-smile"
+          className="absolute bottom-[15%] sm:bottom-[13%] lg:bottom-[11%] w-[240px] sm:w-[300px] lg:w-[350px]"
           delay={0.4}
         />
       </div>
@@ -263,7 +294,7 @@ export default function HeroVisual() {
       {/* ═══════════════════════════════════════════════
           z-50 → FLOATING TAGS LAYER
           ═══════════════════════════════════════════════ */}
-      <div className="absolute inset-0 z-50 pointer-events-none overflow-visible">
+      <div className="absolute inset-0 z-[90] pointer-events-none overflow-visible">
         {/* Badge A: Mindset Shift — Top-Left (~10 o'clock) */}
         <FloatingTag
           label="Mindset Shift"
@@ -271,9 +302,9 @@ export default function HeroVisual() {
           iconColor="text-white"
           iconBg="#800080"
           className="
-            top-[8%] left-[2%]
-            sm:top-[10%] sm:left-[8%]
-            lg:top-[12%] lg:left-[4%]
+            top-[12%] left-[3%]
+            sm:top-[13%] sm:left-[8%]
+            lg:top-[15%] lg:left-[6%]
           "
           delay={0.15}
           yRange={[0, -9, 0]}
@@ -287,9 +318,9 @@ export default function HeroVisual() {
           iconColor="text-white"
           iconBg="#FFCE1B"
           className="
-            top-[22%] right-[2%]
-            sm:top-[20%] sm:right-[6%]
-            lg:top-[22%] lg:right-[2%]
+            top-[28%] right-[2%]
+            sm:top-[28%] sm:right-[5%]
+            lg:top-[30%] lg:right-[4%]
           "
           delay={0.3}
           yRange={[0, 9, 0]}
@@ -303,9 +334,9 @@ export default function HeroVisual() {
           iconColor="text-white"
           iconBg="#800080"
           className="
-            bottom-[34%] left-[0%]
-            sm:bottom-[36%] sm:left-[6%]
-            lg:bottom-[38%] lg:left-[0%]
+            bottom-[36%] left-[2%]
+            sm:bottom-[38%] sm:left-[6%]
+            lg:bottom-[40%] lg:left-[3%]
           "
           delay={0.45}
           yRange={[0, -11, 0]}
@@ -319,76 +350,13 @@ export default function HeroVisual() {
           iconColor="text-white"
           iconBg="#800080"
           className="
-            bottom-[18%] right-[2%]
-            sm:bottom-[20%] sm:right-[6%]
-            lg:bottom-[22%] lg:right-[2%]
+            bottom-[24%] right-[2%]
+            sm:bottom-[25%] sm:right-[5%]
+            lg:bottom-[26%] lg:right-[4%]
           "
           delay={0.6}
           yRange={[0, 8, 0]}
           duration={5}
-        />
-      </div>
-
-      {/* ═══════════════════════════════════════════════
-          z-60 → SPHERES LAYER
-          ═══════════════════════════════════════════════ */}
-      <div className="absolute inset-0 z-60 pointer-events-none overflow-visible">
-        {/* Sphere 1: Purple (Top Left Accent) */}
-        <motion.div
-          animate={{ y: [0, -10, 0], x: [0, 4, 0] }}
-          transition={{ repeat: Infinity, duration: 5.8, ease: "easeInOut" }}
-          className="
-            absolute pointer-events-none
-            top-[8%] left-[22%]
-            w-3.5 h-3.5
-            sm:w-4 sm:h-4
-            lg:w-5 lg:h-5
-            sphere-3d sphere-purple
-          "
-        />
-
-        {/* Sphere 2: Yellow (Bottom Right Accent) */}
-        <motion.div
-          animate={{ y: [0, 12, 0], x: [0, -4, 0] }}
-          transition={{ repeat: Infinity, duration: 6.4, ease: "easeInOut", delay: 0.3 }}
-          className="
-            absolute pointer-events-none
-            bottom-[6%] right-[28%]
-            w-4 h-4
-            sm:w-4.5 sm:h-4.5
-            lg:w-5.5 lg:h-5.5
-            sphere-3d sphere-yellow
-          "
-        />
-
-        {/* Sphere 3: Purple (Mid Right Orbit) */}
-        <motion.div
-          animate={{ y: [0, -14, 0] }}
-          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 0.6 }}
-          className="
-            absolute pointer-events-none
-            top-[48%] right-[-6px]
-            sm:right-[-8px]
-            lg:right-[-10px]
-            w-5 h-5
-            sm:w-6 sm:h-6
-            lg:w-7 lg:h-7
-            sphere-3d sphere-purple
-          "
-        />
-
-        {/* Sphere 4: Yellow (Top Right) */}
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
-          className="
-            absolute pointer-events-none
-            top-[16%] right-[16%]
-            w-3 h-3
-            sm:w-3.5 sm:h-3.5
-            lg:w-4 lg:h-4
-            sphere-3d sphere-white
-          "
         />
       </div>
     </div>
