@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { StoreProvider } from "@/lib/store/StoreProvider";
 import "./globals.css";
 import "../styles/background.css";
 
@@ -28,7 +29,7 @@ export default function RootLayout({
         <div className="bg-yellow-glow" />
         <div className="bg-grid" />
 
-        {children}
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );
