@@ -2,6 +2,8 @@ import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import authRouter from "./routes/auth.route"
+import questionRouter from "./routes/question.route"
+import optionRouter from "./routes/option.route"
 
 const app = express()
 console.log("CORS:", process.env.CORS_ORIGINS)
@@ -28,5 +30,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use("/api/auth", authRouter)
+app.use("/api/questions", questionRouter)
+app.use("/api/options", optionRouter)
 
 export default app

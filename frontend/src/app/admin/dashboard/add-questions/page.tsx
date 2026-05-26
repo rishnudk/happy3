@@ -1,7 +1,5 @@
+import { AddQuestionDashboard } from "@/components/admin/questions/AddQuestionDashboard";
+
 export default function AddQuestionsPage() {
-    return (
-        <div>
-            <h1>Add Questions</h1>
-        </div>
-    )
+  return <AddQuestionDashboard />;
 }
