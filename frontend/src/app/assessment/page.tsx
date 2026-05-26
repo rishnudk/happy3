@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { AssessmentFlow } from "@/components/assessment/AssessmentFlow";
 import { GlobalBackground } from "@/components/sections/GlobalBackground";
+import { JourneyPill } from "@/components/ui/JourneyPill";
 
 export default function AssessmentPage() {
   return (
@@ -11,13 +12,12 @@ export default function AssessmentPage() {
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 py-8 md:px-6 md:py-12">
         <header className="mb-8 flex items-center justify-between gap-4">
-          <Link
+          <JourneyPill
             href="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-primary"
+            icon={<ArrowLeft className="size-3.5 text-primary" strokeWidth={2.5} />}
           >
-            <ArrowLeft className="size-4" />
             Back to home
-          </Link>
+          </JourneyPill>
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/home/logo.svg"

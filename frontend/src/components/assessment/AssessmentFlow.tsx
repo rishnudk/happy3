@@ -1,15 +1,16 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import { toast } from "sonner";
 import { ArrowLeft, CheckCircle2, ChevronRight } from "lucide-react";
+import { JourneyPill } from "@/components/ui/JourneyPill";
 import { API_BASE } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import NeuCard from "@/components/ui/NeuCard";
 
 type Option = {
   id: number;
@@ -153,9 +154,12 @@ export function AssessmentFlow() {
           <p className="text-muted-foreground mb-6">
             No questions are available yet. Please check back soon.
           </p>
-          <Button asChild variant="outline" className="rounded-xl">
-            <Link href="/">Back to home</Link>
-          </Button>
+          <JourneyPill
+            href="/"
+            icon={<ArrowLeft className="size-3.5 text-primary" strokeWidth={2.5} />}
+          >
+            Back to home
+          </JourneyPill>
         </CardContent>
       </Card>
     );
@@ -163,154 +167,206 @@ export function AssessmentFlow() {
 
   if (step === "done") {
     return (
-      <Card className="mx-auto max-w-lg border-white/60 bg-white/90 shadow-[var(--shadow-card)]">
-        <CardContent className="flex flex-col items-center py-12 text-center">
-          <CheckCircle2 className="mb-4 size-14 text-primary" />
-          <h2 className="font-display text-2xl font-bold text-foreground mb-2">
+      <div className="mx-auto w-full mt-10 space-y-6">
+        <NeuCard className="p-8 md:p-12 w-full flex flex-col items-center justify-center text-center" hoverLift={false}>
+          <CheckCircle2 className="mb-6 size-16" style={{ color: "#800080" }} />
+          <h2 className="font-satoshi text-3xl font-bold mb-4" style={{ color: "#2A254B" }}>
             Thank you!
           </h2>
-          <p className="text-muted-foreground mb-2">
-            Your transformation journey assessment has been submitted.
+          <p className="text-muted-foreground mb-4 text-base max-w-md">
+            Your transformation journey assessment has been submitted successfully.
           </p>
-          <p className="text-lg font-semibold text-primary mb-8">
+          <p className="text-2xl font-bold mb-8" style={{ color: "#800080" }}>
             Your score: {totalScore}
           </p>
-          <Button asChild className="rounded-xl">
-            <Link href="/">Return to home</Link>
-          </Button>
-        </CardContent>
-      </Card>
+          <JourneyPill
+            href="/"
+            icon={<ArrowLeft className="size-3.5" strokeWidth={2.5} />}
+          >
+            Return to home
+          </JourneyPill>
+        </NeuCard>
+      </div>
     );
   }
 
   if (step === "form") {
     return (
-      <Card className="mx-auto max-w-lg border-white/60 bg-white/90 shadow-[var(--shadow-card)]">
-        <CardHeader className="border-b border-border/30">
-          <CardTitle className="text-xl font-bold">
-            Almost done — tell us about you
-          </CardTitle>
-          <p className="text-sm text-muted-foreground">
-            You answered all {questions.length} questions. Share your details to
-            complete your assessment.
-          </p>
-        </CardHeader>
-        <CardContent className="pt-6">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="name">
-                Name <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="name"
-                placeholder="Your full name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="h-10 rounded-lg"
-                required
-              />
+      <div className="mx-auto w-full mt-10 space-y-6">
+        <NeuCard className="p-8 md:p-12 w-full flex flex-col justify-between" hoverLift={false}>
+          <div>
+            <div className="text-center mb-8">
+              <h2 className="font-satoshi text-2xl font-bold mb-2" style={{ color: "#2A254B" }}>
+                Almost done — tell us about you
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                You answered all {questions.length} questions. Share your details to complete your assessment.
+              </p>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="emailId">
-                Email <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="emailId"
-                type="email"
-                placeholder="you@example.com"
-                value={emailId}
-                onChange={(e) => setEmailId(e.target.value)}
-                className="h-10 rounded-lg"
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="phoneNumber">
-                Phone number <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="phoneNumber"
-                type="tel"
-                placeholder="Your phone number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                className="h-10 rounded-lg"
-                required
-              />
-            </div>
-            <Button
-              type="submit"
-              className="h-11 w-full rounded-xl shadow-md shadow-primary/20"
-              disabled={submitting}
-            >
-              {submitting ? "Submitting..." : "Submit"}
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+            <form onSubmit={handleSubmit} className="space-y-5 max-w-xl mx-auto">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="font-satoshi font-semibold" style={{ color: "#2A254B" }}>
+                  Name <span className="text-destructive">*</span>
+                </Label>
+                <Input
+                  id="name"
+                  placeholder="Your full name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="h-12 rounded-xl bg-[#F6F3FA] border-none shadow-[inset_2px_2px_5px_#DDDAE3,inset_-2px_-2px_5px_#FFFFFF] focus-visible:ring-1 focus-visible:ring-purple-400"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="emailId" className="font-satoshi font-semibold" style={{ color: "#2A254B" }}>
+                  Email <span className="text-destructive">*</span>
+                </Label>
+                <Input
+                  id="emailId"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={emailId}
+                  onChange={(e) => setEmailId(e.target.value)}
+                  className="h-12 rounded-xl bg-[#F6F3FA] border-none shadow-[inset_2px_2px_5px_#DDDAE3,inset_-2px_-2px_5px_#FFFFFF] focus-visible:ring-1 focus-visible:ring-purple-400"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phoneNumber" className="font-satoshi font-semibold" style={{ color: "#2A254B" }}>
+                  Phone number <span className="text-destructive">*</span>
+                </Label>
+                <Input
+                  id="phoneNumber"
+                  type="tel"
+                  placeholder="Your phone number"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  className="h-12 rounded-xl bg-[#F6F3FA] border-none shadow-[inset_2px_2px_5px_#DDDAE3,inset_-2px_-2px_5px_#FFFFFF] focus-visible:ring-1 focus-visible:ring-purple-400"
+                  required
+                />
+              </div>
+              <Button
+                type="submit"
+                className="h-12 w-full rounded-xl shadow-md text-white font-satoshi font-bold mt-4"
+                disabled={submitting}
+                style={{ background: "#800080" }}
+              >
+                {submitting ? "Submitting..." : "Submit"}
+              </Button>
+            </form>
+          </div>
+        </NeuCard>
+      </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
-      <div className="space-y-2">
-        <div className="flex items-center justify-between text-sm">
-          <span className="font-semibold text-primary">
-            Question {currentIndex + 1} of {questions.length}
-          </span>
-          <span className="text-muted-foreground">{progress}%</span>
-        </div>
-        <div className="h-2 overflow-hidden rounded-full bg-muted">
-          <div
-            className="h-full rounded-full bg-primary transition-all duration-500"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-      </div>
-
-      <Card className="border-white/60 bg-white/90 shadow-[var(--shadow-card)]">
-        <CardHeader className="border-b border-border/30 pb-4">
-          <span className="text-xs font-bold uppercase tracking-wider text-primary/80">
-            {currentQuestion?.category}
-          </span>
-          <CardTitle className="text-lg font-bold leading-snug md:text-xl">
-            {currentQuestion?.questionText}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-3 pt-5">
-          {currentQuestion?.options.map((option) => {
-            const isSelected = selectedOptionId === option.id;
-            return (
-              <button
-                key={option.id}
-                type="button"
-                disabled={selectedOptionId !== null && !isSelected}
-                onClick={() => handleSelectOption(option)}
-                className={cn(
-                  "flex w-full items-center justify-between gap-3 rounded-xl border px-4 py-4 text-left transition-all",
-                  isSelected
-                    ? "border-primary bg-primary/10 shadow-sm"
-                    : "border-border/50 bg-white hover:border-primary/40 hover:bg-primary/5",
-                  selectedOptionId !== null &&
-                    !isSelected &&
-                    "opacity-50 pointer-events-none"
-                )}
+    <div className="mx-auto w-full mt-10 space-y-6">
+      <NeuCard className="p-8 md:p-12 w-full flex flex-col justify-between" hoverLift={false}>
+        <div>
+          {/* Question progress line — inside the card */}
+          <div className="space-y-2 mb-8">
+            <div className="flex items-center justify-between text-sm">
+              <span
+                className="font-satoshi font-semibold"
+                style={{ color: "#800080" }}
               >
-                <span className="font-medium text-foreground">
-                  {option.optionText}
-                </span>
-                {isSelected && (
-                  <ChevronRight className="size-5 shrink-0 text-primary" />
-                )}
-              </button>
-            );
-          })}
-        </CardContent>
-      </Card>
+                Question {currentIndex + 1} of {questions.length}
+              </span>
+              <span
+                className="font-satoshi font-medium text-xs"
+                style={{ color: "#4A4568" }}
+              >
+                {progress}%
+              </span>
+            </div>
+            <div
+              className="h-2.5 overflow-hidden rounded-full"
+              style={{
+                background: "#F6F3FA",
+                boxShadow: "inset 2px 2px 5px #DDDAE3, inset -2px -2px 5px #FFFFFF",
+              }}
+            >
+              <div
+                className="h-full rounded-full transition-all duration-500"
+                style={{
+                  width: `${progress}%`,
+                  background: "linear-gradient(90deg, #800080, #C084FC)",
+                }}
+              />
+            </div>
+          </div>
 
-      <p className="text-center text-sm text-muted-foreground">
-        Tap an option to continue to the next question
-      </p>
+          {/* Category badge and question text */}
+          <div className="flex flex-col items-center gap-4 pb-6">
+            <span
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
+              style={{
+                color: "rgba(128,0,128,0.75)",
+                background: "#F6F3FA",
+                boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+              }}
+            >
+              {currentQuestion?.category}
+            </span>
+            <h2
+              className="font-satoshi font-bold text-xl leading-snug md:text-2xl text-center mt-2 px-2"
+              style={{ color: "#2A254B" }}
+            >
+              {currentQuestion?.questionText}
+            </h2>
+          </div>
+
+          {/* Options */}
+          <div className="space-y-4 pt-4 max-w-2xl mx-auto">
+            {currentQuestion?.options.map((option) => {
+              const isSelected = selectedOptionId === option.id;
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  disabled={selectedOptionId !== null && !isSelected}
+                  onClick={() => handleSelectOption(option)}
+                  className={cn(
+                    "flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left transition-all",
+                    isSelected
+                      ? "shadow-sm"
+                      : "hover:scale-[1.01]",
+                    selectedOptionId !== null &&
+                      !isSelected &&
+                      "opacity-50 pointer-events-none"
+                  )}
+                  style={
+                    isSelected
+                      ? {
+                          background: "rgba(128,0,128,0.08)",
+                          boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                        }
+                      : {
+                          background: "#F6F3FA",
+                          boxShadow: "4px 4px 8px #DDDAE3, -4px -4px 8px #FFFFFF",
+                        }
+                  }
+                >
+                  <span
+                    className="font-satoshi font-medium text-base md:text-lg"
+                    style={{ color: "#4A4568" }}
+                  >
+                    {option.optionText}
+                  </span>
+                  {isSelected && (
+                    <ChevronRight className="size-5 shrink-0" style={{ color: "#800080" }} />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <p className="text-center text-sm font-satoshi mt-8" style={{ color: "#4A4568" }}>
+          Tap an option to continue to the next question
+        </p>
+      </NeuCard>
     </div>
   );
 }
