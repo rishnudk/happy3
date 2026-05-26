@@ -118,20 +118,13 @@ export default function Navbar() {
             <motion.div
               animate={{ width: logoSize, height: logoSize }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              style={{ flexShrink: 0, position: "relative" }}
+              className="relative shrink-0"
             >
               <Image
-                src="/images/logo.png"
+                src="/home/logo.svg"
                 alt="Happiness Coaching Academy"
-                width={64}
-                height={64}
+                fill
                 className="object-contain"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  minWidth: logoSize,
-                  minHeight: logoSize,
-                }}
                 priority
               />
             </motion.div>
@@ -194,14 +187,14 @@ export default function Navbar() {
               Explore Programs
             </NeuButton>
             {/* Request 2: Neumorphic button – mustard variant */}
-            <NeuButton variant="mustard" href="#cta" size="md">
+            <NeuButton variant="mustard" href="/assessment" size="md">
               Start Your Transformation
             </NeuButton>
           </div>
 
           {/* MOBILE – CTA + HAMBURGER */}
           <div className="flex items-center xl:hidden" style={{ gap: 8 }}>
-            <NeuButton variant="mustard" href="#cta" size="sm" onClick={closeMenu}>
+            <NeuButton variant="mustard" href="/assessment" size="sm" onClick={closeMenu}>
               <span className="hidden sm:inline">Start Your Transformation</span>
               <span className="inline sm:hidden">Start Now</span>
             </NeuButton>
@@ -301,7 +294,7 @@ export default function Navbar() {
                   >
                     Explore Programs
                   </NeuButton>
-                  <NeuButton variant="mustard" href="#cta" onClick={closeMenu} size="md"
+                  <NeuButton variant="mustard" href="/assessment" onClick={closeMenu} size="md"
                     style={{ width: "100%", justifyContent: "center" }}
                   >
                     Start Your Transformation

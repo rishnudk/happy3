@@ -1,4 +1,4 @@
-import { AddQuestionDashboard } from "@/components/admin/questions/AddQuestionDashboard";
+import { AddQuestionDashboard } from "@/components/admin/AddQuestionDashboard";
 
 export default function AddQuestionsPage() {
   return <AddQuestionDashboard />;
