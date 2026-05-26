@@ -230,7 +230,7 @@ export function CtaSection() {
               <NeuCard className="p-3 w-full max-w-[280px] md:max-w-none aspect-[4/4.8] relative overflow-hidden" hoverLift={true}>
                 <div className="relative w-full h-full rounded-[30px] overflow-hidden">
                   <Image
-                    src="/home/contact.png"
+                    src="/home/contact1.png"
                     alt="Start your transformation journey with HCA"
                     fill
                     priority

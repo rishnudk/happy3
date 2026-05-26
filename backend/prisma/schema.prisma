@@ -44,3 +44,14 @@ model Option {
   createdAt   DateTime @default(now())
 }
 
+model AssessmentSubmission {
+  id          Int      @id @default(autoincrement())
+  name        String
+  emailId     String
+  phoneNumber String
+  totalScore  Int
+  answers     Json
+
+  createdAt   DateTime @default(now())
+}
+
