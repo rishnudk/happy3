@@ -156,7 +156,7 @@ export function ChallengeSection() {
   }, [compute]);
 
   return (
-    <PageWrapper id="features" className="relative py-28 overflow-visible">
+    <PageWrapper id="features" className="relative py-20 overflow-visible">
 
       {/* ── Ambient glow orbs ── */}
       <div className="pointer-events-none absolute -top-32 right-[-8%] w-[480px] h-[480px] rounded-full blur-[130px] opacity-20"

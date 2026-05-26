@@ -35,7 +35,7 @@ const PILLARS = [
 
 export function PillarsSection() {
   return (
-    <PageWrapper className="relative py-28 overflow-visible">
+    <PageWrapper className="relative py-20 overflow-visible">
       
       {/* ── Ambient glow orbs for visual interest ── */}
       <div
@@ -147,55 +147,68 @@ export function PillarsSection() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT: 2x2 Grid of Neumorphic Cards (span 8) ── */}
-        <div className="lg:col-span-8">
+        {/* ── RIGHT: 2x2 Grid — alternating default + purple cards ── */}
+        <div className="lg:col-span-8 relative">
+          {/* Brand arc watermark */}
+          <svg className="absolute -bottom-6 right-0 opacity-[0.06] pointer-events-none z-0" width="180" height="180" viewBox="0 0 180 180" fill="none" aria-hidden="true">
+            <path d="M 10,160 A 130,130 0 0,1 170,160" stroke="#800080" strokeWidth="20" strokeLinecap="round" fill="none" />
+            <path d="M 30,140 A 100,100 0 0,1 150,140" stroke="#FFCE1B" strokeWidth="12" strokeLinecap="round" fill="none" />
+          </svg>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
             {PILLARS.map((item, index) => {
               const Icon = item.icon;
+              const isPurple = index === 1 || index === 3;
               return (
                 <NeuCard
                   key={item.title}
                   delay={index * 0.1}
-                  className="p-6 flex flex-col gap-4 group"
+                  variant={isPurple ? "purple" : "default"}
+                  className="p-6 flex flex-col gap-4 group overflow-hidden"
                 >
-                  {/* Neumorphic Icon Container */}
+                  {/* Brand arc inside purple cards */}
+                  {isPurple && (
+                    <svg className="absolute -top-4 -right-4 opacity-[0.12] pointer-events-none" width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                      <path d="M 5,70 A 55,55 0 0,1 75,70" stroke="#FFCE1B" strokeWidth="10" strokeLinecap="round" fill="none" />
+                    </svg>
+                  )}
+
+                  {/* Icon */}
                   <div
                     className="flex items-center justify-center flex-shrink-0"
                     style={{
                       width: 50,
                       height: 50,
                       borderRadius: 16,
-                      /* Inset neumorphic well — matches GlobalBackground (#F6F3FA) */
-                      background: "#F6F3FA",
-                      boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                      background: isPurple ? "rgba(255,255,255,0.08)" : "#F6F3FA",
+                      boxShadow: isPurple ? "inset 2px 2px 6px rgba(0,0,0,0.2), inset -2px -2px 6px rgba(255,255,255,0.06)" : "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
                     }}
                   >
-                    {/* Coloured Tint Circle */}
                     <div
                       className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
                       style={{
                         width: 36,
                         height: 36,
                         borderRadius: 12,
-                        background: `${item.iconColor}20`,
-                        boxShadow: `inset 2px 2px 5px ${item.iconColor}25, inset -1px -1px 3px rgba(255,255,255,0.6)`,
+                        background: isPurple ? `${item.iconColor}30` : `${item.iconColor}20`,
+                        boxShadow: isPurple ? `inset 2px 2px 5px rgba(0,0,0,0.15)` : `inset 2px 2px 5px ${item.iconColor}25, inset -1px -1px 3px rgba(255,255,255,0.6)`,
                       }}
                     >
-                      <Icon style={{ color: item.iconColor, width: 18, height: 18, strokeWidth: 2.2 }} />
+                      <Icon style={{ color: isPurple ? "#E9D5FF" : item.iconColor, width: 18, height: 18, strokeWidth: 2.2 }} />
                     </div>
                   </div>
 
-                  {/* Card Title & Content */}
+                  {/* Text */}
                   <div>
                     <h3
-                      className="font-satoshi font-black text-[18px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
-                      style={{ color: "#2A254B" }}
+                      className="font-satoshi font-black text-[18px] leading-tight transition-colors duration-300"
+                      style={{ color: isPurple ? "#FFFFFF" : "#2A254B" }}
                     >
                       {item.title}
                     </h3>
                     <p
-                      className="font-medium text-[13.5px] leading-[1.6] mt-2 transition-colors duration-300"
-                      style={{ color: "rgba(42,37,75,0.65)" }}
+                      className="font-medium text-[13.5px] leading-[1.6] mt-2"
+                      style={{ color: isPurple ? "rgba(255,255,255,0.55)" : "rgba(42,37,75,0.65)" }}
                     >
                       {item.desc}
                     </p>

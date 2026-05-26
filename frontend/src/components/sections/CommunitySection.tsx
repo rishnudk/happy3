@@ -138,7 +138,7 @@ function MarqueeRow({
 /* ─── Section ────────────────────────────────────────────────────────────── */
 export function CommunitySection() {
   return (
-    <PageWrapper id="community" className="relative py-28 overflow-visible">
+    <PageWrapper id="community" className="relative py-20 overflow-visible">
 
       {/* Keyframe styles injected globally */}
       <style>{`

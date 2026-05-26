@@ -312,7 +312,7 @@ export function TestimonialsSection() {
   }, [isHovered]);
 
   return (
-    <PageWrapper id="testimonials" className="relative py-28 overflow-visible">
+    <PageWrapper id="testimonials" className="relative py-20 overflow-visible">
 
       {/* ── Ambient glow orbs for visual interest ── */}
       <div

@@ -95,7 +95,7 @@ export default function Navbar() {
           style={{
             WebkitBackdropFilter: scrolled ? "blur(24px)" : "blur(0px)",
             maxWidth: 1320,
-            width: "92%",
+            width: "calc(100% - 24px)",
             margin: "0 auto",
             borderRadius: 9999,
             border: "1px solid transparent",

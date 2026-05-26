@@ -15,7 +15,7 @@ export default function PageWrapper({
       className={`
         container-wrapper
         relative
-        py-24
+        py-16
         ${className}
       `}
     >

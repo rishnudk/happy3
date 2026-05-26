@@ -29,7 +29,7 @@ const PRACTICES = [
 
 export function WhatHcaDoesSection() {
   return (
-    <PageWrapper id="what-hca-does" className="relative py-28 overflow-visible">
+    <PageWrapper id="what-hca-does" className="relative py-20 overflow-visible">
 
       {/* ── Ambient glow orbs for visual interest ── */}
       <div
@@ -141,45 +141,58 @@ export function WhatHcaDoesSection() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT: 3-column Grid of Neumorphic Cards (span 8) ── */}
-        <div className="lg:col-span-8">
+        {/* ── RIGHT: 3 cards — glass, mustard, glass ── */}
+        <div className="lg:col-span-8 relative">
+          {/* Smile arc accent */}
+          <svg className="absolute -top-8 right-4 opacity-[0.08] pointer-events-none z-0" width="140" height="80" viewBox="0 0 140 80" fill="none" aria-hidden="true">
+            <path d="M 5,70 A 100,100 0 0,1 135,70" stroke="#FFCE1B" strokeWidth="14" strokeLinecap="round" fill="none" />
+          </svg>
+
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative z-10">
             {PRACTICES.map((item, index) => {
               const Icon = item.icon;
+              const isMustard = index === 1;
+              const variant = isMustard ? "mustard" : "glass";
               return (
                 <NeuCard
                   key={item.title}
                   delay={index * 0.1}
-                  className="p-6 flex flex-col gap-4 group"
+                  variant={variant}
+                  className="p-6 flex flex-col gap-4 group overflow-hidden"
                 >
-                  {/* Neumorphic Icon Container */}
+                  {/* Decorative arc inside mustard card */}
+                  {isMustard && (
+                    <svg className="absolute -bottom-3 -right-3 opacity-20 pointer-events-none" width="70" height="70" viewBox="0 0 70 70" fill="none" aria-hidden="true">
+                      <path d="M 5,60 A 45,45 0 0,1 65,60" stroke="#800080" strokeWidth="8" strokeLinecap="round" fill="none" />
+                    </svg>
+                  )}
+
+                  {/* Icon */}
                   <div
                     className="flex items-center justify-center flex-shrink-0"
                     style={{
                       width: 50,
                       height: 50,
                       borderRadius: 16,
-                      /* Inset neumorphic well — matches GlobalBackground (#F6F3FA) */
-                      background: "#F6F3FA",
-                      boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                      background: isMustard ? "rgba(128,0,128,0.08)" : "rgba(246,243,250,0.7)",
+                      boxShadow: isMustard ? "inset 2px 2px 6px rgba(128,0,128,0.1)" : "inset 3px 3px 7px rgba(221,218,227,0.6), inset -3px -3px 7px rgba(255,255,255,0.9)",
                     }}
                   >
-                    {/* Coloured Tint Circle */}
                     <div
                       className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
                       style={{
                         width: 36,
                         height: 36,
                         borderRadius: 12,
-                        background: `${item.iconColor}20`,
-                        boxShadow: `inset 2px 2px 5px ${item.iconColor}25, inset -1px -1px 3px rgba(255,255,255,0.6)`,
+                        background: `${item.iconColor}18`,
+                        boxShadow: `inset 2px 2px 5px ${item.iconColor}20, inset -1px -1px 3px rgba(255,255,255,0.5)`,
                       }}
                     >
                       <Icon style={{ color: item.iconColor, width: 18, height: 18, strokeWidth: 2.2 }} />
                     </div>
                   </div>
 
-                  {/* Card Title & Content */}
+                  {/* Text */}
                   <div>
                     <h3
                       className="font-satoshi font-black text-[18px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
@@ -188,7 +201,7 @@ export function WhatHcaDoesSection() {
                       {item.title}
                     </h3>
                     <p
-                      className="font-medium text-[13.5px] leading-[1.6] mt-2 transition-colors duration-300"
+                      className="font-medium text-[13.5px] leading-[1.6] mt-2"
                       style={{ color: "rgba(42,37,75,0.65)" }}
                     >
                       {item.desc}
