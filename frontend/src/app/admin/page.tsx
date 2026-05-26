@@ -1,6 +1,6 @@
 "use client";
 
-import { GlobalBackground } from "@/components/landing/GlobalBackground";
+import { GlobalBackground } from "@/components/sections/GlobalBackground";
 import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
 
 export default function AdminLoginPage() {
