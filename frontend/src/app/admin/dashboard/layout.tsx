@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/lib/store/store";
 import { clearCredentials } from "@/lib/store/features/authSlice";
-import { GlobalBackground } from "@/components/landing/GlobalBackground";
+import { GlobalBackground } from "@/components/sections/GlobalBackground";
 import { Shield, LogOut, Activity, Users, Settings, Award } from "lucide-react";
 import { motion } from "motion/react";
 import { toast } from "sonner";
@@ -80,9 +80,11 @@ export default function AdminDashboardPage({
         <>
             <SidebarProvider>
                 <AppSidebar />
-                <main>
-                    <SidebarTrigger />
-                    {children}
+                <main className="min-h-svh flex-1 bg-background">
+                    <header className="sticky top-0 z-10 flex h-14 items-center gap-2 border-b border-border/40 bg-background/90 px-4 backdrop-blur-md md:px-6">
+                        <SidebarTrigger />
+                    </header>
+                    <div className="p-4 md:p-6 lg:p-8">{children}</div>
                 </main>
             </SidebarProvider>
         </>

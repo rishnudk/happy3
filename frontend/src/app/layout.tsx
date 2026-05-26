@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { StoreProvider } from "@/lib/store/StoreProvider";
+import { Toaster } from "sonner";
 import "./globals.css";
 import "../styles/background.css";
 
@@ -29,7 +30,10 @@ export default function RootLayout({
         <div className="bg-yellow-glow" />
         <div className="bg-grid" />
 
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          {children}
+          <Toaster richColors position="top-right" />
+        </StoreProvider>
       </body>
     </html>
   );
