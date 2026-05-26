@@ -33,7 +33,6 @@ type OptionRow = {
   localId: string;
   optionText: string;
   mark: string;
-  isCorrect: boolean;
 };
 
 type QuestionRecord = {
@@ -49,12 +48,12 @@ function emptyOption(): OptionRow {
     localId: crypto.randomUUID(),
     optionText: "",
     mark: "",
-    isCorrect: false,
   };
 }
 
-function totalMarks(options: { mark: number }[]) {
-  return options.reduce((sum, o) => sum + (o.mark ?? 0), 0);
+function maxOptionMark(options: { mark: number }[]) {
+  if (!options.length) return 0;
+  return Math.max(...options.map((o) => o.mark));
 }
 
 export function AddQuestionDashboard() {
@@ -111,18 +110,8 @@ export function AddQuestionDashboard() {
   const handleRemoveOption = (localId: string) => {
     setOptions((prev) => {
       if (prev.length <= 1) return prev;
-      const next = prev.filter((o) => o.localId !== localId);
-      if (!next.some((o) => o.isCorrect) && next.length > 0) {
-        next[0].isCorrect = true;
-      }
-      return next;
+      return prev.filter((o) => o.localId !== localId);
     });
-  };
-
-  const handleCorrectChange = (localId: string) => {
-    setOptions((prev) =>
-      prev.map((o) => ({ ...o, isCorrect: o.localId === localId }))
-    );
   };
 
   const validateForm = () => {
@@ -137,10 +126,6 @@ export function AddQuestionDashboard() {
     const filled = options.filter((o) => o.optionText.trim());
     if (filled.length === 0) {
       toast.error("Add at least one option");
-      return false;
-    }
-    if (!filled.some((o) => o.isCorrect)) {
-      toast.error("Select the correct answer");
       return false;
     }
     for (const o of filled) {
@@ -243,15 +228,8 @@ export function AddQuestionDashboard() {
             localId: crypto.randomUUID(),
             optionText: o.optionText,
             mark: String(o.mark),
-            isCorrect: false,
           }))
         : [emptyOption()];
-    if (rows.length > 0) {
-      const maxMark = Math.max(...q.options.map((o) => o.mark));
-      const correctIdx = q.options.findIndex((o) => o.mark === maxMark);
-      if (correctIdx >= 0) rows[correctIdx].isCorrect = true;
-      else rows[0].isCorrect = true;
-    }
     while (rows.length < 4) rows.push(emptyOption());
     setOptions(rows);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -388,15 +366,12 @@ export function AddQuestionDashboard() {
           </CardHeader>
           <CardContent className="space-y-4 pt-2">
             <div className="overflow-x-auto rounded-xl border border-border/40">
-              <table className="w-full min-w-[640px] text-sm">
+              <table className="w-full min-w-[520px] text-sm">
                 <thead>
                   <tr className="border-b border-border/40 bg-muted/40 text-left text-xs font-bold uppercase tracking-wide text-muted-foreground">
                     <th className="w-10 px-3 py-3">#</th>
                     <th className="px-3 py-3">
                       Option Text <span className="text-destructive">*</span>
-                    </th>
-                    <th className="w-28 px-3 py-3 text-center">
-                      Correct Answer
                     </th>
                     <th className="w-28 px-3 py-3">
                       Mark <span className="text-destructive">*</span>
@@ -429,16 +404,6 @@ export function AddQuestionDashboard() {
                           className="h-9 rounded-lg bg-white"
                         />
                       </td>
-                      <td className="px-3 py-3 text-center">
-                        <input
-                          type="radio"
-                          name="correctAnswer"
-                          checked={row.isCorrect}
-                          onChange={() => handleCorrectChange(row.localId)}
-                          className="size-4 cursor-pointer accent-primary"
-                          aria-label={`Correct answer option ${index + 1}`}
-                        />
-                      </td>
                       <td className="px-3 py-3">
                         <Input
                           type="number"
@@ -458,15 +423,7 @@ export function AddQuestionDashboard() {
                         />
                       </td>
                       <td className="px-3 py-3">
-                        <div className="flex items-center justify-center gap-1">
-                          <button
-                            type="button"
-                            className="inline-flex size-8 items-center justify-center rounded-lg text-blue-600 transition-colors hover:bg-blue-50"
-                            aria-label="Edit option"
-                            onClick={() => handleCorrectChange(row.localId)}
-                          >
-                            <Pencil className="size-4" />
-                          </button>
+                        <div className="flex items-center justify-center">
                           <button
                             type="button"
                             className="inline-flex size-8 items-center justify-center rounded-lg text-red-500 transition-colors hover:bg-red-50 disabled:opacity-40"
@@ -487,8 +444,8 @@ export function AddQuestionDashboard() {
             <div className="flex gap-3 rounded-xl border border-primary/15 bg-primary/5 px-4 py-3 text-sm text-foreground/90">
               <Info className="mt-0.5 size-4 shrink-0 text-primary" />
               <p>
-                Select the correct answer and assign marks. The total marks will
-                be the sum of all options.
+                There is no single correct answer. Assign a mark to each option —
+                the score is based on whichever option the respondent selects.
               </p>
             </div>
           </CardContent>
@@ -511,7 +468,7 @@ export function AddQuestionDashboard() {
                   <th className="w-12 px-4 py-3">#</th>
                   <th className="px-4 py-3">Question</th>
                   <th className="w-40 px-4 py-3">Option Category</th>
-                  <th className="w-28 px-4 py-3">Total Marks</th>
+                  <th className="w-28 px-4 py-3">Max Mark</th>
                   <th className="w-28 px-4 py-3 text-center">Actions</th>
                 </tr>
               </thead>
@@ -553,7 +510,7 @@ export function AddQuestionDashboard() {
                         {q.category}
                       </td>
                       <td className="px-4 py-3.5 font-semibold text-primary">
-                        {totalMarks(q.options)}
+                        {maxOptionMark(q.options)}
                       </td>
                       <td className="px-4 py-3.5">
                         <div className="flex items-center justify-center gap-1">

@@ -4,6 +4,7 @@ import cors from "cors"
 import authRouter from "./routes/auth.route"
 import questionRouter from "./routes/question.route"
 import optionRouter from "./routes/option.route"
+import assessmentRouter from "./routes/assessment.route"
 
 const app = express()
 console.log("CORS:", process.env.CORS_ORIGINS)
@@ -32,5 +33,6 @@ app.use(cookieParser())
 app.use("/api/auth", authRouter)
 app.use("/api/questions", questionRouter)
 app.use("/api/options", optionRouter)
+app.use("/api/assessment", assessmentRouter)
 
 export default app
