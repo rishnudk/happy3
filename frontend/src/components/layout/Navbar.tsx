@@ -121,7 +121,7 @@ export default function Navbar() {
               className="relative shrink-0"
             >
               <Image
-                src="/home/logo.svg"
+                src="/home/logo.png"
                 alt="Happiness Coaching Academy"
                 fill
                 className="object-contain"
