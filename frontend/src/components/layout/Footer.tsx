@@ -93,7 +93,7 @@ export function Footer() {
           <div className="flex flex-col items-start gap-5">
             <div className="flex items-center gap-3">
               <Image
-                src="/home/logo.svg"
+                src="/home/logo.png"
                 alt="Happiness Coaching Academy Logo"
                 width={40}
                 height={40}
