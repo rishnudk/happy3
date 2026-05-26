@@ -150,7 +150,7 @@ export function WhatHcaDoesSection() {
                 <NeuCard
                   key={item.title}
                   delay={index * 0.1}
-                  className="p-8 flex flex-col gap-5 group"
+                  className="p-6 flex flex-col gap-4 group"
                 >
                   {/* Neumorphic Icon Container */}
                   <div
@@ -182,13 +182,13 @@ export function WhatHcaDoesSection() {
                   {/* Card Title & Content */}
                   <div>
                     <h3
-                      className="font-satoshi font-black text-[20px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
+                      className="font-satoshi font-black text-[18px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
                       style={{ color: "#2A254B" }}
                     >
                       {item.title}
                     </h3>
                     <p
-                      className="font-medium text-[14px] leading-[1.65] mt-3 transition-colors duration-300"
+                      className="font-medium text-[13.5px] leading-[1.6] mt-2 transition-colors duration-300"
                       style={{ color: "rgba(42,37,75,0.65)" }}
                     >
                       {item.desc}
