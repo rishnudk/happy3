@@ -1,7 +1,77 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import { Users, Star, Globe } from "lucide-react";
+
+// Scroll-triggered animated counter component
+function Counter({ value }: { value: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [displayValue, setDisplayValue] = useState("0");
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const match = value.match(/^(\d+)(.*)$/);
+    if (!match) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const target = parseInt(match[1], 10);
+    const suffix = match[2] || "";
+
+    let startTime: number | null = null;
+    const duration = 2200;
+
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+
+      // easeOutExpo for a snappier feel
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current = Math.floor(easeProgress * target);
+
+      if (target >= 1000) {
+        setDisplayValue(Math.floor(current).toLocaleString() + suffix);
+      } else {
+        setDisplayValue(current + suffix);
+      }
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        setDisplayValue(value);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }, [isInView, value]);
+
+  return <span ref={ref}>{displayValue}</span>;
+}
+
+// Animation variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 28, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
 
 export default function StatsSection() {
   const stats = [
@@ -10,39 +80,42 @@ export default function StatsSection() {
       label: "Lives transformed",
       icon: Users,
       iconColor: "text-primary",
-      iconBg: "bg-purple-50/60 border-purple-100/60",
+      iconBg: "bg-[#FAF8FD] border-purple-100/30",
     },
     {
       value: "99%",
       label: "Client satisfaction",
       icon: Star,
-      iconColor: "text-secondary fill-secondary animate-pulse",
-      iconBg: "bg-amber-50/60 border-amber-100/60",
+      iconColor: "text-secondary fill-secondary",
+      iconBg: "bg-[#FAF8FD] border-amber-100/30",
     },
     {
       value: "10+",
       label: "Countries reached",
       icon: Globe,
       iconColor: "text-primary",
-      iconBg: "bg-purple-50/60 border-purple-100/60",
+      iconBg: "bg-[#FAF8FD] border-purple-100/30",
     },
   ];
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut", delay: 0.7 }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className="mt-20 lg:mt-24 z-20 relative max-w-5xl mx-auto w-full px-4 sm:px-6"
     >
-      <div
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
         className="
           rounded-[32px]
-          bg-white/80
-          backdrop-blur-md
-          border border-white
-          shadow-[10px_10px_30px_rgba(165,140,217,0.06),-10px_-10px_30px_rgba(255,255,255,0.95)]
-          py-8 px-6 sm:px-12
+          bg-[#FAF8FD]
+          shadow-[20px_20px_50px_rgba(165,140,217,0.18),-20px_-20px_50px_rgba(255,255,255,0.95)]
+          py-10 px-6 sm:px-12
           grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4
           items-center
           relative
@@ -55,32 +128,30 @@ export default function StatsSection() {
         {stats.map((stat, idx) => {
           const IconComponent = stat.icon;
           return (
-            <div
+            <motion.div
               key={stat.label}
+              variants={cardVariants}
               className="flex items-center gap-6 justify-center md:justify-start relative z-10 px-4 md:px-6"
             >
               {/* Circular Neumorphic Inset Icon Slot */}
-              <div 
+              <div
                 className={`
-                  w-14 h-14 
-                  rounded-full 
-                  flex items-center justify-center 
-                  border
-                  ${stat.iconBg} 
-                  shadow-[inset_2px_2px_5px_rgba(165,140,217,0.05),inset_-2px_-2px_5px_rgba(255,255,255,0.9)]
+                  w-14 h-14
+                  rounded-full
+                  flex items-center justify-center
+                  border border-white/40
+                  ${stat.iconBg}
+                  shadow-[inset_3px_3px_6px_rgba(165,140,217,0.08),inset_-3px_-3px_6px_rgba(255,255,255,0.95)]
                   relative
                 `}
               >
-                {stat.value === "99%" && (
-                  <span className="absolute inset-0 rounded-full bg-secondary/15 filter blur-md animate-ping" style={{ animationDuration: "3s" }} />
-                )}
                 <IconComponent className={`w-6 h-6 relative z-10 ${stat.iconColor}`} strokeWidth={2} />
               </div>
 
               {/* Stat Typography */}
               <div className="text-left">
                 <h4 className="text-3xl sm:text-4xl font-extrabold text-slate-deep tracking-tight leading-none">
-                  {stat.value}
+                  <Counter value={stat.value} />
                 </h4>
                 <p className="text-[13px] sm:text-[14px] text-muted-foreground font-semibold mt-1 tracking-wide">
                   {stat.label}
@@ -91,10 +162,10 @@ export default function StatsSection() {
               {idx < stats.length - 1 && (
                 <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-purple-900/10" />
               )}
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
