@@ -180,14 +180,24 @@ export function ProgramsSection() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT: 2x2 Grid of Neumorphic Program Cards (span 8) ── */}
+        {/* ── RIGHT: 2x2 Grid of Mixed Modern Program Cards (span 8) ── */}
         <div className="lg:col-span-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
             {PROGRAMS.map((item, index) => {
+              // Mix of unique, premium variants for programs
+              const variants: ("gradient-brand" | "outlined-mustard" | "inset" | "elevated")[] = [
+                "gradient-brand",
+                "outlined-mustard",
+                "inset",
+                "elevated"
+              ];
+              const cardVariant = variants[index % variants.length];
+
               return (
                 <NeuCard
                   key={item.title}
                   delay={index * 0.1}
+                  variant={cardVariant}
                   className="p-8 flex flex-col justify-between gap-6 group min-h-[240px]"
                 >
                   {/* Top Row: Neumorphic Number Container */}

@@ -292,16 +292,24 @@ export function ChallengeSection() {
 
             {/* 3 × 2 card grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
-              {CHALLENGES.map((item, index) => (
-                <ChallengeCard
-                  key={item.title}
-                  title={item.title}
-                  icon={item.icon}
-                  iconColor={item.iconColor}
-                  delay={index * 0.08}
-                  innerRef={(el) => { cardRefs.current[index] = el; }}
-                />
-              ))}
+              {CHALLENGES.map((item, index) => {
+                const variants: ("default" | "glass" | "outlined-purple" | "inset" | "elevated" | "outlined-mustard")[] = [
+                  "default", "glass", "outlined-purple", "inset", "elevated", "outlined-mustard"
+                ];
+                const cardVariant = variants[index % variants.length];
+
+                return (
+                  <ChallengeCard
+                    key={item.title}
+                    title={item.title}
+                    icon={item.icon}
+                    iconColor={item.iconColor}
+                    delay={index * 0.08}
+                    variant={cardVariant}
+                    innerRef={(el) => { cardRefs.current[index] = el; }}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>

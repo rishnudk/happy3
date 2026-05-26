@@ -7,10 +7,16 @@ import React from "react";
  * NeuCard — site-wide reusable neumorphic card primitive.
  *
  * Variants:
- *  - "default"  : Soft neumorphic raised card — page-background toned (#F6F3FA)
- *  - "purple"   : Deep patriarch purple card — premium / accent usage
- *  - "mustard"  : Warm mustard-tinted card — energy / CTA usage
- *  - "glass"    : Frosted glass card — light overlay usage
+ *  - "default"          : Soft neumorphic raised card
+ *  - "purple"           : Deep patriarch purple card
+ *  - "mustard"          : Warm mustard-tinted card
+ *  - "glass"            : Frosted glass card
+ *  - "elevated"         : Higher lift, softer shadow (floating effect)
+ *  - "inset"            : Pressed-in neumorphic well
+ *  - "outlined-purple"  : Clean border with subtle purple glow
+ *  - "outlined-mustard" : Clean border with subtle mustard glow
+ *  - "gradient-brand"   : Soft diagonal gradient (purple to mustard)
+ *  - "dark-glass"       : Deep dark glass effect for high contrast
  *
  * Usage:
  *   <NeuCard variant="purple" delay={0.1} className="p-6 flex flex-col gap-4">
@@ -27,7 +33,17 @@ export interface NeuCardProps {
   innerRef?: React.Ref<HTMLDivElement>;
   style?: React.CSSProperties;
   /** Card design variant — defaults to "default" */
-  variant?: "default" | "purple" | "mustard" | "glass";
+  variant?: 
+    | "default" 
+    | "purple" 
+    | "mustard" 
+    | "glass"
+    | "elevated"
+    | "inset"
+    | "outlined-purple"
+    | "outlined-mustard"
+    | "gradient-brand"
+    | "dark-glass";
 }
 
 /* ── Design tokens ───────────────────────────────────────────────────────── */
@@ -59,6 +75,48 @@ const VARIANTS = {
     boxShadow: "0 8px 32px rgba(165,140,217,0.08), inset 0 1px 0 rgba(255,255,255,0.9)",
     border: "1px solid rgba(255,255,255,0.7)",
     hoverShadow: "0 16px 48px rgba(165,140,217,0.14), inset 0 1px 0 rgba(255,255,255,1)",
+  },
+  elevated: {
+    background: "#F6F3FA",
+    borderRadius: 41,
+    boxShadow: "12px 12px 28px #DDDAE3, -12px -12px 28px #FFFFFF",
+    border: "none",
+    hoverShadow: "16px 16px 36px #DDDAE3, -16px -16px 36px #FFFFFF",
+  },
+  inset: {
+    background: "#F6F3FA",
+    borderRadius: 41,
+    boxShadow: "inset 6px 6px 12px #DDDAE3, inset -6px -6px 12px #FFFFFF",
+    border: "none",
+    hoverShadow: "inset 8px 8px 16px #DDDAE3, inset -8px -8px 16px #FFFFFF",
+  },
+  "outlined-purple": {
+    background: "#F6F3FA",
+    borderRadius: 41,
+    boxShadow: "4px 4px 10px rgba(128,0,128,0.05), -4px -4px 10px #FFFFFF",
+    border: "1.5px solid rgba(128,0,128,0.3)",
+    hoverShadow: "8px 8px 20px rgba(128,0,128,0.12), -8px -8px 20px #FFFFFF",
+  },
+  "outlined-mustard": {
+    background: "#F6F3FA",
+    borderRadius: 41,
+    boxShadow: "4px 4px 10px rgba(255,206,27,0.05), -4px -4px 10px #FFFFFF",
+    border: "1.5px solid rgba(255,206,27,0.5)",
+    hoverShadow: "8px 8px 20px rgba(255,206,27,0.18), -8px -8px 20px #FFFFFF",
+  },
+  "gradient-brand": {
+    background: "linear-gradient(135deg, rgba(128,0,128,0.04) 0%, rgba(255,206,27,0.06) 100%)",
+    borderRadius: 41,
+    boxShadow: "6px 6px 12px #DDDAE3, -6px -6px 12px #FFFFFF",
+    border: "1.5px solid rgba(255,255,255,0.9)",
+    hoverShadow: "10px 10px 20px #DDDAE3, -10px -10px 20px #FFFFFF",
+  },
+  "dark-glass": {
+    background: "rgba(42,37,75,0.85)",
+    borderRadius: 28,
+    boxShadow: "0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    hoverShadow: "0 16px 48px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
   },
 } as const;
 

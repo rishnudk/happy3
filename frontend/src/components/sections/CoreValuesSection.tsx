@@ -180,15 +180,25 @@ export function CoreValuesSection() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT: 2x2 Grid of Neumorphic Cards (span 8) ── */}
+        {/* ── RIGHT: 2x2 Grid of Mixed Modern Cards (span 8) ── */}
         <div className="lg:col-span-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
             {VALUES.map((item, index) => {
               const Icon = item.icon;
+              // Mix of modern, premium variants
+              const variants: ("default" | "elevated" | "outlined-purple" | "glass")[] = [
+                "default", 
+                "elevated", 
+                "outlined-purple", 
+                "glass"
+              ];
+              const cardVariant = variants[index % variants.length];
+
               return (
                 <NeuCard
                   key={item.title}
                   delay={index * 0.1}
+                  variant={cardVariant}
                   className="p-8 flex flex-col gap-5 group"
                 >
                   {/* Neumorphic Icon Container */}

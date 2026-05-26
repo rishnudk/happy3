@@ -13,6 +13,18 @@ export interface ChallengeCardProps {
   /** Ref forwarded to the root div — used for SVG connector line anchoring */
   innerRef?: React.Ref<HTMLDivElement>;
   className?: string;
+  /** Card design variant */
+  variant?: 
+    | "default" 
+    | "purple" 
+    | "mustard" 
+    | "glass"
+    | "elevated"
+    | "inset"
+    | "outlined-purple"
+    | "outlined-mustard"
+    | "gradient-brand"
+    | "dark-glass";
 }
 
 /**
@@ -27,11 +39,13 @@ export default function ChallengeCard({
   delay = 0,
   innerRef,
   className = "",
+  variant = "default",
 }: ChallengeCardProps) {
   return (
     <NeuCard
       delay={delay}
       innerRef={innerRef}
+      variant={variant}
       /* Size is controlled here — compact square feel */
       className={`flex flex-col items-center justify-center gap-4 p-5 group ${className}`}
       style={{ minHeight: 130 }}
