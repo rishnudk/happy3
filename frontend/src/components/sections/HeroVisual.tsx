@@ -28,15 +28,15 @@ export default function HeroVisual() {
           -z-20 → BACKGROUND GLOW LAYER
           ═══════════════════════════════════════════════ */}
       <div className="absolute inset-0 -z-20 flex justify-center items-center pointer-events-none overflow-visible">
-        {/* <div
+        <div
           className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full opacity-30 filter blur-[80px]"
           style={{
             background: "radial-gradient(circle, rgba(0, 0, 0, 0.12) 0%, rgba(255,206,27,0.06) 50%, transparent 100%)"
           }}
-        /> */}
+        />
 
         {/* Secondary atmospheric glow — wider and softer */}
-        {/* <motion.div
+        <motion.div
           animate={{ scale: [1, 1.06, 1], opacity: [0.18, 0.25, 0.18] }}
           transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
           className="absolute w-[400px] h-[400px] sm:w-[520px] sm:h-[520px] lg:w-[600px] lg:h-[600px] rounded-full"
@@ -44,7 +44,7 @@ export default function HeroVisual() {
             background: "radial-gradient(ellipse at center, rgba(39, 8, 81, 0.12) 0%, rgba(94, 27, 94, 0.04) 40%, transparent 70%)",
             filter: "blur(40px)",
           }}
-        /> */}
+        />
       </div>
 
       {/* ═══════════════════════════════════════════════
@@ -155,8 +155,27 @@ export default function HeroVisual() {
           }}
         />
 
-        {/* Original thin orbit ring — kept but faded further back */}
-        <SmileArc variant="thin-orbit" className="w-[245px] h-[245px] sm:w-[315px] sm:h-[315px] lg:w-[370px] lg:h-[370px] opacity-15" delay={0.2} />
+        {/* NEW PERFECT ORBIT TRACK CIRCLE */}
+        <div
+          className="
+            absolute
+            w-[290px] h-[290px]
+            sm:w-[390px] sm:h-[390px]
+            lg:w-[480px] lg:h-[480px]
+            rounded-full
+            border-[1.5px] border-dashed border-[#800080]/15
+            pointer-events-none
+            z-0
+            flex items-center justify-center
+          "
+        >
+          {/* Subtle breathing animation */}
+          <motion.div
+            className="absolute inset-0 rounded-full border border-dotted border-[#800080]/10"
+            animate={{ scale: [1, 1.02, 1], opacity: [0.3, 0.7, 0.3] }}
+            transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+          />
+        </div>
       </div>
 
       {/* ═══════════════════════════════════════════════
@@ -275,7 +294,7 @@ export default function HeroVisual() {
             duration-700
           "
           style={{
-            transform: "translateY(0%) scale(1.22)",
+            transform: "translateY(-2%) scale(1.45)",
           }}
         />
       </motion.div>
@@ -286,78 +305,80 @@ export default function HeroVisual() {
       <div className="absolute inset-0 z-[80] flex justify-center items-center pointer-events-none overflow-visible">
         <SmileArc
           variant="hero-smile"
-          className="absolute bottom-[15%] sm:bottom-[13%] lg:bottom-[11%] w-[240px] sm:w-[300px] lg:w-[350px]"
+          className="absolute w-[290px] sm:w-[350px] lg:w-[410px] translate-y-[150px] sm:translate-y-[180px] lg:translate-y-[225px]"
           delay={0.4}
         />
       </div>
 
       {/* ═══════════════════════════════════════════════
-          z-50 → FLOATING TAGS LAYER
+          z-[90] → FLOATING TAGS LAYER (Respecting the Orbit)
           ═══════════════════════════════════════════════ */}
-      <div className="absolute inset-0 z-[90] pointer-events-none overflow-visible">
-        {/* Badge A: Mindset Shift — Top-Left (~10 o'clock) */}
-        <FloatingTag
-          label="Mindset Shift"
-          iconName="Brain"
-          iconColor="text-white"
-          iconBg="#800080"
-          className="
-            top-[12%] left-[3%]
-            sm:top-[13%] sm:left-[8%]
-            lg:top-[15%] lg:left-[6%]
-          "
-          delay={0.15}
-          yRange={[0, -9, 0]}
-          duration={5.2}
-        />
+      <div className="absolute inset-0 z-[90] pointer-events-none flex justify-center items-center overflow-visible">
+        <div className="relative w-[320px] h-[320px] sm:w-[440px] sm:h-[440px] lg:w-[540px] lg:h-[540px] pointer-events-none overflow-visible">
+          {/* Tag A: Mindset Shift — Top-Left (~10:30 o'clock) */}
+          <FloatingTag
+            label="Mindset Shift"
+            iconName="Brain"
+            iconColor="text-white"
+            iconBg="#800080"
+            className="
+              top-[30%] left-[-10%]
+              sm:top-[28%] sm:left-[-12%]
+              lg:top-[20%] lg:left-[-5%]
+            "
+            delay={0.15}
+            yRange={[0, -9, 0]}
+            duration={5.2}
+          />
 
-        {/* Badge B: Awareness — Top-Right (~2 o'clock) */}
-        <FloatingTag
-          label="Awareness"
-          iconName="Sun"
-          iconColor="text-white"
-          iconBg="#FFCE1B"
-          className="
-            top-[28%] right-[2%]
-            sm:top-[28%] sm:right-[5%]
-            lg:top-[30%] lg:right-[4%]
-          "
-          delay={0.3}
-          yRange={[0, 9, 0]}
-          duration={4.8}
-        />
+          {/* Tag B: Awareness — Top-Right (~1:30 o'clock) */}
+          <FloatingTag
+            label="Awareness"
+            iconName="Sun"
+            iconColor="text-white"
+            iconBg="#FFCE1B"
+            className="
+              top-[10%] right-[-75%]
+              sm:top-[8%] sm:right-[-80%]
+              lg:top-[9%] lg:right-[-80%]
+            "
+            delay={0.3}
+            yRange={[0, 9, 0]}
+            duration={4.8}
+          />
 
-        {/* Badge C: Emotional Clarity — Mid-Left (~8 o'clock) */}
-        <FloatingTag
-          label="Emotional Clarity"
-          iconName="Heart"
-          iconColor="text-white"
-          iconBg="#800080"
-          className="
-            bottom-[36%] left-[2%]
-            sm:bottom-[38%] sm:left-[6%]
-            lg:bottom-[40%] lg:left-[3%]
-          "
-          delay={0.45}
-          yRange={[0, -11, 0]}
-          duration={5.6}
-        />
+          {/* Tag C: Emotional Clarity — Bottom-Left (~7:30 o'clock) */}
+          <FloatingTag
+            label={<>Emotional<br />Clarity</>}
+            iconName="Heart"
+            iconColor="text-white"
+            iconBg="#FFCE1B"
+            className="
+              bottom-[-48%] left-[-22%]
+              sm:bottom-[-42%] sm:left-[-12%]
+              lg:bottom-[-52%] lg:left-[-18%]
+            "
+            delay={0.45}
+            yRange={[0, -11, 0]}
+            duration={5.6}
+          />
 
-        {/* Badge D: Loneliness — Bottom-Right (~4 o'clock) */}
-        <FloatingTag
-          label="Loneliness"
-          iconName="UserRound"
-          iconColor="text-white"
-          iconBg="#800080"
-          className="
-            bottom-[24%] right-[2%]
-            sm:bottom-[25%] sm:right-[5%]
-            lg:bottom-[26%] lg:right-[4%]
-          "
-          delay={0.6}
-          yRange={[0, 8, 0]}
-          duration={5}
-        />
+          {/* Tag D: Loneliness — Bottom-Right (~4:30 o'clock) */}
+          <FloatingTag
+            label="Loneliness"
+            iconName="UserRound"
+            iconColor="text-white"
+            iconBg="#800080"
+            className="
+              bottom-[-32%] right-[-85%]
+              sm:bottom-[-32%] sm:right-[-84%]
+              lg:bottom-[-34%] lg:right-[-85%]
+            "
+            delay={0.6}
+            yRange={[0, 8, 0]}
+            duration={5}
+          />
+        </div>
       </div>
     </div>
   );

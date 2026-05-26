@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import * as LucideIcons from "lucide-react";
 
 interface FloatingTagProps {
-  label: string;
+  label: React.ReactNode;
   iconName: keyof typeof LucideIcons;
   iconColor?: string;
   iconBg?: string;
@@ -54,22 +54,76 @@ export default function FloatingTag({
       }}
       className={`
         pointer-events-auto
-        absolute
+        relative
         flex items-center
         ${className}
       `}
     >
-      {/* =======================================
-          KEY SHAPE: Large Circle (icon) → Capsule (text)
-          Circle on the left, text capsule flows to the right
-      ======================================= */}
+      {/* =======================================================================
+          DEVELOPER NOTE: HOW TO ADJUST THE SIZES of the Circle and Capsule:
+          1. CIRCLE SIZE: Change the width/height class names in the "LARGE KEY CIRCLE" div:
+             - Currently: w-[44px] h-[44px] (mobile), sm:w-[52px] sm:h-[52px] (tablet), lg:w-[60px] lg:h-[60px] (desktop)
+          2. CAPSULE HEIGHT: Change the min-h class names in the "CAPSULE" div:
+             - Currently: min-h-[32px] (mobile), sm:min-h-[38px] (tablet), lg:min-h-[42px] (desktop)
+          3. CAPSULE WIDTH/PADDING:
+             - Increase the left padding pl-[52px] (mobile) sm:pl-[62px] (tablet) lg:pl-[72px] (desktop) 
+               to push the text further right and expand the capsule, or decrease it to make it shorter.
+          ======================================================================= */}
 
-      {/* LARGE KEY CIRCLE (left side) */}
+      {/* CAPSULE (text portion — right side, sliding under circle) */}
       <div
         className="
           relative
-          shrink-0
+          z-0
+          flex items-center justify-center
+
+          min-h-[32px]
+          sm:min-h-[38px]
+          lg:min-h-[42px]
+          py-1.5
+          sm:py-2
+
+          pl-[52px]
+          sm:pl-[62px]
+          lg:pl-[72px]
+          pr-4
+          sm:pr-5
+
+          rounded-full
+
+          border border-white/60
+
+          backdrop-blur-[16px]
+
+          text-[9px]
+          sm:text-[11px]
+          lg:text-[12px]
+          leading-tight
+
+          font-semibold
+          tracking-[-0.01em]
+          text-[#2A254B]
+        "
+        style={{
+          /* High-end semi-transparent glossy gradient for Liquid Glass */
+          background: "linear-gradient(135deg, rgba(230, 210, 232, 0.72) 0%, rgba(245, 240, 255, 0.35) 100%)",
+          boxShadow: `
+            0 12px 30px rgba(128, 0, 128, 0.05),
+            inset 0 2px 4px rgba(242, 185, 243, 0.8),
+            inset 0 -2px 4px rgba(218, 177, 218, 0.02)
+          `,
+        }}
+      >
+        <span className="relative z-10 leading-tight block text-left">{label}</span>
+      </div>
+
+      {/* LARGE KEY CIRCLE (left side - positioned absolutely on top of the capsule's left end) */}
+      <div
+        className="
+          absolute
+          left-0
           z-10
+          shrink-0
 
           w-[44px] h-[44px]
           sm:w-[52px] sm:h-[52px]
@@ -79,14 +133,14 @@ export default function FloatingTag({
           flex items-center justify-center
 
           border border-white/80
+          backdrop-blur-[16px]
         "
         style={{
-          background: "linear-gradient(145deg, #ffffff, #F0EAF6)",
+          /* Glossy liquid glass background */
+          background: "linear-gradient(135deg, rgba(243, 226, 235, 0.85) 0%, rgba(240, 230, 255, 0.55) 100%)",
           boxShadow: `
-            8px 8px 22px rgba(128,0,128,0.1),
-            -8px -8px 22px rgba(255,255,255,0.95),
-            inset 2px 2px 4px rgba(255,255,255,0.9),
-            inset -1px -1px 3px rgba(128,0,128,0.04)
+            0 10px 25px rgba(128, 0, 128, 0.06),
+            inset 0 2px 4px rgba(255, 255, 255, 0.9)
           `,
         }}
       >
@@ -102,7 +156,7 @@ export default function FloatingTag({
           style={{
             background: iconBg,
             boxShadow: `
-              0 4px 14px rgba(128,0,128,0.2),
+              0 2px 6px rgba(0,0,0,0.15),
               inset 0 1px 2px rgba(255,255,255,0.3)
             `,
           }}
@@ -120,53 +174,6 @@ export default function FloatingTag({
             <span className="w-2 h-2 rounded-full bg-white" />
           )}
         </div>
-      </div>
-
-      {/* CAPSULE (text portion — right side, sliding under circle) */}
-      <div
-        className="
-          relative
-          flex items-center
-
-          h-[32px]
-          sm:h-[38px]
-          lg:h-[42px]
-
-          pl-5
-          sm:pl-6
-          pr-4
-          sm:pr-5
-
-          -ml-3
-          sm:-ml-3
-          lg:-ml-4
-
-          rounded-r-full
-          rounded-l-[8px]
-
-          border border-white/70
-          border-l-0
-
-          text-[9px]
-          sm:text-[11px]
-          lg:text-[12px]
-
-          font-semibold
-          tracking-[-0.01em]
-          text-[#2A254B]
-          whitespace-nowrap
-        "
-        style={{
-          background: "linear-gradient(145deg, #ffffff, #F4EEFF)",
-          boxShadow: `
-            6px 6px 18px rgba(128,0,128,0.08),
-            -6px -6px 14px rgba(255,255,255,0.9),
-            inset 1px 1px 2px rgba(255,255,255,0.8),
-            inset -1px -1px 2px rgba(128,0,128,0.03)
-          `,
-        }}
-      >
-        <span className="relative z-10">{label}</span>
       </div>
     </motion.div>
   );

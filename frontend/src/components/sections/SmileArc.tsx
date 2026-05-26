@@ -369,38 +369,43 @@ export default function SmileArc({
           xmlns="http://www.w3.org/2000/svg"
           className="w-full h-auto overflow-visible"
         >
+          {/* Solid 3D bottom extrusion */}
           <path
             d="M 40 48 Q 190 153 340 48"
             fill="none"
-            stroke="#5E005E"
+            stroke="#D4A600"
             strokeWidth="38"
             strokeLinecap="round"
           />
+          {/* Soft drop shadow underneath */}
           <path
             d="M 40 54 Q 190 159 340 54"
             fill="none"
-            stroke="rgba(90,0,90,0.22)"
+            stroke="rgba(180, 140, 0, 0.25)"
             strokeWidth="38"
             strokeLinecap="round"
           />
+          {/* Main Core Yellow Body */}
           <path
             d="M 40 40 Q 190 145 340 40"
             fill="none"
-            stroke="#800080"
+            stroke="#63056fff"
             strokeWidth="38"
             strokeLinecap="round"
           />
+          {/* Inset top glossy highlight */}
           <path
             d="M 46 34 Q 190 132 334 34"
             fill="none"
-            stroke="rgba(255,255,255,0.45)"
+            stroke="rgba(255, 255, 255, 0.7)"
             strokeWidth="6"
             strokeLinecap="round"
           />
+          {/* Inset bottom depth shadow */}
           <path
             d="M 44 47 Q 190 151 336 47"
             fill="none"
-            stroke="rgba(48,0,48,0.38)"
+            stroke="rgba(180, 140, 0, 0.35)"
             strokeWidth="5"
             strokeLinecap="round"
           />
@@ -486,13 +491,13 @@ export default function SmileArc({
               {/* Ambient diffused gold background glow */}
               <feGaussianBlur in="SourceAlpha" stdDeviation="24" result="blurGlow" />
               <feOffset in="blurGlow" dx="0" dy="16" result="offsetGlow" />
-              <feFlood floodColor="#FFCE1B" floodOpacity="0.14" result="colorGlow" />
+              <feFlood floodColor="#41386aff" floodOpacity="0.14" result="colorGlow" />
               <feComposite in="colorGlow" in2="offsetGlow" operator="in" result="shadowGlow" />
 
               {/* Dark Depth Shadow (bottom-right depth shadow, soft gold-brown) */}
               <feGaussianBlur in="SourceAlpha" stdDeviation="12" result="blurDark" />
               <feOffset in="blurDark" dx="8" dy="12" result="offsetDark" />
-              <feFlood floodColor="#855F00" floodOpacity="0.18" result="colorDark" />
+              <feFlood floodColor="#250832ff" floodOpacity="0.18" result="colorDark" />
               <feComposite in="colorDark" in2="offsetDark" operator="in" result="shadowDark" />
 
               {/* Light Highlight Shadow (top-left highlight, white) */}
@@ -523,8 +528,8 @@ export default function SmileArc({
             ) : (
               <>
                 <stop offset="0%" stopColor="#FFFBEB" /> {/* Lightest gold highlight at the start */}
-                <stop offset="25%" stopColor="#FCD34D" /> {/* Soft Gold */}
-                <stop offset="65%" stopColor="#FFCE1B" /> {/* Mustard Yellow Core */}
+                <stop offset="25%" stopColor="#ea4dfcff" /> {/* Soft Gold */}
+                <stop offset="65%" stopColor="#f01bffff" /> {/* Mustard Yellow Core */}
                 <stop offset="100%" stopColor="#92400E" /> {/* Deeper Golden-Brown Shadow */}
               </>
             )}
@@ -547,7 +552,7 @@ export default function SmileArc({
               </>
             ) : (
               <>
-                <stop offset="0%" stopColor="#FFCE1B" stopOpacity="0.0" />
+                <stop offset="0%" stopColor="#f41bffff" stopOpacity="0.0" />
                 <stop offset="60%" stopColor="#92400E" stopOpacity="0.4" />
                 <stop offset="100%" stopColor="#78350F" stopOpacity="0.75" />
               </>
