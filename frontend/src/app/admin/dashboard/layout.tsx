@@ -27,16 +27,18 @@ export default function AdminDashboardPage({
       });
 
 
-    // useEffect(() => {
-    //     // If auth state has initialized and user is not an admin, redirect them
-    //     if (!isInitialized) return;
-    //     if (!isAdmin || !user) {
-    //         toast.error("Access Denied", {
-    //             description: "You do not have administrative clearance to access the operations node.",
-    //         });
-    //         router.replace("/admin");
-    //     }
-    // }, [user, isAdmin, isInitialized, router]);
+    useEffect(() => {
+        // If auth state has initialized and user is not an admin, redirect them
+        if (!isInitialized) return;
+        if (!isAdmin || !user) {
+            if (user && !isAdmin) {
+                toast.error("Access Denied", {
+                    description: "You do not have administrative clearance to access the operations node.",
+                });
+            }
+            router.replace("/admin");
+        }
+    }, [user, isAdmin, isInitialized, router]);
 
     const handleSignOut = async () => {
         try {
@@ -77,7 +79,7 @@ export default function AdminDashboardPage({
   }
 
     return (
-        <>
+        <div className="admin-layout w-full">
             <SidebarProvider>
                 <AppSidebar />
                 <main className="min-h-svh flex-1 bg-background">
@@ -87,6 +89,6 @@ export default function AdminDashboardPage({
                     <div className="p-4 md:p-6 lg:p-8">{children}</div>
                 </main>
             </SidebarProvider>
-        </>
+        </div>
     );
 }

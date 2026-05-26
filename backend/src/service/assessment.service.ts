@@ -29,4 +29,12 @@ export class AssessmentService {
       answers,
     });
   }
+
+  async getAllSubmissions() {
+    return await assessmentRepository.getAllSubmissions();
+  }
+
+  async getSubmissionById(id: number) {
+    return await assessmentRepository.getSubmissionById(id);
+  }
 }

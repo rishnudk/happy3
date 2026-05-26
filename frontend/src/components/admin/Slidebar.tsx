@@ -17,7 +17,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Shield, LayoutDashboard, PlusCircle, LogOut } from "lucide-react"
+import { Shield, LayoutDashboard, PlusCircle, LogOut, ClipboardList } from "lucide-react"
 
 export function AppSidebar() {
     const pathname = usePathname();
@@ -34,6 +34,11 @@ export function AppSidebar() {
             title: "Add Questions",
             url: "/admin/dashboard/add-questions",
             icon: PlusCircle,
+        },
+        {
+            title: "User Assessments",
+            url: "/admin/dashboard/assessments",
+            icon: ClipboardList,
         },
     ];
 

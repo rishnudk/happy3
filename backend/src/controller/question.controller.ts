@@ -8,9 +8,7 @@ const questionService = new QuestionService();
 class QuestionController {
 
   async createQuestion(req: Request, res: Response) {
-
     try {
-
       const result =
         await questionService.createQuestionWithOptions(req.body);
 
@@ -18,9 +16,8 @@ class QuestionController {
         success: true,
         data: result,
       });
-
     } catch (error) {
-
+      console.error("Error in createQuestion:", error);
       res.status(500).json({
         success: false,
         message: "Question creation failed",
@@ -29,9 +26,7 @@ class QuestionController {
   }
 
   async getQuestions(req: Request, res: Response) {
-
     try {
-
       const questions =
         await questionService.getQuestions();
 
@@ -39,9 +34,8 @@ class QuestionController {
         success: true,
         data: questions,
       });
-
     } catch (error) {
-
+      console.error("Error in getQuestions:", error);
       res.status(500).json({
         success: false,
       });
@@ -57,6 +51,7 @@ class QuestionController {
         data: result,
       });
     } catch (error) {
+      console.error("Error in updateQuestion:", error);
       res.status(500).json({
         success: false,
         message: "Question update failed",
@@ -73,6 +68,7 @@ class QuestionController {
         data: result,
       });
     } catch (error) {
+      console.error("Error in deleteQuestion:", error);
       res.status(500).json({
         success: false,
         message: "Question deletion failed",

@@ -12,4 +12,18 @@ export class AssessmentRepository {
       data,
     });
   }
+
+  async getAllSubmissions() {
+    return await prisma.assessmentSubmission.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+  }
+
+  async getSubmissionById(id: number) {
+    return await prisma.assessmentSubmission.findUnique({
+      where: { id },
+    });
+  }
 }

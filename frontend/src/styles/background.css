@@ -8,6 +8,22 @@
   isolation: isolate;
 }
 
+/* Clear background wrappers and elements when the page is inside the Admin Portal (.admin-layout) */
+body:has(.admin-layout) {
+  background: var(--background) !important;
+}
+
+body:has(.admin-layout)::before {
+  display: none !important;
+}
+
+body:has(.admin-layout) .animated-gradient,
+body:has(.admin-layout) .bg-purple-glow,
+body:has(.admin-layout) .bg-yellow-glow,
+body:has(.admin-layout) .bg-grid {
+  display: none !important;
+}
+
 /* =========================================
    MAIN PAGE GRADIENT
 ========================================= */

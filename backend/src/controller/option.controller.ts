@@ -22,6 +22,7 @@ class OptionController {
         data: result,
       });
     } catch (error: any) {
+      console.error("Error in updateOptions:", error);
       const status = error.message === "Question not found" ? 404 : 500;
 
       res.status(status).json({
@@ -45,6 +46,7 @@ class OptionController {
         data: result,
       });
     } catch (error: any) {
+      console.error("Error in deleteOptions:", error);
       const status = error.message === "Question not found" ? 404 : 500;
 
       res.status(status).json({
