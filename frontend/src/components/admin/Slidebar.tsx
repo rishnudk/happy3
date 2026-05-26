@@ -32,7 +32,7 @@ export function AppSidebar() {
         },
         {
             title: "Add Questions",
-            url: "/admin/add-questions",
+            url: "/admin/dashboard/add-questions",
             icon: PlusCircle,
         },
     ];
