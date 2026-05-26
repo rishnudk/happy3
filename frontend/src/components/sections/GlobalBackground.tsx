@@ -6,7 +6,7 @@ export function GlobalBackground() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, #F6F3FA 0%, #FAF8FD 18%, #FCFAFF 50%, #FAF8FD 82%, #F6F3FA 100%)",
+            "linear-gradient(180deg, #e0c3f0ff 0%, #FAF8FD 18%, #FCFAFF 50%, #FAF8FD 82%, #F6F3FA 100%)",
         }}
       />
 

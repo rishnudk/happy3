@@ -7,7 +7,7 @@ import SmileArc from "./SmileArc";
 
 export default function HeroContent() {
   return (
-    <div className="lg:col-span-7 flex flex-col items-start text-left gap-10 z-20 pr-0 lg:pr-8">
+    <div className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left gap-10 z-20 pr-0 lg:pr-8 w-full">
 
       {/* 1. FLOATING PILLED BADGE */}
       <motion.div
@@ -22,74 +22,23 @@ export default function HeroContent() {
       >
         <div
           className="
-            relative overflow-hidden
+            relative
             rounded-full px-6 py-3
             backdrop-blur-xl
-            border border-white/80
             flex items-center gap-3.5
-            text-[14px] font-semibold text-primary tracking-wide
+            text-[12px] font-semibold text-primary tracking-wide
             transition-all duration-500
+            animate-rainbow
+            border-0
+            bg-[linear-gradient(#FAF8FD,#FAF8FD),linear-gradient(#FAF8FD_50%,rgba(250,248,253,0.6)_80%,rgba(0,0,0,0)),linear-gradient(90deg,hsl(280,80%,75%),hsl(320,80%,80%),hsl(340,90%,82%),hsl(45,100%,75%),hsl(260,90%,80%))]
+            bg-[length:200%]
+            [background-clip:padding-box,border-box,border-box]
+            [background-origin:border-box]
+            [border:calc(0.08*1rem)_solid_transparent]
+            before:absolute before:bottom-[-20%] before:left-1/2 before:z-[0] before:h-[20%] before:w-[60%] before:-translate-x-1/2 before:animate-rainbow before:bg-[linear-gradient(90deg,hsl(280,80%,75%),hsl(320,80%,80%),hsl(340,90%,82%),hsl(45,100%,75%),hsl(260,90%,80%))] before:[filter:blur(calc(0.8*1rem))]
           "
-          style={{
-            background: "linear-gradient(145deg, #ffffff, #f4efff)",
-            boxShadow: `
-              0 20px 40px rgba(128,0,128,0.08),
-              12px 12px 24px rgba(128,0,128,0.08),
-              -10px -10px 24px rgba(255,255,255,0.95),
-              inset 1px 1px 2px rgba(255,255,255,1),
-              inset -1px -1px 3px rgba(128,0,128,0.04)
-            `,
-            transformStyle: "preserve-3d",
-          }}
         >
-          {/* TOP GLOSSY LIGHT */}
-          <div
-            className="
-              absolute inset-x-5 top-1
-              h-[12px] rounded-full
-              bg-white/70 blur-[6px] pointer-events-none
-            "
-          />
-
-          {/* AMBIENT BOTTOM GLOW */}
-          <div
-            className="
-              absolute bottom-[-8px] left-1/2 -translate-x-1/2
-              w-[70%] h-[18px]
-              rounded-full bg-purple-300/20 blur-2xl
-              pointer-events-none
-            "
-          />
-
-          {/* Circular Neumorphic Icon Slot */}
-          <span
-            className="
-              relative
-              w-8 h-8 rounded-full
-              flex items-center justify-center
-              border border-white
-            "
-            style={{
-              background: "linear-gradient(145deg, #ffffff, #f3edff)",
-              boxShadow: `
-                -5px -5px 12px rgba(255,255,255,1),
-                6px 6px 16px rgba(128,0,128,0.1),
-                inset 1px 1px 2px rgba(255,255,255,1)
-              `,
-            }}
-          >
-            {/* glossy shine */}
-            <div
-              className="
-                absolute top-1 left-1/2 -translate-x-1/2
-                w-[60%] h-[6px]
-                rounded-full bg-white/80 blur-[2px]
-              "
-            />
-            <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
-          </span>
-
-          {/* TEXT */}
+          <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse relative z-10" />
           <span className="relative z-10">
             Your Journey Starts Here
           </span>
@@ -151,7 +100,7 @@ export default function HeroContent() {
           {/* Inline SmileArc brand element — with extra breathing room */}
           <SmileArc
             variant="inline"
-            className="w-[120px] sm:w-[125px] lg:w-[130px] h-auto relative z-10"
+            className="w-[90px] sm:w-[100px] lg:w-[100px] -translate-y-[-9px] h-auto relative z-10"
           />
         </motion.span>
       </motion.h1>
@@ -161,7 +110,7 @@ export default function HeroContent() {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
-        className="flex items-baseline gap-2.5"
+        className="flex items-baseline justify-center lg:justify-start gap-2.5 w-full lg:w-auto"
       >
         <span className="text-[13px] sm:text-[15px] text-[#2A254B]/50 font-medium tracking-wide">
           by

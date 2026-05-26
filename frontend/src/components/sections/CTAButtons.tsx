@@ -5,7 +5,7 @@ import { ArrowUpRight, Play } from "lucide-react";
 
 export default function CTAButtons() {
   return (
-    <div className="flex flex-wrap items-center gap-6 pt-4">
+    <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-4">
       
       {/* PRIMARY CTA */}
       <motion.button

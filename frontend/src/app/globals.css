@@ -12,6 +12,17 @@
   --color-slate-deep: #2A254B;
   --color-patriarch: #800080;
   --color-mustard: #FFCE1B;
+  
+  --animate-rainbow: rainbow 4s linear infinite;
+
+  @keyframes rainbow {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
 }
 
 :root {
