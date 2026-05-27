@@ -183,7 +183,7 @@ export default function Navbar() {
           {/* RIGHT – CTA BUTTONS (using NeuButton) */}
           <div className="hidden xl:flex items-center" style={{ gap: 14 }}>
             {/* Request 2: Neumorphic button – primary variant */}
-            <NeuButton variant="primary" href="#programs" size="md">
+            <NeuButton variant="primary" href="/programs" size="md">
               Explore Programs
             </NeuButton>
             {/* Request 2: Neumorphic button – mustard variant */}
@@ -289,7 +289,7 @@ export default function Navbar() {
                     gap: 12,
                   }}
                 >
-                  <NeuButton variant="primary" href="#programs" onClick={closeMenu} size="md"
+                  <NeuButton variant="primary" href="/programs" onClick={closeMenu} size="md"
                     style={{ width: "100%", justifyContent: "center" }}
                   >
                     Explore Programs
