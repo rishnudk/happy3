@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Values", href: "#core-values" },
   { label: "Programs", href: "#programs" },
   { label: "Stories", href: "#testimonials" },
-  { label: "Community", href: "#community" },
+  { label: "Community", href: "/community" },
 ];
 
 export default function Navbar() {
