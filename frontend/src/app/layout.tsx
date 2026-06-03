@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { StoreProvider } from "@/lib/store/StoreProvider";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -22,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jakarta.variable}`}>
+    <html lang="en" className={`${jakarta.variable}`} suppressHydrationWarning>
       <body className="background-wrapper font-jakarta antialiased">
         <div className="animated-gradient" />
 
@@ -30,11 +32,20 @@ export default function RootLayout({
         <div className="bg-yellow-glow" />
         <div className="bg-grid" />
 
-        <StoreProvider>
-          {children}
-          <Toaster richColors position="top-right" />
-        </StoreProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <StoreProvider>
+              {children}
+              <Toaster richColors position="top-right" />
+            </StoreProvider>
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
-}
+}

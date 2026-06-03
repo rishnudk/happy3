@@ -134,7 +134,22 @@ p {
   line-height: 1.7;
 }
 
+/* Restore/reset typography defaults for the Admin Panel/shadcn components */
+.admin-layout h1,
+.admin-layout h2,
+.admin-layout h3,
+.admin-layout h4,
+.admin-layout h5,
+.admin-layout h6 {
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
 
+.admin-layout p {
+  line-height: inherit;
+}
 
 /* =========================================
    REUSABLE UTILITIES

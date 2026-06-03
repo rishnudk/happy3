@@ -1,39 +1,37 @@
-"use client";
+import { AppSidebar } from "@/components/app-sidebar"
+import { ChartAreaInteractive } from "@/components/chart-area-interactive"
+import { DataTable } from "@/components/data-table"
+import { SectionCards } from "@/components/section-cards"
+import { SiteHeader } from "@/components/site-header"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useAppSelector } from "@/lib/store/store";
-import { GlobalBackground } from "@/components/sections/GlobalBackground";
-import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
+import data from "./data.json"
 
-export default function AdminLoginPage() {
-  const router = useRouter();
-  const { user, isAdmin, isInitialized } = useAppSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (isInitialized && user && isAdmin) {
-      router.replace("/admin/dashboard");
-    }
-  }, [user, isAdmin, isInitialized, router]);
-
+export default function AdminDashboardPage() {
   return (
-    <div className="admin-layout">
-      <title>Admin Login | Happiness Coaching Academy</title>
-      <meta
-        name="description"
-        content="Access the Happiness Coaching Academy administrative terminal."
-      />
-
-      <main className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center px-4 py-16">
-        {/* Unified Warm Application Aurora Background */}
-        {/* Centered Admin Credentials Form */}
-        <div className="w-full flex items-center justify-center z-10">
-          <AdminLoginForm />
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
+      <AppSidebar variant="inset" />
+      <SidebarInset>
+        <SiteHeader />
+        <div className="flex flex-1 flex-col">
+          <div className="@container/main flex flex-1 flex-col gap-2">
+            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+              <SectionCards />
+              <div className="px-4 lg:px-6">
+                <ChartAreaInteractive />
+              </div>
+              <DataTable data={data} />
+            </div>
+          </div>
         </div>
-
-        {/* Screen-reader heading */}
-        <h1 className="sr-only">Admin Login Portal</h1>
-      </main>
-    </div>
-  );
+      </SidebarInset>
+    </SidebarProvider>
+  )
 }
