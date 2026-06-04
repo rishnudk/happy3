@@ -20,3 +20,21 @@ export const UpdateQuestionSchema = z.object({
 
 export type CreateQuestionDTO = z.infer<typeof CreateQuestionSchema>;
 export type UpdateQuestionDTO = z.infer<typeof UpdateQuestionSchema>;
+
+export const OptionResponseSchema = z.object({
+  id: z.number(),
+  optionText: z.string(),
+  mark: z.number(),
+  questionId: z.number(),
+});
+
+export const QuestionResponseSchema = z.object({
+  id: z.number(),
+  questionNo: z.number(),
+  category: z.string(),
+  questionText: z.string(),
+  options: z.array(OptionResponseSchema).optional(),
+});
+
+export type OptionResponseDTO = z.infer<typeof OptionResponseSchema>;
+export type QuestionResponseDTO = z.infer<typeof QuestionResponseSchema>;

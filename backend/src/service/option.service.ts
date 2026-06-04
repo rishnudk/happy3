@@ -1,15 +1,17 @@
 // services/option.service.ts
 
-import { QuestionRepository } from "../repositories/question.repository";
-import { OptionRepository } from "../repositories/option.repository";
-
-const questionRepository = new QuestionRepository();
-const optionRepository = new OptionRepository();
+import { IQuestionRepository } from "../interfaces/IQuestionRepository";
+import { IOptionRepository } from "../interfaces/IOptionRepository";
+import { QuestionResponseSchema } from "../dtos/question.dto";
 
 export class OptionService {
+  constructor(
+    private readonly questionRepository: IQuestionRepository,
+    private readonly optionRepository: IOptionRepository
+  ) {}
 
   private async assertQuestionExists(questionId: number) {
-    const question = await questionRepository.getQuestionById(questionId);
+    const question = await this.questionRepository.getQuestionById(questionId);
 
     if (!question || question.isDeleted) {
       const { NotFoundError } = require("../utils/errors");
@@ -25,18 +27,19 @@ export class OptionService {
   ) {
     await this.assertQuestionExists(questionId);
 
-    await optionRepository.deleteOptionsByQuestionId(questionId);
+    await this.optionRepository.deleteOptionsByQuestionId(questionId);
 
     if (options?.length) {
-      await optionRepository.createManyOptions(questionId, options);
+      await this.optionRepository.createManyOptions(questionId, options);
     }
 
-    return await questionRepository.getQuestionById(questionId);
+    const result = await this.questionRepository.getQuestionById(questionId);
+    return QuestionResponseSchema.parse(result);
   }
 
   async deleteOptionsByQuestionId(questionId: number) {
     await this.assertQuestionExists(questionId);
 
-    return await optionRepository.deleteOptionsByQuestionId(questionId);
+    return await this.optionRepository.deleteOptionsByQuestionId(questionId);
   }
 }

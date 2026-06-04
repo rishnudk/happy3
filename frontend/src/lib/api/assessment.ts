@@ -9,7 +9,7 @@ import type {
 // ─── Questions ─────────────────────────────────────────────
 
 export async function fetchQuestions(): Promise<Question[]> {
-  const res = await fetch(`${API_BASE}/api/questions/getAllQuestions`);
+  const res = await fetch(`${API_BASE}/api/questions/`);
   const json = await res.json();
   if (!json.success) throw new Error("Failed to fetch questions");
   return json.data;
@@ -18,7 +18,7 @@ export async function fetchQuestions(): Promise<Question[]> {
 export async function createQuestion(
   data: CreateQuestionPayload
 ): Promise<Question> {
-  const res = await fetch(`${API_BASE}/api/questions/createQuestion`, {
+  const res = await fetch(`${API_BASE}/api/questions/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -32,7 +32,7 @@ export async function updateQuestion(
   id: number,
   data: UpdateQuestionPayload
 ): Promise<Question> {
-  const res = await fetch(`${API_BASE}/api/questions/updateQuestion/${id}`, {
+  const res = await fetch(`${API_BASE}/api/questions/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -43,7 +43,7 @@ export async function updateQuestion(
 }
 
 export async function deleteQuestion(id: number): Promise<void> {
-  const res = await fetch(`${API_BASE}/api/questions/deleteQuestion/${id}`, {
+  const res = await fetch(`${API_BASE}/api/questions/${id}`, {
     method: "DELETE",
   });
   const json = await res.json();
@@ -57,7 +57,7 @@ export async function updateOptions(
   data: UpdateOptionsPayload
 ): Promise<Question> {
   const res = await fetch(
-    `${API_BASE}/api/options/updateOptions/${questionId}`,
+    `${API_BASE}/api/options/${questionId}`,
     {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

@@ -1,47 +1,52 @@
 // services/question.service.ts
 
-import { QuestionRepository } from "../repositories/question.repository";
-import { OptionRepository } from "../repositories/option.repository";
-import { CreateQuestionDTO, UpdateQuestionDTO } from "../dtos/question.dto";
-
-const questionRepository = new QuestionRepository();
-const optionRepository = new OptionRepository();
+import { IQuestionRepository } from "../interfaces/IQuestionRepository";
+import { IOptionRepository } from "../interfaces/IOptionRepository";
+import { CreateQuestionDTO, UpdateQuestionDTO, QuestionResponseSchema } from "../dtos/question.dto";
 
 export class QuestionService {
+  constructor(
+    private readonly questionRepository: IQuestionRepository,
+    private readonly optionRepository: IOptionRepository
+  ) {}
 
   async createQuestionWithOptions(body: CreateQuestionDTO) {
     const { questionNo, category, questionText, options } = body;
 
-    const question = await questionRepository.createQuestion({
+    const question = await this.questionRepository.createQuestion({
       questionNo,
       category,
       questionText,
     });
 
     if (options?.length) {
-      await optionRepository.createManyOptions(question.id, options);
+      await this.optionRepository.createManyOptions(question.id, options);
     }
 
-    return await questionRepository.getQuestionById(question.id);
+    const result = await this.questionRepository.getQuestionById(question.id);
+    return QuestionResponseSchema.parse(result);
   }
 
   async getQuestions() {
-    return await questionRepository.getAllQuestions();
+    const results = await this.questionRepository.getAllQuestions();
+    return results.map(q => QuestionResponseSchema.parse(q));
   }
 
   async updateQuestion(id: number, body: UpdateQuestionDTO) {
     const { questionNo, category, questionText } = body;
 
-    await questionRepository.updateQuestion(id, {
+    await this.questionRepository.updateQuestion(id, {
       questionNo,
       category,
       questionText,
     });
 
-    return await questionRepository.getQuestionById(id);
+    const result = await this.questionRepository.getQuestionById(id);
+    return QuestionResponseSchema.parse(result);
   }
 
   async deleteQuestion(id: number) {
-    return await questionRepository.deleteQuestion(id);
+    const result = await this.questionRepository.deleteQuestion(id);
+    return QuestionResponseSchema.parse(result);
   }
 }

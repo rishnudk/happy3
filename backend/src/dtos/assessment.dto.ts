@@ -14,3 +14,15 @@ export const SubmitAssessmentSchema = z.object({
 });
 
 export type SubmitAssessmentDTO = z.infer<typeof SubmitAssessmentSchema>;
+
+export const AssessmentResponseSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  emailId: z.string(),
+  phoneNumber: z.string(),
+  totalScore: z.number(),
+  answers: z.any(),
+  createdAt: z.date(),
+});
+
+export type AssessmentResponseDTO = z.infer<typeof AssessmentResponseSchema>;

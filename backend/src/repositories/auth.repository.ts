@@ -1,7 +1,9 @@
 import { prisma } from "../config/db.config"
+import { Role } from "@prisma/client"
 import { RegisterDTO } from "../dtos/register.dto"
+import { IAuthRepository } from "../interfaces/IAuthRepository"
 
-class AuthRepository {
+export class AuthRepository implements IAuthRepository {
   async findByUsername(username: string) {
     return prisma.user.findUnique({
       where: { username },
@@ -27,12 +29,10 @@ class AuthRepository {
     })
   }
 
-  async updateRole(id: number, role: string) {
+  async updateRole(id: number, role: Role) {
     return prisma.user.update({
       where: { id },
       data: { role },
     })
   }
 }
-
-export default new AuthRepository()

@@ -1,19 +1,19 @@
 // routes/option.route.ts
 
 import express from "express";
-import optionController from "../controller/option.controller";
+import { optionController } from "../config/container";
 import { validate } from "../middlewares/validate.middleware";
 import { UpdateOptionsSchema } from "../dtos/option.dto";
 
 const optionRouter = express.Router();
 
 optionRouter.put(
-  "/updateOptions/:questionId",
+  "/:questionId",
   validate(UpdateOptionsSchema),
   optionController.updateOptions
 );
 optionRouter.delete(
-  "/deleteOptions/:questionId",
+  "/:questionId",
   optionController.deleteOptions
 );
 

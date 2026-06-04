@@ -1,5 +1,5 @@
 import express from "express";
-import authController from "../controller/auth.controller";
+import { authController } from "../config/container";
 import authMiddleware from "../middlewares/auth.middleware";
 import { validate } from "../middlewares/validate.middleware";
 import { authLimiter } from "../middlewares/rateLimiter.middleware";

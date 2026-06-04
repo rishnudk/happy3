@@ -1,8 +1,9 @@
 // repositories/question.repository.ts
 
 import { prisma } from "../config/db.config";
+import { IQuestionRepository } from "../interfaces/IQuestionRepository";
 
-export class QuestionRepository {
+export class QuestionRepository implements IQuestionRepository {
 
   async createQuestion(data: {
     questionNo: number;

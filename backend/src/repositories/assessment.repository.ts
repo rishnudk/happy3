@@ -1,12 +1,13 @@
 import { prisma } from "../config/db.config";
+import { IAssessmentRepository } from "../interfaces/IAssessmentRepository";
 
-export class AssessmentRepository {
+export class AssessmentRepository implements IAssessmentRepository {
   async createSubmission(data: {
     name: string;
     emailId: string;
     phoneNumber: string;
     totalScore: number;
-    answers: object;
+    answers: any;
   }) {
     return await prisma.assessmentSubmission.create({
       data,

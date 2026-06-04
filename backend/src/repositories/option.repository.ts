@@ -1,8 +1,9 @@
 // repositories/option.repository.ts
 
 import { prisma } from "../config/db.config";
+import { IOptionRepository } from "../interfaces/IOptionRepository";
 
-export class OptionRepository {
+export class OptionRepository implements IOptionRepository {
 
   async createOption(data: {
     optionText: string;

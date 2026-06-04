@@ -81,50 +81,50 @@
 
 ### Backend — Dependency Injection
 
-- [ ] Create `interfaces/IAuthRepository.ts` — interface for auth repository
-- [ ] Create `interfaces/IQuestionRepository.ts` — interface for question repository
-- [ ] Create `interfaces/IOptionRepository.ts` — interface for option repository
-- [ ] Create `interfaces/IAssessmentRepository.ts` — interface for assessment repository
-- [ ] Make each repository class implement its corresponding interface
-- [ ] Refactor `AuthService` — accept `IAuthRepository` via constructor injection
-- [ ] Refactor `QuestionService` — accept `IQuestionRepository` + `IOptionRepository` via constructor injection
-- [ ] Refactor `OptionService` — accept `IQuestionRepository` + `IOptionRepository` via constructor injection
-- [ ] Refactor `AssessmentService` — accept `IAssessmentRepository` via constructor injection
-- [ ] Create a composition root / factory (`config/container.ts`) to wire dependencies
-- [ ] Update controllers to receive services from the composition root
-- [ ] Update route files to use the wired controllers
+- [x] Create `interfaces/IAuthRepository.ts` — interface for auth repository
+- [x] Create `interfaces/IQuestionRepository.ts` — interface for question repository
+- [x] Create `interfaces/IOptionRepository.ts` — interface for option repository
+- [x] Create `interfaces/IAssessmentRepository.ts` — interface for assessment repository
+- [x] Make each repository class implement its corresponding interface
+- [x] Refactor `AuthService` — accept `IAuthRepository` via constructor injection
+- [x] Refactor `QuestionService` — accept `IQuestionRepository` + `IOptionRepository` via constructor injection
+- [x] Refactor `OptionService` — accept `IQuestionRepository` + `IOptionRepository` via constructor injection
+- [x] Refactor `AssessmentService` — accept `IAssessmentRepository` via constructor injection
+- [x] Create a composition root / factory (`config/container.ts`) to wire dependencies
+- [x] Update controllers to receive services from the composition root
+- [x] Update route files to use the wired controllers
 
 ### Backend — RESTful URL Refactoring
 
-- [ ] Refactor `question.route.ts` — change URLs to RESTful nouns:
+- [x] Refactor `question.route.ts` — change URLs to RESTful nouns:
   - `POST /createQuestion` → `POST /`
   - `GET /getAllQuestions` → `GET /`
   - `PUT /updateQuestion/:id` → `PUT /:id`
   - `DELETE /deleteQuestion/:id` → `DELETE /:id`
-- [ ] Refactor `option.route.ts` — change URLs to RESTful nouns:
+- [x] Refactor `option.route.ts` — change URLs to RESTful nouns:
   - `PUT /updateOptions/:questionId` → `PUT /:questionId`
   - `DELETE /deleteOptions/:questionId` → `DELETE /:questionId`
-- [ ] Refactor `assessment.route.ts` — change URLs to RESTful nouns:
+- [x] Refactor `assessment.route.ts` — change URLs to RESTful nouns:
   - `POST /submit` → `POST /`
   - `GET /submissions` → `GET /`
   - `GET /submission/:id` → `GET /:id`
-- [ ] Update all frontend API calls in `lib/api/assessment.ts` to match new URLs
-- [ ] Update any other frontend files referencing old API URLs
+- [x] Update all frontend API calls in `lib/api/assessment.ts` to match new URLs
+- [x] Update any other frontend files referencing old API URLs
 
 ### Backend — DTOs for All Entities
 
-- [ ] Create DTOs for Question operations (beyond just Zod — typed request/response shapes)
-- [ ] Create DTOs for Option operations
-- [ ] Create DTOs for Assessment operations
-- [ ] Ensure services never return raw Prisma models — map to response DTOs
+- [x] Create DTOs for Question operations (beyond just Zod — typed request/response shapes)
+- [x] Create DTOs for Option operations
+- [x] Create DTOs for Assessment operations
+- [x] Ensure services never return raw Prisma models — map to response DTOs
 
 ### Database Schema Improvements
 
-- [ ] Add unique constraint on `Question.questionNo` in `schema.prisma`
-- [ ] Change `User.role` from `String` to an enum (`enum Role { ADMIN USER }`)
-- [ ] Consider normalizing `AssessmentSubmission.answers` — create an `Answer` model with proper foreign keys to `Question` and `Option`
-- [ ] Add optional `userId` foreign key to `AssessmentSubmission` for tracking authenticated submissions
-- [ ] Run `prisma migrate dev` after schema changes
+- [x] Add unique constraint on `Question.questionNo` in `schema.prisma`
+- [x] Change `User.role` from `String` to an enum (`enum Role { ADMIN USER }`)
+- [x] Consider normalizing `AssessmentSubmission.answers` — create an `Answer` model with proper foreign keys to `Question` and `Option`
+- [x] Add optional `userId` foreign key to `AssessmentSubmission` for tracking authenticated submissions
+- [x] Run `prisma migrate dev` after schema changes
 
 ---
 

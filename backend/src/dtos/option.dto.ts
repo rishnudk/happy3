@@ -10,3 +10,12 @@ export const UpdateOptionsSchema = z.object({
 });
 
 export type UpdateOptionsDTO = z.infer<typeof UpdateOptionsSchema>;
+
+export const OptionResponseSchema = z.object({
+  id: z.number(),
+  optionText: z.string(),
+  mark: z.number(),
+  questionId: z.number(),
+});
+
+export type OptionResponseDTO = z.infer<typeof OptionResponseSchema>;

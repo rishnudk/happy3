@@ -6,6 +6,11 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 model User {
   id           Int      @id @default(autoincrement())
   username     String   @unique
@@ -14,19 +19,22 @@ model User {
   emailId      String?  @unique
   phoneNumber  String?
   refreshToken String?
-  role         String   @default("admin")
+  role         Role     @default(ADMIN)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  assessmentSubmissions AssessmentSubmission[]
 }
 
 model Question {
   id            Int       @id @default(autoincrement())
-  questionNo    Int
+  questionNo    Int       @unique
   category      String
   questionText  String
   isDeleted     Boolean   @default(false)
 
   options       Option[]
+  answers       Answer[]
 
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -38,8 +46,9 @@ model Option {
   mark        Int
 
   questionId  Int
-
   question    Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  answers     Answer[]
 
   createdAt   DateTime @default(now())
 }
@@ -50,8 +59,27 @@ model AssessmentSubmission {
   emailId     String
   phoneNumber String
   totalScore  Int
-  answers     Json
+  
+  userId      Int?
+  user        User?    @relation(fields: [userId], references: [id])
+
+  answers     Answer[]
 
   createdAt   DateTime @default(now())
 }
 
+model Answer {
+  id                     Int                  @id @default(autoincrement())
+  mark                   Int
+
+  assessmentSubmissionId Int
+  assessmentSubmission   AssessmentSubmission @relation(fields: [assessmentSubmissionId], references: [id], onDelete: Cascade)
+
+  questionId             Int
+  question               Question             @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  optionId               Int
+  option                 Option               @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  createdAt              DateTime             @default(now())
+}
