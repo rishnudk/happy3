@@ -33,9 +33,13 @@ app.use(cookieParser())
 
 app.use("/api", apiLimiter)
 
+import { errorMiddleware } from "./middlewares/error.middleware"
+
 app.use("/api/auth", authRouter)
 app.use("/api/questions", questionRouter)
 app.use("/api/options", optionRouter)
 app.use("/api/assessment", assessmentRouter)
+
+app.use(errorMiddleware)
 
 export default app

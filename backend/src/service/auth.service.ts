@@ -1,16 +1,16 @@
 import bcrypt from "bcrypt"
 import authRepository from "../repositories/auth.repository"
-
-import {LoginDTO} from "../dtos/login.dto"
-import {RegisterDTO} from "../dtos/register.dto"
-import {generateAccessToken, generateRefreshToken, verifyRefreshToken} from "../utils/jwt"
+import { ConflictError, UnauthorizedError, AppError } from "../utils/errors"
+import { LoginDTO } from "../dtos/login.dto"
+import { RegisterDTO } from "../dtos/register.dto"
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/jwt"
 
 class AuthService {
   async register(data: RegisterDTO) {
     const existingUser = await authRepository.findByUsername(data.username)
 
     if (existingUser) {
-      throw new Error("Username already taken")
+      throw new ConflictError("Username already taken")
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10)
@@ -31,13 +31,13 @@ class AuthService {
     const user = await authRepository.findByUsername(data.username)
 
     if (!user) {
-      throw new Error("Invalid credentials")
+      throw new UnauthorizedError("Invalid credentials")
     }
 
     const isMatch = await bcrypt.compare(data.password, user.password)
 
     if (!isMatch) {
-      throw new Error("Invalid credentials")
+      throw new UnauthorizedError("Invalid credentials")
     }
 
     const accessToken = generateAccessToken(user.id.toString())
@@ -48,13 +48,13 @@ class AuthService {
   }
 
   async refresh(token: string) {
-    if (!token) throw new Error("No refresh token provided")
+    if (!token) throw new UnauthorizedError("No refresh token provided")
 
     const decoded = verifyRefreshToken(token)
     const user = await authRepository.findById(parseInt(decoded.id))
 
     if (!user || user.refreshToken !== token) {
-      throw new Error("Invalid refresh token")
+      throw new UnauthorizedError("Invalid refresh token")
     }
 
     const newAccessToken = generateAccessToken(user.id.toString())

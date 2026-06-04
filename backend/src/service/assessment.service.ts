@@ -1,5 +1,6 @@
 import { AssessmentRepository } from "../repositories/assessment.repository";
 import { SubmitAssessmentDTO } from "../dtos/assessment.dto";
+import { NotFoundError } from "../utils/errors";
 
 const assessmentRepository = new AssessmentRepository();
 
@@ -23,6 +24,10 @@ export class AssessmentService {
   }
 
   async getSubmissionById(id: number) {
-    return await assessmentRepository.getSubmissionById(id);
+    const submission = await assessmentRepository.getSubmissionById(id);
+    if (!submission) {
+      throw new NotFoundError("Submission not found");
+    }
+    return submission;
   }
 }

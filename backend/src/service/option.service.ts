@@ -12,7 +12,8 @@ export class OptionService {
     const question = await questionRepository.getQuestionById(questionId);
 
     if (!question || question.isDeleted) {
-      throw new Error("Question not found");
+      const { NotFoundError } = require("../utils/errors");
+      throw new NotFoundError("Question not found");
     }
 
     return question;

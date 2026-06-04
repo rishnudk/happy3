@@ -48,15 +48,15 @@
 
 ### Backend — Global Error Handling
 
-- [ ] Create `utils/errors.ts` — custom error class hierarchy (`AppError`, `NotFoundError`, `ValidationError`, `UnauthorizedError`, `ConflictError`)
-- [ ] Create `middlewares/error.middleware.ts` — global error handler middleware
-- [ ] Create `utils/asyncHandler.ts` — wrapper to catch async errors and forward to error middleware
-- [ ] Register global error handler in `app.ts` (after all routes)
-- [ ] Refactor `auth.controller.ts` — remove try/catch, use `asyncHandler` + custom errors
-- [ ] Refactor `question.controller.ts` — remove try/catch, use `asyncHandler` + custom errors
-- [ ] Refactor `option.controller.ts` — remove try/catch, use `asyncHandler` + custom errors
-- [ ] Refactor `assessment.controller.ts` — remove try/catch, use `asyncHandler` + custom errors
-- [ ] Update services to throw custom `AppError` subclasses instead of generic `new Error()`
+- [x] Create `utils/errors.ts` — custom error class hierarchy (`AppError`, `NotFoundError`, `ValidationError`, `UnauthorizedError`, `ConflictError`)
+- [x] Create `middlewares/error.middleware.ts` — global error handler middleware
+- [x] Create `utils/asyncHandler.ts` — wrapper to catch async errors and forward to error middleware
+- [x] Register global error handler in `app.ts` (after all routes)
+- [x] Refactor `auth.controller.ts` — remove try/catch, use `asyncHandler` + custom errors
+- [x] Refactor `question.controller.ts` — remove try/catch, use `asyncHandler` + custom errors
+- [x] Refactor `option.controller.ts` — remove try/catch, use `asyncHandler` + custom errors
+- [x] Refactor `assessment.controller.ts` — remove try/catch, use `asyncHandler` + custom errors
+- [x] Update services to throw custom `AppError` subclasses instead of generic `new Error()`
 
 ### Frontend — Break Up God Components
 
