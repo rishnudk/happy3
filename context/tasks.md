@@ -9,38 +9,38 @@
 
 ### Backend — Input Validation
 
-- [ ] Install `zod` in the backend
-- [ ] Create `dtos/question.dto.ts` — define `CreateQuestionSchema` and `UpdateQuestionSchema` with Zod
-- [ ] Create `dtos/option.dto.ts` — define `UpdateOptionsSchema` with Zod
-- [ ] Create `dtos/assessment.dto.ts` — define `SubmitAssessmentSchema` with Zod
-- [ ] Enhance existing `dtos/register.dto.ts` — add Zod schema with password strength rules (min 8 chars, etc.)
-- [ ] Enhance existing `dtos/login.dto.ts` — add Zod schema
-- [ ] Create `middlewares/validate.middleware.ts` — generic Zod validation middleware
-- [ ] Apply validation middleware to all routes in `question.route.ts`
-- [ ] Apply validation middleware to all routes in `option.route.ts`
-- [ ] Apply validation middleware to all routes in `assessment.route.ts`
-- [ ] Apply validation middleware to all routes in `auth.route.ts`
-- [ ] Remove all `any` types from service method parameters — use Zod-inferred types instead
+- [x] Install `zod` in the backend
+- [x] Create `dtos/question.dto.ts` — define `CreateQuestionSchema` and `UpdateQuestionSchema` with Zod
+- [x] Create `dtos/option.dto.ts` — define `UpdateOptionsSchema` with Zod
+- [x] Create `dtos/assessment.dto.ts` — define `SubmitAssessmentSchema` with Zod
+- [x] Enhance existing `dtos/register.dto.ts` — add Zod schema with password strength rules (min 8 chars, etc.)
+- [x] Enhance existing `dtos/login.dto.ts` — add Zod schema
+- [x] Create `middlewares/validate.middleware.ts` — generic Zod validation middleware
+- [x] Apply validation middleware to all routes in `question.route.ts`
+- [x] Apply validation middleware to all routes in `option.route.ts`
+- [x] Apply validation middleware to all routes in `assessment.route.ts`
+- [x] Apply validation middleware to all routes in `auth.route.ts`
+- [x] Remove all `any` types from service method parameters — use Zod-inferred types instead
 
 ### Backend — Security Hardcodes
 
-- [ ] Create `config/env.config.ts` — centralized environment config with Zod validation
-- [ ] Replace hardcoded `secure: false` in auth.controller.ts with `env.COOKIE_SECURE` (driven by `NODE_ENV`)
-- [ ] Replace hardcoded port `5000` in server.ts with `env.PORT`
-- [ ] Extract cookie configuration into a reusable `config/cookie.config.ts` helper (eliminate 3x duplication in auth.controller.ts)
-- [ ] Validate that all required env vars (`JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `DATABASE_URL`) are present at startup
+- [x] Create `config/env.config.ts` — centralized environment config with Zod validation
+- [x] Replace hardcoded `secure: false` in auth.controller.ts with `env.COOKIE_SECURE` (driven by `NODE_ENV`)
+- [x] Replace hardcoded port `5000` in server.ts with `env.PORT`
+- [x] Extract cookie configuration into a reusable `config/cookie.config.ts` helper (eliminate 3x duplication in auth.controller.ts)
+- [x] Validate that all required env vars (`JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `DATABASE_URL`) are present at startup
 
 ### Frontend — Security Hardcodes
 
-- [ ] Replace hardcoded `http://localhost:5000` in `StoreProvider.tsx` with `API_BASE` from `lib/api.ts`
-- [ ] Audit all files for any other hardcoded backend URLs — replace with `API_BASE`
+- [x] Replace hardcoded `http://localhost:5000` in `StoreProvider.tsx` with `API_BASE` from `lib/api.ts`
+- [x] Audit all files for any other hardcoded backend URLs — replace with `API_BASE`
 
 ### Backend — Rate Limiting
 
-- [ ] Install `express-rate-limit`
-- [ ] Add rate limiting middleware to `/api/auth/login` (e.g., 5 attempts per minute)
-- [ ] Add rate limiting middleware to `/api/auth/register`
-- [ ] Add general rate limiting middleware to all API routes (e.g., 100 req/min)
+- [x] Install `express-rate-limit`
+- [x] Add rate limiting middleware to `/api/auth/login` (e.g., 5 attempts per minute)
+- [x] Add rate limiting middleware to `/api/auth/register`
+- [x] Add general rate limiting middleware to all API routes (e.g., 100 req/min)
 
 ---
 

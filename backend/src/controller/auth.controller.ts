@@ -1,113 +1,96 @@
-import {Request, Response} from "express"
-import authService from "../service/auth.service"
+import { Request, Response } from "express";
+import authService from "../service/auth.service";
+import {
+  accessTokenCookieOptions,
+  refreshTokenCookieOptions,
+} from "../config/cookie.config";
 
 class AuthController {
   async register(req: Request, res: Response) {
     try {
-      const result = await authService.register(req.body)
+      const result = await authService.register(req.body);
 
       res
-        .cookie("accessToken", result.accessToken, {
-          httpOnly: true,
-          secure: false, // Set to true in production
-          maxAge: 15 * 60 * 1000, // 15 minutes
-          sameSite: "lax"
-        })
-        .cookie("refreshToken", result.refreshToken, {
-          httpOnly: true,
-          secure: false,
-          maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-          sameSite: "lax"
-        })
+        .cookie("accessToken", result.accessToken, accessTokenCookieOptions)
+        .cookie("refreshToken", result.refreshToken, refreshTokenCookieOptions)
         .status(201)
         .json({
           success: true,
-          user: result.user
-        })
-    } catch (error: any) {
+          user: result.user,
+        });
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Registration failed";
       res.status(400).json({
-        message: error.message,
-      })
+        success: false,
+        message,
+      });
     }
   }
 
   async login(req: Request, res: Response) {
     try {
-      const result = await authService.login(req.body)
+      const result = await authService.login(req.body);
 
       res
-        .cookie("accessToken", result.accessToken, {
-          httpOnly: true,
-          secure: false, // Set to true in production
-          maxAge: 15 * 60 * 1000, // 15 minutes
-          sameSite: "lax"
-        })
-        .cookie("refreshToken", result.refreshToken, {
-          httpOnly: true,
-          secure: false,
-          maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-          sameSite: "lax"
-        })
+        .cookie("accessToken", result.accessToken, accessTokenCookieOptions)
+        .cookie("refreshToken", result.refreshToken, refreshTokenCookieOptions)
         .status(200)
         .json({
           success: true,
-          user: result.user
-        })
-    } catch (error: any) {
+          user: result.user,
+        });
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Login failed";
       res.status(401).json({
-        message: error.message,
-      })
+        success: false,
+        message,
+      });
     }
   }
 
   async refresh(req: Request, res: Response) {
     try {
-      const refreshToken = req.cookies.refreshToken
-      const result = await authService.refresh(refreshToken)
-      
+      const refreshToken = req.cookies.refreshToken;
+      const result = await authService.refresh(refreshToken);
+
       res
-        .cookie("accessToken", result.accessToken, {
-          httpOnly: true,
-          secure: false,
-          maxAge: 15 * 60 * 1000,
-          sameSite: "lax"
-        })
-        .cookie("refreshToken", result.refreshToken, {
-          httpOnly: true,
-          secure: false,
-          maxAge: 7 * 24 * 60 * 60 * 1000,
-          sameSite: "lax"
-        })
+        .cookie("accessToken", result.accessToken, accessTokenCookieOptions)
+        .cookie("refreshToken", result.refreshToken, refreshTokenCookieOptions)
         .status(200)
         .json({
           success: true,
-          user: result.user
-        })
-    } catch (error: any) {
+          user: result.user,
+        });
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error ? error.message : "Token refresh failed";
       res.status(401).json({
-        message: error.message,
-      })
+        success: false,
+        message,
+      });
     }
   }
 
   async logout(req: Request, res: Response) {
-    const userId = (req as any).userId
+    const userId = (req as Request & { userId?: string }).userId;
     if (userId) {
       try {
-        await authService.logout(parseInt(userId))
+        await authService.logout(parseInt(userId));
       } catch (err) {
-        console.error("Logout database sync error:", err)
+        console.error("Logout database sync error:", err);
       }
     }
-    
+
     res
       .clearCookie("accessToken")
       .clearCookie("refreshToken")
       .json({
         success: true,
         message: "Logged out",
-      })
+      });
   }
 }
 
-export default new AuthController()
+export default new AuthController();

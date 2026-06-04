@@ -1,6 +1,7 @@
 import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import { apiLimiter } from "./middlewares/rateLimiter.middleware"
 import authRouter from "./routes/auth.route"
 import questionRouter from "./routes/question.route"
 import optionRouter from "./routes/option.route"
@@ -29,6 +30,8 @@ app.use(
 app.use(express.json())
 
 app.use(cookieParser())
+
+app.use("/api", apiLimiter)
 
 app.use("/api/auth", authRouter)
 app.use("/api/questions", questionRouter)

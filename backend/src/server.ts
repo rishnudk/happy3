@@ -1,9 +1,10 @@
-import "dotenv/config"
-import { connectDB } from "./config/db.config"
-import app from "./app"
+import "dotenv/config";
+import { env } from "./config/env.config";
+import { connectDB } from "./config/db.config";
+import app from "./app";
 
-connectDB()
+connectDB();
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000")
-})
+app.listen(env.PORT, () => {
+  console.log(`Server is running on port ${env.PORT}`);
+});

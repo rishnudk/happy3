@@ -2,13 +2,14 @@
 
 import { QuestionRepository } from "../repositories/question.repository";
 import { OptionRepository } from "../repositories/option.repository";
+import { CreateQuestionDTO, UpdateQuestionDTO } from "../dtos/question.dto";
 
 const questionRepository = new QuestionRepository();
 const optionRepository = new OptionRepository();
 
 export class QuestionService {
 
-  async createQuestionWithOptions(body: any) {
+  async createQuestionWithOptions(body: CreateQuestionDTO) {
     const { questionNo, category, questionText, options } = body;
 
     const question = await questionRepository.createQuestion({
@@ -28,7 +29,7 @@ export class QuestionService {
     return await questionRepository.getAllQuestions();
   }
 
-  async updateQuestion(id: number, body: any) {
+  async updateQuestion(id: number, body: UpdateQuestionDTO) {
     const { questionNo, category, questionText } = body;
 
     await questionRepository.updateQuestion(id, {

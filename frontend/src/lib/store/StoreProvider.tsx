@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Provider } from "react-redux";
 import { store, useAppDispatch, useAppSelector } from "./store";
 import { setCredentials, setInitialized } from "./features/authSlice";
+import { API_BASE } from "@/lib/api";
 
 function StoreInitializer({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch();
@@ -17,7 +18,7 @@ function StoreInitializer({ children }: { children: React.ReactNode }) {
       // If we have local state hints of an active session, trigger silent refresh
       if (hasSessionUser) {
         try {
-          const response = await fetch("http://localhost:5000/api/auth/refresh", {
+          const response = await fetch(`${API_BASE}/api/auth/refresh`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
