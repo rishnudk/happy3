@@ -132,50 +132,50 @@
 
 ### Frontend — React Query for Data Fetching
 
-- [ ] Install `@tanstack/react-query`
-- [ ] Create `providers/QueryProvider.tsx` — wrap app with `QueryClientProvider`
-- [ ] Create `hooks/useQuestions.ts` — `useQuery` for fetching questions
-- [ ] Create `hooks/useCreateQuestion.ts` — `useMutation` for creating questions
-- [ ] Create `hooks/useUpdateQuestion.ts` — `useMutation` for updating questions
-- [ ] Create `hooks/useDeleteQuestion.ts` — `useMutation` for deleting questions
-- [ ] Create `hooks/useSubmissions.ts` — `useQuery` for fetching submissions
-- [ ] Refactor assessment admin page to use React Query hooks
-- [ ] Remove manual `useEffect` + `useState` fetch patterns
+- [x] Install `@tanstack/react-query`
+- [x] Create `providers/QueryProvider.tsx` — wrap app with `QueryClientProvider`
+- [x] Create `hooks/useQuestions.ts` — `useQuery` for fetching questions
+- [x] Create `hooks/useCreateQuestion.ts` — `useMutation` for creating questions
+- [x] Create `hooks/useUpdateQuestion.ts` — `useMutation` for updating questions
+- [x] Create `hooks/useDeleteQuestion.ts` — `useMutation` for deleting questions
+- [x] Create `hooks/useSubmissions.ts` — `useQuery` for fetching submissions
+- [x] Refactor assessment admin page to use React Query hooks
+- [x] Remove manual `useEffect` + `useState` fetch patterns
 
 ### Frontend — Replace Redux with Lighter Solution
 
-- [ ] Evaluate options: Zustand vs React Context for auth-only state
-- [ ] If Zustand: install `zustand`, create `store/auth.ts`
-- [ ] If Context: create `contexts/AuthContext.tsx` with provider
-- [ ] Migrate `StoreProvider.tsx` auth initialization logic to new solution
-- [ ] Remove `@reduxjs/toolkit` and `react-redux` dependencies
-- [ ] Remove `lib/store/` directory
-- [ ] Update `layout.tsx` to use new provider
+- [x] Evaluate options: Zustand vs React Context for auth-only state
+- [x] If Zustand: install `zustand`, create `store/auth.ts`
+- [x] If Context: create `contexts/AuthContext.tsx` with provider
+- [x] Migrate `StoreProvider.tsx` auth initialization logic to new solution
+- [x] Remove `@reduxjs/toolkit` and `react-redux` dependencies
+- [x] Remove `lib/store/` directory
+- [x] Update `layout.tsx` to use new provider
 
 ### Frontend — API Client with Interceptors
 
-- [ ] Create `lib/api/client.ts` — centralized fetch wrapper class
-- [ ] Add auto `credentials: "include"` for all requests
-- [ ] Add auto 401 → refresh token → retry logic
-- [ ] Add response normalization (extract `.data` from `{ success, data }`)
-- [ ] Refactor `lib/api/assessment.ts` to use the new API client
-- [ ] Create API modules for other entities as needed
+- [x] Create `lib/api/client.ts` — centralized fetch wrapper class
+- [x] Add auto `credentials: "include"` for all requests
+- [x] Add auto 401 → refresh token → retry logic
+- [x] Add response normalization (extract `.data` from `{ success, data }`)
+- [x] Refactor `lib/api/assessment.ts` to use the new API client
+- [x] Create API modules for other entities as needed
 
 ### Frontend — Error Boundaries
 
-- [ ] Create `components/ErrorBoundary.tsx` — generic error boundary
-- [ ] Create `app/error.tsx` — Next.js root error page
-- [ ] Create `app/admin/error.tsx` — admin-specific error page
-- [ ] Create `app/not-found.tsx` — custom 404 page
-- [ ] Wrap critical sections with error boundaries
+- [x] Create `components/ErrorBoundary.tsx` — generic error boundary
+- [x] Create `app/error.tsx` — Next.js root error page
+- [x] Create `app/admin/error.tsx` — admin-specific error page
+- [x] Create `app/not-found.tsx` — custom 404 page
+- [x] Wrap critical sections with error boundaries
 
 ### Backend — Structured Logging
 
-- [ ] Install `pino` + `pino-pretty` (dev)
-- [ ] Create `utils/logger.ts` — configured pino logger
-- [ ] Replace all `console.log` calls with `logger.info`
-- [ ] Replace all `console.error` calls with `logger.error`
-- [ ] Add request logging middleware (log method, URL, status, duration)
+- [x] Install `pino` + `pino-pretty` (dev)
+- [x] Create `utils/logger.ts` — configured pino logger
+- [x] Replace all `console.log` calls with `logger.info`
+- [x] Replace all `console.error` calls with `logger.error`
+- [x] Add request logging middleware (log method, URL, status, duration)
 
 ---
 

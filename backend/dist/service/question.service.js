@@ -11,44 +11,49 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.QuestionService = void 0;
-const question_repository_1 = require("../repositories/question.repository");
-const option_repository_1 = require("../repositories/option.repository");
-const questionRepository = new question_repository_1.QuestionRepository();
-const optionRepository = new option_repository_1.OptionRepository();
+const question_dto_1 = require("../dtos/question.dto");
 class QuestionService {
+    constructor(questionRepository, optionRepository) {
+        this.questionRepository = questionRepository;
+        this.optionRepository = optionRepository;
+    }
     createQuestionWithOptions(body) {
         return __awaiter(this, void 0, void 0, function* () {
             const { questionNo, category, questionText, options } = body;
-            const question = yield questionRepository.createQuestion({
+            const question = yield this.questionRepository.createQuestion({
                 questionNo,
                 category,
                 questionText,
             });
             if (options === null || options === void 0 ? void 0 : options.length) {
-                yield optionRepository.createManyOptions(question.id, options);
+                yield this.optionRepository.createManyOptions(question.id, options);
             }
-            return yield questionRepository.getQuestionById(question.id);
+            const result = yield this.questionRepository.getQuestionById(question.id);
+            return question_dto_1.QuestionResponseSchema.parse(result);
         });
     }
     getQuestions() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield questionRepository.getAllQuestions();
+            const results = yield this.questionRepository.getAllQuestions();
+            return results.map(q => question_dto_1.QuestionResponseSchema.parse(q));
         });
     }
     updateQuestion(id, body) {
         return __awaiter(this, void 0, void 0, function* () {
             const { questionNo, category, questionText } = body;
-            yield questionRepository.updateQuestion(id, {
+            yield this.questionRepository.updateQuestion(id, {
                 questionNo,
                 category,
                 questionText,
             });
-            return yield questionRepository.getQuestionById(id);
+            const result = yield this.questionRepository.getQuestionById(id);
+            return question_dto_1.QuestionResponseSchema.parse(result);
         });
     }
     deleteQuestion(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield questionRepository.deleteQuestion(id);
+            const result = yield this.questionRepository.deleteQuestion(id);
+            return question_dto_1.QuestionResponseSchema.parse(result);
         });
     }
 }

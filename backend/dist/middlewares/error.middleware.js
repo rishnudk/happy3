@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.errorMiddleware = void 0;
 const errors_1 = require("../utils/errors");
+const logger_1 = require("../utils/logger");
 const errorMiddleware = (err, req, res, next) => {
     if (err instanceof errors_1.AppError) {
         res.status(err.statusCode).json({
@@ -20,7 +21,7 @@ const errorMiddleware = (err, req, res, next) => {
         return;
     }
     // Default to 500 server error
-    console.error("Unhandled Exception:", err);
+    logger_1.logger.error(err, "Unhandled Exception:");
     res.status(500).json({
         success: false,
         message: "Internal Server Error",

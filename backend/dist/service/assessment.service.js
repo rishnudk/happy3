@@ -10,35 +10,45 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssessmentService = void 0;
-const assessment_repository_1 = require("../repositories/assessment.repository");
+const assessment_dto_1 = require("../dtos/assessment.dto");
 const errors_1 = require("../utils/errors");
-const assessmentRepository = new assessment_repository_1.AssessmentRepository();
 class AssessmentService {
+    constructor(assessmentRepository) {
+        this.assessmentRepository = assessmentRepository;
+    }
     submitAssessment(body) {
         return __awaiter(this, void 0, void 0, function* () {
             const { name, emailId, phoneNumber, answers } = body;
             const totalScore = answers.reduce((sum, a) => { var _a; return sum + ((_a = a.mark) !== null && _a !== void 0 ? _a : 0); }, 0);
-            return yield assessmentRepository.createSubmission({
+            const result = yield this.assessmentRepository.createSubmission({
                 name,
                 emailId,
                 phoneNumber,
                 totalScore,
-                answers,
+                answers: {
+                    create: answers.map((a) => ({
+                        questionId: a.questionId,
+                        optionId: a.optionId,
+                        mark: a.mark,
+                    })),
+                },
             });
+            return assessment_dto_1.AssessmentResponseSchema.parse(result);
         });
     }
     getAllSubmissions() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield assessmentRepository.getAllSubmissions();
+            const results = yield this.assessmentRepository.getAllSubmissions();
+            return results.map(r => assessment_dto_1.AssessmentResponseSchema.parse(r));
         });
     }
     getSubmissionById(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const submission = yield assessmentRepository.getSubmissionById(id);
+            const submission = yield this.assessmentRepository.getSubmissionById(id);
             if (!submission) {
                 throw new errors_1.NotFoundError("Submission not found");
             }
-            return submission;
+            return assessment_dto_1.AssessmentResponseSchema.parse(submission);
         });
     }
 }

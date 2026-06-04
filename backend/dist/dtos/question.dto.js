@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateQuestionSchema = exports.CreateQuestionSchema = void 0;
+exports.QuestionResponseSchema = exports.OptionResponseSchema = exports.UpdateQuestionSchema = exports.CreateQuestionSchema = void 0;
 const zod_1 = require("zod");
 const OptionInputSchema = zod_1.z.object({
     optionText: zod_1.z.string().min(1, "Option text is required"),
@@ -16,4 +16,17 @@ exports.UpdateQuestionSchema = zod_1.z.object({
     questionNo: zod_1.z.number().int().positive().optional(),
     category: zod_1.z.string().min(1).max(100).optional(),
     questionText: zod_1.z.string().min(1).max(2000).optional(),
+});
+exports.OptionResponseSchema = zod_1.z.object({
+    id: zod_1.z.number(),
+    optionText: zod_1.z.string(),
+    mark: zod_1.z.number(),
+    questionId: zod_1.z.number(),
+});
+exports.QuestionResponseSchema = zod_1.z.object({
+    id: zod_1.z.number(),
+    questionNo: zod_1.z.number(),
+    category: zod_1.z.string(),
+    questionText: zod_1.z.string(),
+    options: zod_1.z.array(exports.OptionResponseSchema).optional(),
 });

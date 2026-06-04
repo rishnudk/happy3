@@ -1,6 +1,7 @@
 // middlewares/error.middleware.ts
 import { Request, Response, NextFunction } from "express";
 import { AppError } from "../utils/errors";
+import { logger } from "../utils/logger";
 
 export const errorMiddleware = (
   err: Error,
@@ -27,7 +28,7 @@ export const errorMiddleware = (
   }
 
   // Default to 500 server error
-  console.error("Unhandled Exception:", err);
+  logger.error(err, "Unhandled Exception:");
   res.status(500).json({
     success: false,
     message: "Internal Server Error",

@@ -8,17 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const auth_service_1 = __importDefault(require("../service/auth.service"));
+exports.AuthController = void 0;
 const cookie_config_1 = require("../config/cookie.config");
 const asyncHandler_1 = require("../utils/asyncHandler");
+const logger_1 = require("../utils/logger");
 class AuthController {
-    constructor() {
+    constructor(authService) {
+        this.authService = authService;
         this.register = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const result = yield auth_service_1.default.register(req.body);
+            const result = yield this.authService.register(req.body);
             res
                 .cookie("accessToken", result.accessToken, cookie_config_1.accessTokenCookieOptions)
                 .cookie("refreshToken", result.refreshToken, cookie_config_1.refreshTokenCookieOptions)
@@ -29,7 +28,7 @@ class AuthController {
             });
         }));
         this.login = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const result = yield auth_service_1.default.login(req.body);
+            const result = yield this.authService.login(req.body);
             res
                 .cookie("accessToken", result.accessToken, cookie_config_1.accessTokenCookieOptions)
                 .cookie("refreshToken", result.refreshToken, cookie_config_1.refreshTokenCookieOptions)
@@ -41,7 +40,7 @@ class AuthController {
         }));
         this.refresh = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
             const refreshToken = req.cookies.refreshToken;
-            const result = yield auth_service_1.default.refresh(refreshToken);
+            const result = yield this.authService.refresh(refreshToken);
             res
                 .cookie("accessToken", result.accessToken, cookie_config_1.accessTokenCookieOptions)
                 .cookie("refreshToken", result.refreshToken, cookie_config_1.refreshTokenCookieOptions)
@@ -55,10 +54,10 @@ class AuthController {
             const userId = req.userId;
             if (userId) {
                 try {
-                    yield auth_service_1.default.logout(parseInt(userId));
+                    yield this.authService.logout(parseInt(userId));
                 }
                 catch (err) {
-                    console.error("Logout database sync error:", err);
+                    logger_1.logger.error(err, "Logout database sync error:");
                 }
             }
             res
@@ -71,4 +70,4 @@ class AuthController {
         }));
     }
 }
-exports.default = new AuthController();
+exports.AuthController = AuthController;

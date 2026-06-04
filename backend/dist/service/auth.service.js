@@ -12,28 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthService = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const auth_repository_1 = __importDefault(require("../repositories/auth.repository"));
 const errors_1 = require("../utils/errors");
 const jwt_1 = require("../utils/jwt");
 class AuthService {
+    constructor(authRepository) {
+        this.authRepository = authRepository;
+    }
     register(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const existingUser = yield auth_repository_1.default.findByUsername(data.username);
+            const existingUser = yield this.authRepository.findByUsername(data.username);
             if (existingUser) {
                 throw new errors_1.ConflictError("Username already taken");
             }
             const hashedPassword = yield bcrypt_1.default.hash(data.password, 10);
-            const user = yield auth_repository_1.default.createUser(Object.assign(Object.assign({}, data), { password: hashedPassword }));
+            const user = yield this.authRepository.createUser(Object.assign(Object.assign({}, data), { password: hashedPassword }));
             const accessToken = (0, jwt_1.generateAccessToken)(user.id.toString());
             const refreshToken = (0, jwt_1.generateRefreshToken)(user.id.toString());
-            yield auth_repository_1.default.updateRefreshToken(user.id, refreshToken);
+            yield this.authRepository.updateRefreshToken(user.id, refreshToken);
             return { user, accessToken, refreshToken };
         });
     }
     login(data) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield auth_repository_1.default.findByUsername(data.username);
+            const user = yield this.authRepository.findByUsername(data.username);
             if (!user) {
                 throw new errors_1.UnauthorizedError("Invalid credentials");
             }
@@ -43,7 +46,7 @@ class AuthService {
             }
             const accessToken = (0, jwt_1.generateAccessToken)(user.id.toString());
             const refreshToken = (0, jwt_1.generateRefreshToken)(user.id.toString());
-            yield auth_repository_1.default.updateRefreshToken(user.id, refreshToken);
+            yield this.authRepository.updateRefreshToken(user.id, refreshToken);
             return { user, accessToken, refreshToken };
         });
     }
@@ -52,20 +55,20 @@ class AuthService {
             if (!token)
                 throw new errors_1.UnauthorizedError("No refresh token provided");
             const decoded = (0, jwt_1.verifyRefreshToken)(token);
-            const user = yield auth_repository_1.default.findById(parseInt(decoded.id));
+            const user = yield this.authRepository.findById(parseInt(decoded.id));
             if (!user || user.refreshToken !== token) {
                 throw new errors_1.UnauthorizedError("Invalid refresh token");
             }
             const newAccessToken = (0, jwt_1.generateAccessToken)(user.id.toString());
             const newRefreshToken = (0, jwt_1.generateRefreshToken)(user.id.toString());
-            yield auth_repository_1.default.updateRefreshToken(user.id, newRefreshToken);
+            yield this.authRepository.updateRefreshToken(user.id, newRefreshToken);
             return { user, accessToken: newAccessToken, refreshToken: newRefreshToken };
         });
     }
     logout(userId) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield auth_repository_1.default.updateRefreshToken(userId, null);
+            yield this.authRepository.updateRefreshToken(userId, null);
         });
     }
 }
-exports.default = new AuthService();
+exports.AuthService = AuthService;

@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const option_controller_1 = __importDefault(require("../controller/option.controller"));
+const container_1 = require("../config/container");
 const validate_middleware_1 = require("../middlewares/validate.middleware");
 const option_dto_1 = require("../dtos/option.dto");
 const optionRouter = express_1.default.Router();
-optionRouter.put("/updateOptions/:questionId", (0, validate_middleware_1.validate)(option_dto_1.UpdateOptionsSchema), option_controller_1.default.updateOptions);
-optionRouter.delete("/deleteOptions/:questionId", option_controller_1.default.deleteOptions);
+optionRouter.put("/:questionId", (0, validate_middleware_1.validate)(option_dto_1.UpdateOptionsSchema), container_1.optionController.updateOptions);
+optionRouter.delete("/:questionId", container_1.optionController.deleteOptions);
 exports.default = optionRouter;

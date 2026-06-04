@@ -5,6 +5,7 @@ import {
   refreshTokenCookieOptions,
 } from "../config/cookie.config";
 import { asyncHandler } from "../utils/asyncHandler";
+import { logger } from "../utils/logger";
 
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -55,7 +56,7 @@ export class AuthController {
       try {
         await this.authService.logout(parseInt(userId));
       } catch (err) {
-        console.error("Logout database sync error:", err);
+        logger.error(err, "Logout database sync error:");
       }
     }
 

@@ -13,6 +13,7 @@ exports.connectDB = exports.prisma = void 0;
 const pg_1 = require("pg");
 const adapter_pg_1 = require("@prisma/adapter-pg");
 const client_1 = require("@prisma/client");
+const logger_1 = require("../utils/logger");
 const pool = new pg_1.Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
@@ -25,10 +26,10 @@ exports.prisma = prisma;
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield prisma.$connect();
-        console.log("Connected to PostgreSQL with Prisma");
+        logger_1.logger.info("Connected to PostgreSQL with Prisma");
     }
     catch (error) {
-        console.error("Database connection error:", error);
+        logger_1.logger.error(error, "Database connection error:");
         process.exit(1);
     }
 });

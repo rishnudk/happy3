@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AuthRepository = void 0;
 const db_config_1 = require("../config/db.config");
 class AuthRepository {
     findByUsername(username) {
@@ -49,4 +50,4 @@ class AuthRepository {
         });
     }
 }
-exports.default = new AuthRepository();
+exports.AuthRepository = AuthRepository;

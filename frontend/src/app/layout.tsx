@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { StoreProvider } from "@/lib/store/StoreProvider";
+import { AuthProvider } from "@/providers/AuthProvider";
+import { QueryProvider } from "@/providers/QueryProvider";
 import { Toaster } from "sonner";
 import "./globals.css";
 import "../styles/background.css";
@@ -39,13 +40,17 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>
-            <StoreProvider>
-              {children}
-              <Toaster richColors position="top-right" />
-            </StoreProvider>
+            <QueryProvider>
+              <AuthProvider>
+                {children}
+                <Toaster richColors position="top-right" />
+              </AuthProvider>
+            </QueryProvider>
           </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
   );
-}
+}
+
+

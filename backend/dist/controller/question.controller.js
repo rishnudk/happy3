@@ -10,20 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const question_service_1 = require("../service/question.service");
+exports.QuestionController = void 0;
 const asyncHandler_1 = require("../utils/asyncHandler");
-const questionService = new question_service_1.QuestionService();
 class QuestionController {
-    constructor() {
+    constructor(questionService) {
+        this.questionService = questionService;
         this.createQuestion = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const result = yield questionService.createQuestionWithOptions(req.body);
+            const result = yield this.questionService.createQuestionWithOptions(req.body);
             res.status(201).json({
                 success: true,
                 data: result,
             });
         }));
         this.getQuestions = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const questions = yield questionService.getQuestions();
+            const questions = yield this.questionService.getQuestions();
             res.status(200).json({
                 success: true,
                 data: questions,
@@ -31,7 +31,7 @@ class QuestionController {
         }));
         this.updateQuestion = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
             const id = parseInt(String(req.params.id), 10);
-            const result = yield questionService.updateQuestion(id, req.body);
+            const result = yield this.questionService.updateQuestion(id, req.body);
             res.status(200).json({
                 success: true,
                 data: result,
@@ -39,7 +39,7 @@ class QuestionController {
         }));
         this.deleteQuestion = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
             const id = parseInt(String(req.params.id), 10);
-            const result = yield questionService.deleteQuestion(id);
+            const result = yield this.questionService.deleteQuestion(id);
             res.status(200).json({
                 success: true,
                 data: result,
@@ -47,4 +47,4 @@ class QuestionController {
         }));
     }
 }
-exports.default = new QuestionController();
+exports.QuestionController = QuestionController;

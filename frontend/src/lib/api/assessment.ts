@@ -1,4 +1,4 @@
-import { API_BASE } from "@/lib/api";
+import { api } from "./client";
 import type {
   Question,
   CreateQuestionPayload,
@@ -9,45 +9,24 @@ import type {
 // ─── Questions ─────────────────────────────────────────────
 
 export async function fetchQuestions(): Promise<Question[]> {
-  const res = await fetch(`${API_BASE}/api/questions/`);
-  const json = await res.json();
-  if (!json.success) throw new Error("Failed to fetch questions");
-  return json.data;
+  return api.get<Question[]>("/api/questions/");
 }
 
 export async function createQuestion(
   data: CreateQuestionPayload
 ): Promise<Question> {
-  const res = await fetch(`${API_BASE}/api/questions/`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  const json = await res.json();
-  if (!json.success) throw new Error(json.message ?? "Failed to create question");
-  return json.data;
+  return api.post<Question>("/api/questions/", data);
 }
 
 export async function updateQuestion(
   id: number,
   data: UpdateQuestionPayload
 ): Promise<Question> {
-  const res = await fetch(`${API_BASE}/api/questions/${id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  const json = await res.json();
-  if (!json.success) throw new Error(json.message ?? "Failed to update question");
-  return json.data;
+  return api.put<Question>(`/api/questions/${id}`, data);
 }
 
 export async function deleteQuestion(id: number): Promise<void> {
-  const res = await fetch(`${API_BASE}/api/questions/${id}`, {
-    method: "DELETE",
-  });
-  const json = await res.json();
-  if (!json.success) throw new Error(json.message ?? "Failed to delete question");
+  return api.delete<void>(`/api/questions/${id}`);
 }
 
 // ─── Options ───────────────────────────────────────────────
@@ -56,15 +35,6 @@ export async function updateOptions(
   questionId: number,
   data: UpdateOptionsPayload
 ): Promise<Question> {
-  const res = await fetch(
-    `${API_BASE}/api/options/${questionId}`,
-    {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    }
-  );
-  const json = await res.json();
-  if (!json.success) throw new Error(json.message ?? "Failed to update options");
-  return json.data;
+  return api.put<Question>(`/api/options/${questionId}`, data);
 }
+

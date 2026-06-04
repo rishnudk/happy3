@@ -11,14 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OptionService = void 0;
-const question_repository_1 = require("../repositories/question.repository");
-const option_repository_1 = require("../repositories/option.repository");
-const questionRepository = new question_repository_1.QuestionRepository();
-const optionRepository = new option_repository_1.OptionRepository();
+const question_dto_1 = require("../dtos/question.dto");
 class OptionService {
+    constructor(questionRepository, optionRepository) {
+        this.questionRepository = questionRepository;
+        this.optionRepository = optionRepository;
+    }
     assertQuestionExists(questionId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const question = yield questionRepository.getQuestionById(questionId);
+            const question = yield this.questionRepository.getQuestionById(questionId);
             if (!question || question.isDeleted) {
                 const { NotFoundError } = require("../utils/errors");
                 throw new NotFoundError("Question not found");
@@ -29,17 +30,18 @@ class OptionService {
     updateOptionsByQuestionId(questionId, options) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.assertQuestionExists(questionId);
-            yield optionRepository.deleteOptionsByQuestionId(questionId);
+            yield this.optionRepository.deleteOptionsByQuestionId(questionId);
             if (options === null || options === void 0 ? void 0 : options.length) {
-                yield optionRepository.createManyOptions(questionId, options);
+                yield this.optionRepository.createManyOptions(questionId, options);
             }
-            return yield questionRepository.getQuestionById(questionId);
+            const result = yield this.questionRepository.getQuestionById(questionId);
+            return question_dto_1.QuestionResponseSchema.parse(result);
         });
     }
     deleteOptionsByQuestionId(questionId) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.assertQuestionExists(questionId);
-            return yield optionRepository.deleteOptionsByQuestionId(questionId);
+            return yield this.optionRepository.deleteOptionsByQuestionId(questionId);
         });
     }
 }

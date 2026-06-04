@@ -1,6 +1,7 @@
 import { Pool } from "pg"
 import { PrismaPg } from "@prisma/adapter-pg"
 import { PrismaClient } from "@prisma/client"
+import { logger } from "../utils/logger"
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -15,9 +16,9 @@ const prisma = new PrismaClient({ adapter })
 const connectDB = async () => {
   try {
     await prisma.$connect()
-    console.log("Connected to PostgreSQL with Prisma")
+    logger.info("Connected to PostgreSQL with Prisma")
   } catch (error) {
-    console.error("Database connection error:", error)
+    logger.error(error, "Database connection error:")
     process.exit(1)
   }
 }

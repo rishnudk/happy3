@@ -1,6 +1,8 @@
 import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import pinoHttp from "pino-http"
+import { logger } from "./utils/logger"
 import { apiLimiter } from "./middlewares/rateLimiter.middleware"
 import authRouter from "./routes/auth.route"
 import questionRouter from "./routes/question.route"
@@ -8,7 +10,9 @@ import optionRouter from "./routes/option.route"
 import assessmentRouter from "./routes/assessment.route"
 
 const app = express()
-console.log("CORS:", process.env.CORS_ORIGINS)
+
+app.use(pinoHttp({ logger }))
+
 const allowedOrigins = process.env.CORS_ORIGINS
   ? process.env.CORS_ORIGINS.split(",")
   : []

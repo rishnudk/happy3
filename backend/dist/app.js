@@ -6,13 +6,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
+const pino_http_1 = __importDefault(require("pino-http"));
+const logger_1 = require("./utils/logger");
 const rateLimiter_middleware_1 = require("./middlewares/rateLimiter.middleware");
 const auth_route_1 = __importDefault(require("./routes/auth.route"));
 const question_route_1 = __importDefault(require("./routes/question.route"));
 const option_route_1 = __importDefault(require("./routes/option.route"));
 const assessment_route_1 = __importDefault(require("./routes/assessment.route"));
 const app = (0, express_1.default)();
-console.log("CORS:", process.env.CORS_ORIGINS);
+app.use((0, pino_http_1.default)({ logger: logger_1.logger }));
 const allowedOrigins = process.env.CORS_ORIGINS
     ? process.env.CORS_ORIGINS.split(",")
     : [];

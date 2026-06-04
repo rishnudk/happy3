@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const assessment_controller_1 = __importDefault(require("../controller/assessment.controller"));
+const container_1 = require("../config/container");
 const validate_middleware_1 = require("../middlewares/validate.middleware");
 const assessment_dto_1 = require("../dtos/assessment.dto");
 const assessmentRouter = express_1.default.Router();
-assessmentRouter.post("/submit", (0, validate_middleware_1.validate)(assessment_dto_1.SubmitAssessmentSchema), assessment_controller_1.default.submit);
-assessmentRouter.get("/submissions", assessment_controller_1.default.getSubmissions);
-assessmentRouter.get("/submission/:id", assessment_controller_1.default.getSubmissionById);
+assessmentRouter.post("/", (0, validate_middleware_1.validate)(assessment_dto_1.SubmitAssessmentSchema), container_1.assessmentController.submit);
+assessmentRouter.get("/", container_1.assessmentController.getSubmissions);
+assessmentRouter.get("/:id", container_1.assessmentController.getSubmissionById);
 exports.default = assessmentRouter;

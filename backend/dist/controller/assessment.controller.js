@@ -9,20 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const assessment_service_1 = require("../service/assessment.service");
+exports.AssessmentController = void 0;
 const asyncHandler_1 = require("../utils/asyncHandler");
-const assessmentService = new assessment_service_1.AssessmentService();
 class AssessmentController {
-    constructor() {
+    constructor(assessmentService) {
+        this.assessmentService = assessmentService;
         this.submit = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const result = yield assessmentService.submitAssessment(req.body);
+            const result = yield this.assessmentService.submitAssessment(req.body);
             res.status(201).json({
                 success: true,
                 data: result,
             });
         }));
         this.getSubmissions = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
-            const result = yield assessmentService.getAllSubmissions();
+            const result = yield this.assessmentService.getAllSubmissions();
             res.status(200).json({
                 success: true,
                 data: result,
@@ -30,7 +30,7 @@ class AssessmentController {
         }));
         this.getSubmissionById = (0, asyncHandler_1.asyncHandler)((req, res) => __awaiter(this, void 0, void 0, function* () {
             const id = parseInt(String(req.params.id), 10);
-            const result = yield assessmentService.getSubmissionById(id);
+            const result = yield this.assessmentService.getSubmissionById(id);
             res.status(200).json({
                 success: true,
                 data: result,
@@ -38,4 +38,4 @@ class AssessmentController {
         }));
     }
 }
-exports.default = new AssessmentController();
+exports.AssessmentController = AssessmentController;
