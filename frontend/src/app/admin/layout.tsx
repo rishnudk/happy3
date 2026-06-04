@@ -1,4 +1,5 @@
 import "@/styles/admin.css"
+import { AdminThemeManager } from "./admin-theme-manager"
 
 export default function AdminLayout({
   children,
@@ -6,8 +7,11 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="admin-scope">
-      {children}
-    </div>
+    <>
+      <AdminThemeManager />
+      <div className="admin-scope min-h-screen bg-background text-foreground">
+        {children}
+      </div>
+    </>
   )
 }
