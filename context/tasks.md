@@ -60,20 +60,20 @@
 
 ### Frontend — Break Up God Components
 
-- [ ] Analyze `admin/assessment/page.tsx` (29KB) — identify distinct responsibilities
-- [ ] Extract `QuestionList.tsx` component — table/list rendering of questions
-- [ ] Extract `QuestionForm.tsx` component — create/edit question form
-- [ ] Extract `OptionEditor.tsx` component — options management UI
-- [ ] Extract `SubmissionViewer.tsx` component — view submission details
-- [ ] Create `hooks/useQuestions.ts` — encapsulate question CRUD fetch logic
-- [ ] Create `hooks/useAssessmentForm.ts` — encapsulate form state logic
-- [ ] Refactor `admin/assessment/page.tsx` to compose the extracted components (target < 100 lines)
+- [x] Analyze `admin/assessment/page.tsx` (29KB) — identify distinct responsibilities
+- [x] Extract `QuestionList.tsx` component — table/list rendering of questions
+- [x] Extract `QuestionForm.tsx` component — create/edit question form
+- [x] Extract `OptionEditor.tsx` component — options management UI
+- [x] Extract `SubmissionViewer.tsx` component — view submission details
+- [x] Create `hooks/useQuestions.ts` — encapsulate question CRUD fetch logic
+- [x] Create `hooks/useAssessmentForm.ts` — encapsulate form state logic
+- [x] Refactor `admin/assessment/page.tsx` to compose the extracted components (target < 100 lines)
 
 ### Frontend — Fix Middleware File
 
-- [ ] Rename `src/proxy.ts` to `src/middleware.ts` (correct Next.js convention)
-- [ ] Verify middleware is properly detected by Next.js after rename
-- [ ] Update `config.matcher` if needed
+- [x] Rename `src/proxy.ts` to `src/middleware.ts` (correct Next.js convention)
+- [x] Verify middleware is properly detected by Next.js after rename
+- [x] Update `config.matcher` if needed
 
 ---
 
