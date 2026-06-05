@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import {
@@ -30,110 +30,50 @@ import {
   ToggleGroupItem,
 } from "@/components/ui/toggle-group"
 
-export const description = "Website visitors vs course sign-ups"
+export const description = "Student Growth & Enrollment Trends"
 
+/* ----- Chart data (static, spec-driven) ----- */
 const chartData = [
-  { date: "2024-04-01", visitors: 320, signups: 18 },
-  { date: "2024-04-02", visitors: 280, signups: 12 },
-  { date: "2024-04-03", visitors: 410, signups: 24 },
-  { date: "2024-04-04", visitors: 390, signups: 22 },
-  { date: "2024-04-05", visitors: 520, signups: 35 },
-  { date: "2024-04-06", visitors: 340, signups: 15 },
-  { date: "2024-04-07", visitors: 290, signups: 10 },
-  { date: "2024-04-08", visitors: 450, signups: 28 },
-  { date: "2024-04-09", visitors: 380, signups: 20 },
-  { date: "2024-04-10", visitors: 500, signups: 32 },
-  { date: "2024-04-11", visitors: 470, signups: 30 },
-  { date: "2024-04-12", visitors: 360, signups: 19 },
-  { date: "2024-04-13", visitors: 410, signups: 25 },
-  { date: "2024-04-14", visitors: 330, signups: 14 },
-  { date: "2024-04-15", visitors: 440, signups: 27 },
-  { date: "2024-04-16", visitors: 510, signups: 33 },
-  { date: "2024-04-17", visitors: 490, signups: 31 },
-  { date: "2024-04-18", visitors: 420, signups: 26 },
-  { date: "2024-04-19", visitors: 380, signups: 21 },
-  { date: "2024-04-20", visitors: 310, signups: 13 },
-  { date: "2024-04-21", visitors: 270, signups: 9 },
-  { date: "2024-04-22", visitors: 460, signups: 29 },
-  { date: "2024-04-23", visitors: 530, signups: 36 },
-  { date: "2024-04-24", visitors: 480, signups: 30 },
-  { date: "2024-04-25", visitors: 420, signups: 25 },
-  { date: "2024-04-26", visitors: 350, signups: 17 },
-  { date: "2024-04-27", visitors: 390, signups: 22 },
-  { date: "2024-04-28", visitors: 440, signups: 28 },
-  { date: "2024-04-29", visitors: 510, signups: 34 },
-  { date: "2024-04-30", visitors: 490, signups: 31 },
-  { date: "2024-05-01", visitors: 380, signups: 20 },
-  { date: "2024-05-02", visitors: 420, signups: 26 },
-  { date: "2024-05-03", visitors: 460, signups: 29 },
-  { date: "2024-05-04", visitors: 540, signups: 38 },
-  { date: "2024-05-05", visitors: 580, signups: 42 },
-  { date: "2024-05-06", visitors: 520, signups: 35 },
-  { date: "2024-05-07", visitors: 450, signups: 27 },
-  { date: "2024-05-08", visitors: 390, signups: 22 },
-  { date: "2024-05-09", visitors: 430, signups: 26 },
-  { date: "2024-05-10", visitors: 500, signups: 33 },
-  { date: "2024-05-11", visitors: 470, signups: 30 },
-  { date: "2024-05-12", visitors: 410, signups: 24 },
-  { date: "2024-05-13", visitors: 380, signups: 21 },
-  { date: "2024-05-14", visitors: 550, signups: 39 },
-  { date: "2024-05-15", visitors: 520, signups: 36 },
-  { date: "2024-05-16", visitors: 480, signups: 31 },
-  { date: "2024-05-17", visitors: 560, signups: 40 },
-  { date: "2024-05-18", visitors: 440, signups: 27 },
-  { date: "2024-05-19", visitors: 370, signups: 19 },
-  { date: "2024-05-20", visitors: 340, signups: 16 },
-  { date: "2024-05-21", visitors: 310, signups: 14 },
-  { date: "2024-05-22", visitors: 360, signups: 18 },
-  { date: "2024-05-23", visitors: 450, signups: 28 },
-  { date: "2024-05-24", visitors: 490, signups: 32 },
-  { date: "2024-05-25", visitors: 430, signups: 25 },
-  { date: "2024-05-26", visitors: 380, signups: 20 },
-  { date: "2024-05-27", visitors: 530, signups: 37 },
-  { date: "2024-05-28", visitors: 460, signups: 29 },
-  { date: "2024-05-29", visitors: 400, signups: 23 },
-  { date: "2024-05-30", visitors: 510, signups: 34 },
-  { date: "2024-05-31", visitors: 470, signups: 30 },
-  { date: "2024-06-01", visitors: 420, signups: 26 },
-  { date: "2024-06-02", visitors: 560, signups: 41 },
-  { date: "2024-06-03", visitors: 390, signups: 22 },
-  { date: "2024-06-04", visitors: 530, signups: 36 },
-  { date: "2024-06-05", visitors: 350, signups: 17 },
-  { date: "2024-06-06", visitors: 480, signups: 31 },
-  { date: "2024-06-07", visitors: 510, signups: 34 },
-  { date: "2024-06-08", visitors: 440, signups: 27 },
-  { date: "2024-06-09", visitors: 570, signups: 42 },
-  { date: "2024-06-10", visitors: 400, signups: 24 },
-  { date: "2024-06-11", visitors: 360, signups: 18 },
-  { date: "2024-06-12", visitors: 590, signups: 44 },
-  { date: "2024-06-13", visitors: 340, signups: 16 },
-  { date: "2024-06-14", visitors: 520, signups: 36 },
-  { date: "2024-06-15", visitors: 460, signups: 29 },
-  { date: "2024-06-16", visitors: 500, signups: 33 },
-  { date: "2024-06-17", visitors: 580, signups: 43 },
-  { date: "2024-06-18", visitors: 370, signups: 19 },
-  { date: "2024-06-19", visitors: 490, signups: 32 },
-  { date: "2024-06-20", visitors: 540, signups: 38 },
-  { date: "2024-06-21", visitors: 410, signups: 25 },
-  { date: "2024-06-22", visitors: 470, signups: 30 },
-  { date: "2024-06-23", visitors: 600, signups: 46 },
-  { date: "2024-06-24", visitors: 380, signups: 21 },
-  { date: "2024-06-25", visitors: 420, signups: 26 },
-  { date: "2024-06-26", visitors: 550, signups: 39 },
-  { date: "2024-06-27", visitors: 570, signups: 41 },
-  { date: "2024-06-28", visitors: 430, signups: 27 },
-  { date: "2024-06-29", visitors: 390, signups: 22 },
-  { date: "2024-06-30", visitors: 560, signups: 40 },
+  { date: "2024-01-01", active: 890, enrollments: 45, completions: 12 },
+  { date: "2024-02-01", active: 920, enrollments: 52, completions: 18 },
+  { date: "2024-03-01", active: 965, enrollments: 61, completions: 22 },
+  { date: "2024-04-01", active: 1010, enrollments: 58, completions: 28 },
+  { date: "2024-05-01", active: 1068, enrollments: 72, completions: 34 },
+  { date: "2024-06-01", active: 1125, enrollments: 84, completions: 40 },
+  { date: "2024-07-01", active: 1180, enrollments: 92, completions: 45 },
+  { date: "2024-08-01", active: 1198, enrollments: 78, completions: 52 },
+  { date: "2024-09-01", active: 1210, enrollments: 65, completions: 58 },
+  { date: "2024-10-01", active: 1225, enrollments: 88, completions: 42 },
+  { date: "2024-11-01", active: 1254, enrollments: 102, completions: 38 },
+  { date: "2024-12-01", active: 1284, enrollments: 146, completions: 48 },
+  /* Extend for daily views */
+  { date: "2024-12-01", active: 1252, enrollments: 110, completions: 35 },
+  { date: "2024-12-03", active: 1255, enrollments: 112, completions: 36 },
+  { date: "2024-12-05", active: 1258, enrollments: 116, completions: 37 },
+  { date: "2024-12-08", active: 1260, enrollments: 118, completions: 38 },
+  { date: "2024-12-10", active: 1263, enrollments: 120, completions: 39 },
+  { date: "2024-12-12", active: 1265, enrollments: 124, completions: 40 },
+  { date: "2024-12-15", active: 1268, enrollments: 128, completions: 41 },
+  { date: "2024-12-18", active: 1271, enrollments: 132, completions: 42 },
+  { date: "2024-12-20", active: 1274, enrollments: 136, completions: 44 },
+  { date: "2024-12-22", active: 1277, enrollments: 138, completions: 45 },
+  { date: "2024-12-25", active: 1280, enrollments: 142, completions: 46 },
+  { date: "2024-12-28", active: 1282, enrollments: 144, completions: 47 },
+  { date: "2024-12-31", active: 1284, enrollments: 146, completions: 48 },
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Website Visitors",
-    color: "var(--primary)",
+  active: {
+    label: "Active Students",
+    color: "var(--admin-blue, var(--chart-1))",
   },
-  signups: {
-    label: "Course Sign-ups",
-    color: "var(--chart-2)",
+  enrollments: {
+    label: "New Enrollments",
+    color: "var(--admin-green, var(--chart-2))",
+  },
+  completions: {
+    label: "Program Completions",
+    color: "var(--admin-purple, var(--chart-4))",
   },
 } satisfies ChartConfig
 
@@ -143,18 +83,20 @@ export function ChartAreaInteractive() {
 
   React.useEffect(() => {
     if (isMobile) {
-      setTimeRange("7d")
+      setTimeRange("30d")
     }
   }, [isMobile])
 
   const filteredData = chartData.filter((item) => {
     const date = new Date(item.date)
-    const referenceDate = new Date("2024-06-30")
+    const referenceDate = new Date("2024-12-31")
     let daysToSubtract = 90
     if (timeRange === "30d") {
       daysToSubtract = 30
     } else if (timeRange === "7d") {
       daysToSubtract = 7
+    } else if (timeRange === "12m") {
+      daysToSubtract = 365
     }
     const startDate = new Date(referenceDate)
     startDate.setDate(startDate.getDate() - daysToSubtract)
@@ -164,12 +106,12 @@ export function ChartAreaInteractive() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Visitors & Sign-ups</CardTitle>
+        <CardTitle className="text-lg font-semibold">Student Growth & Enrollment Trends</CardTitle>
         <CardDescription>
           <span className="hidden @[540px]/card:block">
-            Website visitors vs course sign-ups over time
+            Track academy growth across enrollments and active students.
           </span>
-          <span className="@[540px]/card:hidden">Visitors & sign-ups</span>
+          <span className="@[540px]/card:hidden">Growth & enrollments</span>
         </CardDescription>
         <CardAction>
           <ToggleGroup
@@ -179,9 +121,10 @@ export function ChartAreaInteractive() {
             variant="outline"
             className="hidden *:data-[slot=toggle-group-item]:px-4! @[767px]/card:flex"
           >
-            <ToggleGroupItem value="90d">Last 3 months</ToggleGroupItem>
-            <ToggleGroupItem value="30d">Last 30 days</ToggleGroupItem>
-            <ToggleGroupItem value="7d">Last 7 days</ToggleGroupItem>
+            <ToggleGroupItem value="7d">Last 7 Days</ToggleGroupItem>
+            <ToggleGroupItem value="30d">Last 30 Days</ToggleGroupItem>
+            <ToggleGroupItem value="90d">Last 90 Days</ToggleGroupItem>
+            <ToggleGroupItem value="12m">Last 12 Months</ToggleGroupItem>
           </ToggleGroup>
           <Select value={timeRange} onValueChange={setTimeRange}>
             <SelectTrigger
@@ -189,18 +132,13 @@ export function ChartAreaInteractive() {
               size="sm"
               aria-label="Select a value"
             >
-              <SelectValue placeholder="Last 3 months" />
+              <SelectValue placeholder="Last 90 Days" />
             </SelectTrigger>
             <SelectContent className="rounded-xl">
-              <SelectItem value="90d" className="rounded-lg">
-                Last 3 months
-              </SelectItem>
-              <SelectItem value="30d" className="rounded-lg">
-                Last 30 days
-              </SelectItem>
-              <SelectItem value="7d" className="rounded-lg">
-                Last 7 days
-              </SelectItem>
+              <SelectItem value="7d" className="rounded-lg">Last 7 Days</SelectItem>
+              <SelectItem value="30d" className="rounded-lg">Last 30 Days</SelectItem>
+              <SelectItem value="90d" className="rounded-lg">Last 90 Days</SelectItem>
+              <SelectItem value="12m" className="rounded-lg">Last 12 Months</SelectItem>
             </SelectContent>
           </Select>
         </CardAction>
@@ -208,36 +146,24 @@ export function ChartAreaInteractive() {
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[250px] w-full"
+          className="aspect-auto h-[280px] w-full"
         >
           <AreaChart data={filteredData}>
             <defs>
-              <linearGradient id="fillVisitors" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-visitors)"
-                  stopOpacity={1.0}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-visitors)"
-                  stopOpacity={0.1}
-                />
+              <linearGradient id="fillActive" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="var(--color-active)" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="var(--color-active)" stopOpacity={0.02} />
               </linearGradient>
-              <linearGradient id="fillSignups" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-signups)"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-signups)"
-                  stopOpacity={0.1}
-                />
+              <linearGradient id="fillEnrollments" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="var(--color-enrollments)" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="var(--color-enrollments)" stopOpacity={0.02} />
+              </linearGradient>
+              <linearGradient id="fillCompletions" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="var(--color-completions)" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="var(--color-completions)" stopOpacity={0.02} />
               </linearGradient>
             </defs>
-            <CartesianGrid vertical={false} />
+            <CartesianGrid vertical={false} strokeDasharray="3 3" />
             <XAxis
               dataKey="date"
               tickLine={false}
@@ -260,6 +186,7 @@ export function ChartAreaInteractive() {
                     return new Date(value).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
+                      year: "numeric",
                     })
                   }}
                   indicator="dot"
@@ -267,18 +194,25 @@ export function ChartAreaInteractive() {
               }
             />
             <Area
-              dataKey="signups"
-              type="natural"
-              fill="url(#fillSignups)"
-              stroke="var(--color-signups)"
-              stackId="a"
+              dataKey="completions"
+              type="monotone"
+              fill="url(#fillCompletions)"
+              stroke="var(--color-completions)"
+              strokeWidth={2}
             />
             <Area
-              dataKey="visitors"
-              type="natural"
-              fill="url(#fillVisitors)"
-              stroke="var(--color-visitors)"
-              stackId="a"
+              dataKey="enrollments"
+              type="monotone"
+              fill="url(#fillEnrollments)"
+              stroke="var(--color-enrollments)"
+              strokeWidth={2}
+            />
+            <Area
+              dataKey="active"
+              type="monotone"
+              fill="url(#fillActive)"
+              stroke="var(--color-active)"
+              strokeWidth={2}
             />
           </AreaChart>
         </ChartContainer>

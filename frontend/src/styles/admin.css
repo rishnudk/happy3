@@ -1,8 +1,10 @@
 /* =============================================================
-   ADMIN DASHBOARD — SCOPED STYLES
-   All admin styles are scoped under .admin-scope to prevent
-   collision with the user-facing site's globals.css.
+   ADMIN DASHBOARD — DESIGN SYSTEM (Linear / Notion inspired)
+   All styles scoped under .admin-scope to prevent collision
+   with the user-facing globals.css.
    ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* ----- Typography Reset -----
    The user-side globals.css sets custom h1-h6 (Satoshi font,
@@ -16,104 +18,199 @@
 .admin-scope h4,
 .admin-scope h5,
 .admin-scope h6 {
-  font-family: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
 }
 
 .admin-scope p {
-  line-height: inherit;
+  line-height: 1.5;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 /* ----- Base Reset -----
    Override body-level background/color that leaks from globals.css.
    ---------------------------------------- */
 .admin-scope {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--background);
   color: var(--foreground);
   min-height: 100vh;
 }
 
-/* ----- Light Theme Variables (default) ----- */
+/* ----- Hide root layout decorations inside admin ----- */
+body.admin-scope .animated-gradient,
+body.admin-scope .bg-purple-glow,
+body.admin-scope .bg-yellow-glow,
+body.admin-scope .bg-grid {
+  display: none !important;
+}
+
+body.admin-scope {
+  background: var(--background) !important;
+}
+
+/* =============================================================
+   DESIGN TOKENS — LIGHT THEME (default)
+   ============================================================= */
 .admin-scope {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.714);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --radius: 0.625rem;
+  /* --- Design system palette --- */
+  --admin-bg: #fafafa;
+  --admin-surface: #ffffff;
+  --admin-surface-secondary: #f7f7f7;
+  --admin-text-primary: #111111;
+  --admin-text-secondary: #666666;
+  --admin-text-muted: #8e8e8e;
+  --admin-border: #e7e7e7;
+
+  /* Accent colors */
+  --admin-blue: #4f8cff;
+  --admin-green: #36c275;
+  --admin-orange: #f6a623;
+  --admin-purple: #a78bfa;
+  --admin-red: #ff5c5c;
+
+  /* Radius tokens */
+  --admin-radius-xs: 8px;
+  --admin-radius-sm: 12px;
+  --admin-radius-md: 16px;
+  --admin-radius-lg: 20px;
+  --admin-radius-xl: 24px;
+
+  /* --- Bridge to shadcn variables --- */
+  --background: #fafafa;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #111111;
+  --primary-foreground: #ffffff;
+  --secondary: #f7f7f7;
+  --secondary-foreground: #111111;
+  --muted: #f7f7f7;
+  --muted-foreground: #8e8e8e;
+  --accent: #f7f7f7;
+  --accent-foreground: #111111;
+  --destructive: #ff5c5c;
+  --border: #e7e7e7;
+  --input: #e7e7e7;
+  --ring: #a78bfa;
+
+  /* Chart colors */
+  --chart-1: #4f8cff;
+  --chart-2: #36c275;
+  --chart-3: #f6a623;
+  --chart-4: #a78bfa;
+  --chart-5: #ff5c5c;
+
+  /* Sidebar */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111111;
+  --sidebar-primary: #111111;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f7f7f7;
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: #e7e7e7;
+  --sidebar-ring: #a78bfa;
+
+  --radius: 0.75rem;
 }
 
-/* ----- Dark Theme Variables ----- */
+/* =============================================================
+   DESIGN TOKENS — DARK THEME
+   ============================================================= */
 .dark .admin-scope {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* --- Design system palette --- */
+  --admin-bg: #0f1115;
+  --admin-surface: #171a21;
+  --admin-surface-secondary: #1d2129;
+  --admin-text-primary: #ffffff;
+  --admin-text-secondary: #b8bcc6;
+  --admin-text-muted: #808794;
+  --admin-border: #2b313c;
+
+  /* Accent colors (dark-adjusted) */
+  --admin-blue: #5b8cff;
+  --admin-green: #42d88c;
+  --admin-orange: #ffb347;
+  --admin-purple: #b794ff;
+  --admin-red: #ff6b6b;
+
+  /* --- Bridge to shadcn variables --- */
+  --background: #0f1115;
+  --foreground: #ffffff;
+  --card: #171a21;
+  --card-foreground: #ffffff;
+  --popover: #171a21;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #111111;
+  --secondary: #1d2129;
+  --secondary-foreground: #ffffff;
+  --muted: #1d2129;
+  --muted-foreground: #808794;
+  --accent: #1d2129;
+  --accent-foreground: #ffffff;
+  --destructive: #ff6b6b;
+  --border: #2b313c;
+  --input: #2b313c;
+  --ring: #b794ff;
+
+  /* Chart colors */
+  --chart-1: #5b8cff;
+  --chart-2: #42d88c;
+  --chart-3: #ffb347;
+  --chart-4: #b794ff;
+  --chart-5: #ff6b6b;
+
+  /* Sidebar */
+  --sidebar: #171a21;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #111111;
+  --sidebar-accent: #1d2129;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #2b313c;
+  --sidebar-ring: #b794ff;
 }
 
-/* ----- Admin Scrollbar ----- */
+/* =============================================================
+   GLOBAL CARD STYLE (scoped)
+   ============================================================= */
+.admin-scope [data-slot="card"] {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-lg);
+  box-shadow: none;
+}
+
+/* =============================================================
+   HOVER STATES
+   ============================================================= */
+.admin-scope .admin-hover-row {
+  transition: all 0.2s ease;
+}
+
+.admin-scope .admin-hover-row:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.dark .admin-scope .admin-hover-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* =============================================================
+   ADMIN SCROLLBAR
+   ============================================================= */
 .admin-scope ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 .admin-scope ::-webkit-scrollbar-thumb {
-  background: oklch(0.708 0 0 / 0.4);
+  background: rgba(142, 142, 142, 0.4);
   border-radius: 999px;
 }
 
@@ -122,9 +219,209 @@
 }
 
 .dark .admin-scope ::-webkit-scrollbar-thumb {
-  background: oklch(0.439 0 0 / 0.5);
+  background: rgba(128, 135, 148, 0.5);
 }
 
+/* =============================================================
+   SIDEBAR ACTIVE ITEM OVERRIDES
+   ============================================================= */
+.admin-scope [data-slot="sidebar-menu-button"][data-active="true"] {
+  background: #111111;
+  color: #ffffff;
+  border-radius: var(--admin-radius-md);
+}
+
+.dark .admin-scope [data-slot="sidebar-menu-button"][data-active="true"] {
+  background: #ffffff;
+  color: #111111;
+}
+
+/* =============================================================
+   SEARCH COMPONENT
+   ============================================================= */
+.admin-scope .admin-search {
+  height: 44px;
+  border-radius: 14px;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  padding-inline: 16px;
+  font-size: 14px;
+  color: var(--admin-text-primary);
+  outline: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  max-width: 320px;
+}
+
+.admin-scope .admin-search::placeholder {
+  color: var(--admin-text-muted);
+}
+
+.admin-scope .admin-search:focus {
+  border-color: var(--admin-purple);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+}
+
+/* =============================================================
+   STAT CARD NUMBERS
+   ============================================================= */
+.admin-scope .stat-number {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* =============================================================
+   QUICK ACTION BUTTONS
+   ============================================================= */
+.admin-scope .admin-quick-action {
+  height: 44px;
+  padding-inline: 18px;
+  border-radius: 14px;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  color: var(--admin-text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.admin-scope .admin-quick-action:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.dark .admin-scope .admin-quick-action:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-scope .admin-quick-action-primary {
+  background: #f3e8ff;
+  color: #7c3aed;
+  border-color: #d8b4fe;
+}
+
+.admin-scope .admin-quick-action-primary:hover {
+  background: #ede4ff;
+}
+
+.dark .admin-scope .admin-quick-action-primary {
+  background: rgba(167, 139, 250, 0.15);
+  color: #b794ff;
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+/* =============================================================
+   NOTIFICATION ITEMS
+   ============================================================= */
+.admin-scope .notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--admin-radius-sm);
+  transition: all 0.2s ease;
+}
+
+.admin-scope .notification-item:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.dark .admin-scope .notification-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-scope .notification-unread-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--admin-blue);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+/* =============================================================
+   FUNNEL VISUALIZATION
+   ============================================================= */
+.admin-scope .funnel-stage {
+  transition: all 0.2s ease;
+  border-radius: var(--admin-radius-xs);
+}
+
+.admin-scope .funnel-stage:hover {
+  opacity: 0.85;
+}
+
+/* =============================================================
+   TABLE STYLES
+   ============================================================= */
+.admin-scope table {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.admin-scope [data-slot="table-row"] {
+  transition: all 0.2s ease;
+}
+
+.admin-scope [data-slot="table-row"]:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.dark .admin-scope [data-slot="table-row"]:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* =============================================================
+   STATUS BADGES
+   ============================================================= */
+.admin-scope .status-active {
+  background: rgba(54, 194, 117, 0.1);
+  color: #36c275;
+  border: 1px solid rgba(54, 194, 117, 0.2);
+}
+
+.dark .admin-scope .status-active {
+  background: rgba(66, 216, 140, 0.1);
+  color: #42d88c;
+  border-color: rgba(66, 216, 140, 0.2);
+}
+
+.admin-scope .status-scheduled {
+  background: rgba(79, 140, 255, 0.1);
+  color: #4f8cff;
+  border: 1px solid rgba(79, 140, 255, 0.2);
+}
+
+.dark .admin-scope .status-scheduled {
+  background: rgba(91, 140, 255, 0.1);
+  color: #5b8cff;
+  border-color: rgba(91, 140, 255, 0.2);
+}
+
+/* =============================================================
+   RESPONSIVE
+   ============================================================= */
+@media (max-width: 1024px) {
+  .admin-scope .stat-number {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-scope .stat-number {
+    font-size: 32px;
+  }
+}
+
+/* =============================================================
+   TAILWIND v4 — REGISTER TOKENS
+   ============================================================= */
 @theme inline {
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);

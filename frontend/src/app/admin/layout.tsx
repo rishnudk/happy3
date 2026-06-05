@@ -9,7 +9,7 @@ export default function AdminLayout({
   return (
     <>
       <AdminThemeManager />
-      <div className="admin-scope min-h-screen bg-background text-foreground">
+      <div className="admin-scope min-h-screen" style={{ background: "var(--admin-bg)" }}>
         {children}
       </div>
     </>

@@ -1,19 +1,25 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
-import { DataTable } from "@/components/data-table"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-
-import data from "./data.json"
+import {
+  QuickActions,
+  ProgramPerformance,
+  EnrollmentFunnel,
+  UpcomingSessions,
+  RecentEnrollments,
+  CoachPerformance,
+  NotificationsPanel,
+} from "@/components/admin/dashboard-widgets"
 
 export default function AdminDashboardPage() {
   return (
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
+          "--sidebar-width": "280px",
+          "--header-height": "72px",
         } as React.CSSProperties
       }
     >
@@ -21,13 +27,38 @@ export default function AdminDashboardPage() {
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <SectionCards />
-              <div className="px-4 lg:px-6">
-                <ChartAreaInteractive />
-              </div>
-              <DataTable data={data} />
+          <div className="flex flex-1 flex-col gap-6 py-6">
+            {/* --- KPI Stat Cards --- */}
+            <SectionCards />
+
+            {/* --- Quick Actions --- */}
+            <QuickActions />
+
+            {/* --- Student Growth Chart --- */}
+            <div className="px-4 lg:px-6">
+              <ChartAreaInteractive />
+            </div>
+
+            {/* --- Program Performance + Enrollment Funnel --- */}
+            <div className="grid grid-cols-1 gap-4 px-4 lg:grid-cols-2 lg:px-6">
+              <ProgramPerformance />
+              <EnrollmentFunnel />
+            </div>
+
+            {/* --- Upcoming Sessions --- */}
+            <div className="px-4 lg:px-6">
+              <UpcomingSessions />
+            </div>
+
+            {/* --- Recent Enrollments --- */}
+            <div className="px-4 lg:px-6">
+              <RecentEnrollments />
+            </div>
+
+            {/* --- Coach Performance + Notifications --- */}
+            <div className="grid grid-cols-1 gap-4 px-4 lg:grid-cols-2 lg:px-6">
+              <CoachPerformance />
+              <NotificationsPanel />
             </div>
           </div>
         </div>
