@@ -126,8 +126,8 @@ enum LeadStatus {
 model Lead {
   id Int @id @default(autoincrement())
 
+  phone String? @unique
   sessionId String @unique
-  phone String?
 
   name String?
 
@@ -147,7 +147,7 @@ model Lead {
 
   status LeadStatus @default(NEW)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+ createdAt DateTime @default(now())
+updatedAt DateTime @default(now()) @updatedAt
 }
 
