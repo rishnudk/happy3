@@ -187,6 +187,63 @@ body.admin-scope {
 }
 
 /* =============================================================
+   OUTLINE BUTTON BACKGROUNDS
+   The shadcn outline variant uses bg-background which blends
+   into the page. Give them an explicit surface background.
+   ============================================================= */
+.admin-scope [data-slot="button"][data-variant="outline"] {
+  background: var(--admin-surface) !important;
+  border-color: var(--admin-border);
+}
+
+.admin-scope [data-slot="button"][data-variant="outline"]:hover {
+  background: #f0f0f0 !important;
+}
+
+.dark .admin-scope [data-slot="button"][data-variant="outline"] {
+  background: var(--admin-surface-secondary) !important;
+  border-color: var(--admin-border);
+}
+
+.dark .admin-scope [data-slot="button"][data-variant="outline"]:hover {
+  background: #262b36 !important;
+}
+
+/* =============================================================
+   SIDEBAR BACKGROUNDS
+   Ensure the sidebar has an opaque background color, not
+   transparent, in both light and dark modes.
+   ============================================================= */
+.admin-scope [data-slot="sidebar-wrapper"] {
+  background: var(--admin-surface) !important;
+}
+
+.admin-scope [data-sidebar="sidebar"] {
+  background: var(--admin-surface) !important;
+}
+
+.admin-scope [data-slot="sidebar-inner"] {
+  background: var(--admin-surface) !important;
+}
+
+.dark .admin-scope [data-slot="sidebar-wrapper"] {
+  background: var(--admin-surface) !important;
+}
+
+.dark .admin-scope [data-sidebar="sidebar"] {
+  background: var(--admin-surface) !important;
+}
+
+.dark .admin-scope [data-slot="sidebar-inner"] {
+  background: var(--admin-surface) !important;
+}
+
+/* SidebarInset (main content area) should use page bg */
+.admin-scope [data-slot="sidebar-inset"] {
+  background: var(--admin-bg) !important;
+}
+
+/* =============================================================
    HOVER STATES
    ============================================================= */
 .admin-scope .admin-hover-row {
