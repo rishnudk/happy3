@@ -109,7 +109,7 @@ export default function CommunityMarquee() {
       className="relative flex flex-col gap-5 overflow-hidden w-full max-w-6xl mx-auto rounded-[32px] p-6 mb-20 relative z-10"
       style={{
         background: "rgba(255,255,255,0.45)",
-        backdropFilter: "blur(20px)",
+        backdropFilter: "blur(10px)",
         border: "1px solid rgba(255,255,255,0.7)",
         boxShadow: "0 15px 45px rgba(165,140,217,0.06), inset 0 1px 0 rgba(255,255,255,0.9)",
       }}

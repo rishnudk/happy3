@@ -17,7 +17,7 @@ export function GlobalBackground() {
           style={{
             background:
               "radial-gradient(closest-side, #e7dee7ff 0%, #F5D0FE 40%, transparent 70%)",
-            filter: "blur(180px)",
+            filter: "blur(10px)",
           }}
         />
         <div
@@ -25,7 +25,7 @@ export function GlobalBackground() {
           style={{
             background:
               "radial-gradient(closest-side, #DCC7E8 0%, #FCFAFF 50%, transparent 75%)",
-            filter: "blur(220px)",
+            filter: "blur(10px)",
           }}
         />
         <div
@@ -33,7 +33,7 @@ export function GlobalBackground() {
           style={{
             background:
               "radial-gradient(closest-side, #dac0daff 0%, #DCC7E8 45%, transparent 75%)",
-            filter: "blur(220px)",
+            filter: "blur(10px)",
           }}
         />
       </div>
@@ -45,7 +45,7 @@ export function GlobalBackground() {
           style={{
             background:
               "radial-gradient(closest-side, rgba(226, 191, 230, 0.3), transparent 70%)",
-            filter: "blur(140px)",
+            filter: "blur(10px)",
           }}
         />
         <div
@@ -53,7 +53,7 @@ export function GlobalBackground() {
           style={{
             background:
               "radial-gradient(closest-side, rgba(220,199,232,0.55), transparent 70%)",
-            filter: "blur(180px)",
+            filter: "blur(10px)",
           }}
         />
       </div>

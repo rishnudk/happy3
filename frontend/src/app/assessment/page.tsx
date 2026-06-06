@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { AssessmentFlow } from "@/components/assessment/AssessmentFlow";
 import { GlobalBackground } from "@/components/sections/GlobalBackground";
 import { JourneyPill } from "@/components/ui/JourneyPill";
+
+export const metadata: Metadata = {
+  title: "Happiness Assessment | Happiness Coaching Academy",
+  description:
+    "Take our free, science-backed Happiness Assessment to evaluate your current well-being, mindfulness, and resilience. Get personalized insights for your coaching journey.",
+};
 
 export default function AssessmentPage() {
   return (

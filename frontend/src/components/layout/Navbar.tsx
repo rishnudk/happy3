@@ -255,8 +255,8 @@ export default function Navbar() {
                   borderRadius: 24,
                   border: "1px solid rgba(255,255,255,0.6)",
                   backgroundColor: "rgba(255,255,255,0.85)",
-                  backdropFilter: "blur(40px)",
-                  WebkitBackdropFilter: "blur(40px)",
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
                   boxShadow: "0 16px 48px rgba(31,38,135,0.12)",
                 }}
               >

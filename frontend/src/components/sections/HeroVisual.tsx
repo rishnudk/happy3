@@ -42,7 +42,7 @@ export default function HeroVisual() {
           className="absolute w-[400px] h-[400px] sm:w-[520px] sm:h-[520px] lg:w-[600px] lg:h-[600px] rounded-full"
           style={{
             background: "radial-gradient(ellipse at center, rgba(39, 8, 81, 0.12) 0%, rgba(94, 27, 94, 0.04) 40%, transparent 70%)",
-            filter: "blur(40px)",
+            filter: "blur(10px)",
           }}
         />
       </div>

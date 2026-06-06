@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
+
+export const metadata: Metadata = {
+  title: "Happiness Coaching Academy | Science-Backed Well-being Programs",
+  description:
+    "Transform your life and career with professional happiness coaching. Explore science-backed programs, community events, and wellness assessments.",
+};
 import Hero from "@/components/sections/hero";
 import { ChallengeSection } from "@/components/sections/ChallengeSection";
 import { PillarsSection } from "@/components/sections/PillarsSection";

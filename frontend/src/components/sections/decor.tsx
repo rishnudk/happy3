@@ -87,7 +87,7 @@ export function GlowOrb({
         width: size,
         height: size,
         background: `radial-gradient(closest-side, ${color}, transparent 70%)`,
-        filter: "blur(80px)",
+        filter: "blur(10px)",
         opacity,
       }}
     />
