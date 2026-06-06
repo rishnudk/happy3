@@ -7,7 +7,7 @@ import SmileArc from "./SmileArc";
 
 export default function HeroContent() {
   return (
-    <div className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left gap-10 z-20 pr-0 lg:pr-8 w-full">
+    <div className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left gap-4 z-20 pr-0 lg:pr-8 w-full">
 
       {/* 1. FLOATING PILLED BADGE */}
       <motion.div
@@ -118,7 +118,7 @@ export default function HeroContent() {
         <span
           className="
             relative inline-block
-            text-[17px] sm:text-[20px] lg:text-[22px]
+            text-[22px] sm:text-[32px] lg:text-[24px]
             font-bold
             tracking-wide
             text-[#800080]

@@ -236,7 +236,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.96 }}
               transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute left-1/2 top-full xl:hidden"
+              className="absolute right-7 top-full xl:hidden"
               style={{
                 marginTop: 12,
                 width: "92%",
