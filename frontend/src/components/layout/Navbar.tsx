@@ -20,10 +20,17 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+
+    // Initial check
+    handleResize();
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -49,6 +56,7 @@ export default function Navbar() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
       observer.disconnect();
     };
   }, []);
@@ -63,13 +71,15 @@ export default function Navbar() {
   const closeMenu = () => setMenuOpen(false);
 
   /* ─── Logo size (single source of truth) ─────────────────────────────── */
-  const logoSize = scrolled ? 42 : 64;
+  const logoSize = isMobile
+    ? (scrolled ? 32 : 40)
+    : (scrolled ? 42 : 64);
 
   return (
     <>
       <header
         className="fixed left-0 right-0 top-0 z-50"
-        style={{ paddingTop: scrolled ? 8 : 20 }}
+        style={{ paddingTop: isMobile ? (scrolled ? 4 : 10) : (scrolled ? 8 : 20) }}
       >
         <motion.nav
           initial={false}
@@ -86,10 +96,10 @@ export default function Navbar() {
               ? "4px 4px 20px rgba(165,140,217,0.1), -4px -4px 20px rgba(255,255,255,0.95), 0 8px 32px rgba(128,0,128,0.06)"
               : "none",
             /* Request 4: shrink on scroll via padding */
-            paddingTop: scrolled ? 10 : 18,
-            paddingBottom: scrolled ? 10 : 18,
-            paddingLeft: scrolled ? 28 : 40,
-            paddingRight: scrolled ? 28 : 40,
+            paddingTop: isMobile ? (scrolled ? 6 : 10) : (scrolled ? 10 : 18),
+            paddingBottom: isMobile ? (scrolled ? 6 : 10) : (scrolled ? 10 : 18),
+            paddingLeft: isMobile ? 12 : (scrolled ? 28 : 40),
+            paddingRight: isMobile ? 12 : (scrolled ? 28 : 40),
           }}
           transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           style={{
@@ -109,7 +119,7 @@ export default function Navbar() {
           <Link
             href="/"
             className="flex items-center hover:opacity-90 transition-opacity shrink-0"
-            style={{ gap: 12 }}
+            style={{ gap: isMobile ? 6 : 8 }}
             aria-label="Happiness Coaching Academy - Home"
           >
             {/* Request 1: Logo respects the size prop with explicit
@@ -129,10 +139,10 @@ export default function Navbar() {
               />
             </motion.div>
             <div className="flex flex-col text-left leading-none font-satoshi font-bold">
-              <span className="text-primary uppercase tracking-wider" style={{ fontSize: 14 }}>
+              <span className="text-primary uppercase tracking-wider" style={{ fontSize: isMobile ? 12 : 14 }}>
                 Happiness
               </span>
-              <span className="text-mustard uppercase tracking-widest" style={{ fontSize: 11, marginTop: 2 }}>
+              <span className="text-mustard uppercase tracking-widest" style={{ fontSize: isMobile ? 9 : 11, marginTop: 2 }}>
                 Coaching Academy
               </span>
             </div>
@@ -193,7 +203,7 @@ export default function Navbar() {
           </div>
 
           {/* MOBILE – CTA + HAMBURGER */}
-          <div className="flex items-center xl:hidden" style={{ gap: 8 }}>
+          <div className="flex items-center xl:hidden" style={{ gap: 6 }}>
             <NeuButton variant="mustard" href="/assessment" size="sm" onClick={closeMenu}>
               <span className="hidden sm:inline">Start Your Transformation</span>
               <span className="inline sm:hidden">Start Now</span>
@@ -227,81 +237,82 @@ export default function Navbar() {
         {/* MOBILE DROPDOWN MENU */}
         <AnimatePresence>
           {menuOpen && (
-            <motion.div
-              id="mobile-menu"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Navigation menu"
-              initial={{ opacity: 0, y: -12, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -8, scale: 0.96 }}
-              transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute right-7 top-full xl:hidden"
-              style={{
-                marginTop: 12,
-                width: "92%",
-                maxWidth: 420,
-                transform: "translateX(-50%)",
-                borderRadius: 24,
-                border: "1px solid rgba(255,255,255,0.6)",
-                backgroundColor: "rgba(255,255,255,0.85)",
-                backdropFilter: "blur(40px)",
-                WebkitBackdropFilter: "blur(40px)",
-                boxShadow: "0 16px 48px rgba(31,38,135,0.12)",
-              }}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 top-full w-[calc(100%-24px)] max-w-[420px] xl:hidden"
+              style={{ marginTop: 12, zIndex: 50 }}
             >
-              <nav style={{ padding: 20, display: "flex", flexDirection: "column", gap: 4 }}>
-                {navLinks.map((link, index) => {
-                  const isActive = activeSection === link.href.replace("#", "");
-                  return (
-                    <motion.div
-                      key={link.label}
-                      initial={{ opacity: 0, x: -12 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.04, duration: 0.25 }}
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={closeMenu}
-                        className="block transition-all duration-200 font-semibold"
-                        style={{
-                          padding: "12px 16px",
-                          fontSize: 15,
-                          borderRadius: 16,
-                          color: isActive ? "#800080" : "#1f2937",
-                          backgroundColor: isActive ? "rgba(128,0,128,0.08)" : "transparent",
-                          fontWeight: isActive ? 800 : 600,
-                        }}
+              <motion.div
+                id="mobile-menu"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Navigation menu"
+                initial={{ opacity: 0, y: -12, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.96 }}
+                transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                style={{
+                  width: "100%",
+                  borderRadius: 24,
+                  border: "1px solid rgba(255,255,255,0.6)",
+                  backgroundColor: "rgba(255,255,255,0.85)",
+                  backdropFilter: "blur(40px)",
+                  WebkitBackdropFilter: "blur(40px)",
+                  boxShadow: "0 16px 48px rgba(31,38,135,0.12)",
+                }}
+              >
+                <nav style={{ padding: 20, display: "flex", flexDirection: "column", gap: 4 }}>
+                  {navLinks.map((link, index) => {
+                    const isActive = activeSection === link.href.replace("#", "");
+                    return (
+                      <motion.div
+                        key={link.label}
+                        initial={{ opacity: 0, x: -12 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.04, duration: 0.25 }}
                       >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
+                        <Link
+                          href={link.href}
+                          onClick={closeMenu}
+                          className="block transition-all duration-200 font-semibold"
+                          style={{
+                            padding: "12px 16px",
+                            fontSize: 15,
+                            borderRadius: 16,
+                            color: isActive ? "#800080" : "#1f2937",
+                            backgroundColor: isActive ? "rgba(128,0,128,0.08)" : "transparent",
+                            fontWeight: isActive ? 800 : 600,
+                          }}
+                        >
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
 
-                <div
-                  style={{
-                    marginTop: 16,
-                    paddingTop: 16,
-                    borderTop: "1px solid #f3f4f6",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 12,
-                  }}
-                >
-                  <NeuButton variant="primary" href="/programs" onClick={closeMenu} size="md"
-                    style={{ width: "100%", justifyContent: "center" }}
+                  <div
+                    style={{
+                      marginTop: 16,
+                      paddingTop: 16,
+                      borderTop: "1px solid #f3f4f6",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 12,
+                    }}
                   >
-                    Explore Programs
-                  </NeuButton>
-                  <NeuButton variant="mustard" href="/assessment" onClick={closeMenu} size="md"
-                    style={{ width: "100%", justifyContent: "center" }}
-                  >
-                    Start Your Transformation
-                  </NeuButton>
-                </div>
-              </nav>
-            </motion.div>
+                    <NeuButton variant="primary" href="/programs" onClick={closeMenu} size="md"
+                      style={{ width: "100%", justifyContent: "center" }}
+                    >
+                      Explore Programs
+                    </NeuButton>
+                    <NeuButton variant="mustard" href="/assessment" onClick={closeMenu} size="md"
+                      style={{ width: "100%", justifyContent: "center" }}
+                    >
+                      Start Your Transformation
+                    </NeuButton>
+                  </div>
+                </nav>
+              </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </header>

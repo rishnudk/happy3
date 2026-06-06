@@ -116,7 +116,7 @@ export default function StatsSection() {
           bg-[#FAF8FD]
           shadow-[20px_20px_50px_rgba(165,140,217,0.18),-20px_-20px_50px_rgba(255,255,255,0.95)]
           py-10 px-6 sm:px-12
-          grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4
+          grid grid-cols-3 md:grid-cols-3 gap-8 md:gap-4
           items-center
           relative
           overflow-hidden
@@ -131,7 +131,7 @@ export default function StatsSection() {
             <motion.div
               key={stat.label}
               variants={cardVariants}
-              className="flex items-center gap-6 justify-center md:justify-start relative z-10 px-4 md:px-6"
+              className="flex items-center gap-6 justify-center relative z-10 px-4 md:px-6"
             >
               {/* Circular Neumorphic Inset Icon Slot */}
               <div
@@ -150,10 +150,10 @@ export default function StatsSection() {
 
               {/* Stat Typography */}
               <div className="text-left">
-                <h4 className="text-3xl sm:text-4xl font-extrabold text-slate-deep tracking-tight leading-none">
+                <h4 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-deep tracking-tight leading-none">
                   <Counter value={stat.value} />
                 </h4>
-                <p className="text-[13px] sm:text-[14px] text-muted-foreground font-semibold mt-1 tracking-wide">
+                <p className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] text-muted-foreground font-semibold mt-1 tracking-wide">
                   {stat.label}
                 </p>
               </div>

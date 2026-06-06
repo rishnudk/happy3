@@ -158,11 +158,7 @@ export function ChallengeSection() {
   return (
     <PageWrapper id="features" className="relative py-20 overflow-visible">
 
-      {/* ── Ambient glow orbs ── */}
-      <div className="pointer-events-none absolute -top-32 right-[-8%] w-[480px] h-[480px] rounded-full blur-[130px] opacity-20"
-           style={{ background: "rgba(128,0,128,0.18)" }} />
-      <div className="pointer-events-none absolute bottom-0 left-[-6%] w-[360px] h-[360px] rounded-full blur-[110px] opacity-[0.15]"
-           style={{ background: "rgba(255,206,27,0.16)" }} />
+
 
       {/* ── 2-Column layout: text left | cards right ── */}
       <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">

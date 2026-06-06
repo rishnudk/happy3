@@ -37,15 +37,7 @@ export function CoreValuesSection() {
   return (
     <PageWrapper id="core-values" className="relative py-20 overflow-visible">
 
-      {/* ── Ambient glow orbs for visual interest ── */}
-      <div
-        className="pointer-events-none absolute -top-12 left-[-6%] w-[440px] h-[440px] rounded-full blur-[120px] opacity-[0.14]"
-        style={{ background: "rgba(128,0,128,0.12)" }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-[-8%] right-[-10%] w-[480px] h-[480px] rounded-full blur-[140px] opacity-[0.16]"
-        style={{ background: "rgba(255,206,27,0.14)" }}
-      />
+
 
       {/* ── 2-Column layout: text left | cards right ── */}
       <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">

@@ -53,7 +53,7 @@ interface NeuButtonProps {
 }
 
 const SIZE_STYLES: Record<"sm" | "md" | "lg", React.CSSProperties> = {
-  sm: { padding: "10px 22px", fontSize: 13 },
+  sm: { padding: "8px 16px", fontSize: 12 },
   md: { padding: "14px 32px", fontSize: 14 },
   lg: { padding: "16px 38px", fontSize: 15 },
 };

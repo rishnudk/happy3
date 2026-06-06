@@ -30,15 +30,7 @@ const TRUST_METRICS = [
 export function CtaSection() {
   return (
     <PageWrapper id="cta" className="relative py-20 overflow-visible">
-      {/* ── Ambient background blur glows ── */}
-      <div
-        className="pointer-events-none absolute -top-12 left-[-5%] w-[450px] h-[450px] rounded-full blur-[130px] opacity-[0.15]"
-        style={{ background: "rgba(128,0,128,0.14)" }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-[-8%] right-[-5%] w-[420px] h-[420px] rounded-full blur-[120px] opacity-[0.12]"
-        style={{ background: "rgba(255,206,27,0.13)" }}
-      />
+
 
       {/* ── 2-Column layout: left text and actions | right bento details ── */}
       <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">

@@ -20,7 +20,9 @@ export default function Hero() {
       </div>
 
       {/* Floating Success Stats Section Bar */}
-      <StatsSection />
+      <div className="w-full flex justify-center relative z-20">
+        <StatsSection />
+      </div>
     </PageWrapper>
   );
 }

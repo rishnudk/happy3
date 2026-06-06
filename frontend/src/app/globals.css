@@ -12,13 +12,16 @@
   --color-slate-deep: #2A254B;
   --color-patriarch: #800080;
   --color-mustard: #FFCE1B;
-  
+
   --animate-rainbow: rainbow 4s linear infinite;
 
   @keyframes rainbow {
-    0%, 100% {
+
+    0%,
+    100% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
@@ -241,11 +244,9 @@ p {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(
-      circle at top,
-      rgba(255,255,255,0.4),
-      transparent 70%
-    );
+    radial-gradient(circle at top,
+      rgba(255, 255, 255, 0.4),
+      transparent 70%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -259,9 +260,12 @@ p {
  ========================================= */
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-8px) rotate(2deg);
   }
@@ -272,10 +276,13 @@ p {
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.8;
   }
+
   50% {
     transform: scale(1.05);
     opacity: 1;
@@ -290,6 +297,7 @@ p {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -306,7 +314,7 @@ p {
 .neumorphic-raised {
   background: #ffffff;
   border: 1px solid rgba(128, 0, 128, 0.06);
-  box-shadow: 
+  box-shadow:
     6px 6px 18px rgba(165, 140, 217, 0.14),
     -6px -6px 18px rgba(255, 255, 255, 0.95),
     0 4px 12px rgba(42, 37, 75, 0.03);
@@ -316,7 +324,7 @@ p {
 
 .neumorphic-raised:hover {
   transform: translateY(-4px);
-  box-shadow: 
+  box-shadow:
     12px 12px 28px rgba(165, 140, 217, 0.22),
     -12px -12px 28px rgba(255, 255, 255, 1),
     0 8px 24px rgba(42, 37, 75, 0.06);
@@ -325,7 +333,7 @@ p {
 .neumorphic-inset {
   background: rgba(246, 243, 250, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 
+  box-shadow:
     inset 4px 4px 10px rgba(165, 140, 217, 0.08),
     inset -4px -4px 10px rgba(255, 255, 255, 0.95);
   border-radius: var(--radius-md);
@@ -334,7 +342,7 @@ p {
 .neumorphic-inset-deep {
   background: rgba(243, 238, 250, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 
+  box-shadow:
     inset 6px 6px 14px rgba(165, 140, 217, 0.12),
     inset -6px -6px 14px rgba(255, 255, 255, 0.95);
   border-radius: var(--radius-lg);
@@ -343,7 +351,7 @@ p {
 .neumorphic-icon-container {
   background: #ffffff;
   border: 1px solid rgba(128, 0, 128, 0.04);
-  box-shadow: 
+  box-shadow:
     3px 3px 8px rgba(165, 140, 217, 0.08),
     -3px -3px 8px rgba(255, 255, 255, 0.95);
   border-radius: var(--radius-md);
@@ -352,7 +360,7 @@ p {
 .neumorphic-icon-container-inset {
   background: rgba(243, 238, 250, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 
+  box-shadow:
     inset 3px 3px 6px rgba(165, 140, 217, 0.06),
     inset -3px -3px 6px rgba(255, 255, 255, 0.9);
   border-radius: 999px;

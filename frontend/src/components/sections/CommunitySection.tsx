@@ -152,15 +152,7 @@ export function CommunitySection() {
         }
       `}</style>
 
-      {/* ── Ambient glow orbs ── */}
-      <div
-        className="pointer-events-none absolute -top-16 left-[-10%] w-[460px] h-[460px] rounded-full blur-[130px] opacity-[0.14]"
-        style={{ background: "rgba(128,0,128,0.13)" }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-[-10%] right-[-10%] w-[420px] h-[420px] rounded-full blur-[120px] opacity-[0.12]"
-        style={{ background: "rgba(255,206,27,0.14)" }}
-      />
+
 
       {/* ── 2-Column layout: text left | marquee right ── */}
       <div className="grid items-start gap-16 lg:grid-cols-12 relative z-10">

@@ -27,6 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jakarta.variable}`} suppressHydrationWarning>
       <body className="background-wrapper font-jakarta antialiased">
+        <div className="animated-gradient" />
+
+        <div className="bg-purple-glow" />
+        <div className="bg-yellow-glow" />
+        <div className="bg-grid" />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

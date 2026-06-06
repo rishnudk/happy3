@@ -21,11 +21,9 @@ export default function CTAButtons() {
         style={{ transformStyle: "preserve-3d" }}
       >
         <Link href="/assessment" className={primaryButtonClass}>
-          <span className="absolute top-1 left-[10%] h-[12px] w-[80%] rounded-full bg-white/20 blur-md pointer-events-none" />
-          <span className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.22),transparent_55%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <span className="absolute bottom-[-14px] left-1/2 -translate-x-1/2 w-[70%] h-[20px] rounded-full bg-purple-500/30 blur-2xl pointer-events-none" />
           <span className="relative z-10">Start Your Transformation</span>
-          <span className="relative z-10 flex items-center justify-center w-11 h-11 rounded-full bg-[linear-gradient(145deg,#ffffff,#f2ebff)] text-primary border border-white/70 transition-all duration-300 shadow-[-4px_-4px_12px_rgba(255,255,255,0.9),6px_6px_16px_rgba(75,0,110,0.16),inset_1px_1px_2px_rgba(255,255,255,1)] group-hover:rotate-45">
+          <span className="relative z-10 flex items-center justify-center w-11 h-11 rounded-full bg-[#FAF8FD] text-primary border border-purple-100/20 transition-all duration-300 shadow-[3px_3px_8px_rgba(75,0,110,0.12)] group-hover:rotate-45">
             <ArrowUpRight className="w-5 h-5" strokeWidth={2.5} />
           </span>
         </Link>

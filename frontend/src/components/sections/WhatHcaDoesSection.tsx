@@ -31,15 +31,7 @@ export function WhatHcaDoesSection() {
   return (
     <PageWrapper id="what-hca-does" className="relative py-20 overflow-visible">
 
-      {/* ── Ambient glow orbs for visual interest ── */}
-      <div
-        className="pointer-events-none absolute -top-20 right-[-10%] w-[450px] h-[450px] rounded-full blur-[130px] opacity-[0.14]"
-        style={{ background: "rgba(128,0,128,0.15)" }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-[-12%] left-[-8%] w-[400px] h-[400px] rounded-full blur-[120px] opacity-[0.12]"
-        style={{ background: "rgba(255,206,27,0.14)" }}
-      />
+
 
       {/* ── 2-Column layout: text left | cards right ── */}
       <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">

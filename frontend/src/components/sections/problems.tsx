@@ -71,8 +71,7 @@ export default function Problems() {
   return (
     <PageWrapper className="relative py-20 bg-[#FAF9FC]">
       
-      {/* Subtle Background Glows */}
-      <div className="absolute blur-ball blur-ball-purple h-80 w-80 right-[-10%] top-[20%] opacity-20 pointer-events-none" />
+
 
       <div className="grid items-center gap-12 lg:grid-cols-12">
         

@@ -37,15 +37,7 @@ export function ProgramsSection() {
   return (
     <PageWrapper id="programs" className="relative py-20 overflow-visible">
 
-      {/* ── Ambient glow orbs for visual interest ── */}
-      <div
-        className="pointer-events-none absolute -top-16 right-[-8%] w-[450px] h-[450px] rounded-full blur-[130px] opacity-[0.14]"
-        style={{ background: "rgba(128,0,128,0.13)" }}
-      />
-      <div
-        className="pointer-events-none absolute bottom-[-10%] left-[-10%] w-[420px] h-[420px] rounded-full blur-[120px] opacity-[0.12]"
-        style={{ background: "rgba(255,206,27,0.15)" }}
-      />
+
 
       {/* ── 2-Column layout: text left | cards right ── */}
       <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">
