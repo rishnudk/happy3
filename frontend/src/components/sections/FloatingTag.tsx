@@ -78,7 +78,7 @@ export default function FloatingTag({
           flex items-center justify-center
 
           min-h-[32px]
-          sm:min-h-[38px]
+          sm:min-h-[68px]
           lg:min-h-[42px]
           py-1.5
           sm:py-2
@@ -96,7 +96,7 @@ export default function FloatingTag({
           backdrop-blur-[16px]
 
           text-[9px]
-          sm:text-[11px]
+          sm:text-[16px]
           lg:text-[12px]
           leading-tight
 

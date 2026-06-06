@@ -29,7 +29,7 @@ export default function HeroVisual() {
           ═══════════════════════════════════════════════ */}
       <div className="absolute inset-0 -z-20 flex justify-center items-center pointer-events-none overflow-visible">
         <div
-          className="absolute w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] rounded-full opacity-30 filter blur-[80px]"
+          className="absolute w-[245px] h-[245px] sm:w-[350px] sm:h-[350px] rounded-full opacity-30 filter blur-[80px]"
           style={{
             background: "radial-gradient(circle, rgba(0, 0, 0, 0.12) 0%, rgba(255,206,27,0.06) 50%, transparent 100%)"
           }}
@@ -39,7 +39,7 @@ export default function HeroVisual() {
         <motion.div
           animate={{ scale: [1, 1.06, 1], opacity: [0.18, 0.25, 0.18] }}
           transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
-          className="absolute w-[400px] h-[400px] sm:w-[520px] sm:h-[520px] lg:w-[600px] lg:h-[600px] rounded-full"
+          className="absolute w-[350px] h-[350px] sm:w-[520px] sm:h-[520px] lg:w-[600px] lg:h-[600px] rounded-full"
           style={{
             background: "radial-gradient(ellipse at center, rgba(39, 8, 81, 0.12) 0%, rgba(94, 27, 94, 0.04) 40%, transparent 70%)",
             filter: "blur(10px)",
@@ -54,7 +54,7 @@ export default function HeroVisual() {
         {/* ARC 1: Outermost Atmosphere Ring — ultra-subtle, large */}
         <SmileArc
           variant="atmosphere"
-          size="w-[270px] h-[270px] sm:w-[370px] sm:h-[370px] lg:w-[440px] lg:h-[440px]"
+          size="w-[235px] h-[235px] sm:w-[370px] sm:h-[370px] lg:w-[440px] lg:h-[440px]"
           className="opacity-40"
           delay={0.2}
           direction={1}
@@ -68,7 +68,7 @@ export default function HeroVisual() {
         {/* ARC 2: Outer Emotional Ring — thick partial border, slow reverse rotation */}
         <SmileArc
           variant="emotional-ring"
-          size="w-[245px] h-[245px] sm:w-[335px] sm:h-[335px] lg:w-[395px] lg:h-[395px]"
+          size="w-[215px] h-[215px] sm:w-[335px] sm:h-[335px] lg:w-[395px] lg:h-[395px]"
           className="opacity-50"
           delay={0.3}
           direction={-1}
@@ -85,7 +85,7 @@ export default function HeroVisual() {
         {/* ARC 3: Middle Conic Glow Ring — conic gradient, forward rotation */}
         <SmileArc
           variant="conic-glow"
-          size="w-[215px] h-[215px] sm:w-[300px] sm:h-[300px] lg:w-[350px] lg:h-[350px]"
+          size="w-[185px] h-[185px] sm:w-[300px] sm:h-[300px] lg:w-[350px] lg:h-[350px]"
           className="opacity-60"
           delay={0.4}
           direction={1}
@@ -107,7 +107,7 @@ export default function HeroVisual() {
         {/* ARC 4: Inner Blur Halo — soft radial glow, breathing */}
         <SmileArc
           variant="blur-halo"
-          size="w-[200px] h-[200px] sm:w-[270px] sm:h-[270px] lg:w-[325px] lg:h-[325px]"
+          size="w-[175px] h-[175px] sm:w-[270px] sm:h-[270px] lg:w-[325px] lg:h-[325px]"
           className="opacity-70"
           delay={0.5}
           gradientStyle={{
@@ -125,7 +125,7 @@ export default function HeroVisual() {
         {/* ARC 5: Smile-Inspired Lower Arc — bottom crescent, gentle sway */}
         <SmileArc
           variant="smile-lower"
-          size="w-[225px] h-[225px] sm:w-[315px] sm:h-[315px] lg:w-[370px] lg:h-[370px]"
+          size="w-[195px] h-[195px] sm:w-[315px] sm:h-[315px] lg:w-[370px] lg:h-[370px]"
           className="opacity-45"
           delay={0.6}
           direction={1}
@@ -141,7 +141,7 @@ export default function HeroVisual() {
         {/* ARC 6: Inner Emotional Ring — tighter, reverse, thinner */}
         <SmileArc
           variant="emotional-ring"
-          size="w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px]"
+          size="w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px]"
           className="opacity-35"
           delay={0.7}
           direction={1}
@@ -159,7 +159,7 @@ export default function HeroVisual() {
         <div
           className="
             absolute
-            w-[290px] h-[290px]
+            w-[220px] h-[220px]
             sm:w-[390px] sm:h-[390px]
             lg:w-[480px] lg:h-[480px]
             rounded-full
@@ -191,7 +191,7 @@ export default function HeroVisual() {
         }}
         className="
           relative
-          w-[215px] h-[215px]
+          w-[180px] h-[180px]
           sm:w-[273px] sm:h-[273px]
           lg:w-[332px] lg:h-[332px]
           rounded-full
@@ -284,7 +284,7 @@ export default function HeroVisual() {
           alt="Shabna Sulthan - Founder, Happiness Coaching Academy"
           fill
           priority
-          sizes="(max-width: 640px) 215px, (max-width: 1024px) 273px, 332px"
+          sizes="(max-width: 640px) 180px, (max-width: 1024px) 290px, 350px"
           className="
             z-30
             object-contain
@@ -305,7 +305,7 @@ export default function HeroVisual() {
       <div className="absolute inset-0 z-[80] flex justify-center items-center pointer-events-none overflow-visible">
         <SmileArc
           variant="hero-smile"
-          className="absolute w-[290px] sm:w-[350px] lg:w-[410px] translate-y-[150px] sm:translate-y-[180px] lg:translate-y-[225px]"
+          className="absolute w-[250px] sm:w-[380px] lg:w-[450px] translate-y-[125px] sm:translate-y-[180px] lg:translate-y-[225px]"
           delay={0.4}
         />
       </div>
@@ -314,7 +314,7 @@ export default function HeroVisual() {
           z-[90] → FLOATING TAGS LAYER (Respecting the Orbit)
           ═══════════════════════════════════════════════ */}
       <div className="absolute inset-0 z-[90] pointer-events-none flex justify-center items-center overflow-visible">
-        <div className="relative w-[320px] h-[320px] sm:w-[440px] sm:h-[440px] lg:w-[540px] lg:h-[540px] pointer-events-none overflow-visible">
+        <div className="relative w-[260px] h-[260px] sm:w-[460px] sm:h-[460px] lg:w-[560px] lg:h-[560px] pointer-events-none overflow-visible">
           {/* Tag A: Mindset Shift — Top-Left (~10:30 o'clock) */}
           <FloatingTag
             label="Mindset Shift"
@@ -322,7 +322,7 @@ export default function HeroVisual() {
             iconColor="text-white"
             iconBg="#800080"
             className="
-              top-[30%] left-[-10%]
+              top-[20%] left-[-15%]
               sm:top-[28%] sm:left-[-12%]
               lg:top-[20%] lg:left-[-5%]
             "
@@ -338,8 +338,8 @@ export default function HeroVisual() {
             iconColor="text-white"
             iconBg="#FFCE1B"
             className="
-              top-[10%] right-[-75%]
-              sm:top-[8%] sm:right-[-80%]
+              top-[0%] right-[-75%]
+              sm:top-[2%] sm:right-[-80%]
               lg:top-[9%] lg:right-[-80%]
             "
             delay={0.3}
@@ -355,7 +355,7 @@ export default function HeroVisual() {
             iconBg="#FFCE1B"
             className="
               bottom-[-48%] left-[-22%]
-              sm:bottom-[-42%] sm:left-[-12%]
+              sm:bottom-[-32%] sm:left-[-12%]
               lg:bottom-[-52%] lg:left-[-18%]
             "
             delay={0.45}
@@ -370,8 +370,8 @@ export default function HeroVisual() {
             iconColor="text-white"
             iconBg="#800080"
             className="
-              bottom-[-32%] right-[-85%]
-              sm:bottom-[-32%] sm:right-[-84%]
+              bottom-[-32%] right-[-75%]
+              sm:bottom-[-12%] sm:right-[-84%]
               lg:bottom-[-34%] lg:right-[-85%]
             "
             delay={0.6}
