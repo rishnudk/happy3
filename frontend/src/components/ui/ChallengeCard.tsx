@@ -47,8 +47,7 @@ export default function ChallengeCard({
       innerRef={innerRef}
       variant={variant}
       /* Size is controlled here — compact square feel */
-      className={`flex flex-col items-center justify-center gap-4 p-5 group ${className}`}
-      style={{ minHeight: 130 }}
+      className={`flex flex-col items-center justify-center gap-3 p-4 sm:p-5 group min-h-[110px] sm:min-h-[120px] lg:min-h-[130px] ${className}`}
     >
       {/* ── Icon orb ── */}
       <div

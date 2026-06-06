@@ -115,8 +115,8 @@ export default function StatsSection() {
           rounded-[32px]
           bg-[#FAF8FD]
           shadow-[20px_20px_50px_rgba(165,140,217,0.18),-20px_-20px_50px_rgba(255,255,255,0.95)]
-          py-10 px-6 sm:px-12
-          grid grid-cols-3 md:grid-cols-3 gap-8 md:gap-4
+          py-8 sm:py-10 px-4 sm:px-12
+          grid grid-cols-3 gap-2 sm:gap-8 md:gap-4
           items-center
           relative
           overflow-hidden
@@ -131,36 +131,37 @@ export default function StatsSection() {
             <motion.div
               key={stat.label}
               variants={cardVariants}
-              className="flex items-center gap-6 justify-center relative z-10 px-4 md:px-6"
+              className="flex flex-col lg:flex-row items-center gap-3 sm:gap-4 lg:gap-6 justify-center relative z-10 px-1 sm:px-4 lg:px-6"
             >
               {/* Circular Neumorphic Inset Icon Slot */}
               <div
                 className={`
-                  w-14 h-14
+                  w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14
                   rounded-full
                   flex items-center justify-center
                   border border-white/40
                   ${stat.iconBg}
                   shadow-[inset_3px_3px_6px_rgba(165,140,217,0.08),inset_-3px_-3px_6px_rgba(255,255,255,0.95)]
                   relative
+                  shrink-0
                 `}
               >
-                <IconComponent className={`w-6 h-6 relative z-10 ${stat.iconColor}`} strokeWidth={2} />
+                <IconComponent className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 relative z-10 ${stat.iconColor}`} strokeWidth={2} />
               </div>
 
               {/* Stat Typography */}
-              <div className="text-left">
-                <h4 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-slate-deep tracking-tight leading-none">
+              <div className="text-center lg:text-left">
+                <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-slate-deep tracking-tight leading-none">
                   <Counter value={stat.value} />
                 </h4>
-                <p className="text-[12px] sm:text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] text-muted-foreground font-semibold mt-1 tracking-wide">
+                <p className="text-[10px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[16px] text-muted-foreground font-semibold mt-1 sm:mt-2 tracking-wide leading-tight">
                   {stat.label}
                 </p>
               </div>
 
               {/* Separators between stats on Desktop */}
               {idx < stats.length - 1 && (
-                <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-purple-900/10" />
+                <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[1px] h-12 bg-purple-900/10" />
               )}
             </motion.div>
           );

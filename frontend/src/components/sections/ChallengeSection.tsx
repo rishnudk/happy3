@@ -156,15 +156,15 @@ export function ChallengeSection() {
   }, [compute]);
 
   return (
-    <PageWrapper id="features" className="relative py-20 overflow-visible">
+    <PageWrapper id="features" className="relative py-12 lg:py-16 overflow-visible">
 
 
 
       {/* ── 2-Column layout: text left | cards right ── */}
-      <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10">
+      <div className="grid items-center gap-10 lg:gap-16 lg:grid-cols-12 relative z-10 max-w-[1400px] mx-auto">
 
-        {/* ── LEFT: heading block (span 4) ── */}
-        <div className="lg:col-span-4 flex flex-col gap-7">
+        {/* ── LEFT: heading block ── */}
+        <div className="lg:col-span-4 flex flex-col gap-5 items-start text-left">
 
           {/* Badge */}
           <motion.div
@@ -229,7 +229,7 @@ export function ChallengeSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[320px]"
+            className="text-[14px] sm:text-[15px] leading-[1.8] font-medium max-w-[320px]"
             style={{ color: "rgba(42,37,75,0.60)" }}
           >
             Most people were never taught how to regulate emotions.
@@ -241,7 +241,7 @@ export function ChallengeSection() {
             whileInView={{ opacity: 1, scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative w-20 h-[5px] rounded-full overflow-hidden"
+            className="relative w-16 h-[4px] rounded-full overflow-hidden"
             style={{
               background: "rgba(243,238,250,0.6)",
               boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
@@ -258,8 +258,8 @@ export function ChallengeSection() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT: Cards + SVG connector overlay (span 8) ── */}
-        <div className="lg:col-span-8">
+        {/* ── RIGHT: Cards + SVG connector overlay ── */}
+        <div className="lg:col-span-8 w-full">
           <div ref={containerRef} className="relative">
 
             {/* SVG connector lines — rendered behind the cards */}
@@ -286,8 +286,8 @@ export function ChallengeSection() {
               </svg>
             )}
 
-            {/* 3 × 2 card grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
+            {/* Card grid: 3x2 desktop & tablet, 2x3 mobile */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 relative z-10 w-full">
               {CHALLENGES.map((item, index) => {
                 const variants: ("default" | "glass" | "outlined-purple" | "inset" | "elevated" | "outlined-mustard")[] = [
                   "default", "glass", "outlined-purple", "inset", "elevated", "outlined-mustard"
