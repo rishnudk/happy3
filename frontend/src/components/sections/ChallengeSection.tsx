@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Brain,
   HeartCrack,
@@ -23,138 +22,8 @@ const CHALLENGES = [
   { title: "Career Anxiety",         icon: Briefcase,     iconColor: "#6D28D9" },
 ] as const;
 
-/* ─── Connector pairs: which cards to join ─────────────────────────────── */
-// Adjacent horizontals, adjacent verticals, + cross diagonals
-const LINE_PAIRS: [number, number][] = [
-  [0, 1], [1, 2],          // top row
-  [3, 4], [4, 5],          // bottom row
-  [0, 3], [1, 4], [2, 5], // verticals
-  [1, 3], [2, 4],          // diagonals
-];
-
-/* ─── Types ─────────────────────────────────────────────────────────────── */
-interface Pt { x: number; y: number }
-
-function getCenter(el: HTMLDivElement | null, cont: HTMLDivElement | null): Pt | null {
-  if (!el || !cont) return null;
-  const cr = el.getBoundingClientRect();
-  const pr = cont.getBoundingClientRect();
-  return { x: cr.left - pr.left + cr.width / 2, y: cr.top - pr.top + cr.height / 2 };
-}
-
-/* ─── AnimatedPath ──────────────────────────────────────────────────────── *
- *  Uses strokeDasharray + animated strokeDashoffset (as requested)          *
- *  The full path length is the dasharray; offset animates from 0 → −length  *
- *  giving a clean marching-ant travelling effect.                            *
- * ─────────────────────────────────────────────────────────────────────────── */
-function AnimatedPath({ d, delay = 0 }: { d: string; delay?: number }) {
-  const pathRef = useRef<SVGPathElement>(null);
-  const [pathLen, setPathLen] = useState(0);
-
-  useEffect(() => {
-    if (pathRef.current) setPathLen(pathRef.current.getTotalLength());
-  }, [d]);
-
-  // dash segment = 18 % of the full length, gap = the rest
-  const dashLen  = pathLen * 0.18;
-  const gapLen   = pathLen - dashLen;
-
-  return (
-    <g>
-      {/* ① Static base — always-visible faint thread */}
-      <path
-        d={d}
-        fill="none"
-        stroke="rgba(128,0,128,0.08)"
-        strokeWidth={1}
-        strokeLinecap="round"
-      />
-
-      {/* ② Travelling dash — strokeDashoffset animates 0 → −pathLen */}
-      {pathLen > 0 && (
-        <motion.path
-          ref={pathRef}
-          d={d}
-          fill="none"
-          stroke="rgba(128,0,128,0.5)"
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          /* dasharray: [dash, gap] so only one segment is visible at a time */
-          strokeDasharray={`${dashLen} ${gapLen}`}
-          initial={{ strokeDashoffset: 0 }}
-          animate={{ strokeDashoffset: -pathLen }}
-          transition={{
-            duration: 2.5,
-            delay,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-        />
-      )}
-
-      {/* ③ Glowing leading dot, rides along with the dash */}
-      {pathLen > 0 && (
-        <motion.circle
-          r={2.5}
-          fill="rgba(128,0,128,0.6)"
-          filter="url(#lineglow)"
-          /* CSS offset-path lets the dot follow the bezier exactly */
-          style={{ offsetPath: `path("${d}")` } as React.CSSProperties}
-          initial={{ offsetDistance: "0%" }}
-          animate={{ offsetDistance: ["0%", "100%"] }}
-          transition={{
-            duration: 2.5,
-            delay,
-            ease: "linear",
-            repeat: Infinity,
-          }}
-        />
-      )}
-    </g>
-  );
-}
-
 /* ─── Named export consumed by page.tsx ─────────────────────────────────── */
 export function ChallengeSection() {
-  const prefersReducedMotion = useReducedMotion();
-
-  const cardRefs    = useRef<(HTMLDivElement | null)[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [lines, setLines]     = useState<string[]>([]);
-  const [svgSize, setSvgSize] = useState({ w: 0, h: 0 });
-
-  const compute = useCallback(() => {
-    const cont = containerRef.current;
-    if (!cont) return;
-    const { width, height } = cont.getBoundingClientRect();
-    setSvgSize({ w: width, h: height });
-
-    const centers = cardRefs.current.map((el) => getCenter(el, cont));
-
-    setLines(
-      LINE_PAIRS.map(([a, b]) => {
-        const ca = centers[a], cb = centers[b];
-        if (!ca || !cb) return "";
-        // Gentle cubic bezier — control points pulled slightly off the straight line
-        const dx = cb.x - ca.x, dy = cb.y - ca.y;
-        const cpx1 = ca.x + dx * 0.25 + (-dy) * 0.10;
-        const cpy1 = ca.y + dy * 0.25 +   dx  * 0.10;
-        const cpx2 = cb.x - dx * 0.25 + (-dy) * 0.10;
-        const cpy2 = cb.y - dy * 0.25 +   dx  * 0.10;
-        return `M ${ca.x} ${ca.y} C ${cpx1} ${cpy1}, ${cpx2} ${cpy2}, ${cb.x} ${cb.y}`;
-      })
-    );
-  }, []);
-
-  useEffect(() => {
-    // Delay so cards finish their entrance animation before we measure
-    const t  = setTimeout(compute, 350);
-    const ro = new ResizeObserver(compute);
-    if (containerRef.current) ro.observe(containerRef.current);
-    window.addEventListener("resize", compute);
-    return () => { clearTimeout(t); ro.disconnect(); window.removeEventListener("resize", compute); };
-  }, [compute]);
-
   return (
     <PageWrapper id="features" className="relative py-12 lg:py-16 overflow-visible">
 
@@ -260,31 +129,7 @@ export function ChallengeSection() {
 
         {/* ── RIGHT: Cards + SVG connector overlay ── */}
         <div className="lg:col-span-8 w-full">
-          <div ref={containerRef} className="relative">
-
-            {/* SVG connector lines — rendered behind the cards */}
-            {!prefersReducedMotion && svgSize.w > 0 && (
-              <svg
-                width={svgSize.w}
-                height={svgSize.h}
-                className="absolute inset-0 pointer-events-none z-0"
-                aria-hidden="true"
-              >
-                <defs>
-                  <filter id="lineglow" x="-60%" y="-60%" width="220%" height="220%">
-                    <feGaussianBlur stdDeviation="2.5" result="blur" />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-
-                {lines.map((d, i) =>
-                  d ? <AnimatedPath key={i} d={d} delay={i * 0.4} /> : null
-                )}
-              </svg>
-            )}
+          <div className="relative">
 
             {/* Card grid: 3x2 desktop & tablet, 2x3 mobile */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 relative z-10 w-full">
@@ -302,7 +147,6 @@ export function ChallengeSection() {
                     iconColor={item.iconColor}
                     delay={index * 0.08}
                     variant={cardVariant}
-                    innerRef={(el) => { cardRefs.current[index] = el; }}
                   />
                 );
               })}
