@@ -47,13 +47,7 @@ export function ChallengeSection() {
               className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
               style={{
                 color: "rgba(128,0,128,0.75)",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
-                border: "1px solid rgba(255,255,255,0.85)",
-                boxShadow: `
-                  6px 6px 16px rgba(165,140,217,0.12),
-                  -6px -6px 16px rgba(255,255,255,0.95),
-                  inset 1px 1px 2px rgba(255,255,255,0.9)
-                `,
+                boxShadow: "6px 6px 16px rgba(165,140,217,0.12)",
               }}
             >
               {/* Pulsing dot */}

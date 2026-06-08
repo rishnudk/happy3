@@ -1,69 +1,56 @@
 export function GlobalBackground() {
+  const COLORS = {
+    // Soft, airy, feminine background using lavender/blush and champagne tones
+    background: [
+      "#FDFBFE", // Soft snow white with a hint of purple
+      "#F8F2F9", // Soft lavender blush
+      "#FFFBF2", // Soft warm champagne/cream
+      "#F8F2F9", // Soft lavender blush
+      "#FDFBFE", // Soft snow white
+    ],
+    // Primary brand colors for the floating blobs
+    blob1: "rgba(128, 0, 128, 1)", // Patriarch Purple
+    blob2: "rgba(255, 206, 27, 1)", // Mustard Yellow
+  };
+
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      {/* Base vertical gradient with transition tones */}
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[var(--background)]"
+    >
+      {/* Base Gradient */}
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "linear-gradient(180deg, #e0c3f0ff 0%, #FAF8FD 18%, #FCFAFF 50%, #FAF8FD 82%, #F6F3FA 100%)",
+          backgroundImage: `linear-gradient(160deg, ${COLORS.background[0]} 0%, ${COLORS.background[1]} 25%, ${COLORS.background[2]} 50%, ${COLORS.background[3]} 75%, ${COLORS.background[4]} 100%)`,
         }}
       />
 
-      {/* Aurora layer */}
-      <div className="absolute inset-0 animate-aurora-slow opacity-70 mix-blend-multiply">
-        <div
-          className="absolute -top-40 -left-32 h-[60vw] w-[60vw] rounded-full opacity-50"
-          style={{
-            background:
-              "radial-gradient(closest-side, #e7dee7ff 0%, #F5D0FE 40%, transparent 70%)",
-            filter: "blur(10px)",
-          }}
-        />
-        <div
-          className="absolute top-[35%] -right-40 h-[55vw] w-[55vw] rounded-full opacity-40"
-          style={{
-            background:
-              "radial-gradient(closest-side, #DCC7E8 0%, #FCFAFF 50%, transparent 75%)",
-            filter: "blur(10px)",
-          }}
-        />
-        <div
-          className="absolute bottom-[-10%] left-[20%] h-[50vw] w-[50vw] rounded-full opacity-35"
-          style={{
-            background:
-              "radial-gradient(closest-side, #dac0daff 0%, #DCC7E8 45%, transparent 75%)",
-            filter: "blur(10px)",
-          }}
-        />
-      </div>
+      {/* Blob 1 - Purple (Wisdom, Transformation) */}
+      <div
+        className="absolute -top-[20%] -left-[10%] h-[800px] w-[800px]
+                   animate-float-slow rounded-full opacity-[0.12]"
+        style={{
+          backgroundImage: `radial-gradient(circle, ${COLORS.blob1} 0%, transparent 70%)`,
+          filter: "blur(90px)",
+        }}
+      />
 
-      {/* Mesh glow accent — top right warm */}
-      <div className="absolute inset-0 animate-aurora opacity-60">
-        <div
-          className="absolute top-[10%] right-[15%] h-[28vw] w-[28vw] rounded-full"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(226, 191, 230, 0.3), transparent 70%)",
-            filter: "blur(10px)",
-          }}
-        />
-        <div
-          className="absolute top-[55%] left-[8%] h-[32vw] w-[32vw] rounded-full"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(220,199,232,0.55), transparent 70%)",
-            filter: "blur(10px)",
-          }}
-        />
-      </div>
+      {/* Blob 2 - Yellow (Happiness, Warmth) */}
+      <div
+        className="absolute bottom-[-15%] right-[-10%] h-[700px] w-[700px]
+                   animate-float-reverse rounded-full opacity-[0.15]"
+        style={{
+          backgroundImage: `radial-gradient(circle, ${COLORS.blob2} 0%, transparent 70%)`,
+          filter: "blur(90px)",
+        }}
+      />
 
-      {/* Top & bottom soft fades for cinematic vignette */}
+      {/* Top Fade */}
       <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/40 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-white/30 to-transparent" />
 
-      {/* Noise grain */}
-      <div className="noise-overlay absolute inset-0 opacity-[0.05] mix-blend-overlay" />
+      {/* Bottom Fade */}
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white/30 to-transparent" />
     </div>
   );
 }
