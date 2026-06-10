@@ -177,14 +177,7 @@ export function CoreValuesSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
             {VALUES.map((item, index) => {
               const Icon = item.icon;
-              // Mix of modern, premium variants
-              const variants: ("default" | "elevated" | "outlined-purple" | "glass")[] = [
-                "default", 
-                "elevated", 
-                "outlined-purple", 
-                "glass"
-              ];
-              const cardVariant = variants[index % variants.length];
+              const cardVariant = "default";
 
               return (
                 <NeuCard

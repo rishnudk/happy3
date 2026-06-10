@@ -312,210 +312,204 @@ export function TestimonialsSection() {
   }, [isHovered]);
 
   return (
-    <PageWrapper id="testimonials" className="relative py-20 overflow-visible">
+    <section className="w-full bg-[#2A254B] py-20 text-white relative overflow-hidden">
+      {/* Ambient dark glow backdrop */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(128,0,128,0.2),transparent_70%)] pointer-events-none z-0" />
+      
+      <PageWrapper id="testimonials" className="relative overflow-visible z-10 py-0!">
 
+        {/* ── 2-Column layout: text left | cards/reels right ── */}
+        <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10 overflow-visible">
 
+          {/* ── LEFT: Heading & Description Block (span 4) ── */}
+          <div className="lg:col-span-4 flex flex-col gap-7">
 
-      {/* ── 2-Column layout: text left | cards/reels right ── */}
-      <div className="grid items-center gap-16 lg:grid-cols-12 relative z-10 overflow-visible">
-
-        {/* ── LEFT: Heading & Description Block (span 4) ── */}
-        <div className="lg:col-span-4 flex flex-col gap-7">
-
-          {/* Neumorphic Pill Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex"
-          >
-            <span
-              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
-              style={{
-                color: "rgba(128,0,128,0.75)",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
-                border: "1px solid rgba(255,255,255,0.85)",
-                boxShadow: `
-                  6px 6px 16px rgba(165,140,217,0.12),
-                  -6px -6px 16px rgba(255,255,255,0.95),
-                  inset 1px 1px 2px rgba(255,255,255,0.9)
-                `,
-              }}
-            >
-              {/* Pulsing Dot */}
-              <span className="relative flex h-2 w-2 flex-shrink-0">
-                <span
-                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
-                  style={{ background: "rgba(128,0,128,0.5)" }}
-                />
-                <span
-                  className="relative inline-flex rounded-full h-2 w-2"
-                  style={{ background: "#800080" }}
-                />
-              </span>
-              Testimonials
-            </span>
-          </motion.div>
-
-          {/* Heading with Underline Marker */}
-          <motion.h2
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
-            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
-          >
-            <span className="block">Real Stories.</span>
-            <span className="block">Real Transformation.</span>
-            <span className="block">
-              Real{" "}
-              <span className="relative inline-block" style={{ color: "#800080" }}>
-                Impact.
-                {/* Mustard marker underline */}
-                <span
-                  className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
-                  style={{ background: "#FFCE1B", opacity: 0.38 }}
-                />
-              </span>
-            </span>
-          </motion.h2>
-
-          {/* Subtext Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
-            style={{ color: "rgba(42,37,75,0.60)" }}
-          >
-            Hear from individuals whose lives have been transformed through HCA&apos;s programs and guidance.
-          </motion.p>
-
-          {/* More Stories Instagram Neumorphic Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="flex pt-2"
-          >
-            <motion.a
-              href="https://www.instagram.com/happinesscoachingacademy"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
-              style={{
-                color: "#800080",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
-                border: "1px solid rgba(255,255,255,0.9)",
-                boxShadow: `
-                  6px 6px 15px rgba(166,140,255,0.10),
-                  -6px -6px 15px rgba(255,255,255,1),
-                  inset 1px 1px 2px rgba(255,255,255,1)
-                `,
-              }}
-            >
-              <span>More stories on Instagram</span>
-              <span
-                className="flex items-center justify-center w-6 h-6 rounded-full text-white transition-transform duration-300 group-hover/btn:rotate-45"
-                style={{ background: "linear-gradient(145deg, #800080, #C084FC)" }}
-              >
-                <InstagramIcon className="h-3.5 w-3.5 text-white" />
-              </span>
-            </motion.a>
-          </motion.div>
-
-          {/* Animated Neumorphic Accent Line */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.35 }}
-            className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
-            style={{
-              background: "rgba(243,238,250,0.6)",
-              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
-              border: "1px solid rgba(255,255,255,0.7)",
-              transformOrigin: "left center",
-            }}
-          >
+            {/* Neumorphic Pill Badge */}
             <motion.div
-              className="absolute left-0 top-0 bottom-0 rounded-full"
-              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
-              animate={{ x: [0, 32, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </div>
-
-        {/* ── RIGHT: Reels Carousel Container (span 8) ── */}
-        <div className="lg:col-span-8 relative overflow-visible">
-          <div
-            className="relative"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {/* Left Chevron Button Overlay */}
-            <button
-              onClick={() => scroll("left")}
-              className="absolute left-[-20px] top-1/2 z-20 -translate-y-1/2 h-10 w-10 rounded-full neumorphic-raised flex items-center justify-center text-[#800080] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer bg-white/95 border border-white"
-              style={{
-                boxShadow: "6px 6px 12px rgba(165,140,217,0.12), -6px -6px 12px rgba(255,255,255,0.95)"
-              }}
-              aria-label="Previous testimonials"
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex"
             >
-              <ChevronLeft className="h-4 w-4 stroke-[2.5]" />
-            </button>
+              <span
+                className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
+                style={{
+                  color: "#E9D5FF",
+                  background: "rgba(255, 255, 255, 0.08)",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+                }}
+              >
+                {/* Pulsing Dot */}
+                <span className="relative flex h-2 w-2 flex-shrink-0">
+                  <span
+                    className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                    style={{ background: "rgba(192, 132, 252, 0.5)" }}
+                  />
+                  <span
+                    className="relative inline-flex rounded-full h-2 w-2"
+                    style={{ background: "#C084FC" }}
+                  />
+                </span>
+                Testimonials
+              </span>
+            </motion.div>
 
-            {/* Scrolling Viewport */}
-            <div
-              ref={carouselRef}
-              className="flex gap-5 overflow-x-auto no-scrollbar py-4 px-3 cursor-grab active:cursor-grabbing select-none"
+            {/* Heading with Underline Marker */}
+            <motion.h2
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="font-satoshi font-black leading-[1.15] tracking-tight"
+              style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#FFFFFF" }}
+            >
+              <span className="block">Real Stories.</span>
+              <span className="block">Real Transformation.</span>
+              <span className="block">
+                Real{" "}
+                <span className="relative inline-block" style={{ color: "#FFCE1B" }}>
+                  Impact.
+                  {/* Mustard marker underline */}
+                  <span
+                    className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
+                    style={{ background: "#FFCE1B", opacity: 0.25 }}
+                  />
+                </span>
+              </span>
+            </motion.h2>
+
+            {/* Subtext Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
+              style={{ color: "rgba(255,255,255,0.70)" }}
+            >
+              Hear from individuals whose lives have been transformed through HCA&apos;s programs and guidance.
+            </motion.p>
+
+            {/* More Stories Instagram Neumorphic Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.25 }}
+              className="flex pt-2"
+            >
+              <motion.a
+                href="https://www.instagram.com/happinesscoachingacademy"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
+                style={{
+                  color: "#FFFFFF",
+                  background: "rgba(255, 255, 255, 0.08)",
+                  border: "1px solid rgba(255, 255, 255, 0.15)",
+                  boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+                }}
+              >
+                <span>More stories on Instagram</span>
+                <span
+                  className="flex items-center justify-center w-6 h-6 rounded-full text-white transition-transform duration-300 group-hover/btn:rotate-45"
+                  style={{ background: "linear-gradient(145deg, #800080, #C084FC)" }}
+                >
+                  <InstagramIcon className="h-3.5 w-3.5 text-white" />
+                </span>
+              </motion.a>
+            </motion.div>
+
+            {/* Animated Neumorphic Accent Line */}
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.35 }}
+              className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
               style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
+                background: "rgba(255,255,255,0.1)",
+                border: "1px solid rgba(255,255,255,0.15)",
+                transformOrigin: "left center",
               }}
             >
-              {doubledReels.map((reel, index) => (
-                <ReelCard key={`${reel.id}-${index}`} reel={reel} />
-              ))}
-            </div>
-
-            {/* Right Chevron Button Overlay */}
-            <button
-              onClick={() => scroll("right")}
-              className="absolute right-[-20px] top-1/2 z-20 -translate-y-1/2 h-10 w-10 rounded-full neumorphic-raised flex items-center justify-center text-[#800080] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer bg-white/95 border border-white"
-              style={{
-                boxShadow: "6px 6px 12px rgba(165,140,217,0.12), -6px -6px 12px rgba(255,255,255,0.95)"
-              }}
-              aria-label="Next testimonials"
-            >
-              <ChevronRight className="h-4 w-4 stroke-[2.5]" />
-            </button>
+              <motion.div
+                className="absolute left-0 top-0 bottom-0 rounded-full"
+                style={{ background: "linear-gradient(90deg, #FFCE1B, #FF9F1C)", width: "40%" }}
+                animate={{ x: [0, 32, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </motion.div>
           </div>
+
+          {/* ── RIGHT: Reels Carousel Container (span 8) ── */}
+          <div className="lg:col-span-8 relative overflow-visible">
+            <div
+              className="relative"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {/* Left Chevron Button Overlay */}
+              <button
+                onClick={() => scroll("left")}
+                className="absolute left-[-20px] top-1/2 z-20 -translate-y-1/2 h-10 w-10 rounded-full neumorphic-raised flex items-center justify-center text-[#800080] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer bg-white/95 border border-white"
+                style={{
+                  boxShadow: "6px 6px 12px rgba(165,140,217,0.12), -6px -6px 12px rgba(255,255,255,0.95)"
+                }}
+                aria-label="Previous testimonials"
+              >
+                <ChevronLeft className="h-4 w-4 stroke-[2.5]" />
+              </button>
+
+              {/* Scrolling Viewport */}
+              <div
+                ref={carouselRef}
+                className="flex gap-5 overflow-x-auto no-scrollbar py-4 px-3 cursor-grab active:cursor-grabbing select-none"
+                style={{
+                  scrollbarWidth: "none",
+                  msOverflowStyle: "none",
+                }}
+              >
+                {doubledReels.map((reel, index) => (
+                  <ReelCard key={`${reel.id}-${index}`} reel={reel} />
+                ))}
+              </div>
+
+              {/* Right Chevron Button Overlay */}
+              <button
+                onClick={() => scroll("right")}
+                className="absolute right-[-20px] top-1/2 z-20 -translate-y-1/2 h-10 w-10 rounded-full neumorphic-raised flex items-center justify-center text-[#800080] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer bg-white/95 border border-white"
+                style={{
+                  boxShadow: "6px 6px 12px rgba(165,140,217,0.12), -6px -6px 12px rgba(255,255,255,0.95)"
+                }}
+                aria-label="Next testimonials"
+              >
+                <ChevronRight className="h-4 w-4 stroke-[2.5]" />
+              </button>
+            </div>
+          </div>
+
         </div>
 
-      </div>
-
-      {/* Inline style block to hide scrollbars */}
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-            .no-scrollbar::-webkit-scrollbar {
-              display: none;
-            }
-            .no-scrollbar {
-              -ms-overflow-style: none;
-              scrollbar-width: none;
-            }
-          `,
-        }}
-      />
-    </PageWrapper>
+        {/* Inline style block to hide scrollbars */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .no-scrollbar::-webkit-scrollbar {
+                display: none;
+              }
+              .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+              }
+            `,
+          }}
+        />
+      </PageWrapper>
+    </section>
   );
 }

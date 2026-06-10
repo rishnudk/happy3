@@ -93,14 +93,7 @@ export default function UpcomingEvents() {
           {filteredEvents.map((item, idx) => {
             const isRsvped = !!rsvpedEvents[item.id];
             
-            // Reused card variant index mapping
-            const variants: ("gradient-brand" | "outlined-mustard" | "outlined-purple" | "elevated")[] = [
-              "gradient-brand",
-              "outlined-mustard",
-              "outlined-purple",
-              "elevated"
-            ];
-            const cardVariant = variants[idx % variants.length];
+            const cardVariant = "default";
 
             return (
               <motion.div

@@ -16,14 +16,8 @@ export default function ProgramCard({
   index,
   onLearnDetails,
 }: ProgramCardProps) {
-  // Mixed modern variants to provide rich premium aesthetics
-  const variants: ("gradient-brand" | "outlined-mustard" | "outlined-purple" | "elevated")[] = [
-    "gradient-brand",
-    "outlined-mustard",
-    "outlined-purple",
-    "elevated"
-  ];
-  const cardVariant = variants[index % variants.length];
+  // Highlight the flagship Certification program (index 3), standard default for others
+  const cardVariant = index === 3 ? "gradient-brand" : "default";
 
   return (
     <NeuCard

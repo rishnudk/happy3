@@ -150,21 +150,13 @@ export function PillarsSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
             {PILLARS.map((item, index) => {
               const Icon = item.icon;
-              const isPurple = index === 1 || index === 3;
               return (
                 <NeuCard
                   key={item.title}
                   delay={index * 0.1}
-                  variant={isPurple ? "purple" : "default"}
+                  variant="default"
                   className="p-6 flex flex-col gap-4 group overflow-hidden"
                 >
-                  {/* Brand arc inside purple cards */}
-                  {isPurple && (
-                    <svg className="absolute -top-4 -right-4 opacity-[0.12] pointer-events-none" width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-                      <path d="M 5,70 A 55,55 0 0,1 75,70" stroke="#FFCE1B" strokeWidth="10" strokeLinecap="round" fill="none" />
-                    </svg>
-                  )}
-
                   {/* Icon */}
                   <div
                     className="flex items-center justify-center flex-shrink-0"
@@ -172,8 +164,8 @@ export function PillarsSection() {
                       width: 50,
                       height: 50,
                       borderRadius: 16,
-                      background: isPurple ? "rgba(255,255,255,0.08)" : "#F6F3FA",
-                      boxShadow: isPurple ? "inset 2px 2px 6px rgba(0,0,0,0.2), inset -2px -2px 6px rgba(255,255,255,0.06)" : "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                      background: "#F6F3FA",
+                      boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
                     }}
                   >
                     <div
@@ -182,25 +174,25 @@ export function PillarsSection() {
                         width: 36,
                         height: 36,
                         borderRadius: 12,
-                        background: isPurple ? `${item.iconColor}30` : `${item.iconColor}20`,
-                        boxShadow: isPurple ? `inset 2px 2px 5px rgba(0,0,0,0.15)` : `inset 2px 2px 5px ${item.iconColor}25, inset -1px -1px 3px rgba(255,255,255,0.6)`,
+                        background: `${item.iconColor}20`,
+                        boxShadow: `inset 2px 2px 5px ${item.iconColor}25, inset -1px -1px 3px rgba(255,255,255,0.6)`,
                       }}
                     >
-                      <Icon style={{ color: isPurple ? "#E9D5FF" : item.iconColor, width: 18, height: 18, strokeWidth: 2.2 }} />
+                      <Icon style={{ color: item.iconColor, width: 18, height: 18, strokeWidth: 2.2 }} />
                     </div>
                   </div>
 
                   {/* Text */}
                   <div>
                     <h3
-                      className="font-satoshi font-black text-[18px] leading-tight transition-colors duration-300"
-                      style={{ color: isPurple ? "#FFFFFF" : "#2A254B" }}
+                      className="font-satoshi font-black text-[18px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
+                      style={{ color: "#2A254B" }}
                     >
                       {item.title}
                     </h3>
                     <p
                       className="font-medium text-[13.5px] leading-[1.6] mt-2"
-                      style={{ color: isPurple ? "rgba(255,255,255,0.55)" : "rgba(42,37,75,0.65)" }}
+                      style={{ color: "rgba(42,37,75,0.65)" }}
                     >
                       {item.desc}
                     </p>

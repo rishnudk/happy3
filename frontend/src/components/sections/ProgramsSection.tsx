@@ -176,14 +176,8 @@ export function ProgramsSection() {
         <div className="lg:col-span-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
             {PROGRAMS.map((item, index) => {
-              // Mix of unique, premium variants for programs
-              const variants: ("gradient-brand" | "outlined-mustard" | "inset" | "elevated")[] = [
-                "gradient-brand",
-                "outlined-mustard",
-                "inset",
-                "elevated"
-              ];
-              const cardVariant = variants[index % variants.length];
+              // Highlight the flagship Certification program (index 3), standard default for others
+              const cardVariant = index === 3 ? "gradient-brand" : "default";
 
               return (
                 <NeuCard
