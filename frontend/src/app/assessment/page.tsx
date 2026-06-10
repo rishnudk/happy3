@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import { AssessmentFlow } from "@/components/assessment/AssessmentFlow";
-import { GlobalBackground } from "@/components/sections/GlobalBackground";
 import { JourneyPill } from "@/components/ui/JourneyPill";
 
 export const metadata: Metadata = {
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
 export default function AssessmentPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      <GlobalBackground />
 
       <div className="relative z-10 mx-auto max-w-3xl px-4 py-8 md:px-6 md:py-12">
         <header className="mb-8 flex items-center justify-between gap-4">

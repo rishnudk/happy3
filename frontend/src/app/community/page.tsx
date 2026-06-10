@@ -3,7 +3,6 @@
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { GlobalBackground } from "@/components/sections/GlobalBackground";
 import PageWrapper from "@/components/layout/page-wrapper";
 
 // Modular Community Component imports
@@ -15,9 +14,6 @@ import WhatsAppCallout from "@/components/community/WhatsAppCallout";
 export default function CommunityPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      {/* Cinematic Ambient Background */}
-      <GlobalBackground />
-
       {/* Header Menu Navigation */}
       <Navbar />
 

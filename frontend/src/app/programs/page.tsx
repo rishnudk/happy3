@@ -6,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { GlobalBackground } from "@/components/sections/GlobalBackground";
 import { NeuButton } from "@/components/ui/NeuButton";
 import PageWrapper from "@/components/layout/page-wrapper";
 
@@ -32,8 +31,6 @@ export default function ProgramsPage() {
 
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      {/* Cinematic Ambient Background */}
-      <GlobalBackground />
 
       {/* Header Menu Navigation */}
       <Navbar />

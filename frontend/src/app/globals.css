@@ -54,10 +54,10 @@
      COLORS (REFINED BRAND PALETTE)
   ========================================= */
 
-  --background: #F8F5F2;
+  --background: #rgb(251, 231, 225);
   --foreground: #5A4D4D;
 
-  --page-bg: #F8F5F2;
+  --page-bg: #rgb(251, 231, 225);
   --hero-bg: #FAF7F4;
   --text-heading: #5A4D4D;
   --text-body: #6E6A67;
