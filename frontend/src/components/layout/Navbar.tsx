@@ -72,43 +72,40 @@ export default function Navbar() {
 
   /* ─── Logo size (single source of truth) ─────────────────────────────── */
   const logoSize = isMobile
-    ? (scrolled ? 32 : 40)
-    : (scrolled ? 42 : 64);
+    ? (scrolled ? 20 : 26)
+    : (scrolled ? 32 : 36);
 
   return (
     <>
       <header
-        className="fixed left-0 right-0 top-0 z-50"
-        style={{ paddingTop: isMobile ? (scrolled ? 4 : 10) : (scrolled ? 8 : 20) }}
+        className="fixed left-0 right-0 top-0 z-50 pointer-events-none transition-all duration-700 ease-out"
+        style={{ 
+          paddingTop: isMobile ? (scrolled ? 12 : 36) : (scrolled ? 16 : 60),
+        }}
       >
         <motion.nav
           initial={false}
           animate={{
-            /* Request 4: transparent initially → glass on scroll */
-            backgroundColor: scrolled
-              ? "rgba(255, 255, 255, 0.72)"
-              : "rgba(255, 255, 255, 0)",
-            backdropFilter: scrolled ? "blur(24px)" : "blur(0px)",
-            borderColor: scrolled
-              ? "rgba(255, 255, 255, 0.65)"
-              : "rgba(255, 255, 255, 0)",
+            backgroundColor: scrolled ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.70)",
+            backdropFilter: scrolled ? "blur(24px)" : "blur(12px)",
+            borderColor: scrolled ? "rgba(255, 255, 255, 0.65)" : "rgba(0, 0, 0, 0.04)",
             boxShadow: scrolled
-              ? "4px 4px 20px rgba(165,140,217,0.1), -4px -4px 20px rgba(255,255,255,0.95), 0 8px 32px rgba(128,0,128,0.06)"
-              : "none",
-            /* Request 4: shrink on scroll via padding */
-            paddingTop: isMobile ? (scrolled ? 6 : 10) : (scrolled ? 10 : 18),
-            paddingBottom: isMobile ? (scrolled ? 6 : 10) : (scrolled ? 10 : 18),
-            paddingLeft: isMobile ? 12 : (scrolled ? 28 : 40),
-            paddingRight: isMobile ? 12 : (scrolled ? 28 : 40),
+              ? "0 8px 32px rgba(128,0,128,0.06), 0 4px 20px rgba(0,0,0,0.05)"
+              : "0 4px 20px rgba(0, 0, 0, 0.03)",
+            paddingTop: isMobile ? (scrolled ? 6 : 10) : (scrolled ? 8 : 12),
+            paddingBottom: isMobile ? (scrolled ? 6 : 10) : (scrolled ? 8 : 12),
+            paddingLeft: isMobile ? 10 : (scrolled ? 20 : 28),
+            paddingRight: isMobile ? 10 : (scrolled ? 20 : 28),
+            width: isMobile ? "calc(100vw - 64px)" : "calc(100vw - 128px)",
+            maxWidth: "1320px",
           }}
-          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            WebkitBackdropFilter: scrolled ? "blur(24px)" : "blur(0px)",
-            maxWidth: 1320,
-            width: "calc(100% - 24px)",
+            WebkitBackdropFilter: "blur(12px)",
             margin: "0 auto",
-            borderRadius: 9999,
-            border: "1px solid transparent",
+            pointerEvents: "auto",
+            borderRadius: 28,
+            border: "1px solid rgba(0, 0, 0, 0.04)",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -129,6 +126,7 @@ export default function Navbar() {
               animate={{ width: logoSize, height: logoSize }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               className="relative shrink-0"
+              style={{ width: logoSize, height: logoSize }}
             >
               <Image
                 src="/home/logo.png"
@@ -139,10 +137,10 @@ export default function Navbar() {
               />
             </motion.div>
             <div className="flex flex-col text-left leading-none font-satoshi font-bold">
-              <span className="text-primary uppercase tracking-wider" style={{ fontSize: isMobile ? 12 : 14 }}>
+              <span className="text-primary uppercase tracking-wider" style={{ fontSize: isMobile ? 10 : 14 }}>
                 Happiness
               </span>
-              <span className="text-mustard uppercase tracking-widest" style={{ fontSize: isMobile ? 9 : 11, marginTop: 2 }}>
+              <span className="text-mustard uppercase tracking-widest" style={{ fontSize: isMobile ? 7 : 11, marginTop: 2 }}>
                 Coaching Academy
               </span>
             </div>
@@ -162,11 +160,10 @@ export default function Navbar() {
                     href={link.href}
                     className="relative block rounded-full font-semibold transition-all duration-300"
                     style={{
-                      padding: "10px 18px",
-                      fontSize: 14,
+                      padding: "6px 12px",
+                      fontSize: 13,
                       color: isActive ? "#800080" : scrolled ? "#374151" : "#1f2937",
                       backgroundColor: isActive ? "rgba(128,0,128,0.08)" : "transparent",
-                      /* Request 3: font-weight change for active instead of underline */
                       fontWeight: isActive ? 800 : 600,
                     }}
                     onMouseEnter={(e) => {
@@ -191,20 +188,18 @@ export default function Navbar() {
           </ul>
 
           {/* RIGHT – CTA BUTTONS (using NeuButton) */}
-          <div className="hidden xl:flex items-center" style={{ gap: 14 }}>
-            {/* Request 2: Neumorphic button – primary variant */}
-            <NeuButton variant="primary" href="/programs" size="md">
+          <div className="hidden xl:flex items-center" style={{ gap: 10 }}>
+            <NeuButton variant="primary" href="/programs" size="sm">
               Explore Programs
             </NeuButton>
-            {/* Request 2: Neumorphic button – mustard variant */}
-            <NeuButton variant="mustard" href="/assessment" size="md">
+            <NeuButton variant="mustard" href="/assessment" size="sm">
               Start Your Transformation
             </NeuButton>
           </div>
 
           {/* MOBILE – CTA + HAMBURGER */}
           <div className="flex items-center xl:hidden" style={{ gap: 6 }}>
-            <NeuButton variant="mustard" href="/assessment" size="sm" onClick={closeMenu}>
+            <NeuButton variant="mustard" href="/assessment" size="sm" onClick={closeMenu} style={{ padding: "6px 10px", fontSize: 10 }}>
               <span className="hidden sm:inline">Start Your Transformation</span>
               <span className="inline sm:hidden">Start Now</span>
             </NeuButton>
@@ -238,7 +233,7 @@ export default function Navbar() {
         <AnimatePresence>
           {menuOpen && (
             <div
-              className="absolute left-1/2 -translate-x-1/2 top-full w-[calc(100%-24px)] max-w-[420px] xl:hidden"
+              className="absolute left-1/2 -translate-x-1/2 top-full w-[calc(100vw-64px)] max-w-[420px] xl:hidden"
               style={{ marginTop: 12, zIndex: 50 }}
             >
               <motion.div

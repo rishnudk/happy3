@@ -16,22 +16,28 @@ import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { CommunitySection } from "@/components/sections/CommunitySection";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { Footer } from "@/components/layout/Footer";
-import { GlobalBackground } from "@/components/sections/GlobalBackground";
 
 import ScrollProgress from "@/components/layout/scroll-progress";
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
-      {/* Premium Cinematic Ambient Background Layers */}
-      <GlobalBackground />
+    <main className="relative min-h-screen overflow-x-hidden bg-[var(--page-bg)]">
       
       {/* Scroll indicator bar */}
       <ScrollProgress />
-
-      {/* Page Sections */}
       <Navbar />
-      <Hero />
+
+      {/* Hero Wrapper with 40px gap */}
+      <div className="p-4 md:p-10 w-full relative">
+        <div className="hero-surface">
+          {/* Ambient Glows and Noise Texture */}
+          <div className="bg-hero-glow" />
+          <div className="bg-hero-grain" />
+
+          {/* Page Sections */}
+          <Hero />
+        </div>
+      </div>
       <ChallengeSection />
       <PillarsSection />
       <WhatHcaDoesSection />

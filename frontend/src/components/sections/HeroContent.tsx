@@ -15,8 +15,8 @@ export default function HeroContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         whileHover={{
-          y: -5,
-          scale: 1.02,
+          y: -2,
+          boxShadow: "0 10px 25px rgba(128,0,128,0.15)",
         }}
         className="inline-flex cursor-default"
       >
@@ -55,13 +55,13 @@ export default function HeroContent() {
           sm:text-[54px]
           lg:text-[70px]
           font-black
-          leading-[1.12]
-          tracking-tight
           font-satoshi
-          text-[#2A254B]
+          text-[var(--text-heading)]
+          tracking-[-0.04em]
+          leading-[1.1]
         "
       >
-        <span className="block neumorphic-text-embossed">
+        <span className="block">
           Discover the art of
         </span>
 
@@ -112,7 +112,7 @@ export default function HeroContent() {
         transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
         className="flex items-baseline justify-center lg:justify-start gap-2.5 w-full lg:w-auto"
       >
-        <span className="text-[13px] sm:text-[15px] text-[#2A254B]/50 font-medium tracking-wide">
+        <span className="text-[13px] sm:text-[15px] text-[#475569] font-medium tracking-wide">
           by
         </span>
         <span
@@ -156,10 +156,10 @@ export default function HeroContent() {
           max-w-[540px]
           text-[16px]
           sm:text-[18px]
-          text-[#2A254B]/70
+          text-[var(--text-body)]
           leading-[1.9]
-          font-medium
-          tracking-wide
+          font-sans
+          tracking-normal
         "
       >
         Happiness is not just an emotion — it is a skill that can be learned, practiced, and shared.

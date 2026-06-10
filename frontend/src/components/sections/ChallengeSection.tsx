@@ -93,7 +93,7 @@ export function ChallengeSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="text-[14px] sm:text-[15px] leading-[1.8] font-medium max-w-[320px]"
-            style={{ color: "rgba(42,37,75,0.60)" }}
+            style={{ color: "rgba(42,37,75,0.80)" }}
           >
             Most people were never taught how to regulate emotions.
           </motion.p>
@@ -128,8 +128,8 @@ export function ChallengeSection() {
             {/* Card grid: 3x2 desktop & tablet, 2x3 mobile */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 relative z-10 w-full">
               {CHALLENGES.map((item, index) => {
-                const variants: ("default" | "glass" | "outlined-purple" | "inset" | "elevated" | "outlined-mustard")[] = [
-                  "default", "glass", "outlined-purple", "inset", "elevated", "outlined-mustard"
+                const variants: ("purple" | "purple" | "purple" | "purple" | "purple" | "purple")[] = [
+                  "purple", "purple", "purple", "purple", "purple", "purple"
                 ];
                 const cardVariant = variants[index % variants.length];
 

@@ -7,7 +7,7 @@ import StatsSection from "./StatsSection";
 
 export default function Hero() {
   return (
-    <PageWrapper className="pt-28 pb-12 overflow-visible relative">
+    <PageWrapper className="pt-[72px] pb-[72px] lg:pt-[120px] lg:pb-[120px] overflow-visible relative">
       {/* 2-Column Hero Layout */}
       <div className="grid items-center gap-1 lg:grid-cols-12 relative z-10 overflow-visible">
         
