@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/providers/AuthProvider";
 import { QueryProvider } from "@/providers/QueryProvider";
 import { Toaster } from "sonner";
+import { LenisProvider } from "@/providers/LenisProvider";
 import "./globals.css";
 import "../styles/background.css";
 
@@ -39,24 +40,24 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${jakarta.variable} ${satoshi.variable}`} suppressHydrationWarning>
       <body className="background-wrapper font-jakarta antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <TooltipProvider>
-            <QueryProvider>
-              <AuthProvider>
-                {children}
-                <Toaster richColors position="top-right" />
-              </AuthProvider>
-            </QueryProvider>
-          </TooltipProvider>
-        </ThemeProvider>
+        <LenisProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <TooltipProvider>
+              <QueryProvider>
+                <AuthProvider>
+                  {children}
+                  <Toaster richColors position="top-right" />
+                </AuthProvider>
+              </QueryProvider>
+            </TooltipProvider>
+          </ThemeProvider>
+        </LenisProvider>
       </body>
     </html>
   );
 }
-
-
