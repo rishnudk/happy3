@@ -27,7 +27,7 @@ export function ChallengeSection() {
   return (
     <PageWrapper 
       id="features" 
-      className="relative py-12 lg:py-16 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F8F6FC] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
+      className="relative py-12 lg:py-16 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
     >
 
 

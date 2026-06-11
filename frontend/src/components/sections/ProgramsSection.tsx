@@ -35,7 +35,7 @@ const PROGRAMS = [
 
 export function ProgramsSection() {
   return (
-    <PageWrapper id="programs" className="relative py-20 overflow-visible">
+    <PageWrapper id="programs" className="relative py-20 overflow-visible bg-[#FFF7D6]">
 
 
 
@@ -54,16 +54,12 @@ export function ProgramsSection() {
             className="inline-flex"
           >
             <span
-              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase backdrop-blur-sm"
               style={{
-                color: "rgba(128,0,128,0.75)",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
-                border: "1px solid rgba(255,255,255,0.85)",
-                boxShadow: `
-                  6px 6px 16px rgba(165,140,217,0.12),
-                  -6px -6px 16px rgba(255,255,255,0.95),
-                  inset 1px 1px 2px rgba(255,255,255,0.9)
-                `,
+                color: "#800080",
+                background: "rgba(255,255,255,0.6)",
+                border: "1px solid rgba(255,255,255,0.9)",
+                boxShadow: "0 4px 12px rgba(255,206,27,0.1)",
               }}
             >
               {/* Pulsing Dot */}
@@ -127,16 +123,12 @@ export function ProgramsSection() {
             <motion.button
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
+              className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer backdrop-blur-sm"
               style={{
-                color: "#800080",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
+                color: "#2A254B",
+                background: "rgba(255,255,255,0.7)",
                 border: "1px solid rgba(255,255,255,0.9)",
-                boxShadow: `
-                  6px 6px 15px rgba(166,140,255,0.10),
-                  -6px -6px 15px rgba(255,255,255,1),
-                  inset 1px 1px 2px rgba(255,255,255,1)
-                `,
+                boxShadow: "0 8px 24px rgba(255,206,27,0.15)",
               }}
             >
               <span>Explore Programs</span>
@@ -149,44 +141,20 @@ export function ProgramsSection() {
             </motion.button>
           </motion.div>
 
-          {/* Animated Neumorphic Accent Line */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.35 }}
-            className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
-            style={{
-              background: "rgba(243,238,250,0.6)",
-              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
-              border: "1px solid rgba(255,255,255,0.7)",
-              transformOrigin: "left center",
-            }}
-          >
-            <motion.div
-              className="absolute left-0 top-0 bottom-0 rounded-full"
-              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
-              animate={{ x: [0, 32, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
         </div>
 
-        {/* ── RIGHT: 2x2 Grid of Mixed Modern Program Cards (span 8) ── */}
+        {/* ── RIGHT: 2x2 Grid of Modern Clean Cards (span 8) ── */}
         <div className="lg:col-span-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
             {PROGRAMS.map((item, index) => {
-              // Highlight the flagship Certification program (index 3), standard default for others
-              const cardVariant = index === 3 ? "gradient-brand" : "default";
-
               return (
                 <NeuCard
                   key={item.title}
                   delay={index * 0.1}
-                  variant={cardVariant}
+                  variant="glass"
                   className="p-8 flex flex-col justify-between gap-6 group min-h-[240px]"
                 >
-                  {/* Top Row: Neumorphic Number Container */}
+                  {/* Top Row: Clean Number Container */}
                   <div className="flex items-center justify-between">
                     <div
                       className="flex items-center justify-center flex-shrink-0"
@@ -194,21 +162,20 @@ export function ProgramsSection() {
                         width: 50,
                         height: 50,
                         borderRadius: 16,
-                        /* Inset neumorphic well — matches GlobalBackground (#F6F3FA) */
-                        background: "#F6F3FA",
-                        boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                        background: "rgba(255,255,255,0.8)",
+                        border: "1px solid rgba(255,255,255,1)",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.03)",
                       }}
                     >
-                      {/* Coloured Tint Circle with Number */}
+                      {/* Tint Circle with Number */}
                       <div
                         className="flex items-center justify-center transition-transform duration-300 group-hover:scale-110 font-satoshi font-black text-[13.5px] tracking-wider"
                         style={{
                           width: 36,
                           height: 36,
                           borderRadius: 12,
-                          background: `${item.color}18`,
-                          color: item.color,
-                          boxShadow: `inset 2px 2px 5px ${item.color}20, inset -1px -1px 3px rgba(255,255,255,0.6)`,
+                          background: "rgba(128,0,128,0.06)",
+                          color: "#800080",
                         }}
                       >
                         {item.num}

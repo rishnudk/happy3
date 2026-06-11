@@ -31,7 +31,7 @@ export function WhatHcaDoesSection() {
   return (
     <PageWrapper 
       id="what-hca-does" 
-      className="relative py-12 lg:py-16 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#FDF4E3] border border-white/80 shadow-[0_-10px_40px_rgb(255,159,28,0.03),_0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
+      className="relative py-12 lg:py-16 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-white/80 shadow-[0_-10px_40px_rgb(255,159,28,0.03),_0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
     >
 
 
@@ -117,22 +117,13 @@ export function WhatHcaDoesSection() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 relative z-10">
             {PRACTICES.map((item, index) => {
               const Icon = item.icon;
-              const isMustard = index === 1;
-              const variant = isMustard ? "mustard" : "glass";
               return (
                 <NeuCard
                   key={item.title}
                   delay={index * 0.1}
-                  variant={variant}
+                  variant="default"
                   className="p-6 flex flex-col gap-4 group overflow-hidden"
                 >
-                  {/* Decorative arc inside mustard card */}
-                  {isMustard && (
-                    <svg className="absolute -bottom-3 -right-3 opacity-20 pointer-events-none" width="70" height="70" viewBox="0 0 70 70" fill="none" aria-hidden="true">
-                      <path d="M 5,60 A 45,45 0 0,1 65,60" stroke="#800080" strokeWidth="8" strokeLinecap="round" fill="none" />
-                    </svg>
-                  )}
-
                   {/* Icon */}
                   <div
                     className="flex items-center justify-center flex-shrink-0"
@@ -140,8 +131,8 @@ export function WhatHcaDoesSection() {
                       width: 50,
                       height: 50,
                       borderRadius: 16,
-                      background: isMustard ? "rgba(128,0,128,0.08)" : "rgba(246,243,250,0.7)",
-                      boxShadow: isMustard ? "inset 2px 2px 6px rgba(128,0,128,0.1)" : "inset 3px 3px 7px rgba(221,218,227,0.6), inset -3px -3px 7px rgba(255,255,255,0.9)",
+                      background: "rgba(246,243,250,0.7)",
+                      boxShadow: "inset 3px 3px 7px rgba(221,218,227,0.6), inset -3px -3px 7px rgba(255,255,255,0.9)",
                     }}
                   >
                     <div

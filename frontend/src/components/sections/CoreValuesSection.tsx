@@ -37,7 +37,7 @@ export function CoreValuesSection() {
   return (
     <PageWrapper 
       id="core-values" 
-      className="relative py-12 lg:py-16 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#FFFBEB] border border-[#FFCE1B]/20 shadow-[0_-10px_40px_rgb(255,206,27,0.05),_0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
+      className="relative py-12 lg:py-16 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-[#FFCE1B]/20 shadow-[0_-10px_40px_rgb(255,206,27,0.05),_0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
     >
 
 

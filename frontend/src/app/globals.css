@@ -460,7 +460,7 @@ p {
   background-size: 150px 150px;
   background-repeat: repeat;
   mix-blend-mode: multiply;
-  opacity: 0.03;
+  opacity: 0.3;
   z-index: 1;
   pointer-events: none;
   -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
