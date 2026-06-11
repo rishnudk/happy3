@@ -35,7 +35,10 @@ const VALUES = [
 
 export function CoreValuesSection() {
   return (
-    <PageWrapper id="core-values" className="relative py-20 overflow-visible">
+    <PageWrapper 
+      id="core-values" 
+      className="relative py-12 lg:py-16 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#FFFBEB] border border-[#FFCE1B]/20 shadow-[0_-10px_40px_rgb(255,206,27,0.05),_0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
+    >
 
 
 
@@ -66,17 +69,8 @@ export function CoreValuesSection() {
                 `,
               }}
             >
-              {/* Pulsing Dot */}
-              <span className="relative flex h-2 w-2 flex-shrink-0">
-                <span
-                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
-                  style={{ background: "rgba(128,0,128,0.5)" }}
-                />
-                <span
-                  className="relative inline-flex rounded-full h-2 w-2"
-                  style={{ background: "#800080" }}
-                />
-              </span>
+              {/* Static Dot */}
+              <span className="relative flex h-2 w-2 flex-shrink-0 rounded-full bg-[#800080]" />
               Our Core Values
             </span>
           </motion.div>
@@ -149,27 +143,7 @@ export function CoreValuesSection() {
             </motion.button>
           </motion.div>
 
-          {/* Animated Neumorphic Accent Line */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.35 }}
-            className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
-            style={{
-              background: "rgba(243,238,250,0.6)",
-              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
-              border: "1px solid rgba(255,255,255,0.7)",
-              transformOrigin: "left center",
-            }}
-          >
-            <motion.div
-              className="absolute left-0 top-0 bottom-0 rounded-full"
-              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
-              animate={{ x: [0, 32, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
+
         </div>
 
         {/* ── RIGHT: 2x2 Grid of Mixed Modern Cards (span 8) ── */}

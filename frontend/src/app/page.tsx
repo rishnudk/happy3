@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/hero";
-import { ChallengeSection } from "@/components/sections/ChallengeSection";
-import { PillarsSection } from "@/components/sections/PillarsSection";
+import { PhilosophyStack } from "@/components/sections/PhilosophyStack";
 import ScrollProgress from "@/components/layout/scroll-progress";
 import { Footer } from "@/components/layout/Footer";
 
@@ -17,12 +16,7 @@ export const metadata: Metadata = {
    These are code-split into separate chunks and only downloaded when the
    browser is about to render them.  This dramatically reduces the initial
    JS payload the user must download before the page becomes interactive. */
-const WhatHcaDoesSection = dynamic(
-  () => import("@/components/sections/WhatHcaDoesSection").then((m) => ({ default: m.WhatHcaDoesSection })),
-);
-const CoreValuesSection = dynamic(
-  () => import("@/components/sections/CoreValuesSection").then((m) => ({ default: m.CoreValuesSection })),
-);
+
 const ProgramsSection = dynamic(
   () => import("@/components/sections/ProgramsSection").then((m) => ({ default: m.ProgramsSection })),
 );
@@ -38,7 +32,7 @@ const CtaSection = dynamic(
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[var(--page-bg)]">
+    <main className="relative min-h-screen overflow-clip bg-[var(--page-bg)]">
       
       {/* Scroll indicator bar */}
       <ScrollProgress />
@@ -55,10 +49,7 @@ export default function HomePage() {
           <Hero />
         </div>
       </div>
-      <ChallengeSection />
-      <PillarsSection />
-      <WhatHcaDoesSection />
-      <CoreValuesSection />
+      <PhilosophyStack />
       <ProgramsSection />
       <TestimonialsSection />
       <CommunitySection />
