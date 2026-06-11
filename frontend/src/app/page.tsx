@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/hero";
 import { PhilosophyStack } from "@/components/sections/PhilosophyStack";
@@ -20,16 +20,16 @@ export const metadata: Metadata = {
    browser is about to render them.  This dramatically reduces the initial
    JS payload the user must download before the page becomes interactive. */
 
-const ProgramsSection = dynamic(
+const ProgramsSection = nextDynamic(
   () => import("@/components/sections/ProgramsSection").then((m) => ({ default: m.ProgramsSection })),
 );
-const TestimonialsSection = dynamic(
+const TestimonialsSection = nextDynamic(
   () => import("@/components/sections/TestimonialsSection").then((m) => ({ default: m.TestimonialsSection })),
 );
-const CommunitySection = dynamic(
+const CommunitySection = nextDynamic(
   () => import("@/components/sections/CommunitySection").then((m) => ({ default: m.CommunitySection })),
 );
-const CtaSection = dynamic(
+const CtaSection = nextDynamic(
   () => import("@/components/sections/CtaSection").then((m) => ({ default: m.CtaSection })),
 );
 
