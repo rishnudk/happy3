@@ -6,6 +6,9 @@ import { PhilosophyStack } from "@/components/sections/PhilosophyStack";
 import ScrollProgress from "@/components/layout/scroll-progress";
 import { Footer } from "@/components/layout/Footer";
 
+export const dynamic = "force-static";
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Happiness Coaching Academy | Science-Backed Well-being Programs",
   description:

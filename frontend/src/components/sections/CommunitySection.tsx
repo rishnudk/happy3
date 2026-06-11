@@ -38,6 +38,7 @@ function CommunityCard({ img, id }: { img: string; id: string }) {
       href="https://www.instagram.com/happinesscoachingacademy"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`View community moment ${id} on Instagram`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative flex-shrink-0 overflow-hidden rounded-[20px] block group"

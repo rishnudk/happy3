@@ -121,8 +121,8 @@ export default function HeroVisual() {
           z-[70] → IMAGE LAYER (Portrait)
           ═══════════════════════════════════════════════ */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.93 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ scale: 0.93 }}
+        animate={{ scale: 1 }}
         transition={{
           duration: 1.2,
           ease: [0.16, 1, 0.3, 1],

@@ -47,8 +47,8 @@ export default function HeroContent() {
 
       {/* 2. HERO HEADING */}
       <motion.h1
-        initial={{ opacity: 0, y: 25 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ y: 25 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         className="
           text-[38px]
@@ -67,8 +67,8 @@ export default function HeroContent() {
 
         {/* "happiness" in solid Mustard Yellow 3D pill with smile arc */}
         <motion.span
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ scale: 0.95 }}
+          animate={{ scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="
             relative inline-flex items-center
