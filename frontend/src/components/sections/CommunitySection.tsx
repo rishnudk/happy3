@@ -140,18 +140,6 @@ export function CommunitySection() {
   return (
     <PageWrapper id="community" className="relative py-20 overflow-visible">
 
-      {/* Keyframe styles injected globally */}
-      <style>{`
-        @keyframes marquee-left {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes marquee-right {
-          0%   { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
-        }
-      `}</style>
-
 
 
       {/* ── 2-Column layout: text left | marquee right ── */}

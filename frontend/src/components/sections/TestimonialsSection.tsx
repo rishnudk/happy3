@@ -272,7 +272,9 @@ function ReelCard({ reel }: { reel: Reel }) {
 
 export function TestimonialsSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const scroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
@@ -284,19 +286,30 @@ export function TestimonialsSection() {
     }
   };
 
-  // Continuous auto-scroll loop animation
+  // Only run animations when section is visible in viewport
   useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Continuous auto-scroll loop — gated by visibility
+  useEffect(() => {
+    if (!isVisible) return; // Don't run rAF when off-screen
     const container = carouselRef.current;
     if (!container) return;
 
     let animationFrameId: number;
-    const scrollSpeed = 0.5; // Scroll speed in pixels per frame
+    const scrollSpeed = 0.5;
 
     const scrollStep = () => {
       if (!isHovered && container) {
         container.scrollLeft += scrollSpeed;
-
-        // Infinite loop wrapping logic
         if (container.scrollLeft >= container.scrollWidth / 2) {
           container.scrollLeft = 0;
         }
@@ -305,14 +318,11 @@ export function TestimonialsSection() {
     };
 
     animationFrameId = requestAnimationFrame(scrollStep);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [isHovered]);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isHovered, isVisible]);
 
   return (
-    <section className="w-full bg-[#2A254B] py-20 text-white relative overflow-hidden">
+    <section ref={sectionRef} className="w-full bg-[#2A254B] py-20 text-white relative overflow-hidden">
       {/* Ambient dark glow backdrop */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(128,0,128,0.2),transparent_70%)] pointer-events-none z-0" />
       
@@ -494,21 +504,6 @@ export function TestimonialsSection() {
           </div>
 
         </div>
-
-        {/* Inline style block to hide scrollbars */}
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              .no-scrollbar::-webkit-scrollbar {
-                display: none;
-              }
-              .no-scrollbar {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-              }
-            `,
-          }}
-        />
       </PageWrapper>
     </section>
   );

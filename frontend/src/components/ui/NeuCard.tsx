@@ -43,7 +43,11 @@ export interface NeuCardProps {
     | "outlined-purple"
     | "outlined-mustard"
     | "gradient-brand"
-    | "dark-glass";
+    | "dark-glass"
+    | "purple-neu"
+    | "mustard-neu"
+    | "brand-arc"
+    | "metric-card";
 }
 
 /* ── Design tokens ───────────────────────────────────────────────────────── */
@@ -118,6 +122,34 @@ const VARIANTS = {
     border: "1px solid rgba(255,255,255,0.1)",
     hoverShadow: "0 16px 48px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
   },
+  "purple-neu": {
+    background: "#800080",
+    borderRadius: 28,
+    boxShadow: "6px 6px 12px #4d004d, -6px -6px 12px #b300b3",
+    border: "none",
+    hoverShadow: "10px 10px 18px #330033, -10px -10px 18px #cc00cc",
+  },
+  "mustard-neu": {
+    background: "#FFCE1B",
+    borderRadius: 28,
+    boxShadow: "6px 6px 12px #CCA000, -6px -6px 12px #FFFC8E",
+    border: "none",
+    hoverShadow: "10px 10px 18px #B89000, -10px -10px 18px #FFFFAC",
+  },
+  "brand-arc": {
+    background: "linear-gradient(135deg, #FFFFFF 0%, #F6F3FA 100%)",
+    borderRadius: 28,
+    boxShadow: "6px 6px 12px #DDDAE3, -6px -6px 12px #FFFFFF",
+    border: "1px solid rgba(255, 255, 255, 0.7)",
+    hoverShadow: "10px 10px 18px #DDDAE3, -10px -10px 18px #FFFFFF",
+  },
+  "metric-card": {
+    background: "#F8F7FB",
+    borderRadius: 24,
+    boxShadow: "10px 10px 24px rgba(212, 208, 224, 0.6), -10px -10px 24px #FFFFFF",
+    border: "1px solid rgba(255, 255, 255, 0.8)",
+    hoverShadow: "14px 14px 32px rgba(212, 208, 224, 0.7), -14px -14px 32px #FFFFFF",
+  },
 } as const;
 
 export default function NeuCard({
@@ -160,9 +192,37 @@ export default function NeuCard({
             }
           : undefined
       }
-      className={`relative cursor-default ${className}`}
+      className={`relative cursor-default overflow-hidden ${className}`}
       style={{ ...baseStyle, ...style }}
     >
+      {variant === "brand-arc" && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[inherit] z-0">
+          <svg
+            className="absolute w-full h-full"
+            viewBox="0 0 200 200"
+            preserveAspectRatio="none"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {/* Purple Arc */}
+            <path
+              d="M -20,220 A 240,240 0 0,1 220,-20"
+              stroke="#800080"
+              strokeWidth="24"
+              strokeLinecap="round"
+              opacity="0.07"
+            />
+            {/* Mustard Arc (Subtly shifted) */}
+            <path
+              d="M -40,240 A 240,240 0 0,1 240,-40"
+              stroke="#FFCE1B"
+              strokeWidth="16"
+              strokeLinecap="round"
+              opacity="0.14"
+            />
+          </svg>
+        </div>
+      )}
       {children}
     </motion.div>
   );

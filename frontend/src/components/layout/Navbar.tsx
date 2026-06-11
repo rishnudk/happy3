@@ -129,7 +129,7 @@ export default function Navbar() {
               style={{ width: logoSize, height: logoSize }}
             >
               <Image
-                src="/home/logo.png"
+                src="/images/logoH.png"
                 alt="Happiness Coaching Academy"
                 fill
                 className="object-contain"

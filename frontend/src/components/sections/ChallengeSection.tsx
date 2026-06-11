@@ -128,10 +128,7 @@ export function ChallengeSection() {
             {/* Card grid: 3x2 desktop & tablet, 2x3 mobile */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 relative z-10 w-full">
               {CHALLENGES.map((item, index) => {
-                const variants: ("purple" | "purple" | "purple" | "purple" | "purple" | "purple")[] = [
-                  "purple", "purple", "purple", "purple", "purple", "purple"
-                ];
-                const cardVariant = variants[index % variants.length];
+                const cardVariant = "metric-card";
 
                 return (
                   <ChallengeCard

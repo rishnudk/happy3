@@ -1,23 +1,40 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Navbar from "@/components/layout/Navbar";
+import Hero from "@/components/sections/hero";
+import { ChallengeSection } from "@/components/sections/ChallengeSection";
+import { PillarsSection } from "@/components/sections/PillarsSection";
+import ScrollProgress from "@/components/layout/scroll-progress";
+import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Happiness Coaching Academy | Science-Backed Well-being Programs",
   description:
     "Transform your life and career with professional happiness coaching. Explore science-backed programs, community events, and wellness assessments.",
 };
-import Hero from "@/components/sections/hero";
-import { ChallengeSection } from "@/components/sections/ChallengeSection";
-import { PillarsSection } from "@/components/sections/PillarsSection";
-import { WhatHcaDoesSection } from "@/components/sections/WhatHcaDoesSection";
-import { CoreValuesSection } from "@/components/sections/CoreValuesSection";
-import { ProgramsSection } from "@/components/sections/ProgramsSection";
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { CommunitySection } from "@/components/sections/CommunitySection";
-import { CtaSection } from "@/components/sections/CtaSection";
-import { Footer } from "@/components/layout/Footer";
 
-import ScrollProgress from "@/components/layout/scroll-progress";
+/* ── Lazy-loaded below-fold sections ─────────────────────────────────────
+   These are code-split into separate chunks and only downloaded when the
+   browser is about to render them.  This dramatically reduces the initial
+   JS payload the user must download before the page becomes interactive. */
+const WhatHcaDoesSection = dynamic(
+  () => import("@/components/sections/WhatHcaDoesSection").then((m) => ({ default: m.WhatHcaDoesSection })),
+);
+const CoreValuesSection = dynamic(
+  () => import("@/components/sections/CoreValuesSection").then((m) => ({ default: m.CoreValuesSection })),
+);
+const ProgramsSection = dynamic(
+  () => import("@/components/sections/ProgramsSection").then((m) => ({ default: m.ProgramsSection })),
+);
+const TestimonialsSection = dynamic(
+  () => import("@/components/sections/TestimonialsSection").then((m) => ({ default: m.TestimonialsSection })),
+);
+const CommunitySection = dynamic(
+  () => import("@/components/sections/CommunitySection").then((m) => ({ default: m.CommunitySection })),
+);
+const CtaSection = dynamic(
+  () => import("@/components/sections/CtaSection").then((m) => ({ default: m.CtaSection })),
+);
 
 export default function HomePage() {
   return (

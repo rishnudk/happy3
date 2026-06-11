@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import * as LucideIcons from "lucide-react";
+import { Brain, Sun, Heart, UserRound } from "lucide-react";
+
+const ICON_MAP = { Brain, Sun, Heart, UserRound } as const;
 
 interface FloatingTagProps {
   label: React.ReactNode;
-  iconName: keyof typeof LucideIcons;
+  iconName: keyof typeof ICON_MAP;
   iconColor?: string;
   iconBg?: string;
   className?: string;
@@ -26,10 +28,8 @@ export default function FloatingTag({
   xRange = [0, 4, 0],
   duration = 5,
 }: FloatingTagProps) {
-  const IconComponent =
-    LucideIcons[iconName] as React.ComponentType<{
-      className?: string;
-    }>;
+  const IconComponent = ICON_MAP[iconName as keyof typeof ICON_MAP];
+
 
   return (
     <motion.div
