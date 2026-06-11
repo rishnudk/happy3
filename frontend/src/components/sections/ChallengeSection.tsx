@@ -9,7 +9,6 @@ import {
   Baby,
   Briefcase,
 } from "lucide-react";
-import ChallengeCard from "@/components/ui/ChallengeCard";
 import PageWrapper from "@/components/layout/page-wrapper";
 
 /* ─── Challenge data (no num) ──────────────────────────────────────────── */
@@ -24,16 +23,23 @@ const CHALLENGES = [
 
 /* ─── Named export consumed by page.tsx ─────────────────────────────────── */
 export function ChallengeSection() {
+  const Icon0 = CHALLENGES[0].icon;
+  const Icon1 = CHALLENGES[1].icon;
+  const Icon2 = CHALLENGES[2].icon;
+  const Icon3 = CHALLENGES[3].icon;
+  const Icon4 = CHALLENGES[4].icon;
+  const Icon5 = CHALLENGES[5].icon;
+
   return (
     <PageWrapper 
       id="features" 
-      className="relative py-12 lg:py-16 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
+      className="relative py-8 lg:py-10 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
     >
 
 
 
       {/* ── 2-Column layout: text left | cards right ── */}
-      <div className="grid items-center gap-10 lg:gap-16 lg:grid-cols-12 relative z-10 max-w-[1400px] mx-auto">
+      <div className="grid items-center gap-8 lg:gap-10 lg:grid-cols-12 relative z-10 max-w-[1400px] mx-auto">
 
         {/* ── LEFT: heading block ── */}
         <div className="lg:col-span-4 flex flex-col gap-5 items-start text-left">
@@ -71,7 +77,7 @@ export function ChallengeSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
-            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
+            style={{ fontSize: "clamp(24px, 3vw, 42px)", color: "#2A254B" }}
           >
             {/* Line 1 */}
             <span className="block">Why are people</span>
@@ -124,26 +130,138 @@ export function ChallengeSection() {
           </motion.div>
         </div>
 
-        {/* ── RIGHT: Cards + SVG connector overlay ── */}
-        <div className="lg:col-span-8 w-full">
-          <div className="relative">
+        {/* ── RIGHT: Bento Grid in One Big Card (span 8) ── */}
+        <div className="lg:col-span-8 w-full relative">
+          <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-2.5 sm:p-3 md:p-4 w-full relative z-10" style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.03)" }}>
+            <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-2.5 sm:gap-3 h-full">
+              
+              {/* Card 1: Tall (Col 1, Row 1-2) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                whileHover={{ scale: 0.98 }}
+                className="md:col-span-1 md:row-span-2 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#EFE9FA] transition-transform duration-300 min-h-[110px] sm:min-h-[140px] md:min-h-0 cursor-pointer"
+              >
+                <div>
+                  <h3 className="font-satoshi font-black text-[15px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                    {CHALLENGES[0].title}
+                  </h3>
+                </div>
+                
+                <div className="flex-1 flex items-center justify-center py-3 sm:py-4">
+                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                     <Icon0 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" color={CHALLENGES[0].iconColor} strokeWidth={2.5} />
+                   </div>
+                </div>
+              </motion.div>
 
-            {/* Card grid: 3x2 desktop & tablet, 2x3 mobile */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 relative z-10 w-full">
-              {CHALLENGES.map((item, index) => {
-                const cardVariant = "metric-card";
+              {/* Card 2: Wide (Col 2-3, Row 1) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                whileHover={{ scale: 0.98 }}
+                className="md:col-span-2 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#FCECF3] transition-transform duration-300 gap-3 sm:gap-4 min-h-[80px] sm:min-h-[100px] cursor-pointer"
+              >
+                <div className="flex flex-col justify-center">
+                  <h3 className="font-satoshi font-black text-[15px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                    {CHALLENGES[1].title}
+                  </h3>
+                </div>
+                <div className="flex items-center justify-center shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                    <Icon1 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" color={CHALLENGES[1].iconColor} strokeWidth={2.5} />
+                  </div>
+                </div>
+              </motion.div>
 
-                return (
-                  <ChallengeCard
-                    key={item.title}
-                    title={item.title}
-                    icon={item.icon}
-                    iconColor={item.iconColor}
-                    delay={index * 0.08}
-                    variant={cardVariant}
-                  />
-                );
-              })}
+              {/* Card 3: Square (Col 2, Row 2) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                whileHover={{ scale: 0.98 }}
+                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#FEF5D7] transition-transform duration-300 min-h-[90px] sm:min-h-[110px] cursor-pointer"
+              >
+                <div>
+                  <h3 className="font-satoshi font-black text-[14px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                    {CHALLENGES[2].title}
+                  </h3>
+                </div>
+                <div className="flex items-end justify-end mt-2">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                    <Icon2 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" color={CHALLENGES[2].iconColor} strokeWidth={2.5} />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 4: Square (Col 3, Row 2) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                whileHover={{ scale: 0.98 }}
+                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#EAF6ED] transition-transform duration-300 min-h-[90px] sm:min-h-[110px] cursor-pointer"
+              >
+                <div className="flex items-start justify-start mb-2">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                    <Icon3 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" color={CHALLENGES[3].iconColor} strokeWidth={2.5} />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="font-satoshi font-black text-[14px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                    {CHALLENGES[3].title}
+                  </h3>
+                </div>
+              </motion.div>
+
+              {/* Card 5: Wide Bottom Left (Col 1-2, Row 3) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                whileHover={{ scale: 0.98 }}
+                className="md:col-span-2 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#FFF1E6] transition-transform duration-300 gap-3 sm:gap-4 min-h-[80px] sm:min-h-[100px] cursor-pointer"
+              >
+                <div className="flex flex-col justify-center">
+                  <h3 className="font-satoshi font-black text-[15px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                    {CHALLENGES[4].title}
+                  </h3>
+                </div>
+                <div className="flex items-center justify-center shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                    <Icon4 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" color={CHALLENGES[4].iconColor} strokeWidth={2.5} />
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Card 6: Square Bottom Right (Col 3, Row 3) */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                whileHover={{ scale: 0.98 }}
+                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#E8F0FE] transition-transform duration-300 min-h-[90px] sm:min-h-[110px] cursor-pointer"
+              >
+                <div>
+                  <h3 className="font-satoshi font-black text-[14px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                    {CHALLENGES[5].title}
+                  </h3>
+                </div>
+                <div className="flex items-end justify-end mt-2">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                    <Icon5 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" color={CHALLENGES[5].iconColor} strokeWidth={2.5} />
+                  </div>
+                </div>
+              </motion.div>
+
             </div>
           </div>
         </div>

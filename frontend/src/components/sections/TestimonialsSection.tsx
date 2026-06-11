@@ -456,6 +456,7 @@ export function TestimonialsSection() {
             </motion.div>
           </div>
 
+
           {/* ── RIGHT: Reels Carousel Container (span 8) ── */}
           <div className="lg:col-span-8 relative overflow-visible">
             <div
@@ -466,10 +467,7 @@ export function TestimonialsSection() {
               {/* Left Chevron Button Overlay */}
               <button
                 onClick={() => scroll("left")}
-                className="absolute left-[-20px] top-1/2 z-20 -translate-y-1/2 h-10 w-10 rounded-full neumorphic-raised flex items-center justify-center text-[#800080] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer bg-white/95 border border-white"
-                style={{
-                  boxShadow: "6px 6px 12px rgba(165,140,217,0.12), -6px -6px 12px rgba(255,255,255,0.95)"
-                }}
+                className="absolute left-[-20px] top-1/2 z-20 -translate-y-1/2 h-10 w-10 rounded-full flex items-center justify-center text-[#2A254B] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer bg-[#FFCE1B] border border-[#FFCE1B] shadow-md"
                 aria-label="Previous testimonials"
               >
                 <ChevronLeft className="h-4 w-4 stroke-[2.5]" />
@@ -492,10 +490,7 @@ export function TestimonialsSection() {
               {/* Right Chevron Button Overlay */}
               <button
                 onClick={() => scroll("right")}
-                className="absolute right-[-20px] top-1/2 z-20 -translate-y-1/2 h-10 w-10 rounded-full neumorphic-raised flex items-center justify-center text-[#800080] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer bg-white/95 border border-white"
-                style={{
-                  boxShadow: "6px 6px 12px rgba(165,140,217,0.12), -6px -6px 12px rgba(255,255,255,0.95)"
-                }}
+                className="absolute right-[-20px] top-1/2 z-20 -translate-y-1/2 h-10 w-10 rounded-full flex items-center justify-center text-[#2A254B] hover:scale-110 active:scale-95 transition-all duration-300 cursor-pointer bg-[#FFCE1B] border border-[#FFCE1B] shadow-md"
                 aria-label="Next testimonials"
               >
                 <ChevronRight className="h-4 w-4 stroke-[2.5]" />
