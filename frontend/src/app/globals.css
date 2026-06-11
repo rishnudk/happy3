@@ -56,7 +56,7 @@
   --background: #F4F1F7;
   --foreground: #5A4D4D;
 
-  --page-bg: #F4F1F7;
+  --page-bg: #FAF7F4;
   --hero-bg: #FAF7F4;
   --text-heading: #5A4D4D;
   --text-body: #6E6A67;
@@ -474,3 +474,82 @@ p {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* =========================================
+   HERO SECTION OPTIMIZATIONS
+ ========================================= */
+
+.bg-happiness-pill {
+  background: #FFCE1B;
+  box-shadow: 
+    0 8px 0 #D4A600,
+    0 12px 24px rgba(180,140,0,0.3),
+    inset 0 -3px 6px rgba(180,140,0,0.2),
+    inset 0 2px 0 rgba(255,230,100,0.6);
+}
+
+.marker-underline {
+  background: #FFCE1B;
+  opacity: 0.45;
+}
+
+.tag-capsule-bg {
+  background: linear-gradient(135deg, rgba(230, 210, 232, 0.72) 0%, rgba(245, 240, 255, 0.35) 100%);
+  box-shadow: 
+    0 12px 30px rgba(128, 0, 128, 0.05),
+    inset 0 2px 4px rgba(242, 185, 243, 0.8),
+    inset 0 -2px 4px rgba(218, 177, 218, 0.02);
+}
+
+.tag-circle-bg {
+  background: linear-gradient(135deg, rgba(243, 226, 235, 0.85) 0%, rgba(240, 230, 255, 0.55) 100%);
+  box-shadow: 
+    0 10px 25px rgba(128, 0, 128, 0.06),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+}
+
+@keyframes var-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(calc(360deg * var(--spin-dir, 1))); }
+}
+.animate-var-spin {
+  animation: var-spin var(--spin-duration, 50s) linear infinite;
+  animation-delay: var(--anim-delay, 0s);
+}
+
+@keyframes var-breathe-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(var(--breathe-scale, 1.05)); }
+}
+.animate-var-breathe-scale {
+  animation: var-breathe-scale var(--breathe-duration, 10s) ease-in-out infinite;
+  animation-delay: var(--anim-delay, 0s);
+}
+
+@keyframes var-breathe-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(var(--breathe-y, -5px)); }
+}
+.animate-var-breathe-y {
+  animation: var-breathe-y var(--breathe-duration-y, 8s) ease-in-out infinite;
+  animation-delay: var(--anim-delay, 0s);
+}
+
+@keyframes var-float-xy {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(var(--float-x, 4px), var(--float-y, -10px)); }
+}
+.animate-var-float-xy {
+  animation: var-float-xy var(--float-duration, 5s) ease-in-out infinite;
+  animation-delay: var(--anim-delay, 0s);
+}
+
+@keyframes var-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(calc(var(--sway-deg, 3deg) * var(--spin-dir, 1))); }
+}
+.animate-var-sway {
+  animation: var-sway var(--sway-duration, 10s) ease-in-out infinite;
+  animation-delay: var(--anim-delay, 0s);
+}
+

@@ -36,10 +36,8 @@ export default function HeroVisual() {
         />
 
         {/* Secondary atmospheric glow — wider and softer */}
-        <motion.div
-          animate={{ scale: [1, 1.06, 1], opacity: [0.18, 0.25, 0.18] }}
-          transition={{ repeat: Infinity, duration: 12, ease: "easeInOut" }}
-          className="absolute w-[350px] h-[350px] sm:w-[520px] sm:h-[520px] lg:w-[600px] lg:h-[600px] rounded-full"
+        <div
+          className="absolute w-[350px] h-[350px] sm:w-[520px] sm:h-[520px] lg:w-[600px] lg:h-[600px] rounded-full animate-pulse-slow"
           style={{
             background: "radial-gradient(ellipse at center, rgba(39, 8, 81, 0.12) 0%, rgba(94, 27, 94, 0.04) 40%, transparent 70%)",
             filter: "blur(10px)",
@@ -82,47 +80,7 @@ export default function HeroVisual() {
           }}
         />
 
-        {/* ARC 3: Middle Conic Glow Ring — conic gradient, forward rotation */}
-        <SmileArc
-          variant="conic-glow"
-          size="w-[185px] h-[185px] sm:w-[300px] sm:h-[300px] lg:w-[350px] lg:h-[350px]"
-          className="opacity-60"
-          delay={0.4}
-          direction={1}
-          rotationDuration={45}
-          gradientStyle={{
-            background: `conic-gradient(
-              from 45deg,
-              rgba(163, 105, 220, 0.1) 0deg,
-              rgba(135, 116, 231, 0.14) 50deg,
-              transparent 110deg,
-              rgba(233, 133, 133, 0.1) 180deg,
-              transparent 240deg,
-              rgba(38, 195, 140, 0.08) 300deg,
-              transparent 180deg
-            )`,
-          }}
-        />
-
-        {/* ARC 4: Inner Blur Halo — soft radial glow, breathing */}
-        <SmileArc
-          variant="blur-halo"
-          size="w-[175px] h-[175px] sm:w-[270px] sm:h-[270px] lg:w-[325px] lg:h-[325px]"
-          className="opacity-70"
-          delay={0.5}
-          gradientStyle={{
-            background: `radial-gradient(
-              ellipse at center,
-              transparent 50%,
-              rgba(108, 25, 216, 0.14) 62%,
-              rgba(213, 48, 213, 0.08) 75%,
-              rgba(212, 177, 50, 0.04) 85%,
-              transparent 95%
-            )`,
-          }}
-        />
-
-        {/* ARC 5: Smile-Inspired Lower Arc — bottom crescent, gentle sway */}
+        {/* ARC 3: Smile-Inspired Lower Arc — bottom crescent, gentle sway */}
         <SmileArc
           variant="smile-lower"
           size="w-[195px] h-[195px] sm:w-[315px] sm:h-[315px] lg:w-[370px] lg:h-[370px]"
@@ -135,23 +93,6 @@ export default function HeroVisual() {
             borderLeftColor: "rgba(200, 170, 240, 0.08)",
             borderRightColor: "rgba(125, 50, 222, 0.08)",
             borderTopColor: "transparent",
-          }}
-        />
-
-        {/* ARC 6: Inner Emotional Ring — tighter, reverse, thinner */}
-        <SmileArc
-          variant="emotional-ring"
-          size="w-[150px] h-[150px] sm:w-[250px] sm:h-[250px] lg:w-[300px] lg:h-[300px]"
-          className="opacity-35"
-          delay={0.7}
-          direction={1}
-          rotationDuration={40}
-          borderStyle={{
-            border: "8px solid rgba(255, 255, 255, 0.12)",
-            borderTopColor: "rgba(200, 170, 240, 0.10)",
-            borderBottomColor: "transparent",
-            borderRightColor: "transparent",
-            borderLeftColor: "rgba(128, 0, 128, 0.06)",
           }}
         />
 
@@ -170,10 +111,8 @@ export default function HeroVisual() {
           "
         >
           {/* Subtle breathing animation */}
-          <motion.div
-            className="absolute inset-0 rounded-full border border-dotted border-[#800080]/10"
-            animate={{ scale: [1, 1.02, 1], opacity: [0.3, 0.7, 0.3] }}
-            transition={{ repeat: Infinity, duration: 10, ease: "easeInOut" }}
+          <div
+            className="absolute inset-0 rounded-full border border-dotted border-[#800080]/10 animate-pulse-slow"
           />
         </div>
       </div>
@@ -228,10 +167,7 @@ export default function HeroVisual() {
               inset 2px 2px 5px rgba(255,255,255,0.85),
               inset -3px -3px 8px rgba(128,0,128,0.08)
             `,
-            WebkitMask:
-              "radial-gradient(farthest-side, transparent calc(100% - 20px), #000 calc(100% - 19px))",
-            mask:
-              "radial-gradient(farthest-side, transparent calc(100% - 20px), #000 calc(100% - 19px))",
+            border: "4px solid rgba(255,255,255,0.5)",
           }}
         />
 

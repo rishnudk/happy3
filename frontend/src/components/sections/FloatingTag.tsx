@@ -30,35 +30,24 @@ export default function FloatingTag({
 }: FloatingTagProps) {
   const IconComponent = ICON_MAP[iconName as keyof typeof ICON_MAP];
 
-
   return (
-    <motion.div
-      animate={{
-        y: yRange,
-        x: xRange,
-      }}
-      transition={{
-        repeat: Infinity,
-        duration,
-        ease: "easeInOut",
-        delay,
-      }}
-      whileHover={{
-        scale: 1.04,
-        y: -8,
-        transition: {
-          type: "spring",
-          stiffness: 260,
-          damping: 18,
-        },
-      }}
+    <div
       className={`
         pointer-events-auto
         relative
         flex items-center
+        animate-var-float-xy
+        group
         ${className}
       `}
+      style={{
+        "--float-duration": `${duration}s`,
+        "--float-x": `${xRange[1]}px`,
+        "--float-y": `${yRange[1]}px`,
+        "--anim-delay": `${delay}s`,
+      } as React.CSSProperties}
     >
+      <div className="flex items-center relative transition-transform duration-300 ease-out group-hover:scale-105 group-hover:-translate-y-2">
       {/* =======================================================================
           DEVELOPER NOTE: HOW TO ADJUST THE SIZES of the Circle and Capsule:
           1. CIRCLE SIZE: Change the width/height class names in the "LARGE KEY CIRCLE" div:
@@ -103,16 +92,8 @@ export default function FloatingTag({
           font-semibold
           tracking-[-0.01em]
           text-[#2A254B]
+          tag-capsule-bg
         "
-        style={{
-          /* High-end semi-transparent glossy gradient for Liquid Glass */
-          background: "linear-gradient(135deg, rgba(230, 210, 232, 0.72) 0%, rgba(245, 240, 255, 0.35) 100%)",
-          boxShadow: `
-            0 12px 30px rgba(128, 0, 128, 0.05),
-            inset 0 2px 4px rgba(242, 185, 243, 0.8),
-            inset 0 -2px 4px rgba(218, 177, 218, 0.02)
-          `,
-        }}
       >
         <span className="relative z-10 leading-tight block text-left">{label}</span>
       </div>
@@ -134,15 +115,8 @@ export default function FloatingTag({
 
           border border-white/80
           backdrop-blur-[16px]
+          tag-circle-bg
         "
-        style={{
-          /* Glossy liquid glass background */
-          background: "linear-gradient(135deg, rgba(243, 226, 235, 0.85) 0%, rgba(240, 230, 255, 0.55) 100%)",
-          boxShadow: `
-            0 10px 25px rgba(128, 0, 128, 0.06),
-            inset 0 2px 4px rgba(255, 255, 255, 0.9)
-          `,
-        }}
       >
         {/* Inner solid icon circle */}
         <div
@@ -175,6 +149,7 @@ export default function FloatingTag({
           )}
         </div>
       </div>
-    </motion.div>
+      </div>
+    </div>
   );
 }

@@ -77,16 +77,8 @@ export default function HeroContent() {
             py-2 sm:py-3
             rounded-full
             gap-3 sm:gap-4 lg:gap-5
+            bg-happiness-pill
           "
-          style={{
-            background: "#FFCE1B",
-            boxShadow: `
-              0 8px 0 #D4A600,
-              0 12px 24px rgba(180,140,0,0.3),
-              inset 0 -3px 6px rgba(180,140,0,0.2),
-              inset 0 2px 0 rgba(255,230,100,0.6)
-            `,
-          }}
         >
           <span
             className="relative z-10 text-white font-black"
@@ -138,11 +130,8 @@ export default function HeroContent() {
               h-[8px] sm:h-[10px]
               rounded-[2px]
               -z-10
+              marker-underline
             "
-            style={{
-              background: "#FFCE1B",
-              opacity: 0.45,
-            }}
           />
         </span>
       </motion.div>

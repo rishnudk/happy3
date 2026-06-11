@@ -47,39 +47,38 @@ export default function SmileArc({
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.85 }}
-        animate={{
-          opacity: 1,
-          scale: [1, 1.015, 1],
-          rotate: direction === 1 ? [0, 360] : [0, -360],
-        }}
-        transition={{
-          opacity: { duration: 1.8, delay, ease: "easeOut" },
-          scale: {
-            repeat: Infinity,
-            duration: 12,
-            ease: "easeInOut",
-            delay: delay + 0.5,
-          },
-          rotate: {
-            repeat: Infinity,
-            duration: rotationDuration,
-            ease: "linear",
-          },
-        }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.8, delay, ease: "easeOut" }}
         className={`absolute rounded-full pointer-events-none ${size ?? ""} ${className}`}
-        style={{
-          border: "18px solid rgba(200, 170, 240, 0.18)",
-          borderTopColor: "transparent",
-          borderRightColor: "rgba(128, 0, 128, 0.10)",
-          boxShadow: `
-            8px 8px 24px rgba(165, 140, 217, 0.14),
-            -8px -8px 24px rgba(255, 255, 255, 0.7),
-            inset 3px 3px 8px rgba(255, 255, 255, 0.25),
-            inset -3px -3px 8px rgba(165, 140, 217, 0.06)
-          `,
-          ...borderStyle,
-        }}
-      />
+      >
+        <div
+          className="w-full h-full rounded-full animate-var-spin"
+          style={{
+            "--spin-dir": direction,
+            "--spin-duration": `${rotationDuration}s`,
+            "--anim-delay": `${delay}s`,
+          } as React.CSSProperties}
+        >
+          <div
+            className="w-full h-full rounded-full animate-var-breathe-scale"
+            style={{
+              "--breathe-scale": 1.015,
+              "--breathe-duration": "12s",
+              "--anim-delay": `${delay + 0.5}s`,
+              border: "18px solid rgba(200, 170, 240, 0.18)",
+              borderTopColor: "transparent",
+              borderRightColor: "rgba(128, 0, 128, 0.10)",
+              boxShadow: `
+                8px 8px 24px rgba(165, 140, 217, 0.14),
+                -8px -8px 24px rgba(255, 255, 255, 0.7),
+                inset 3px 3px 8px rgba(255, 255, 255, 0.25),
+                inset -3px -3px 8px rgba(165, 140, 217, 0.06)
+              `,
+              ...borderStyle,
+            } as React.CSSProperties}
+          />
+        </div>
+      </motion.div>
     );
   }
 
@@ -141,42 +140,40 @@ export default function SmileArc({
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{
-          opacity: 1,
-          scale: [1, 1.03, 1],
-          y: [0, -4, 0],
-        }}
-        transition={{
-          opacity: { duration: 2.2, delay, ease: "easeOut" },
-          scale: {
-            repeat: Infinity,
-            duration: 16,
-            ease: "easeInOut",
-            delay: delay + 0.8,
-          },
-          y: {
-            repeat: Infinity,
-            duration: 10,
-            ease: "easeInOut",
-            delay: delay + 0.5,
-          },
-        }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 2.2, delay, ease: "easeOut" }}
         className={`absolute rounded-full pointer-events-none ${size ?? ""} ${className}`}
-        style={{
-          background: `radial-gradient(
-            ellipse at center,
-            transparent 55%,
-            rgba(200, 170, 240, 0.15) 65%,
-            rgba(128, 0, 128, 0.08) 78%,
-            transparent 92%
-          )`,
-          boxShadow: `
-            4px 4px 16px rgba(165, 140, 217, 0.08),
-            -4px -4px 16px rgba(255, 255, 255, 0.5)
-          `,
-          ...gradientStyle,
-        }}
-      />
+      >
+        <div
+          className="w-full h-full rounded-full animate-var-breathe-scale"
+          style={{
+            "--breathe-scale": 1.03,
+            "--breathe-duration": "16s",
+            "--anim-delay": `${delay + 0.8}s`,
+          } as React.CSSProperties}
+        >
+          <div
+            className="w-full h-full rounded-full animate-var-breathe-y"
+            style={{
+              "--breathe-y": "-4px",
+              "--breathe-duration-y": "10s",
+              "--anim-delay": `${delay + 0.5}s`,
+              background: `radial-gradient(
+                ellipse at center,
+                transparent 55%,
+                rgba(200, 170, 240, 0.15) 65%,
+                rgba(128, 0, 128, 0.08) 78%,
+                transparent 92%
+              )`,
+              boxShadow: `
+                4px 4px 16px rgba(165, 140, 217, 0.08),
+                -4px -4px 16px rgba(255, 255, 255, 0.5)
+              `,
+              ...gradientStyle,
+            } as React.CSSProperties}
+          />
+        </div>
+      </motion.div>
     );
   }
 
@@ -188,41 +185,40 @@ export default function SmileArc({
     return (
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{
-          opacity: 1,
-          y: [0, -5, 0],
-          rotate: direction === 1 ? [0, 3, 0] : [0, -3, 0],
-        }}
-        transition={{
-          opacity: { duration: 1.6, delay, ease: "easeOut" },
-          y: {
-            repeat: Infinity,
-            duration: 8,
-            ease: "easeInOut",
-            delay: delay + 0.3,
-          },
-          rotate: {
-            repeat: Infinity,
-            duration: 10,
-            ease: "easeInOut",
-            delay: delay + 0.3,
-          },
-        }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.6, delay, ease: "easeOut" }}
         className={`absolute rounded-full pointer-events-none ${size ?? ""} ${className}`}
-        style={{
-          border: "14px solid transparent",
-          borderBottomColor: "rgba(255, 206, 27, 0.18)",
-          borderLeftColor: "rgba(200, 170, 240, 0.10)",
-          borderRightColor: "rgba(200, 170, 240, 0.10)",
-          boxShadow: `
-            8px 8px 24px rgba(165, 140, 217, 0.12),
-            -8px -8px 24px rgba(255, 255, 255, 0.65),
-            inset 2px 2px 6px rgba(255, 255, 255, 0.20),
-            inset -2px -2px 6px rgba(165, 140, 217, 0.05)
-          `,
-          ...borderStyle,
-        }}
-      />
+      >
+        <div
+          className="w-full h-full rounded-full animate-var-sway"
+          style={{
+            "--sway-deg": "3deg",
+            "--sway-duration": "10s",
+            "--spin-dir": direction,
+            "--anim-delay": `${delay + 0.3}s`,
+          } as React.CSSProperties}
+        >
+          <div
+            className="w-full h-full rounded-full animate-var-breathe-y"
+            style={{
+              "--breathe-y": "-5px",
+              "--breathe-duration-y": "8s",
+              "--anim-delay": `${delay + 0.3}s`,
+              border: "14px solid transparent",
+              borderBottomColor: "rgba(255, 206, 27, 0.18)",
+              borderLeftColor: "rgba(200, 170, 240, 0.10)",
+              borderRightColor: "rgba(200, 170, 240, 0.10)",
+              boxShadow: `
+                8px 8px 24px rgba(165, 140, 217, 0.12),
+                -8px -8px 24px rgba(255, 255, 255, 0.65),
+                inset 2px 2px 6px rgba(255, 255, 255, 0.20),
+                inset -2px -2px 6px rgba(165, 140, 217, 0.05)
+              `,
+              ...borderStyle,
+            } as React.CSSProperties}
+          />
+        </div>
+      </motion.div>
     );
   }
 
@@ -234,39 +230,38 @@ export default function SmileArc({
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.92 }}
-        animate={{
-          opacity: 1,
-          rotate: direction === 1 ? [0, 360] : [0, -360],
-          scale: [1, 1.008, 1],
-        }}
-        transition={{
-          opacity: { duration: 2.5, delay, ease: "easeOut" },
-          rotate: {
-            repeat: Infinity,
-            duration: rotationDuration,
-            ease: "linear",
-          },
-          scale: {
-            repeat: Infinity,
-            duration: 18,
-            ease: "easeInOut",
-            delay: delay + 1,
-          },
-        }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 2.5, delay, ease: "easeOut" }}
         className={`absolute rounded-full pointer-events-none ${size ?? ""} ${className}`}
-        style={{
-          border: "1.5px solid rgba(200, 170, 240, 0.15)",
-          boxShadow: `
-            6px 6px 18px rgba(165, 140, 217, 0.10),
-            -6px -6px 18px rgba(255, 255, 255, 0.65),
-            0 0 40px rgba(128, 0, 128, 0.04),
-            inset 0 0 30px rgba(200, 170, 240, 0.03),
-            inset 1px 1px 4px rgba(255, 255, 255, 0.15),
-            inset -1px -1px 4px rgba(165, 140, 217, 0.03)
-          `,
-          ...borderStyle,
-        }}
-      />
+      >
+        <div
+          className="w-full h-full rounded-full animate-var-spin"
+          style={{
+            "--spin-dir": direction,
+            "--spin-duration": `${rotationDuration}s`,
+            "--anim-delay": `${delay}s`,
+          } as React.CSSProperties}
+        >
+          <div
+            className="w-full h-full rounded-full animate-var-breathe-scale"
+            style={{
+              "--breathe-scale": 1.008,
+              "--breathe-duration": "18s",
+              "--anim-delay": `${delay + 1}s`,
+              border: "1.5px solid rgba(200, 170, 240, 0.15)",
+              boxShadow: `
+                6px 6px 18px rgba(165, 140, 217, 0.10),
+                -6px -6px 18px rgba(255, 255, 255, 0.65),
+                0 0 40px rgba(128, 0, 128, 0.04),
+                inset 0 0 30px rgba(200, 170, 240, 0.03),
+                inset 1px 1px 4px rgba(255, 255, 255, 0.15),
+                inset -1px -1px 4px rgba(165, 140, 217, 0.03)
+              `,
+              ...borderStyle,
+            } as React.CSSProperties}
+          />
+        </div>
+      </motion.div>
     );
   }
 
@@ -418,44 +413,43 @@ export default function SmileArc({
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 30, rotate: 0 }}
-      animate={{
-        opacity: 1,
-        scale: [1, 1.012, 1],
-        y: [0, -4, 0],
-        rotate: [0, 0.8, 0],
-      }}
-      transition={{
-        opacity: { duration: 1.5, ease: "easeOut", delay },
-        scale: {
-          repeat: Infinity,
-          duration: 12,
-          ease: "easeInOut",
-          delay: delay + 0.5,
-        },
-        y: {
-          repeat: Infinity,
-          duration: 9,
-          ease: "easeInOut",
-          delay: delay + 0.3,
-        },
-        rotate: {
-          repeat: Infinity,
-          duration: 10,
-          ease: "easeInOut",
-          delay: delay + 0.3,
-        },
-      }}
+      initial={{ opacity: 0, scale: 0.9, y: 30 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 1.5, ease: "easeOut", delay }}
       className={`absolute z-20 pointer-events-none aspect-[380/180] ${className}`}
     >
-      <svg
-        width="380"
-        height="180"
-        viewBox="0 0 380 180"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-auto overflow-visible"
+      <div
+        className="w-full h-full animate-var-sway"
+        style={{
+          "--sway-deg": "0.8deg",
+          "--sway-duration": "10s",
+          "--anim-delay": `${delay + 0.3}s`,
+        } as React.CSSProperties}
       >
+        <div
+          className="w-full h-full animate-var-breathe-y"
+          style={{
+            "--breathe-y": "-4px",
+            "--breathe-duration-y": "9s",
+            "--anim-delay": `${delay + 0.3}s`,
+          } as React.CSSProperties}
+        >
+          <div
+            className="w-full h-full animate-var-breathe-scale"
+            style={{
+              "--breathe-scale": 1.012,
+              "--breathe-duration": "12s",
+              "--anim-delay": `${delay + 0.5}s`,
+            } as React.CSSProperties}
+          >
+            <svg
+              width="380"
+              height="180"
+              viewBox="0 0 380 180"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-full h-auto overflow-visible"
+            >
         <defs>
           {/* Neumorphic Lighting Filters */}
           {isPrimary ? (
@@ -588,6 +582,9 @@ export default function SmileArc({
           strokeLinecap="round"
         />
       </svg>
+          </div>
+        </div>
+      </div>
     </motion.div>
   );
 }
