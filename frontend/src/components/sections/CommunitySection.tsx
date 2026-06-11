@@ -8,21 +8,21 @@ import PageWrapper from "@/components/layout/page-wrapper";
 
 /* ─── Image data ─────────────────────────────────────────────────────────── */
 const communityImages = [
-  { id: "1",  img: "/community/IMG-20260512-WA0030.jpg" },
-  { id: "2",  img: "/community/IMG-20260512-WA0031.jpg" },
-  { id: "3",  img: "/community/IMG-20260512-WA0046.jpg" },
-  { id: "4",  img: "/community/IMG-20260512-WA0048.jpg" },
-  { id: "5",  img: "/community/IMG-20260512-WA0052.jpg" },
-  { id: "6",  img: "/community/IMG-20260512-WA0053.jpg" },
-  { id: "7",  img: "/community/IMG-20260512-WA0054.jpg" },
-  { id: "8",  img: "/community/IMG-20260512-WA0059.jpg" },
-  { id: "9",  img: "/community/IMG-20260512-WA0061.jpg" },
-  { id: "10", img: "/community/IMG-20260512-WA0063.jpg" },
-  { id: "11", img: "/community/IMG-20260512-WA0064.jpg" },
-  { id: "12", img: "/community/IMG-20260512-WA0067.jpg" },
-  { id: "13", img: "/community/IMG-20260517-WA0043.jpg" },
-  { id: "14", img: "/community/IMG-20260517-WA0044.jpg" },
-  { id: "15", img: "/community/IMG-20260517-WA0046.jpg" },
+  { id: "1",  img: "/community/IMG-20260512-WA0030.webp" },
+  { id: "2",  img: "/community/IMG-20260512-WA0031.webp" },
+  { id: "3",  img: "/community/IMG-20260512-WA0046.webp" },
+  { id: "4",  img: "/community/IMG-20260512-WA0048.webp" },
+  { id: "5",  img: "/community/IMG-20260512-WA0052.webp" },
+  { id: "6",  img: "/community/IMG-20260512-WA0053.webp" },
+  { id: "7",  img: "/community/IMG-20260512-WA0054.webp" },
+  { id: "8",  img: "/community/IMG-20260512-WA0059.webp" },
+  { id: "9",  img: "/community/IMG-20260512-WA0061.webp" },
+  { id: "10", img: "/community/IMG-20260512-WA0063.webp" },
+  { id: "11", img: "/community/IMG-20260512-WA0064.webp" },
+  { id: "12", img: "/community/IMG-20260512-WA0067.webp" },
+  { id: "13", img: "/community/IMG-20260517-WA0043.webp" },
+  { id: "14", img: "/community/IMG-20260517-WA0044.webp" },
+  { id: "15", img: "/community/IMG-20260517-WA0046.webp" },
 ];
 
 /* Split images into two rows */
