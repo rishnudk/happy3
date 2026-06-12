@@ -158,7 +158,7 @@ export function ProgramsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-1 md:row-span-2 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#EFE9FA] transition-transform duration-300 min-h-[140px] sm:min-h-[160px] md:min-h-0 cursor-pointer"
+                className="md:col-span-1 md:row-span-2 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#E9D5FF] transition-transform duration-300 min-h-[140px] sm:min-h-[160px] md:min-h-0 cursor-pointer"
               >
                 <div>
                   <h3 className="font-satoshi font-black text-[15px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] mb-1 sm:mb-2 tracking-tight">
@@ -186,7 +186,7 @@ export function ProgramsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-2 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#FCECF3] transition-transform duration-300 gap-3 sm:gap-4 min-h-[90px] sm:min-h-[100px] cursor-pointer"
+                className="md:col-span-2 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#FBCFE8] transition-transform duration-300 gap-3 sm:gap-4 min-h-[90px] sm:min-h-[100px] cursor-pointer"
               >
                 <div className="flex flex-col justify-center max-w-[320px]">
                   <h3 className="font-satoshi font-black text-[15px] sm:text-[16px] md:text-[18px] leading-[1.1] text-[#1E1B4B] mb-1 sm:mb-2 tracking-tight">
@@ -210,7 +210,7 @@ export function ProgramsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#FEF5D7] transition-transform duration-300 min-h-[110px] sm:min-h-[120px] cursor-pointer"
+                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#FDE68A] transition-transform duration-300 min-h-[110px] sm:min-h-[120px] cursor-pointer"
               >
                 <div>
                   <h3 className="font-satoshi font-black text-[14px] sm:text-[15px] md:text-[16px] leading-[1.1] text-[#1E1B4B] mb-1 sm:mb-2 tracking-tight">
@@ -234,7 +234,7 @@ export function ProgramsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#EAF6ED] transition-transform duration-300 min-h-[110px] sm:min-h-[120px] cursor-pointer"
+                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#A7F3D0] transition-transform duration-300 min-h-[110px] sm:min-h-[120px] cursor-pointer"
               >
                 <div className="flex items-start justify-start mb-2">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center text-[#059669] font-black text-xs sm:text-sm md:text-base shadow-sm">
