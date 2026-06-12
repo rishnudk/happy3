@@ -133,7 +133,7 @@ export function ChallengeSection() {
         {/* ── RIGHT: Bento Grid in One Big Card (span 8) ── */}
         <div className="lg:col-span-8 w-full relative">
           <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-2.5 sm:p-3 md:p-4 w-full relative z-10" style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.03)" }}>
-            <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-3 gap-2.5 sm:gap-3 h-full">
+            <div className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-3 gap-2.5 sm:gap-3 h-full">
               
               {/* Card 1: Tall (Col 1, Row 1-2) */}
               <motion.div 
@@ -142,17 +142,17 @@ export function ChallengeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-1 md:row-span-2 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#EFE9FA] transition-transform duration-300 min-h-[110px] sm:min-h-[140px] md:min-h-0 cursor-pointer"
+                className="col-span-1 md:row-span-2 rounded-[1rem] sm:rounded-[1.25rem] p-3 sm:p-4 md:p-5 flex flex-row md:flex-col justify-between items-center md:items-stretch bg-[#EFE9FA] transition-transform duration-300 min-h-[70px] md:min-h-0 cursor-pointer gap-2 md:gap-0"
               >
-                <div>
-                  <h3 className="font-satoshi font-black text-[15px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                <div className="flex-1">
+                  <h3 className="font-satoshi font-black text-[13px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
                     {CHALLENGES[0].title}
                   </h3>
                 </div>
                 
-                <div className="flex-1 flex items-center justify-center py-3 sm:py-4">
-                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
-                     <Icon0 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" color={CHALLENGES[0].iconColor} strokeWidth={2.5} />
+                <div className="shrink-0 flex items-center justify-center md:flex-1 py-0 md:py-4">
+                   <div className="w-8 h-8 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
+                     <Icon0 className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7" color={CHALLENGES[0].iconColor} strokeWidth={2.5} />
                    </div>
                 </div>
               </motion.div>
@@ -164,15 +164,15 @@ export function ChallengeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-2 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#FCECF3] transition-transform duration-300 gap-3 sm:gap-4 min-h-[80px] sm:min-h-[100px] cursor-pointer"
+                className="col-span-1 md:col-span-2 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3 sm:p-4 md:p-5 flex flex-row justify-between items-center bg-[#FCECF3] transition-transform duration-300 gap-2 sm:gap-4 min-h-[70px] sm:min-h-[100px] cursor-pointer"
               >
-                <div className="flex flex-col justify-center">
-                  <h3 className="font-satoshi font-black text-[15px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                <div className="flex flex-col justify-center flex-1">
+                  <h3 className="font-satoshi font-black text-[13px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
                     {CHALLENGES[1].title}
                   </h3>
                 </div>
-                <div className="flex items-center justify-center shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
+                <div className="flex items-center justify-center shrink-0 w-auto mt-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon1 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" color={CHALLENGES[1].iconColor} strokeWidth={2.5} />
                   </div>
                 </div>
@@ -185,14 +185,14 @@ export function ChallengeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#FEF5D7] transition-transform duration-300 min-h-[90px] sm:min-h-[110px] cursor-pointer"
+                className="col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3 sm:p-4 md:p-5 flex flex-row md:flex-col justify-between items-center md:items-stretch bg-[#FEF5D7] transition-transform duration-300 min-h-[70px] sm:min-h-[110px] cursor-pointer gap-2 md:gap-0"
               >
-                <div>
-                  <h3 className="font-satoshi font-black text-[14px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                <div className="flex-1">
+                  <h3 className="font-satoshi font-black text-[13px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
                     {CHALLENGES[2].title}
                   </h3>
                 </div>
-                <div className="flex items-end justify-end mt-2">
+                <div className="shrink-0 flex items-center md:items-end md:justify-end mt-0 md:mt-2">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon2 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" color={CHALLENGES[2].iconColor} strokeWidth={2.5} />
                   </div>
@@ -206,15 +206,15 @@ export function ChallengeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#EAF6ED] transition-transform duration-300 min-h-[90px] sm:min-h-[110px] cursor-pointer"
+                className="col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3 sm:p-4 md:p-5 flex flex-row-reverse md:flex-col justify-between items-center md:items-stretch bg-[#EAF6ED] transition-transform duration-300 min-h-[70px] sm:min-h-[110px] cursor-pointer gap-2 md:gap-0"
               >
-                <div className="flex items-start justify-start mb-2">
+                <div className="shrink-0 flex items-center md:items-start md:justify-start mb-0 md:mb-2">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon3 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" color={CHALLENGES[3].iconColor} strokeWidth={2.5} />
                   </div>
                 </div>
-                <div>
-                  <h3 className="font-satoshi font-black text-[14px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                <div className="flex-1 text-left">
+                  <h3 className="font-satoshi font-black text-[13px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
                     {CHALLENGES[3].title}
                   </h3>
                 </div>
@@ -227,15 +227,15 @@ export function ChallengeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-2 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#FFF1E6] transition-transform duration-300 gap-3 sm:gap-4 min-h-[80px] sm:min-h-[100px] cursor-pointer"
+                className="col-span-1 md:col-span-2 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3 sm:p-4 md:p-5 flex flex-row justify-between items-center bg-[#FFF1E6] transition-transform duration-300 gap-2 sm:gap-4 min-h-[70px] sm:min-h-[100px] cursor-pointer"
               >
-                <div className="flex flex-col justify-center">
-                  <h3 className="font-satoshi font-black text-[15px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                <div className="flex flex-col justify-center flex-1">
+                  <h3 className="font-satoshi font-black text-[13px] sm:text-[16px] md:text-[18px] leading-[1.15] text-[#1E1B4B] tracking-tight">
                     {CHALLENGES[4].title}
                   </h3>
                 </div>
-                <div className="flex items-center justify-center shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
+                <div className="flex items-center justify-center shrink-0 w-auto mt-0">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon4 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" color={CHALLENGES[4].iconColor} strokeWidth={2.5} />
                   </div>
                 </div>
@@ -248,14 +248,14 @@ export function ChallengeSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6 }}
                 whileHover={{ scale: 0.98 }}
-                className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#E8F0FE] transition-transform duration-300 min-h-[90px] sm:min-h-[110px] cursor-pointer"
+                className="col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3 sm:p-4 md:p-5 flex flex-row md:flex-col justify-between items-center md:items-stretch bg-[#E8F0FE] transition-transform duration-300 min-h-[70px] sm:min-h-[110px] cursor-pointer gap-2 md:gap-0"
               >
-                <div>
-                  <h3 className="font-satoshi font-black text-[14px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
+                <div className="flex-1">
+                  <h3 className="font-satoshi font-black text-[13px] sm:text-[15px] md:text-[16px] leading-[1.15] text-[#1E1B4B] tracking-tight">
                     {CHALLENGES[5].title}
                   </h3>
                 </div>
-                <div className="flex items-end justify-end mt-2">
+                <div className="shrink-0 flex items-center md:items-end md:justify-end mt-0 md:mt-2">
                   <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon5 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" color={CHALLENGES[5].iconColor} strokeWidth={2.5} />
                   </div>
