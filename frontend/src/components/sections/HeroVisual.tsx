@@ -1,13 +1,31 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import SmileArc from "./SmileArc";
 import FloatingTag from "./FloatingTag";
 
 export default function HeroVisual() {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Pause all CSS animations when hero scrolls out of viewport
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.05 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
 <div
+      ref={heroRef}
+      style={{ animationPlayState: isVisible ? "running" : "paused" } as React.CSSProperties}
       className="
         lg:col-span-5
         relative

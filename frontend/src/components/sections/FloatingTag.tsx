@@ -82,8 +82,6 @@ export default function FloatingTag({
 
           border border-white/60
 
-          backdrop-blur-[16px]
-
           text-[9px]
           sm:text-[16px]
           lg:text-[12px]
@@ -114,7 +112,6 @@ export default function FloatingTag({
           flex items-center justify-center
 
           border border-white/80
-          backdrop-blur-[16px]
           tag-circle-bg
         "
       >

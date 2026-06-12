@@ -34,7 +34,7 @@ export function WhatHcaDoesSection() {
   return (
     <PageWrapper 
       id="what-hca-does" 
-      className="relative py-8 lg:py-10 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-white/80 shadow-[0_-10px_40px_rgb(255,159,28,0.03),_0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
+      className="relative py-8 lg:py-10 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-white/80 shadow-[0_-10px_40px_rgb(255,159,28,0.03),_0_8px_30px_rgb(0,0,0,0.04)]"
     >
 
 
@@ -133,7 +133,7 @@ export function WhatHcaDoesSection() {
                   </p>
                 </div>
                 <div className="flex items-center justify-center shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon0 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" color={PRACTICES[0].iconColor} strokeWidth={2.5} />
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export function WhatHcaDoesSection() {
                 </div>
                 
                 <div className="flex-1 flex items-center justify-center py-3 sm:py-4">
-                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                      <Icon1 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" color={PRACTICES[1].iconColor} strokeWidth={2.5} />
                    </div>
                 </div>
@@ -185,7 +185,7 @@ export function WhatHcaDoesSection() {
                   </p>
                 </div>
                 <div className="flex items-center justify-center shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" color={PRACTICES[2].iconColor} strokeWidth={2.5} />
                   </div>
                 </div>

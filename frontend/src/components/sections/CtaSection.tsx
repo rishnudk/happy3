@@ -62,7 +62,7 @@ export function CtaSection() {
               {/* Pulsing Dot */}
               <span className="relative flex h-2 w-2 flex-shrink-0">
                 <span
-                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                  className="animate-pulse absolute inline-flex h-full w-full rounded-full opacity-60"
                   style={{ background: "rgba(128,0,128,0.5)" }}
                 />
                 <span

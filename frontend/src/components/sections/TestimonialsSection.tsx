@@ -90,11 +90,27 @@ const reels: Reel[] = [
 // Double the reels for seamless looping in the infinite auto-scrolling carousel
 const doubledReels = [...reels, ...reels];
 
-function ReelCard({ reel }: { reel: Reel }) {
+function ReelCard({ reel, videoRegistryRef }: { reel: Reel; videoRegistryRef: React.MutableRefObject<Set<HTMLVideoElement>> }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
+
+  // Register/unregister this video element in the shared registry
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    videoRegistryRef.current.add(video);
+    return () => { videoRegistryRef.current.delete(video); };
+  }, [videoRegistryRef]);
+
+  const pauseOtherVideos = () => {
+    videoRegistryRef.current.forEach((v) => {
+      if (v !== videoRef.current) {
+        v.pause();
+      }
+    });
+  };
 
   const handlePlayPause = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -104,14 +120,7 @@ function ReelCard({ reel }: { reel: Reel }) {
       videoRef.current.pause();
       setIsPlaying(false);
     } else {
-      // Pause all other playing videos
-      const allVideos = document.querySelectorAll("video");
-      allVideos.forEach((v) => {
-        if (v !== videoRef.current) {
-          (v as HTMLVideoElement).pause();
-        }
-      });
-
+      pauseOtherVideos();
       videoRef.current.play().catch((err) => console.log("Play blocked:", err));
       setIsPlaying(true);
     }
@@ -173,6 +182,7 @@ function ReelCard({ reel }: { reel: Reel }) {
         src={reel.poster}
         alt={reel.quote}
         fill
+        loading="lazy"
         sizes="245px"
         className={`object-cover transition-opacity duration-700 ${
           isPlaying ? "opacity-0" : "opacity-100"
@@ -273,6 +283,7 @@ function ReelCard({ reel }: { reel: Reel }) {
 export function TestimonialsSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const videoRegistryRef = useRef<Set<HTMLVideoElement>>(new Set());
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -354,7 +365,7 @@ export function TestimonialsSection() {
                 {/* Pulsing Dot */}
                 <span className="relative flex h-2 w-2 flex-shrink-0">
                   <span
-                    className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                    className="animate-pulse absolute inline-flex h-full w-full rounded-full opacity-60"
                     style={{ background: "rgba(192, 132, 252, 0.5)" }}
                   />
                   <span
@@ -483,7 +494,7 @@ export function TestimonialsSection() {
                 }}
               >
                 {doubledReels.map((reel, index) => (
-                  <ReelCard key={`${reel.id}-${index}`} reel={reel} />
+                  <ReelCard key={`${reel.id}-${index}`} reel={reel} videoRegistryRef={videoRegistryRef} />
                 ))}
               </div>
 

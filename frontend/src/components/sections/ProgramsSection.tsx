@@ -53,7 +53,7 @@ export function ProgramsSection() {
             className="inline-flex"
           >
             <span
-              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase backdrop-blur-sm"
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
               style={{
                 color: "#800080",
                 background: "rgba(255,255,255,0.6)",
@@ -64,7 +64,7 @@ export function ProgramsSection() {
               {/* Pulsing Dot */}
               <span className="relative flex h-2 w-2 flex-shrink-0">
                 <span
-                  className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+                  className="animate-pulse absolute inline-flex h-full w-full rounded-full opacity-60"
                   style={{ background: "rgba(128,0,128,0.5)" }}
                 />
                 <span
@@ -122,7 +122,7 @@ export function ProgramsSection() {
             <motion.button
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer backdrop-blur-sm"
+              className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
               style={{
                 color: "#2A254B",
                 background: "rgba(255,255,255,0.7)",
@@ -163,7 +163,7 @@ export function ProgramsSection() {
                 </div>
                 
                 <div className="flex-1 flex items-center justify-center py-3 sm:py-4">
-                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/70 flex items-center justify-center text-[#800080] font-black text-sm sm:text-base md:text-lg shadow-sm backdrop-blur-sm">
+                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/90 flex items-center justify-center text-[#800080] font-black text-sm sm:text-base md:text-lg shadow-sm">
                      {PROGRAMS[0].num}
                    </div>
                 </div>
@@ -193,7 +193,7 @@ export function ProgramsSection() {
                   </p>
                 </div>
                 <div className="flex items-center justify-center shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/70 flex items-center justify-center text-[#EC4899] font-black text-sm sm:text-base md:text-lg shadow-sm backdrop-blur-sm">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/90 flex items-center justify-center text-[#EC4899] font-black text-sm sm:text-base md:text-lg shadow-sm">
                     {PROGRAMS[1].num}
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export function ProgramsSection() {
                   </p>
                 </div>
                 <div className="flex items-end justify-end mt-2">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/70 flex items-center justify-center text-[#D97706] font-black text-xs sm:text-sm md:text-base shadow-sm backdrop-blur-sm">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center text-[#D97706] font-black text-xs sm:text-sm md:text-base shadow-sm">
                     {PROGRAMS[2].num}
                   </div>
                 </div>
@@ -233,7 +233,7 @@ export function ProgramsSection() {
                 className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#EAF6ED] transition-transform duration-300 min-h-[110px] sm:min-h-[120px] cursor-pointer"
               >
                 <div className="flex items-start justify-start mb-2">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/70 flex items-center justify-center text-[#059669] font-black text-xs sm:text-sm md:text-base shadow-sm backdrop-blur-sm">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center text-[#059669] font-black text-xs sm:text-sm md:text-base shadow-sm">
                     {PROGRAMS[3].num}
                   </div>
                 </div>

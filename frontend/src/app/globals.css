@@ -341,6 +341,7 @@ p {
 
 .animate-pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
+  animation-play-state: inherit;
 }
 
 @keyframes spin-slow {
@@ -536,6 +537,7 @@ p {
 .animate-var-spin {
   animation: var-spin var(--spin-duration, 50s) linear infinite;
   animation-delay: var(--anim-delay, 0s);
+  animation-play-state: inherit;
 }
 
 @keyframes var-breathe-scale {
@@ -545,6 +547,7 @@ p {
 .animate-var-breathe-scale {
   animation: var-breathe-scale var(--breathe-duration, 10s) ease-in-out infinite;
   animation-delay: var(--anim-delay, 0s);
+  animation-play-state: inherit;
 }
 
 @keyframes var-breathe-y {
@@ -554,6 +557,7 @@ p {
 .animate-var-breathe-y {
   animation: var-breathe-y var(--breathe-duration-y, 8s) ease-in-out infinite;
   animation-delay: var(--anim-delay, 0s);
+  animation-play-state: inherit;
 }
 
 @keyframes var-float-xy {
@@ -563,6 +567,7 @@ p {
 .animate-var-float-xy {
   animation: var-float-xy var(--float-duration, 5s) ease-in-out infinite;
   animation-delay: var(--anim-delay, 0s);
+  animation-play-state: inherit;
 }
 
 @keyframes var-sway {
@@ -572,5 +577,6 @@ p {
 .animate-var-sway {
   animation: var-sway var(--sway-duration, 10s) ease-in-out infinite;
   animation-delay: var(--anim-delay, 0s);
+  animation-play-state: inherit;
 }
 

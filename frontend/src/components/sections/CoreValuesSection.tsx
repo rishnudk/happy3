@@ -41,7 +41,7 @@ export function CoreValuesSection() {
   return (
     <PageWrapper 
       id="core-values" 
-      className="relative py-8 lg:py-10 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-[#FFCE1B]/20 shadow-[0_-10px_40px_rgb(255,206,27,0.05),_0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl"
+      className="relative py-8 lg:py-10 px-6 lg:px-12 overflow-visible rounded-[2.5rem] bg-[#F4EFFC] border border-[#FFCE1B]/20 shadow-[0_-10px_40px_rgb(255,206,27,0.05),_0_8px_30px_rgb(0,0,0,0.04)]"
     >
 
 
@@ -171,7 +171,7 @@ export function CoreValuesSection() {
                 </div>
                 
                 <div className="flex-1 flex items-center justify-center py-3 sm:py-4">
-                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                      <Icon0 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7" color={VALUES[0].iconColor} strokeWidth={2.5} />
                    </div>
                 </div>
@@ -201,7 +201,7 @@ export function CoreValuesSection() {
                   </p>
                 </div>
                 <div className="flex items-center justify-center shrink-0 w-full sm:w-auto mt-2 sm:mt-0">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon1 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" color={VALUES[1].iconColor} strokeWidth={2.5} />
                   </div>
                 </div>
@@ -225,7 +225,7 @@ export function CoreValuesSection() {
                   </p>
                 </div>
                 <div className="flex items-end justify-end mt-2">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon2 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" color={VALUES[2].iconColor} strokeWidth={2.5} />
                   </div>
                 </div>
@@ -241,7 +241,7 @@ export function CoreValuesSection() {
                 className="md:col-span-1 md:row-span-1 rounded-[1rem] sm:rounded-[1.25rem] p-3.5 sm:p-4 md:p-5 flex flex-col justify-between bg-[#FCECF3] transition-transform duration-300 min-h-[110px] sm:min-h-[120px] cursor-pointer"
               >
                 <div className="flex items-start justify-start mb-2">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/70 flex items-center justify-center shadow-sm backdrop-blur-sm">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-white/90 flex items-center justify-center shadow-sm">
                     <Icon3 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" color={VALUES[3].iconColor} strokeWidth={2.5} />
                   </div>
                 </div>
