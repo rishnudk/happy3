@@ -39,7 +39,9 @@ export default function HeroVisual() {
         sm:min-h-[560px]
         lg:min-h-[640px]
         w-full
+        max-w-full
         overflow-visible
+        lg:overflow-visible
       "
     >
       {/* ═══════════════════════════════════════════════
@@ -292,7 +294,7 @@ export default function HeroVisual() {
             iconColor="text-white"
             iconBg="#FFCE1B"
             className="
-              top-[0%] right-[-75%]
+              top-[0%] right-[-65%]
               sm:top-[2%] sm:right-[-80%]
               lg:top-[9%] lg:right-[-80%]
             "
@@ -324,7 +326,7 @@ export default function HeroVisual() {
             iconColor="text-white"
             iconBg="#800080"
             className="
-              bottom-[-32%] right-[-75%]
+              bottom-[-32%] right-[-65%]
               sm:bottom-[-12%] sm:right-[-84%]
               lg:bottom-[-34%] lg:right-[-85%]
             "

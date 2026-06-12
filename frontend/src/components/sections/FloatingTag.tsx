@@ -38,6 +38,7 @@ export default function FloatingTag({
         flex items-center
         animate-var-float-xy
         group
+        scale-[0.85] sm:scale-100 origin-center
         ${className}
       `}
       style={{

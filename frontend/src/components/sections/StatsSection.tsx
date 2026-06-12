@@ -104,7 +104,7 @@ export default function StatsSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="mt-20 lg:mt-24 z-20 relative max-w-5xl mx-auto w-full px-4 sm:px-6"
+      className="mt-12 lg:mt-16 z-20 relative max-w-5xl mx-auto w-full px-4 sm:px-6"
     >
       <motion.div
         variants={containerVariants}
@@ -113,8 +113,9 @@ export default function StatsSection() {
         viewport={{ once: true, margin: "-80px" }}
         className="
           rounded-[32px]
-          bg-[#FAF8FD]
-          shadow-[20px_20px_50px_rgba(165,140,217,0.18),-20px_-20px_50px_rgba(255,255,255,0.95)]
+          bg-white/80 backdrop-blur-2xl
+          border-[1.5px] border-white/90
+          shadow-[0_20px_60px_rgba(128,0,128,0.08),0_4px_16px_rgba(128,0,128,0.04)]
           py-8 sm:py-10 px-4 sm:px-12
           grid grid-cols-3 gap-2 sm:gap-8 md:gap-4
           items-center
@@ -123,7 +124,7 @@ export default function StatsSection() {
         "
       >
         {/* Soft internal gradient background highlight */}
-        <span className="absolute inset-0 bg-gradient-to-tr from-purple-50/10 via-transparent to-amber-50/10 pointer-events-none" />
+        <span className="absolute inset-0 bg-gradient-to-tr from-purple-50/20 via-transparent to-amber-50/20 pointer-events-none" />
 
         {stats.map((stat, idx) => {
           const IconComponent = stat.icon;
@@ -133,28 +134,28 @@ export default function StatsSection() {
               variants={cardVariants}
               className="flex flex-col lg:flex-row items-center gap-3 sm:gap-4 lg:gap-6 justify-center relative z-10 px-1 sm:px-4 lg:px-6"
             >
-              {/* Circular Neumorphic Inset Icon Slot */}
+              {/* Circular Icon Slot */}
               <div
                 className={`
                   w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14
                   rounded-full
                   flex items-center justify-center
-                  border border-white/40
-                  ${stat.iconBg}
-                  shadow-[inset_3px_3px_6px_rgba(165,140,217,0.08),inset_-3px_-3px_6px_rgba(255,255,255,0.95)]
+                  bg-white
+                  border border-purple-100/50
+                  shadow-[0_4px_12px_rgba(128,0,128,0.05)]
                   relative
                   shrink-0
                 `}
               >
-                <IconComponent className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 relative z-10 ${stat.iconColor}`} strokeWidth={2} />
+                <IconComponent className={`w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 relative z-10 ${stat.iconColor}`} strokeWidth={2.5} />
               </div>
 
               {/* Stat Typography */}
               <div className="text-center lg:text-left">
-                <h4 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-slate-deep tracking-tight leading-none">
+                <h4 className="font-satoshi font-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl text-[#2A254B] tracking-tight leading-none">
                   <Counter value={stat.value} />
                 </h4>
-                <p className="text-[10px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[16px] text-muted-foreground font-semibold mt-1 sm:mt-2 tracking-wide leading-tight">
+                <p className="text-[10px] sm:text-[12px] md:text-[13px] lg:text-[14px] xl:text-[16px] text-slate-600 font-semibold mt-1 sm:mt-2 tracking-wide leading-tight">
                   {stat.label}
                 </p>
               </div>

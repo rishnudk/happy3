@@ -7,7 +7,7 @@ import SmileArc from "./SmileArc";
 
 export default function HeroContent() {
   return (
-    <div className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left gap-4 z-20 pr-0 lg:pr-8 w-full">
+    <div className="lg:col-span-7 flex flex-col items-center text-center lg:items-start lg:text-left gap-4 z-20 pr-0 lg:pr-8 w-full max-w-full overflow-hidden lg:overflow-visible">
 
       {/* 1. FLOATING PILLED BADGE */}
       <motion.div
@@ -51,7 +51,7 @@ export default function HeroContent() {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         className="
-          text-[38px]
+          text-[34px]
           sm:text-[54px]
           lg:text-[70px]
           font-black
@@ -73,11 +73,12 @@ export default function HeroContent() {
           className="
             relative inline-flex items-center
             mt-3
-            px-7 sm:px-10 lg:px-12
+            px-5 sm:px-10 lg:px-12
             py-2 sm:py-3
             rounded-full
-            gap-3 sm:gap-4 lg:gap-5
+            gap-2 sm:gap-4 lg:gap-5
             bg-happiness-pill
+            max-w-full
           "
         >
           <span
@@ -92,7 +93,7 @@ export default function HeroContent() {
           {/* Inline SmileArc brand element — with extra breathing room */}
           <SmileArc
             variant="inline"
-            className="w-[90px] sm:w-[100px] lg:w-[100px] -translate-y-[-9px] h-auto relative z-10"
+            className="w-[56px] sm:w-[100px] lg:w-[100px] -translate-y-[-9px] h-auto relative z-10"
           />
         </motion.span>
       </motion.h1>
@@ -142,7 +143,7 @@ export default function HeroContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
         className="
-          max-w-[540px]
+          max-w-[540px] mx-auto lg:mx-0
           text-[16px]
           sm:text-[18px]
           text-[var(--text-body)]

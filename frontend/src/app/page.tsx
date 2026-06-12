@@ -35,7 +35,7 @@ const CtaSection = nextDynamic(
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-clip bg-[var(--page-bg)]">
+    <main className="relative min-h-screen overflow-x-hidden bg-[var(--page-bg)]">
       
       {/* Scroll indicator bar */}
       <ScrollProgress />
