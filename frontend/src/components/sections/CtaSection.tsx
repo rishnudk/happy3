@@ -29,7 +29,11 @@ const TRUST_METRICS = [
 
 export function CtaSection() {
   return (
-    <PageWrapper id="cta" className="relative py-20 overflow-visible">
+    <section className="w-full bg-[#2A254B] py-20 text-white relative overflow-hidden">
+      {/* Ambient dark glow backdrop */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(128,0,128,0.2),transparent_70%)] pointer-events-none z-0" />
+
+      <PageWrapper id="cta" className="relative overflow-visible z-10 !py-0">
 
 
       {/* ── 2-Column layout: left text and actions | right bento details ── */}
@@ -49,25 +53,21 @@ export function CtaSection() {
             <span
               className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
               style={{
-                color: "rgba(128,0,128,0.75)",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
-                border: "1px solid rgba(255,255,255,0.85)",
-                boxShadow: `
-                  6px 6px 16px rgba(165,140,217,0.12),
-                  -6px -6px 16px rgba(255,255,255,0.95),
-                  inset 1px 1px 2px rgba(255,255,255,0.9)
-                `,
+                color: "#E9D5FF",
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
               }}
             >
               {/* Pulsing Dot */}
               <span className="relative flex h-2 w-2 flex-shrink-0">
                 <span
                   className="animate-pulse absolute inline-flex h-full w-full rounded-full opacity-60"
-                  style={{ background: "rgba(128,0,128,0.5)" }}
+                  style={{ background: "rgba(192, 132, 252, 0.5)" }}
                 />
                 <span
                   className="relative inline-flex rounded-full h-2 w-2"
-                  style={{ background: "#800080" }}
+                  style={{ background: "#C084FC" }}
                 />
               </span>
               Transformation
@@ -80,17 +80,17 @@ export function CtaSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
-            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
+            className="font-satoshi font-black leading-[1.15] tracking-tight"
+            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#FFFFFF" }}
           >
             <span className="block">Ready to</span>
             <span className="block">
-              <span className="relative inline-block" style={{ color: "#800080" }}>
+              <span className="relative inline-block" style={{ color: "#FFCE1B" }}>
                 transform
                 {/* Mustard marker underline */}
                 <span
                   className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
-                  style={{ background: "#FFCE1B", opacity: 0.38 }}
+                  style={{ background: "#FFCE1B", opacity: 0.25 }}
                 />
               </span>{" "}
               your life?
@@ -104,7 +104,7 @@ export function CtaSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
-            style={{ color: "rgba(42,37,75,0.60)" }}
+            style={{ color: "rgba(255,255,255,0.70)" }}
           >
             Whether you&apos;re here to heal, grow, or become a coach, we&apos;re here to walk with you every step of the way.
           </motion.p>
@@ -139,21 +139,17 @@ export function CtaSection() {
               href="#contact"
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="group/btn inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full font-bold text-[14px] transition-all duration-500 cursor-pointer"
+              className="group/btn inline-flex items-center justify-center gap-3 px-7 py-4 rounded-full font-bold text-[14px] transition-all duration-500 cursor-pointer w-full sm:w-auto"
               style={{
-                color: "#2A254B",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
-                border: "1px solid rgba(255,255,255,0.9)",
-                boxShadow: `
-                  6px 6px 15px rgba(166,140,255,0.08),
-                  -6px -6px 15px rgba(255,255,255,1),
-                  inset 1px 1px 2px rgba(255,255,255,1)
-                `,
+                color: "#FFFFFF",
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
               }}
             >
-              <Phone className="w-4 h-4 text-purple-800" strokeWidth={2.2} />
+              <Phone className="w-4 h-4 text-[#FFCE1B]" strokeWidth={2.2} />
               <span>Book Call</span>
-              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-purple-100 text-[#800080] transition-transform duration-300 group-hover/btn:translate-x-0.5">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-white/10 text-white transition-transform duration-300 group-hover/btn:translate-x-0.5">
                 <ArrowRight className="w-3 h-3" strokeWidth={2.5} />
               </span>
             </motion.a>
@@ -167,15 +163,14 @@ export function CtaSection() {
             transition={{ duration: 0.8, delay: 0.35 }}
             className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
             style={{
-              background: "rgba(243,238,250,0.6)",
-              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
-              border: "1px solid rgba(255,255,255,0.7)",
+              background: "rgba(255,255,255,0.1)",
+              border: "1px solid rgba(255,255,255,0.15)",
               transformOrigin: "left center",
             }}
           >
             <motion.div
               className="absolute left-0 top-0 bottom-0 rounded-full"
-              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
+              style={{ background: "linear-gradient(90deg, #FFCE1B, #FF9F1C)", width: "40%" }}
               animate={{ x: [0, 32, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
@@ -219,8 +214,11 @@ export function CtaSection() {
               </div>
 
               {/* Graphic Frame Card */}
-              <NeuCard className="p-3 w-full max-w-[280px] md:max-w-none aspect-[4/4.8] relative overflow-hidden" hoverLift={true}>
-                <div className="relative w-full h-full rounded-[30px] overflow-hidden">
+              <motion.div 
+                whileHover={{ y: -4 }}
+                className="p-3 w-full max-w-[280px] md:max-w-none aspect-[4/4.8] relative overflow-hidden rounded-[36px] bg-white/5 border border-white/10 backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-300"
+              >
+                <div className="relative w-full h-full rounded-[24px] sm:rounded-[30px] overflow-hidden">
                   <Image
                     src="/images/contact1.png"
                     alt="Start your transformation journey with HCA"
@@ -237,20 +235,20 @@ export function CtaSection() {
                 <motion.div
                   animate={{ y: [0, -6, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute left-6 bottom-6 flex items-center gap-3 rounded-2xl px-4 py-3 border border-white bg-white/95"
+                  className="absolute left-6 bottom-6 flex items-center gap-3 rounded-2xl px-4 py-3 border border-white/10 bg-white/10 backdrop-blur-md"
                   style={{
-                    boxShadow: "0 10px 30px -10px rgba(165,140,217,0.16)",
+                    boxShadow: "0 10px 30px -10px rgba(0,0,0,0.3)",
                   }}
                 >
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-100 text-[#800080] shadow-[inset_1px_1px_3px_rgba(128,0,128,0.15)]">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-[#FFCE1B] shadow-[inset_1px_1px_3px_rgba(255,255,255,0.15)]">
                     <Sparkles className="h-4.5 w-4.5 animate-pulse" />
                   </div>
                   <div>
-                    <p className="text-[11.5px] font-black text-[#2A254B] leading-none">Science-Backed</p>
-                    <p className="text-[9px] font-bold text-gray-500 mt-1 leading-none">Guaranteed Growth</p>
+                    <p className="text-[11.5px] font-black text-white leading-none">Science-Backed</p>
+                    <p className="text-[9px] font-bold text-white/70 mt-1 leading-none">Guaranteed Growth</p>
                   </div>
                 </motion.div>
-              </NeuCard>
+              </motion.div>
             </div>
 
             {/* Right Side: Tactfully Stacked Trust Metrics Cards (col-span-7) */}
@@ -258,11 +256,14 @@ export function CtaSection() {
               {TRUST_METRICS.map((item, index) => {
                 const Icon = item.icon;
                 return (
-                  <NeuCard
+                  <motion.div
                     key={item.title}
-                    delay={index * 0.12}
-                    className="p-6 flex items-start gap-5 group"
-                    hoverLift={true}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.12 }}
+                    whileHover={{ y: -4 }}
+                    className="p-6 flex items-start gap-5 group rounded-[1.5rem] bg-white/5 border border-white/10 backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.2)] transition-all duration-300"
                   >
                     {/* Inset Neumorphic Icon Well Orb */}
                     <div
@@ -271,8 +272,8 @@ export function CtaSection() {
                         width: 50,
                         height: 50,
                         borderRadius: 16,
-                        background: "#F6F3FA",
-                        boxShadow: "inset 3px 3px 7px #DDDAE3, inset -3px -3px 7px #FFFFFF",
+                        background: "rgba(0,0,0,0.2)",
+                        boxShadow: "inset 2px 2px 6px rgba(0,0,0,0.3), inset -2px -2px 6px rgba(255,255,255,0.05)",
                       }}
                     >
                       <div
@@ -281,8 +282,8 @@ export function CtaSection() {
                           width: 36,
                           height: 36,
                           borderRadius: 12,
-                          background: `${item.color}20`,
-                          boxShadow: `inset 2px 2px 5px ${item.color}25, inset -1px -1px 3px rgba(255,255,255,0.6)`,
+                          background: `${item.color}30`,
+                          boxShadow: `inset 2px 2px 5px rgba(0,0,0,0.2), inset -1px -1px 3px rgba(255,255,255,0.1)`,
                         }}
                       >
                         <Icon style={{ color: item.color, width: 18, height: 18, strokeWidth: 2.2 }} />
@@ -292,19 +293,19 @@ export function CtaSection() {
                     {/* Card text detailing trust statistics */}
                     <div className="flex flex-col gap-1.5">
                       <h3
-                        className="font-satoshi font-black text-[16px] sm:text-[18px] leading-tight transition-colors duration-300 group-hover:text-[#800080]"
-                        style={{ color: "#2A254B" }}
+                        className="font-satoshi font-black text-[16px] sm:text-[18px] leading-tight transition-colors duration-300 group-hover:text-[#FFCE1B]"
+                        style={{ color: "#FFFFFF" }}
                       >
                         {item.title}
                       </h3>
                       <p
                         className="font-medium text-[13px] sm:text-[13.5px] leading-[1.65] transition-colors duration-300"
-                        style={{ color: "rgba(42,37,75,0.60)" }}
+                        style={{ color: "rgba(255,255,255,0.70)" }}
                       >
                         {item.desc}
                       </p>
                     </div>
-                  </NeuCard>
+                  </motion.div>
                 );
               })}
             </div>
@@ -313,6 +314,7 @@ export function CtaSection() {
         </div>
 
       </div>
-    </PageWrapper>
+      </PageWrapper>
+    </section>
   );
 }

@@ -41,15 +41,10 @@ function CommunityCard({ img, id }: { img: string; id: string }) {
       aria-label={`View community moment ${id} on Instagram`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative flex-shrink-0 overflow-hidden rounded-[20px] block group"
+      className="relative flex-shrink-0 overflow-hidden rounded-[20px] block group border border-white/20 bg-gray-950 shadow-[0_20px_50px_rgba(0,0,0,0.15)] hover:scale-[1.03] hover:shadow-[0_25px_52px_rgba(0,0,0,0.25)] transition-all duration-500"
       style={{
         width: "220px",
         height: "165px",
-        boxShadow: hovered
-          ? "0 0 0 2px rgba(128,0,128,0.35), 8px 8px 24px rgba(128,0,128,0.18), -4px -4px 16px rgba(255,255,255,0.9)"
-          : "6px 6px 16px rgba(165,140,217,0.10), -4px -4px 12px rgba(255,255,255,0.85)",
-        transition: "box-shadow 0.4s ease",
-        border: hovered ? "1.5px solid rgba(128,0,128,0.25)" : "1.5px solid rgba(255,255,255,0.6)",
       }}
     >
       {/* Image */}
@@ -66,7 +61,7 @@ function CommunityCard({ img, id }: { img: string; id: string }) {
 
       {/* Hover overlay — purple tinted gradient + Instagram CTA */}
       <div
-        className="absolute inset-0 flex flex-col justify-end p-4 transition-opacity duration-400"
+        className="absolute inset-0 flex flex-col justify-end p-4 transition-opacity duration-400 pointer-events-none"
         style={{
           background: "linear-gradient(to top, rgba(80,0,80,0.75) 0%, rgba(128,0,128,0.25) 50%, transparent 100%)",
           opacity: hovered ? 1 : 0,
@@ -109,14 +104,14 @@ function MarqueeRow({
       <div
         className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
         style={{
-          background: "linear-gradient(to right, #F6F3FA 0%, transparent 100%)",
+          background: "linear-gradient(to right, #2A254B 0%, transparent 100%)",
         }}
       />
       {/* Right fade mask */}
       <div
         className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
         style={{
-          background: "linear-gradient(to left, #F6F3FA 0%, transparent 100%)",
+          background: "linear-gradient(to left, #2A254B 0%, transparent 100%)",
         }}
       />
 
@@ -139,7 +134,11 @@ function MarqueeRow({
 /* ─── Section ────────────────────────────────────────────────────────────── */
 export function CommunitySection() {
   return (
-    <PageWrapper id="community" className="relative py-20 overflow-visible">
+    <section className="w-full bg-[#2A254B] py-20 text-white relative overflow-hidden">
+      {/* Ambient dark glow backdrop */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(128,0,128,0.2),transparent_70%)] pointer-events-none z-0" />
+
+      <PageWrapper id="community" className="relative overflow-visible z-10 !py-0">
 
 
 
@@ -160,24 +159,20 @@ export function CommunitySection() {
             <span
               className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
               style={{
-                color: "rgba(128,0,128,0.75)",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
-                border: "1px solid rgba(255,255,255,0.85)",
-                boxShadow: `
-                  6px 6px 16px rgba(165,140,217,0.12),
-                  -6px -6px 16px rgba(255,255,255,0.95),
-                  inset 1px 1px 2px rgba(255,255,255,0.9)
-                `,
+                color: "#E9D5FF",
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
               }}
             >
               <span className="relative flex h-2 w-2 flex-shrink-0">
                 <span
                   className="animate-pulse absolute inline-flex h-full w-full rounded-full opacity-60"
-                  style={{ background: "rgba(128,0,128,0.5)" }}
+                  style={{ background: "rgba(192, 132, 252, 0.5)" }}
                 />
                 <span
                   className="relative inline-flex rounded-full h-2 w-2"
-                  style={{ background: "#800080" }}
+                  style={{ background: "#C084FC" }}
                 />
               </span>
               Community
@@ -190,16 +185,16 @@ export function CommunitySection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] as const }}
-            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
-            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
+            className="font-satoshi font-black leading-[1.15] tracking-tight"
+            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#FFFFFF" }}
           >
             <span className="block">A Thriving Community</span>
             <span className="block">
-              <span className="relative inline-block" style={{ color: "#800080" }}>
+              <span className="relative inline-block" style={{ color: "#FFCE1B" }}>
                 Growing
                 <span
                   className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
-                  style={{ background: "#FFCE1B", opacity: 0.38 }}
+                  style={{ background: "#FFCE1B", opacity: 0.25 }}
                 />
               </span>{" "}
               Together
@@ -213,7 +208,7 @@ export function CommunitySection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
-            style={{ color: "rgba(42,37,75,0.60)" }}
+            style={{ color: "rgba(255,255,255,0.70)" }}
           >
             Real people. Real connections. Real transformation. Become a part of a supportive community that inspires, heals, and uplifts every step of your journey.
           </motion.p>
@@ -234,17 +229,13 @@ export function CommunitySection() {
               whileTap={{ scale: 0.98 }}
               className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
               style={{
-                color: "#800080",
-                background: "linear-gradient(145deg, #ffffff, #f4efff)",
-                border: "1px solid rgba(255,255,255,0.9)",
-                boxShadow: `
-                  6px 6px 15px rgba(166,140,255,0.10),
-                  -6px -6px 15px rgba(255,255,255,1),
-                  inset 1px 1px 2px rgba(255,255,255,1)
-                `,
+                color: "#FFFFFF",
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
               }}
             >
-              <Sparkles className="h-4 w-4 text-[var(--purple-brand)] animate-pulse" />
+              <Sparkles className="h-4 w-4 text-[#FFCE1B] animate-pulse" />
               <span>Join Our Vibrant Community</span>
               <span
                 className="flex items-center justify-center w-6 h-6 rounded-full text-white transition-transform duration-300 group-hover/btn:rotate-45"
@@ -263,15 +254,14 @@ export function CommunitySection() {
             transition={{ duration: 0.8, delay: 0.35 }}
             className="relative w-20 h-[5px] rounded-full overflow-hidden mt-2"
             style={{
-              background: "rgba(243,238,250,0.6)",
-              boxShadow: "inset 3px 3px 6px rgba(165,140,217,0.10), inset -3px -3px 6px rgba(255,255,255,0.95)",
-              border: "1px solid rgba(255,255,255,0.7)",
+              background: "rgba(255,255,255,0.1)",
+              border: "1px solid rgba(255,255,255,0.15)",
               transformOrigin: "left center",
             }}
           >
             <motion.div
               className="absolute left-0 top-0 bottom-0 rounded-full"
-              style={{ background: "linear-gradient(90deg, #800080, #C084FC)", width: "40%" }}
+              style={{ background: "linear-gradient(90deg, #FFCE1B, #FF9F1C)", width: "40%" }}
               animate={{ x: [0, 32, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
@@ -301,6 +291,7 @@ export function CommunitySection() {
         </motion.div>
 
       </div>
-    </PageWrapper>
+      </PageWrapper>
+    </section>
   );
 }

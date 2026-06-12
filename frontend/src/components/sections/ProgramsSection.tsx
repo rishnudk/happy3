@@ -34,7 +34,11 @@ const PROGRAMS = [
 
 export function ProgramsSection() {
   return (
-    <PageWrapper id="programs" className="relative py-20 overflow-visible bg-[#F4EFFC]">
+    <section className="w-full bg-[#2A254B] py-20 text-white relative overflow-hidden">
+      {/* Ambient dark glow backdrop */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(128,0,128,0.2),transparent_70%)] pointer-events-none z-0" />
+
+      <PageWrapper id="programs" className="relative overflow-visible z-10 !py-0">
 
 
 
@@ -55,21 +59,21 @@ export function ProgramsSection() {
             <span
               className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-[11px] font-bold tracking-widest uppercase"
               style={{
-                color: "#800080",
-                background: "rgba(255,255,255,0.6)",
-                border: "1px solid rgba(255,255,255,0.9)",
-                boxShadow: "0 4px 12px rgba(255,206,27,0.1)",
+                color: "#E9D5FF",
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
               }}
             >
               {/* Pulsing Dot */}
               <span className="relative flex h-2 w-2 flex-shrink-0">
                 <span
                   className="animate-pulse absolute inline-flex h-full w-full rounded-full opacity-60"
-                  style={{ background: "rgba(128,0,128,0.5)" }}
+                  style={{ background: "rgba(192, 132, 252, 0.5)" }}
                 />
                 <span
                   className="relative inline-flex rounded-full h-2 w-2"
-                  style={{ background: "#800080" }}
+                  style={{ background: "#C084FC" }}
                 />
               </span>
               Our Programs
@@ -82,17 +86,17 @@ export function ProgramsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="font-satoshi font-black leading-[1.15] tracking-tight neumorphic-text-embossed"
-            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#2A254B" }}
+            className="font-satoshi font-black leading-[1.15] tracking-tight"
+            style={{ fontSize: "clamp(28px, 3.4vw, 48px)", color: "#FFFFFF" }}
           >
             <span className="block">Programs Designed to</span>
             <span className="block">
-              <span className="relative inline-block" style={{ color: "#800080" }}>
+              <span className="relative inline-block" style={{ color: "#FFCE1B" }}>
                 Empower
                 {/* Mustard marker underline */}
                 <span
                   className="absolute bottom-0 left-[-2px] w-[calc(100%+4px)] h-[9px] rounded-[3px] -z-10"
-                  style={{ background: "#FFCE1B", opacity: 0.38 }}
+                  style={{ background: "#FFCE1B", opacity: 0.25 }}
                 />
               </span>{" "}
               Every Journey
@@ -106,7 +110,7 @@ export function ProgramsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             className="text-[15px] sm:text-[16px] leading-[1.9] font-medium max-w-[360px]"
-            style={{ color: "rgba(42,37,75,0.60)" }}
+            style={{ color: "rgba(255,255,255,0.70)" }}
           >
             Science-backed programs to help you learn, heal, communicate and grow with confidence.
           </motion.p>
@@ -124,10 +128,10 @@ export function ProgramsSection() {
               whileTap={{ scale: 0.98 }}
               className="group/btn inline-flex items-center gap-3.5 px-6 py-3.5 rounded-full font-semibold text-[14px] transition-all duration-500 cursor-pointer"
               style={{
-                color: "#2A254B",
-                background: "rgba(255,255,255,0.7)",
-                border: "1px solid rgba(255,255,255,0.9)",
-                boxShadow: "0 8px 24px rgba(255,206,27,0.15)",
+                color: "#FFFFFF",
+                background: "rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
               }}
             >
               <span>Explore Programs</span>
@@ -144,7 +148,7 @@ export function ProgramsSection() {
 
         {/* ── RIGHT: Bento Grid in One Big Card (span 8) ── */}
         <div className="lg:col-span-8 w-full relative">
-          <div className="bg-white rounded-[1.5rem] sm:rounded-[2rem] p-2.5 sm:p-3 md:p-4 w-full relative z-10" style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.03)" }}>
+          <div className="bg-white/5 rounded-[1.5rem] sm:rounded-[2rem] p-2.5 sm:p-3 md:p-4 w-full relative z-10 border border-white/10 backdrop-blur-sm" style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.2)" }}>
             <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-2.5 sm:gap-3 h-full">
               
               {/* Card 1: Tall (Col 1, Row 1-2) */}
@@ -252,6 +256,7 @@ export function ProgramsSection() {
         </div>
 
       </div>
-    </PageWrapper>
+      </PageWrapper>
+    </section>
   );
 }
