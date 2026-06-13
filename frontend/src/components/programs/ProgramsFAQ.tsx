@@ -36,7 +36,7 @@ export default function ProgramsFAQ() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="rounded-[22px] overflow-hidden transition-all duration-300"
+              className="rounded-[22px] overflow-hidden transition-colors duration-300"
               style={{
                 background: isOpen ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.03)",
                 border: isOpen ? "1px solid rgba(255, 255, 255, 0.2)" : "1px solid rgba(255, 255, 255, 0.08)",
