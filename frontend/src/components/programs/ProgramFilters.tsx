@@ -30,12 +30,12 @@ export default function ProgramFilters({
             onClick={() => onSelectCategory(cat)}
             className={`px-5 py-3 rounded-full text-[13.5px] font-bold transition-all duration-300 cursor-pointer focus:outline-none`}
             style={{
-              color: isActive ? "#800080" : "rgba(42,37,75,0.65)",
-              background: isActive ? "#F3EEFA" : "linear-gradient(145deg, #ffffff, #f4efff)",
-              border: isActive ? "2px solid rgba(128,0,128,0.2)" : "2px solid rgba(255,255,255,0.7)",
+              color: isActive ? "#ffffff" : "rgba(255,255,255,0.5)",
+              background: isActive ? "rgba(255,255,255,0.1)" : "transparent",
+              border: isActive ? "1px solid rgba(255,255,255,0.2)" : "1px solid transparent",
               boxShadow: isActive
-                ? "inset 3px 3px 6px #DDDAE3, inset -3px -3px 6px #FFFFFF"
-                : "4px 4px 10px rgba(165,140,217,0.06), -4px -4px 10px #FFFFFF"
+                ? "0 4px 12px rgba(0,0,0,0.2), inset 1px 1px 2px rgba(255,255,255,0.05)"
+                : "none"
             }}
           >
             {cat}

@@ -47,7 +47,7 @@ export default function ProgramDetailModal({
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.55, ease: smoothReveal }}
-        className="bg-white relative w-full max-w-4xl rounded-[40px] shadow-[0_30px_70px_rgba(0,0,0,0.18)] border border-slate-100 overflow-hidden max-h-[90vh] flex flex-col z-10"
+        className="bg-[#1E193B] relative w-full max-w-4xl rounded-[40px] shadow-[0_30px_70px_rgba(0,0,0,0.5)] border border-white/10 overflow-hidden max-h-[90vh] flex flex-col z-10"
       >
         
         {/* Modal Banner Background */}
@@ -78,24 +78,24 @@ export default function ProgramDetailModal({
           
           {/* Spec Pills Row */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            <div className="p-4 rounded-[20px] bg-slate-50 border border-slate-100/80 flex flex-col gap-1">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Duration</span>
-              <span className="text-[13.5px] font-bold text-slate-deep flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-primary shrink-0" />
+            <div className="p-4 rounded-[20px] bg-white/5 border border-white/10 flex flex-col gap-1">
+              <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">Duration</span>
+              <span className="text-[13.5px] font-bold text-white flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-white/50 shrink-0" />
                 {program.duration}
               </span>
             </div>
-            <div className="p-4 rounded-[20px] bg-slate-50 border border-slate-100/80 flex flex-col gap-1">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Format</span>
-              <span className="text-[13.5px] font-bold text-slate-deep flex items-center gap-1.5">
-                <Layers className="w-4 h-4 text-primary shrink-0" />
+            <div className="p-4 rounded-[20px] bg-white/5 border border-white/10 flex flex-col gap-1">
+              <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">Format</span>
+              <span className="text-[13.5px] font-bold text-white flex items-center gap-1.5">
+                <Layers className="w-4 h-4 text-white/50 shrink-0" />
                 {program.format}
               </span>
             </div>
-            <div className="p-4 rounded-[20px] bg-slate-50 border border-slate-100/80 flex flex-col gap-1 col-span-2 sm:col-span-1">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-wider">Category</span>
-              <span className="text-[13.5px] font-bold text-slate-deep flex items-center gap-1.5">
-                <Compass className="w-4 h-4 text-primary shrink-0" />
+            <div className="p-4 rounded-[20px] bg-white/5 border border-white/10 flex flex-col gap-1 col-span-2 sm:col-span-1">
+              <span className="text-[10px] font-black text-white/50 uppercase tracking-wider">Category</span>
+              <span className="text-[13.5px] font-bold text-white flex items-center gap-1.5">
+                <Compass className="w-4 h-4 text-white/50 shrink-0" />
                 {program.category}
               </span>
             </div>
@@ -107,34 +107,34 @@ export default function ProgramDetailModal({
             {/* Left Column: Objectives & Targets (span 5) */}
             <div className="lg:col-span-5 flex flex-col gap-6">
               <div className="flex flex-col gap-2.5">
-                <h4 className="font-satoshi font-black text-[16px] text-slate-deep flex items-center gap-2">
-                  <Heart className="w-4 h-4 text-primary" />
+                <h4 className="font-satoshi font-black text-[16px] text-white flex items-center gap-2">
+                  <Heart className="w-4 h-4 text-[#FFCE1B]" />
                   Program Objective
                 </h4>
-                <p className="text-[14px] leading-[1.65] font-medium text-slate-500 bg-slate-50/50 p-4 rounded-[20px] border border-slate-100/60">
+                <p className="text-[14px] leading-[1.65] font-medium text-white/70 bg-white/5 p-4 rounded-[20px] border border-white/10">
                   {program.objective}
                 </p>
               </div>
 
               <div className="flex flex-col gap-2.5">
-                <h4 className="font-satoshi font-black text-[16px] text-slate-deep flex items-center gap-2">
-                  <User className="w-4 h-4 text-primary" />
+                <h4 className="font-satoshi font-black text-[16px] text-white flex items-center gap-2">
+                  <User className="w-4 h-4 text-[#FFCE1B]" />
                   Who Is This For?
                 </h4>
-                <p className="text-[14px] leading-[1.65] font-medium text-slate-500 bg-slate-50/50 p-4 rounded-[20px] border border-slate-100/60">
+                <p className="text-[14px] leading-[1.65] font-medium text-white/70 bg-white/5 p-4 rounded-[20px] border border-white/10">
                   {program.whoItIsFor}
                 </p>
               </div>
 
               {/* Quick Checklist Highlights */}
               <div className="flex flex-col gap-2.5">
-                <h4 className="font-satoshi font-black text-[16px] text-slate-deep flex items-center gap-2">
-                  <Award className="w-4 h-4 text-primary" />
+                <h4 className="font-satoshi font-black text-[16px] text-white flex items-center gap-2">
+                  <Award className="w-4 h-4 text-[#FFCE1B]" />
                   Key Takeaways
                 </h4>
                 <div className="flex flex-col gap-2">
                   {program.highlights.map((h, idx) => (
-                    <div key={idx} className="flex items-center gap-2.5 text-[13px] font-semibold text-slate-500">
+                    <div key={idx} className="flex items-center gap-2.5 text-[13px] font-semibold text-white/80">
                       <span 
                         className="w-1.5 h-1.5 rounded-full" 
                         style={{ backgroundColor: program.color }} 
@@ -148,8 +148,8 @@ export default function ProgramDetailModal({
 
             {/* Right Column: Roadmap / Curriculum (span 7) */}
             <div className="lg:col-span-7 flex flex-col gap-5">
-              <h4 className="font-satoshi font-black text-[16px] text-slate-deep flex items-center gap-2 mb-1">
-                <BookOpen className="w-4 h-4 text-primary" />
+              <h4 className="font-satoshi font-black text-[16px] text-white flex items-center gap-2 mb-1">
+                <BookOpen className="w-4 h-4 text-[#FFCE1B]" />
                 Curriculum & Integration Roadmap
               </h4>
 
@@ -167,7 +167,7 @@ export default function ProgramDetailModal({
                     
                     {/* Circle Node */}
                     <div 
-                      className="absolute left-[-22px] top-1.5 w-[11px] h-[11px] rounded-full border-2 border-white"
+                      className="absolute left-[-22px] top-1.5 w-[11px] h-[11px] rounded-full border-2 border-[#1E193B]"
                       style={{ 
                         backgroundColor: program.color,
                         boxShadow: `0 0 0 3px ${program.color}35`
@@ -179,18 +179,18 @@ export default function ProgramDetailModal({
                         className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md"
                         style={{ 
                           color: program.color,
-                          backgroundColor: `${program.color}12`,
-                          border: `1px solid ${program.color}25`
+                          backgroundColor: `${program.color}15`,
+                          border: `1px solid ${program.color}35`
                         }}
                       >
                         {c.phase}
                       </span>
-                      <h5 className="font-satoshi font-black text-[14.5px] text-slate-deep">
+                      <h5 className="font-satoshi font-black text-[14.5px] text-white">
                         {c.title}
                       </h5>
                     </div>
                     
-                    <p className="text-[13px] leading-[1.6] text-slate-500 font-medium">
+                    <p className="text-[13px] leading-[1.6] text-white/70 font-medium">
                       {c.detail}
                     </p>
                   </div>
@@ -205,15 +205,15 @@ export default function ProgramDetailModal({
         </div>
 
         {/* Modal Footer Actions */}
-        <div className="p-6 md:px-8 border-t border-slate-100 bg-slate-50 shrink-0 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="p-6 md:px-8 border-t border-white/10 bg-white/5 shrink-0 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="text-center sm:text-left flex flex-col">
-            <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest leading-none">Ready to start?</span>
-            <span className="text-[13px] font-bold text-slate-500 mt-1">Assessment determines fit and program pricing</span>
+            <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest leading-none">Ready to start?</span>
+            <span className="text-[13px] font-bold text-white/70 mt-1">Assessment determines fit and program pricing</span>
           </div>
           <div className="flex gap-3 w-full sm:w-auto">
             <button 
               onClick={onClose}
-              className="flex-1 sm:flex-none px-6 py-3 rounded-full font-bold text-[13px] text-slate-500 bg-white border border-slate-200 hover:bg-slate-50 transition-colors duration-200 cursor-pointer text-center focus:outline-none"
+              className="flex-1 sm:flex-none px-6 py-3 rounded-full font-bold text-[13px] text-white/70 bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-200 cursor-pointer text-center focus:outline-none"
             >
               Close Hub
             </button>

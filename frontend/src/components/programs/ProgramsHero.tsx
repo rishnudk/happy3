@@ -34,17 +34,16 @@ export default function ProgramsHero() {
         <span
           className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full text-[11px] font-bold tracking-widest uppercase"
           style={{
-            color: "rgba(128,0,128,0.8)",
-            background: "linear-gradient(145deg, #ffffff, #f4efff)",
-            border: "1px solid rgba(255,255,255,0.85)",
+            color: "#ffffff",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.1)",
             boxShadow: `
-              6px 6px 16px rgba(165,140,217,0.12),
-              -6px -6px 16px rgba(255,255,255,0.95),
-              inset 1px 1px 2px rgba(255,255,255,0.9)
+              0 4px 12px rgba(0,0,0,0.2),
+              inset 1px 1px 2px rgba(255,255,255,0.05)
             `,
           }}
         >
-          <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
+          <Sparkles className="w-3.5 h-3.5 text-mustard animate-pulse" />
           Interactive Hub
         </span>
       </motion.div>
@@ -54,9 +53,9 @@ export default function ProgramsHero() {
         initial={{ opacity: 0, y: 22 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.75, delay: 0.1, ease: smoothReveal }}
-        className="font-satoshi font-black text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1] neumorphic-text-embossed text-slate-deep relative z-10"
+        className="font-satoshi font-black text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.1] text-white relative z-10"
       >
-        Explore Our <span style={{ color: "#800080" }}>Programs</span>
+        Explore Our <span style={{ color: "#FFCE1B" }}>Programs</span>
       </motion.h1>
 
       {/* Subtext Description */}
@@ -64,7 +63,7 @@ export default function ProgramsHero() {
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-        className="text-[16px] sm:text-[18px] leading-[1.8] font-medium text-slate-500 max-w-2xl relative z-10"
+        className="text-[16px] sm:text-[18px] leading-[1.8] font-medium text-white/70 max-w-2xl relative z-10"
       >
         A curated environment designed to teach happiness as a practical life skill. Discover which framework matches your unique journey towards emotional intelligence and inner balance.
       </motion.p>

@@ -30,7 +30,9 @@ export default function ProgramsPage() {
   const smoothReveal = [0.22, 1, 0.36, 1] as const;
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
+    <main className="relative min-h-screen bg-[#2A254B] text-white overflow-x-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(128,0,128,0.2),transparent_70%)] pointer-events-none z-0" />
 
       {/* Header Menu Navigation */}
       <Navbar />
@@ -82,9 +84,9 @@ export default function ProgramsPage() {
           <div 
             className="p-8 md:p-12 rounded-[36px] flex flex-col lg:flex-row justify-between items-center gap-8 relative overflow-hidden"
             style={{
-              background: "linear-gradient(145deg, #2A254B 0%, #3D1A6B 100%)",
-              boxShadow: "0 20px 50px rgba(42,37,75,0.25)",
-              border: "1px solid rgba(192,132,252,0.15)",
+              background: "rgba(255, 255, 255, 0.05)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              backdropFilter: "blur(10px)",
             }}
           >
             {/* Ambient Background Circles */}
@@ -99,14 +101,14 @@ export default function ProgramsPage() {
               <h2 className="font-satoshi font-black text-2xl md:text-3xl lg:text-4xl text-white leading-tight">
                 Take the Happiness Assessment
               </h2>
-              <p className="text-[14px] md:text-[15px] font-medium text-purple-200/80 max-w-xl">
+              <p className="text-[14px] md:text-[15px] font-medium text-white/70 max-w-xl">
                 Answer our science-backed wellness questionnaire and discover your happiness baseline. We'll recommend the exact program to elevate your emotional resilience.
               </p>
             </div>
 
             {/* Right Action Column */}
             <div className="shrink-0 relative z-10">
-              <NeuButton variant="mustard" href="/assessment" size="lg" className="shadow-gold-glow">
+              <NeuButton variant="dark-primary" href="/assessment" size="lg">
                 Start Your Transformation
                 <ArrowRight className="w-4 h-4 ml-1" strokeWidth={2.5} />
               </NeuButton>
