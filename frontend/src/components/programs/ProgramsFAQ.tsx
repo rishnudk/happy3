@@ -38,11 +38,9 @@ export default function ProgramsFAQ() {
               transition={{ duration: 0.6, delay: index * 0.08 }}
               className="rounded-[22px] overflow-hidden transition-all duration-300"
               style={{
-                background: "rgba(255, 255, 255, 0.05)",
-                boxShadow: isOpen 
-                  ? "0 4px 15px rgba(0,0,0,0.3)" 
-                  : "0 2px 8px rgba(0,0,0,0.15)",
-                border: "1px solid rgba(255,255,255,0.1)"
+                background: isOpen ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.03)",
+                border: isOpen ? "1px solid rgba(255, 255, 255, 0.2)" : "1px solid rgba(255, 255, 255, 0.08)",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
               }}
             >
               <button

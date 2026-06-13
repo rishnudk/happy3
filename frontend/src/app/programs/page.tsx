@@ -30,14 +30,14 @@ export default function ProgramsPage() {
   const smoothReveal = [0.22, 1, 0.36, 1] as const;
 
   return (
-    <main className="relative min-h-screen bg-[#2A254B] text-white overflow-x-hidden">
+    <main className="relative min-h-screen w-full flex flex-col items-center bg-[#2A254B] text-white overflow-x-hidden">
       {/* Ambient background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(128,0,128,0.2),transparent_70%)] pointer-events-none z-0" />
 
       {/* Header Menu Navigation */}
       <Navbar />
 
-      <PageWrapper className="pt-32 pb-24 relative z-10">
+      <PageWrapper className="pt-32 pb-24 relative z-10 w-full flex flex-col items-center">
         
         {/* ─── Hero Heading Block ─── */}
         <ProgramsHero />
@@ -51,7 +51,7 @@ export default function ProgramsPage() {
         {/* ─── Dynamic Showcase Card Grid ─── */}
         <motion.div 
           layout
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20 relative z-10"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto mb-20 relative z-10"
         >
           <AnimatePresence mode="popLayout">
             {filteredPrograms.map((item, index) => (
