@@ -33,15 +33,15 @@ type Answer = {
 const ScoreRing = ({ score, maxScore }: { score: number; maxScore: number }) => {
   const percentage = maxScore > 0 ? (score / maxScore) * 100 : 0;
   
-  let color = "text-green-500";
-  let strokeColor = "stroke-green-500";
+  let color = "text-green-400";
+  let strokeColor = "stroke-green-400";
   
   if (percentage < 40) {
-    color = "text-red-500";
-    strokeColor = "stroke-red-500";
+    color = "text-red-400";
+    strokeColor = "stroke-red-400";
   } else if (percentage < 70) {
-    color = "text-yellow-500";
-    strokeColor = "stroke-yellow-500";
+    color = "text-yellow-400";
+    strokeColor = "stroke-yellow-400";
   }
 
   const radius = 60;
@@ -56,7 +56,7 @@ const ScoreRing = ({ score, maxScore }: { score: number; maxScore: number }) => 
           cx="70"
           cy="70"
           r={radius}
-          className="fill-none stroke-secondary"
+          className="fill-none stroke-white/10"
           strokeWidth="12"
         />
         {/* Progress ring */}
@@ -75,7 +75,7 @@ const ScoreRing = ({ score, maxScore }: { score: number; maxScore: number }) => 
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className={`text-4xl font-black ${color}`}>{score}</span>
-        <span className="text-xs font-semibold text-muted-foreground">out of {maxScore}</span>
+        <span className="text-xs font-semibold text-white/70">out of {maxScore}</span>
       </div>
     </div>
   );
@@ -172,18 +172,18 @@ export function AssessmentFlow() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-[400px] w-full flex-col items-center justify-center gap-4 text-primary">
-        <Loader2 className="size-10 animate-spin" />
-        <p className="animate-pulse font-medium">Loading your assessment...</p>
+      <div className="flex min-h-[400px] w-full flex-col items-center justify-center gap-4 text-white">
+        <Loader2 className="size-10 animate-spin text-white" />
+        <p className="animate-pulse font-medium text-white/80">Loading your assessment...</p>
       </div>
     );
   }
 
   if (error && !questions.length) {
     return (
-      <div className="mx-auto w-full max-w-2xl rounded-lg border border-red-200 bg-red-50 p-8 text-center text-red-600">
+      <div className="mx-auto w-full max-w-2xl rounded-lg border border-red-900 bg-red-950/50 p-8 text-center text-red-400">
         <p>{error}</p>
-        <button onClick={() => window.location.reload()} className="mt-4 underline">
+        <button onClick={() => window.location.reload()} className="mt-4 text-white underline hover:text-white/80">
           Try again
         </button>
       </div>
@@ -192,7 +192,7 @@ export function AssessmentFlow() {
 
   if (questions.length === 0) {
     return (
-      <div className="w-full p-8 text-center text-muted-foreground">
+      <div className="w-full p-8 text-center text-white/70">
         No questions available at the moment.
       </div>
     );
@@ -201,18 +201,18 @@ export function AssessmentFlow() {
   // --- Success Screen ---
   if (result) {
     return (
-      <NeuCard variant="brand-arc" className="mx-auto w-full max-w-xl p-8 text-center sm:p-12">
+      <NeuCard variant="dark-glass" className="mx-auto w-full max-w-xl p-8 text-center sm:p-12">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="mx-auto mb-6 flex size-20 items-center justify-center rounded-full bg-primary/10 text-primary"
+          className="mx-auto mb-6 flex size-20 items-center justify-center rounded-full bg-white/10 text-white"
         >
           <Sparkles className="size-10" />
         </motion.div>
-        <h2 className="mb-4 font-display text-3xl font-black text-foreground">
+        <h2 className="mb-4 font-display text-3xl font-black text-white">
           Assessment Complete!
         </h2>
-        <p className="mb-8 text-muted-foreground">
+        <p className="mb-8 text-white/80">
           Thank you for taking the time to answer honestly. Your responses have been
           recorded, and an expert coach will reach out to you soon with personalized
           insights.
@@ -223,7 +223,7 @@ export function AssessmentFlow() {
         </div>
 
         <div>
-          <NeuButton href="/" variant="primary">
+          <NeuButton href="/" variant="dark-primary">
             Back to Home
           </NeuButton>
         </div>
@@ -238,7 +238,7 @@ export function AssessmentFlow() {
     <div className="mx-auto w-full max-w-2xl">
       {/* Progress Bar */}
       <div className="mb-8 px-2 sm:px-0">
-        <div className="mb-2 flex items-center justify-between text-sm font-medium text-muted-foreground">
+        <div className="mb-2 flex items-center justify-between text-sm font-medium text-white/70">
           <span>
             {isLeadFormStep
               ? "Final Step"
@@ -246,7 +246,7 @@ export function AssessmentFlow() {
           </span>
           <span>{Math.round((currentStepIndex / questions.length) * 100)}%</span>
         </div>
-        <div className="h-2 w-full overflow-hidden rounded-full bg-secondary/50">
+        <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
           <motion.div
             className="h-full bg-primary"
             initial={{ width: 0 }}
@@ -266,12 +266,12 @@ export function AssessmentFlow() {
             transition={{ duration: 0.3 }}
             className="w-full"
           >
-            <NeuCard variant="default" className="p-6 sm:p-8">
+            <NeuCard variant="dark-glass" className="p-6 sm:p-8">
               <div className="text-center sm:text-left">
-                <span className="mb-4 inline-block rounded-full bg-mustard/20 px-3 py-1 text-xs font-semibold text-mustard-foreground">
+                <span className="mb-4 inline-block rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/90">
                   {currentQuestion.category}
                 </span>
-                <h2 className="mb-6 font-display text-2xl font-bold text-foreground">
+                <h2 className="mb-6 font-display text-2xl font-bold text-white">
                   {currentQuestion.questionText}
                 </h2>
               </div>
@@ -286,14 +286,14 @@ export function AssessmentFlow() {
                       onClick={() => handleOptionSelect(currentQuestion.id, option)}
                       className={`flex w-full items-center justify-between rounded-xl border-2 p-4 text-left transition-all ${
                         isSelected
-                          ? "border-primary bg-primary/5 shadow-md"
-                          : "border-transparent bg-white hover:border-primary/30 hover:bg-white/80"
+                          ? "border-primary bg-primary/20 shadow-md"
+                          : "border-white/10 bg-white/5 hover:border-primary/50 hover:bg-white/10"
                       }`}
                     >
-                      <span className={`font-medium ${isSelected ? "text-primary" : "text-foreground"}`}>
+                      <span className={`font-medium ${isSelected ? "text-white" : "text-white/80"}`}>
                         {option.optionText}
                       </span>
-                      {isSelected && <CheckCircle2 className="size-5 shrink-0 text-primary" />}
+                      {isSelected && <CheckCircle2 className="size-5 shrink-0 text-white" />}
                     </button>
                   );
                 })}
@@ -303,14 +303,14 @@ export function AssessmentFlow() {
                 <button
                   onClick={handleBack}
                   disabled={currentStepIndex === 0}
-                  className="flex items-center justify-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground disabled:opacity-50"
+                  className="flex items-center justify-center gap-2 text-sm font-semibold text-white/50 transition-colors hover:text-white disabled:opacity-30"
                 >
                   <ArrowLeft className="size-4" />
                   Previous
                 </button>
 
                 <NeuButton
-                  variant="primary"
+                  variant="dark-primary"
                   onClick={handleNext}
                   className={!answers[currentQuestion.id] ? "pointer-events-none opacity-50" : "w-full sm:w-auto"}
                 >
@@ -329,25 +329,25 @@ export function AssessmentFlow() {
             transition={{ duration: 0.3 }}
             className="w-full"
           >
-            <NeuCard variant="default" className="p-6 sm:p-8">
+            <NeuCard variant="dark-glass" className="p-6 sm:p-8">
               <div className="mb-6 text-center">
-                <h2 className="font-display text-2xl font-bold text-foreground">
+                <h2 className="font-display text-2xl font-bold text-white">
                   Almost Done!
                 </h2>
-                <p className="mt-2 text-muted-foreground">
+                <p className="mt-2 text-white/70">
                   Where should we send your personalized insights?
                 </p>
               </div>
 
               {error && (
-                <div className="mb-6 rounded-md bg-red-50 p-3 text-sm text-red-600 text-center">
+                <div className="mb-6 rounded-md bg-red-950/50 border border-red-900 p-3 text-sm text-red-400 text-center">
                   {error}
                 </div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name" className="text-white/90">Full Name</Label>
                   <Input
                     id="name"
                     required
@@ -356,11 +356,11 @@ export function AssessmentFlow() {
                     onChange={(e) =>
                       setUserDetails({ ...userDetails, name: e.target.value })
                     }
-                    className="w-full"
+                    className="w-full bg-white/5 border-white/20 text-white placeholder:text-white/30 focus-visible:ring-primary"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="emailId">Email Address</Label>
+                  <Label htmlFor="emailId" className="text-white/90">Email Address</Label>
                   <Input
                     id="emailId"
                     type="email"
@@ -370,11 +370,11 @@ export function AssessmentFlow() {
                     onChange={(e) =>
                       setUserDetails({ ...userDetails, emailId: e.target.value })
                     }
-                    className="w-full"
+                    className="w-full bg-white/5 border-white/20 text-white placeholder:text-white/30 focus-visible:ring-primary"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="phoneNumber">Phone Number</Label>
+                  <Label htmlFor="phoneNumber" className="text-white/90">Phone Number</Label>
                   <Input
                     id="phoneNumber"
                     type="tel"
@@ -384,7 +384,7 @@ export function AssessmentFlow() {
                     onChange={(e) =>
                       setUserDetails({ ...userDetails, phoneNumber: e.target.value })
                     }
-                    className="w-full"
+                    className="w-full bg-white/5 border-white/20 text-white placeholder:text-white/30 focus-visible:ring-primary"
                   />
                 </div>
 
@@ -392,20 +392,20 @@ export function AssessmentFlow() {
                   <button
                     type="button"
                     onClick={handleBack}
-                    className="flex items-center justify-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+                    className="flex items-center justify-center gap-2 text-sm font-semibold text-white/50 transition-colors hover:text-white"
                   >
                     <ArrowLeft className="size-4" />
                     Back to questions
                   </button>
 
                   <NeuButton 
-                    variant="primary" 
+                    variant="dark-primary" 
                     style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}
                     className="w-full sm:w-auto"
                   >
                     {isSubmitting ? (
                       <>
-                        <Loader2 className="size-4 animate-spin" />
+                        <Loader2 className="size-4 animate-spin text-white" />
                         Submitting...
                       </>
                     ) : (

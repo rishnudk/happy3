@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 
 /* ─── Variant definitions ───────────────────────────────────────────────── */
-type NeuButtonVariant = "primary" | "mustard";
+type NeuButtonVariant = "primary" | "mustard" | "dark-primary";
 
 interface VariantStyle {
   bg: string;
@@ -39,6 +39,15 @@ const VARIANTS: Record<NeuButtonVariant, VariantStyle> = {
     shadowHover:
       "inset 2px 2px 5px rgba(180,140,0,0.2), inset -2px -2px 5px rgba(255,230,100,0.5), 2px 2px 8px rgba(255,206,27,0.2), -2px -2px 8px rgba(255,255,255,0.8)",
   },
+  "dark-primary": {
+    bg: "#FFCE1B",
+    bgHover: "#FFD84D",
+    border: "2px solid transparent",
+    borderHover: "2px solid transparent",
+    color: "#2A254B",
+    shadow: "0 4px 14px rgba(255, 206, 27, 0.25)",
+    shadowHover: "0 6px 20px rgba(255, 206, 27, 0.4)",
+  },
 };
 
 /* ─── Props ─────────────────────────────────────────────────────────────── */
@@ -52,10 +61,10 @@ interface NeuButtonProps {
   size?: "sm" | "md" | "lg";
 }
 
-const SIZE_STYLES: Record<"sm" | "md" | "lg", React.CSSProperties> = {
-  sm: { padding: "8px 16px", fontSize: 12 },
-  md: { padding: "14px 32px", fontSize: 14 },
-  lg: { padding: "16px 38px", fontSize: 15 },
+const SIZE_CLASSES: Record<"sm" | "md" | "lg", string> = {
+  sm: "px-4 py-2 text-[11px] sm:text-[12px]",
+  md: "px-5 py-2.5 text-[12px] sm:px-6 sm:py-3 sm:text-[13px] md:px-8 md:py-3.5 md:text-[14px]",
+  lg: "px-6 py-3 text-[13px] sm:px-8 sm:py-3.5 sm:text-[14px] md:px-10 md:py-4 md:text-[15px]",
 };
 
 /* ─── Component ─────────────────────────────────────────────────────────── */
@@ -69,7 +78,7 @@ export function NeuButton({
   size = "md",
 }: NeuButtonProps) {
   const v = VARIANTS[variant];
-  const sizeStyle = SIZE_STYLES[size];
+  const sizeClasses = SIZE_CLASSES[size];
 
   const baseStyle: React.CSSProperties = {
     background: v.bg,
@@ -85,7 +94,6 @@ export function NeuButton({
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
-    ...sizeStyle,
     ...externalStyle,
   };
 
@@ -118,7 +126,7 @@ export function NeuButton({
     return (
       <Link
         href={href}
-        className={className}
+        className={`${sizeClasses} ${className}`}
         style={baseStyle}
         onClick={onClick}
         onMouseEnter={handleMouseEnter}
@@ -133,7 +141,7 @@ export function NeuButton({
 
   return (
     <button
-      className={className}
+      className={`${sizeClasses} ${className}`}
       style={baseStyle}
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
