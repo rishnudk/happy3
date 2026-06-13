@@ -21,7 +21,7 @@ export const AssessmentResponseSchema = z.object({
   emailId: z.string(),
   phoneNumber: z.string(),
   totalScore: z.number(),
-  answers: z.any(),
+  answers: z.any().optional(),
   createdAt: z.date(),
 });
 

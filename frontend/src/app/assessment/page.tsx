@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 export default function AssessmentPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden">
+    <main className="relative min-h-screen w-full flex flex-col items-center overflow-x-hidden">
 
-      <div className="relative z-10 mx-auto max-w-3xl px-4 py-8 md:px-6 md:py-12">
+      <div className="relative z-10 w-full max-w-3xl px-4 py-8 md:px-6 md:py-12">
         <header className="mb-8 flex items-center justify-between gap-4">
           <JourneyPill
             href="/"
@@ -25,7 +25,7 @@ export default function AssessmentPage() {
           </JourneyPill>
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/home/logo.svg"
+              src="/images/logoH.png"
               alt="Happiness Coaching Academy"
               width={40}
               height={40}
